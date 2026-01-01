@@ -38,11 +38,11 @@ function NavBar() {
       {isMenuOpen && (
         <div className="mobileMenu">
           <ul>
-            {links.map((link) => (
-              <li key={link.name}>
+            {links.map((link, index) => (
+              <li key={link.name} style={{ animationDelay: `${index * 0.1}s` }}>
                 <Link
                   to={link.path}
-                  onClick={() => setIsMenuOpen((prev) => !prev)}
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   {link.name}
                 </Link>

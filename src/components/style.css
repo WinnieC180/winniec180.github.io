@@ -42,34 +42,6 @@
     z-index: 20;
 }
 
-.mobileMenu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #121524;
-    backdrop-filter: blur(10px);
-    width: 100vw;
-    height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-}
-
-.mobileMenu ul {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    gap: 40px;
-}
-
-.mobileMenu a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 2rem;
-}
-
 .links {
     position: absolute;
     left: 50%;
@@ -277,6 +249,59 @@
         opacity: 1;
         cursor: pointer;
         border: none;
+    }
+
+    .mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #121524;
+        width: 100vw;
+        height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+
+        animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        } to {
+            opacity: 1;
+        }
+    }
+
+    .mobileMenu ul {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+        overflow-y: hidden;
+    }
+
+    .mobileMenu ul li {
+        opacity: 0;
+        animation: fadeInUpwards 0.3s ease forwards;
+    }
+
+    @keyframes fadeInUpwards {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        } to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .mobileMenu a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 2rem;
     }
     
     .description {
