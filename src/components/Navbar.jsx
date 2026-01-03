@@ -9,7 +9,7 @@ function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll= () => {
+    const handleScroll = () => {
       if (window.scrollY > 50) {
         setIsScrolled(true);
       } else {
@@ -18,8 +18,8 @@ function NavBar() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const links = [
     { name: "Work", path: "/#work" },
@@ -39,12 +39,19 @@ function NavBar() {
         <ul>
           {links.map((link) => (
             <li key={link.name}>
-              <Link to={link.path}>{link.name}</Link>
+              {link.path.startsWith("/#") ? (
+                <a href={link.path}>{link.name}</a>
+              ) : (
+                <Link to={link.path}>{link.name}</Link>
+              )}
             </li>
           ))}
         </ul>
       </div>
-      <button onClick={() => setIsMenuOpen((prev) => !prev)} className="menu centerFlex">
+      <button
+        onClick={() => setIsMenuOpen((prev) => !prev)}
+        className="menu centerFlex"
+      >
         {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
@@ -54,12 +61,15 @@ function NavBar() {
           <ul>
             {links.map((link, index) => (
               <li key={link.name} style={{ animationDelay: `${index * 0.1}s` }}>
-                <Link
-                  to={link.path}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
+                {link.path.startsWith("/#") ? (
+                  <a href={link.path} onClick={() => setIsMenuOpen(false)}>
+                    {link.name}
+                  </a>
+                ) : (
+                  <Link to={link.path} onClick={() => setIsMenuOpen(false)}>
+                    {link.name}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

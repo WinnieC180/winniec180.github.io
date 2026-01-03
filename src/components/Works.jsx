@@ -10,7 +10,7 @@ function Works() {
   };
 
   return (
-    <section className="centerFlex" style={{...direction}}>
+    <section className="centerFlex" style={{...direction}} id="work">
       <div className="centerFlex" style={gap}>
         <img src={Line} alt="A short line" />
         <p>EXPEDITION LOG</p>
