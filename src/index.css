@@ -1,7 +1,20 @@
 :root {
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #1d202f;
+  --clr-primary-800: hsl(230, 33%, 11%);
+  --clr-primary-700: hsl(230, 24%, 15%);
+  --clr-primary-650: hsl(223, 36%, 27%);
+  --clr-primary-600: hsl(218, 30%, 41%);
+  --clr-primary-500: hsl(220, 22%, 57%);
+  --clr-primary-400: hsl(221, 32%, 71%);
+  --clr-primary-300: hsl(221, 27%, 80%);
+
+  --clr-secondary-400: hsl(218, 35%, 18%);
+  --clr-secondary-300: hsl(195, 100%, 65%);
+
+  --clr-neutral-200: hsl(0, 0%, 66%);
+  --clr-neutral-100: hsl(0, 0%, 100%);
+
+  background-color: var(--clr-primary-700);
+  color: var(--clr-neutral-100);
 }
 
 body {

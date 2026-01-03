@@ -1,8 +1,9 @@
 import Line from "../assets/line.png";
+import Projects from "./Projects";
 
 function Works() {
   const gap = {
-    marginTop: "100px",
+    margin: "100px 0",
   };
 
   const direction = {
@@ -10,8 +11,8 @@ function Works() {
   };
 
   return (
-    <section className="centerFlex" style={{...direction}} id="work">
-      <div className="centerFlex" style={gap}>
+    <section className="centerFlex" style={{...direction, ...gap}} id="work" >
+      <div className="centerFlex">
         <img src={Line} alt="A short line" />
         <p>EXPEDITION LOG</p>
         <img src={Line} alt="A short line" />
@@ -25,6 +26,7 @@ function Works() {
           discover new challenges and skills along the way ~
         </p>
       </div>
+      <Projects />
     </section>
   );
 }
