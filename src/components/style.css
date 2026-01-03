@@ -17,10 +17,21 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 10vw;
-    position: relative; 
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%; 
 
-    min-height: 150px; 
+    min-height: 120px; 
     z-index: 10;
+
+    transition: all 0.5s ease-in-out;
+}
+
+.navbar.scrolled {
+    min-height: 86px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .logo {
@@ -99,6 +110,8 @@
 .heroesection {
     flex-direction: column;
     padding: 40px;
+
+    margin-top: 150px;
 }
 
 .label {

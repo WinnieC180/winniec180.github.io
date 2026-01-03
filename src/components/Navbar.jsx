@@ -1,11 +1,25 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./style.css";
 import winLogo from "../assets/logo.svg";
 import { X, Menu } from "lucide-react";
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll= () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   const links = [
     { name: "Work", path: "/#work" },
@@ -15,7 +29,7 @@ function NavBar() {
   ];
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
       <div className="logo centerFlex">
         <Link to="/">
           <img src={winLogo} alt="Winnie's Logo, Chinese character for win" />

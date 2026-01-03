@@ -11,3 +11,8 @@ body {
 h1, h2, h3 {
   font-family: 'Cormorant Garamond', serif;
 }
+
+h1 {
+  font-size: 60px;
+  font-weight: 500;
+}
