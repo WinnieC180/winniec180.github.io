@@ -11,7 +11,7 @@ function Works() {
   };
 
   return (
-    <section className="centerFlex" style={{...direction, ...gap}} id="work" >
+    <section className="centerFlex" style={{...direction, ...gap, scrollMarginTop: "120px"}} id="work" >
       <div className="centerFlex">
         <img src={Line} alt="A short line" style={{width: "28vw"}}/>
         <p style={{fontSize: "clamp(12px, 1.5vw + 0.5rem, 20px)"}}>EXPEDITION LOG</p>
