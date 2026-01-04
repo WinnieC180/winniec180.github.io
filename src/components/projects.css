@@ -1,9 +1,10 @@
 .projects {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 20px;
+    margin: 20px auto;
     gap: 4vw;
-
+    width: min(1200px, 90vw);
+    
     padding: 30px;
 }
 
@@ -11,14 +12,14 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: var(--clr-secondary-400);
-    width: 34vw;
+    gap: 10px;
     padding: 14px 12px;
+
     border-radius: 16px;
     border: 2px solid var(--clr-secondary-300);
+    background-color: var(--clr-secondary-400);
     box-shadow: 0 0 0 hsl(from var(--clr-secondary-300) h s l / 0);
 
-    gap: 10px;
     overflow-x: hidden;
     transition: box-shadow 0.3s ease; 
 }
@@ -33,7 +34,7 @@
     bottom: 0;
     border-radius: 4px;
 
-    transition: width 0.3s ease;
+    transition: width 0.5s ease;
 }
 
 .project:hover::after {
@@ -56,6 +57,14 @@
     box-shadow: 0 0 30px hsl(352 100% 65% / 0.5);
 }
 
+.project:hover .title span {
+    color: hsl(from var(--clr-secondary-300) h 100% 60%);
+}
+
+.project:hover .not span {
+    color: hsl(352 100% 65%);
+}
+
 .header {
     display: flex; 
     justify-content: space-between;
@@ -68,10 +77,12 @@
     border-radius: 16px;
 
     background-color: var(--clr-primary-300);
+    object-fit: cover; 
 }
 
 .title span {
     color: var(--clr-primary-600);
+    transition: color 0.3s ease;
 }
 
 .tools {

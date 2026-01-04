@@ -71,7 +71,7 @@ function Projects() {
           <div className="image"></div>
 
           <div className="name" style={{ display: "flex" }}>
-            <h2 className="title">
+            <h2 className={project.isComplete ? "title" : "title not"}>
               {project.title} <span>✦ {project.subTitle}</span>
             </h2>
           </div>

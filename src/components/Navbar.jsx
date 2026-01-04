@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./style.css";
-import winLogo from "../assets/logo.svg";
+import winLogo from "../assets/logo-light.svg";
 import { X, Menu } from "lucide-react";
 
 function NavBar() {
