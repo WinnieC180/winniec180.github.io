@@ -1,7 +1,33 @@
-.intro {
-    margin-top: 155px;
-    padding: 100px 50px;
+/* Introduction */
+.myBio {
+    display: flex;
+    align-items: center;
 
+    margin-top: 155px;
+    gap: 80px;
+
+    padding: 20px 0 100px 0; 
+}
+
+.intro {
+    flex-direction: column;
+    gap: 30px;
+    width: fit-content;
+    flex: 0 1 auto;
+}
+
+.myPhoto {
+    display: flex;
     flex-direction: column;
     gap: 20px;
+    background-color: var(--clr-neutral-100);
+    padding: 10px;
+    border-radius: 10px;
 }
+
+.myPhoto img {
+    border-radius: 10px;
+    background-color: var(--clr-primary-500);
+}
+
+/* Experience */

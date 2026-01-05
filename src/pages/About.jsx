@@ -1,6 +1,7 @@
 import NavBar from "../components/Navbar"
 import Footer from "../components/Footer"
 import Introduction from "../components/Introduction"
+import Experience from "../components/Experience"
 import { useEffect } from "react"
 
 function About () {
@@ -14,6 +15,7 @@ function About () {
 
             <main>
                 <Introduction />
+                <Experience />
             </main>
 
             <footer>
