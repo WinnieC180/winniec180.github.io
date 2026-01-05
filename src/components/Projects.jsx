@@ -1,4 +1,5 @@
 import "./projects.css";
+import WhirlPool from "../assets/whirlPool.svg";
 
 function Projects() {
   const projects = [
@@ -52,7 +53,10 @@ function Projects() {
   return (
     <div className="projects">
       {projects.map((project, index) => (
-        <div key={index} className={project.isComplete ? "project" : "project notDone"}>
+        <div
+          key={index}
+          className={project.isComplete ? "project" : "project notDone"}
+        >
           {project.isComplete ? (
             <div
               className="header"
@@ -82,11 +86,33 @@ function Projects() {
 
           <div className="tools">
             {project.tools.map((tool, toolInd) => (
-              <p key={toolInd} className="tool">{tool}</p>
+              <p key={toolInd} className="tool">
+                {tool}
+              </p>
             ))}
           </div>
         </div>
       ))}
+      {projects.length % 2 == 0 ? (
+        <div></div>
+      ) : (
+        <div
+          className="centerFlex"
+          style={{ flexDirection: "column", gap: "10px" }}
+        >
+          <img
+            src={WhirlPool}
+            alt="A whirlpool of fish"
+            style={{
+              width: "80%",
+              background:
+                "radial-gradient(circle, var(--clr-primary-600) 0%, hsl( from var(--clr-primary-600) h s l / 0) 60% )",
+            }}
+          />
+
+          <p>More projects to come!</p>
+        </div>
+      )}
     </div>
   );
 }
