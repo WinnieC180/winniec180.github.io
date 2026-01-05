@@ -1,12 +1,12 @@
 /* Introduction */
-.myBio {
+.myBio, .toolsNEdu {
     display: flex;
     align-items: center;
 
     margin-top: 155px;
     gap: 80px;
 
-    padding: 20px 0 100px 0; 
+    padding: 20px 0 60px 0; 
 }
 
 .intro {
@@ -28,6 +28,34 @@
 .myPhoto img {
     border-radius: 10px;
     background-color: var(--clr-primary-500);
+
+    flex-shrink: 0;
 }
 
 /* Experience */
+.toolsNEdu {
+    display: flex;
+    flex-direction: column;
+    padding: 0  0 200px 0; 
+}
+
+.toolkit {
+    flex: 1;
+    min-width: 300px;
+    max-width: 380px;
+}
+
+.designTools, .devTools {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.designTool, .devTool {
+    display: flex;
+    padding: 10px;
+    background-color: var(--clr-primary-650);
+
+    border-radius: 10px;
+    flex-shrink: 0;
+}
