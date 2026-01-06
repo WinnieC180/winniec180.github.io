@@ -1,12 +1,12 @@
 /* Introduction */
-.myBio, .toolsNEdu {
+.myBio, .toolsNEdu, .myExperiences {
     display: flex;
     align-items: center;
 
-    margin-top: 155px;
+    margin-top: 170px;
     gap: 80px;
 
-    padding: 20px 0 60px 0; 
+    padding: 20px 0; 
 }
 
 .intro {
@@ -16,13 +16,48 @@
     flex: 0 1 auto;
 }
 
+.hello {
+    display: inline-block;
+    transform-origin: bottom left; 
+    animation: greeting 3s ease-in-out forwards;
+}
+
+@keyframes greeting {
+    0% {
+        transform: translateY(10px) rotate(0deg);
+    }
+    30% {
+        transform: translateY(-20px) rotate(0deg);
+    }
+    40%, 60%, 80% {
+        transform: translateY(-20px) rotate(-13deg);
+    }
+    50%, 70%, 90% {
+        transform: translateY(-20px) rotate(-7deg);
+    }
+    100% {
+        transform: translateY(10px) rotate(0deg);
+    }
+}
+
 .myPhoto {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     background-color: var(--clr-neutral-100);
     padding: 10px;
     border-radius: 10px;
+
+    animation: bubble 5s ease-in-out infinite;
+}
+
+@keyframes bubble {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 .myPhoto img {
@@ -33,10 +68,12 @@
 }
 
 /* Experience */
-.toolsNEdu {
+.toolsNEdu, .myExperiences {
     display: flex;
     flex-direction: column;
-    padding: 0  0 200px 0; 
+    padding: 0  0 100px 0; 
+
+    margin-top: 0;
 }
 
 .toolkit {
@@ -57,5 +94,18 @@
     background-color: var(--clr-primary-650);
 
     border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.myBio h2 {
+    font-size: 2rem;
+}
+
+.workPlace {
+    font-size: 1.2rem;
+}
+
+.education {
+    width: 380px; 
     flex-shrink: 0;
 }

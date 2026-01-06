@@ -1,11 +1,12 @@
 import "./about.css";
 import Hello from "../assets/Hello.svg";
+import Photo from "../assets/photo.png"
 
 function Introduction() {
   return (
     <div className="centerFlex myBio">
       <div className="centerFlex intro">
-        <img src={Hello} alt="" />
+        <img className= "hello" src={Hello} alt="The photo of hello" />
         <p style={{maxWidth: "500px", width: "100%"}}>
           I’m Winnie, a sophomore studying Computer
           Science, and pursuing minors in Game Design & Information Science. 
@@ -23,9 +24,9 @@ function Introduction() {
         </p>
       </div>
       <div className="myPhoto">
-        <img src="" alt="" style={{width: "380px", height: "430px"}}/>
-        <div>
-            <h2 style={{color: "var(--clr-primary-800)"}}>Cornell University | Engineering</h2>
+        <img src={Photo} alt="" style={{width: "380px", height: "450px"}}/>
+        <div style={{display: "flex", gap: "5px", flexDirection: "column"}}>
+            <h2 style={{color: "var(--clr-primary-800)", fontSize: "1.5rem"}}>Cornell University | Engineering</h2>
             <p style={{color: "var(--clr-primary-500)"}}>Class of 2028 ✦ Queens NY</p>
         </div>
       </div>
