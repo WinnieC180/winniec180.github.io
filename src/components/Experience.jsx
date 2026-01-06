@@ -1,5 +1,6 @@
 import "./about.css";
 import Anchor from "../assets/anchor.svg";
+import Line from "../assets/line.png";
 
 function Experience() {
   const devTools = [
@@ -57,77 +58,85 @@ function Experience() {
   ]
 
   return (
-    <div className= "centerFlex myBio" style={{marginTop: "140px"}}>
-        <div className="toolsNEdu">
-            <div
-                className="toolkit"
-                style={{ display: "flex", flexDirection: "column", gap: "30px" }}
-            >
-                <div className="" style={{ display: "flex", gap: "10px" }}>
-                    <img src={Anchor} alt="An icon of a blue anchor" />
-                    <h2>
-                        <em>Technical Toolkit</em>
-                    </h2>
-                </div>
-
-                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                    <p style={{ color: "var(--clr-secondary-300)" }}>DEV TOOLS</p>
-
-                    <div className="devTools">
-                        {devTools.map((devTool, index) => (
-                        <div key={index} className="centerFlex devTool">
-                            {devTool}
-                        </div>
-                        ))}
-                    </div>
-                </div>
-
-                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                    <p style={{ color: "var(--clr-secondary-300)" }}>DESIGN TOOLS</p>
-
-                    <div className="designTools">
-                        {designTools.map((designTool, index) => (
-                        <div key={index} className="centerFlex designTool">
-                            {designTool}
-                        </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            <div className="education" style={{ display: "flex", flexDirection: "column", gap: "30px"}}>
-                <div>
-                    <h2>
-                        <em>Education</em>
-                    </h2>
-                </div>
-
-                {educations.map((education, eduIndex) => (
-                    <div key={eduIndex}>
-                        <p><span style={{color: "var(--clr-secondary-300)"}}>✦</span> {education.school}</p>
-                        <p style={{color: "var(--clr-neutral-200)"}}>{education.major}</p>
-                        <p style={{color: "var(--clr-secondary-300)"}}>Class of{education.gradClass}</p>
-                    </div>
-                ))}
-            </div>
+    <div style={{display: "flex", flexDirection: "column", marginTop: "110px"}}>
+        <div className="centerFlex">
+            <img src={Line} alt="A short line" style={{width: "28vw"}}/>
+            <p style={{fontSize: "clamp(12px, 1.5vw + 0.5rem, 20px)"}}>EXPERIENCE LOG</p>
+            <img src={Line} alt="A short line" style={{width: "28vw"}}/>
         </div>
 
-        <div className= "myExperiences">
-            <div style={{ display: "flex", flexDirection: "column", gap: "30px", width: "380px" }}>
-                <div>
-                    <h2>
-                        <em>Experiences</em>
-                    </h2>
-                </div>
-                {
-                    experiences.map((experience, index) => (
-                        <div className="experience" key={index}>
-                            <p style={{color: "var(--clr-secondary-300)"}}>{experience.timeline}</p>
-                            <p className="workPlace">{experience.work}</p>
-                            <p style={{color: "var(--clr-neutral-200)"}}>{experience.role}</p>
+        <div className= "centerFlex myBio" style={{marginTop: "30px"}}>
+            <div className="toolsNEdu">
+                <div
+                    className="toolkit"
+                    style={{ display: "flex", flexDirection: "column", gap: "30px" }}
+                >
+                    <div className="" style={{ display: "flex", gap: "10px" }}>
+                        <img src={Anchor} alt="An icon of a blue anchor" />
+                        <h2>
+                            <em>Technical Toolkit</em>
+                        </h2>
+                    </div>
+
+                    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                        <p style={{ color: "var(--clr-secondary-300)" }}>DEV TOOLS</p>
+
+                        <div className="devTools">
+                            {devTools.map((devTool, index) => (
+                            <div key={index} className="centerFlex devTool">
+                                {devTool}
+                            </div>
+                            ))}
                         </div>
-                    ))
-                }
+                    </div>
+
+                    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                        <p style={{ color: "var(--clr-secondary-300)" }}>DESIGN TOOLS</p>
+
+                        <div className="designTools">
+                            {designTools.map((designTool, index) => (
+                            <div key={index} className="centerFlex designTool">
+                                {designTool}
+                            </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                <div className="education" style={{ display: "flex", flexDirection: "column", gap: "30px"}}>
+                    <div>
+                        <h2>
+                            <em>Education</em>
+                        </h2>
+                    </div>
+
+                    {educations.map((education, eduIndex) => (
+                        <div key={eduIndex}>
+                            <p><span style={{color: "var(--clr-secondary-300)"}}>✦</span> {education.school}</p>
+                            <p style={{color: "var(--clr-neutral-200)"}}>{education.major}</p>
+                            <p style={{color: "var(--clr-secondary-300)"}}>Class of{education.gradClass}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className= "myExperiences">
+                <div style={{ display: "flex", flexDirection: "column", gap: "30px", width: "380px" }}>
+                    <div>
+                        <h2>
+                            <em>Experiences</em>
+                        </h2>
+                    </div>
+                    {
+                        experiences.map((experience, index) => (
+                            <div className="experience" key={index}>
+                                <p style={{color: "var(--clr-secondary-300)"}}>{experience.timeline}</p>
+                                <p className="workPlace">{experience.work}</p>
+                                <p style={{color: "var(--clr-neutral-200)"}}>{experience.role}</p>
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     </div>

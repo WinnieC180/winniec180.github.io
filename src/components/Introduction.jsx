@@ -27,7 +27,7 @@ function Introduction() {
         <img src={Photo} alt="" style={{width: "380px", height: "450px"}}/>
         <div style={{display: "flex", gap: "5px", flexDirection: "column"}}>
             <h2 style={{color: "var(--clr-primary-800)", fontSize: "1.5rem"}}>Cornell University | Engineering</h2>
-            <p style={{color: "var(--clr-primary-500)"}}>Class of 2028 ✦ Queens NY</p>
+            <p style={{color: "var(--clr-primary-500)"}}>Developer ✦ Designer ✦ Queens NY</p>
         </div>
       </div>
     </div>

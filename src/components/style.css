@@ -143,7 +143,7 @@ html, body {
     padding: 0;
     color: var(--clr-primary-800);
     font-size: clamp(55px, 15vw + 1rem, 100px);
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .breifintro {
