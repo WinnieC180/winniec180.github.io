@@ -1,5 +1,10 @@
 import "./projects.css";
 import WhirlPool from "../assets/whirlPool.svg";
+import OhMyCamel from "../imgProjects/Oh-My-Camel.svg"
+import Quack from "../imgProjects/Quack-A-Goose.svg"
+import StudyBuddy from "../imgProjects/StudyBuddy.svg"
+import CreatorCuts from "../imgProjects/CreatorsCuts.svg"
+import SUSB from "../imgProjects/SUSB.svg"
 
 function Projects() {
   const projects = [
@@ -10,7 +15,7 @@ function Projects() {
         "A wholesome pet sim… with a very lumpy twist! A fun game developed and designed for the CS3110 final project.",
       timeSpent: "3 weeks",
       tools: ["OCaml", "Raylib"],
-      image: "/imgProjects/Oh-My-Camel.svg",
+      image: OhMyCamel,
       isComplete: true,
     },
     {
@@ -20,7 +25,7 @@ function Projects() {
         "A whack a mole game but without a mole?? drew and implemented a interactive project for APCSA.",
       timeSpent: "1 month",
       tools: ["Java", "Medibang Paint"],
-      image: "/imgProjects/Quack-A-Goose.svg",
+      image: Quack,
       isComplete: true,
     },
     {
@@ -30,7 +35,7 @@ function Projects() {
         "Won best backend award in AppDev’s Hack Challenge. An app that helps Cornell students study friends!",
       timeSpent: "1 week",
       tools: ["Figma", "Swift", "Docker"],
-      image: "/imgProjects/StudyBuddy.svg",
+      image: StudyBuddy,
       isComplete: true,
     },
     {
@@ -40,7 +45,7 @@ function Projects() {
         "Conducted user research to design a new feature of YouTube to help users create more personalized recommendations.",
       timeSpent: "3 months",
       tools: ["Figma"],
-      image: "/imgProjects/CreatorsCuts.svg",
+      image: CreatorCuts,
       isComplete: true,
     },
     {
@@ -50,7 +55,7 @@ function Projects() {
         "Developing the website of Sustainabytes @ Cornell University. Spreading Computational Sustainability.",
       timeSpent: "......",
       tools: ["Figma", "React", "CSS", "JavaScript"],
-      image: "/imgProjects/SUSB.svg",
+      image: SUSB,
       isComplete: false,
     },
   ];

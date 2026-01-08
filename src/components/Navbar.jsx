@@ -2,7 +2,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./style.css";
 import winLogo from "../assets/logo-light.svg";
-import resume from "../assets/ResumeWinnieChan.pdf"
+import resume from "../assets/ResumeWinnieChan.pdf";
 import { X, Menu } from "lucide-react";
 
 function NavBar() {
@@ -34,19 +34,19 @@ function NavBar() {
   }, [location]);
 
   useEffect(() => {
-    if (location.hash) {
+    const hash = window.location.hash;
+    if (hash.includes("#work")) {
       setTimeout(() => {
-        const id = location.hash.replace("#", "");
-        const element = document.getElementById(id); //element could be truthy or falsy since element could be an element or null
+        const element = document.getElementById("work");
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
         }
-      }, 100);
+      }, 150);
     }
   }, [location]);
 
   const links = [
-    { name: "Work", path: "/#work", type: "anchor" },
+    { name: "Work", path: "#work", type: "anchor" },
     { name: "About", path: "/about", type: "route" },
     { name: "Explorations", path: "/explorations", type: "route" },
     { name: "Resume", path: resume, type: "file" },
@@ -65,7 +65,7 @@ function NavBar() {
             <li key={link.name}>
               {link.type === "anchor" ? (
                 <a
-                  href={link.path}
+                  href={`#${link.path}`} 
                   className={
                     activeTab === "work" && location.pathname === "/"
                       ? "active"

@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Explorations from "./pages/Explorations";
@@ -18,7 +18,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter basename="/winniechan">
+      <HashRouter>
         <ScrollToTop />
         <Routes>
           <Route index element={<Home />} />
@@ -26,7 +26,7 @@ function App() {
           <Route path="/explorations" element={<Explorations />} />
           <Route path="*" element={<Error />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
