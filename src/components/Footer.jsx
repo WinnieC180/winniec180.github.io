@@ -26,52 +26,58 @@ function Footer() {
         <p style={{ color: "var(--clr-primary-600)" }}>wc679@cornell.edu</p>
       </div>
 
-      <img
-        src={Line}
-        alt="A short line"
-        style={{ width: "80vw", height: "1px", marginTop: "40px" }}
-      />
-      <div className="footerBio"
-        style={{
-          color: "var(--clr-primary-400)",
-          gap: "14vw",
-          display: "flex",
-        }}
-      >
-        <div className="centerFlex" style={{ gap: "20px" }}>
-          <div className="centerFlex" style={{ gap: "10px" }}>
-            <ArrowUpRight size={20} color="var(--clr-primary-400)" />
-            <a
-              href="https://github.com/WinnieC180"
-              style={{
-                textDecoration: "none",
-                color: "var(--clr-primary-400)",
-              }}
-              target="_blank"
-            >
-              <p>GitHub</p>
-            </a>
-          </div>
-          <div className="centerFlex" style={{ gap: "10px" }}>
-            <ArrowUpRight size={20} color="var(--clr-primary-400)" />
-            <a
-              href="https://www.linkedin.com/in/winnie-chan-503804367/"
-              style={{
-                textDecoration: "none",
-                color: "var(--clr-primary-400)",
-              }}
-              target="_blank"
-            >
-              <p>LinkedIn</p>
-            </a>
-          </div>
+      <div style={{display: "flex", flexDirection: "column"}}>
+        <div className="centerFlex" style={{ marginTop: "30px", color: "var(--clr-primary-400)" }}>
+          <p>Developed and designed with React and Figma</p>
         </div>
+        <img
+          src={Line}
+          alt="A short line"
+          style={{ width: "80vw", height: "1px", margin: "10px 0"}}
+        />
+        <div
+          className="footerBio"
+          style={{
+            color: "var(--clr-primary-400)",
+            gap: "14vw",
+            display: "flex",
+          }}
+        >
+          <div className="centerFlex" style={{ gap: "20px" }}>
+            <div className="centerFlex" style={{ gap: "10px" }}>
+              <ArrowUpRight size={20} color="var(--clr-primary-400)" />
+              <a
+                href="https://github.com/WinnieC180"
+                style={{
+                  textDecoration: "none",
+                  color: "var(--clr-primary-400)",
+                }}
+                target="_blank"
+              >
+                <p>GitHub</p>
+              </a>
+            </div>
+            <div className="centerFlex" style={{ gap: "10px" }}>
+              <ArrowUpRight size={20} color="var(--clr-primary-400)" />
+              <a
+                href="https://www.linkedin.com/in/winnie-chan-503804367/"
+                style={{
+                  textDecoration: "none",
+                  color: "var(--clr-primary-400)",
+                }}
+                target="_blank"
+              >
+                <p>LinkedIn</p>
+              </a>
+            </div>
+          </div>
 
-        <div>
-          <p style={{textAlign: "center"}}>
-            © 2026 Winnie Chan | Made with &lt;3 & the support of some amazing
-            individuals!
-          </p>
+          <div>
+            <p style={{ textAlign: "center" }}>
+              © 2026 Winnie Chan | Made with &lt;3 & the support of some amazing
+              individuals!
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -33,6 +33,18 @@ function NavBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location]);
 
+  useEffect(() => {
+    if (location.hash) {
+      setTimeout(() => {
+        const id = location.hash.replace("#", "");
+        const element = document.getElementById(id); //element could be truthy or falsy since element could be an element or null
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [location]);
+
   const links = [
     { name: "Work", path: "/#work", type: "anchor" },
     { name: "About", path: "/about", type: "route" },
