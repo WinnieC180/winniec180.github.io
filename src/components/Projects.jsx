@@ -9,6 +9,7 @@ import SUSB from "../imgProjects/SUSB.svg"
 function Projects() {
   const projects = [
     {
+      id: "oh-my-camel",
       title: "Your Desert Buddy",
       subTitle: "Oh My Camel!",
       description:
@@ -19,6 +20,7 @@ function Projects() {
       isComplete: true,
     },
     {
+      id: "qu-wack-a-mole",
       title: "A mole, a goose, or...?",
       subTitle: "Qu-wack a Mole",
       description:
@@ -29,6 +31,7 @@ function Projects() {
       isComplete: true,
     },
     {
+      id: "study-buddy",
       title: "A Friend to Lock in with",
       subTitle: "Study Buddy",
       description:
@@ -39,6 +42,7 @@ function Projects() {
       isComplete: true,
     },
     {
+      id: "creator-cuts",
       title: "YouTube Case Study",
       subTitle: "Creator’s Cuts",
       description:
@@ -49,6 +53,7 @@ function Projects() {
       isComplete: true,
     },
     {
+      id: "SUSB",
       title: "Sustainabytes",
       subTitle: "Club Website",
       description:
