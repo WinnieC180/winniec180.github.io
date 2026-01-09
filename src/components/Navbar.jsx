@@ -55,7 +55,7 @@ function NavBar() {
   return (
     <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
       <div className="logo centerFlex">
-        <Link to="/">
+        <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <img src={winLogo} alt="Winnie's Logo, Chinese character for win" />
         </Link>
       </div>
