@@ -114,7 +114,7 @@ function Experience() {
                         <div className="school" key={eduIndex}>
                             <p><span style={{color: "var(--clr-secondary-300)"}}>✦</span> {education.school}</p>
                             <p style={{color: "var(--clr-neutral-200)"}}>{education.major}</p>
-                            <p style={{color: "var(--clr-secondary-300)"}}>Class of{education.gradClass}</p>
+                            <p style={{color: "var(--clr-secondary-300)"}}>Class of {education.gradClass}</p>
                         </div>
                     ))}
                 </div>
