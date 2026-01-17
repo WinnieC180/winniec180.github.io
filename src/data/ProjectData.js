@@ -1,7 +1,7 @@
 import OhMyCamel from "../imgProjects/Oh-My-Camel.svg";
 import QuackAGoose from "../imgProjects/Quack-A-Goose.svg";
-// import CreatorsCut from "../imgProjects/CreatorsCuts.svg";
-// import StudyBuddy from "../imgProjects/StudyBuddy.svg";
+import CreatorsCut from "../imgProjects/CreatorsCuts.svg";
+import StudyBuddy from "../imgProjects/StudyBuddy.svg";
 
 export const ProjectData = [
   {
@@ -15,8 +15,8 @@ export const ProjectData = [
         content: [
           { Team: "4 developers" },
           { Role: "Developer & Artist" },
-          { Timeline: "Fall 2025 (3 weeks)" },
-          { Tools: "OCaml, Raylib, Medibang Paint Pro" },
+          { Timeline: "Fall 2025 \n(3 weeks)" },
+          { Tools: "OCaml, Raylib, \nMedibang Paint Pro" },
         ],
       },
       {
@@ -44,8 +44,8 @@ export const ProjectData = [
         content: [
           { Team: "2 developers" },
           { Role: "Developer & Artist" },
-          { Timeline: "Spring 2023 (1 month)" },
-          { Tools: "Java, Medibang Paint Pro" },
+          { Timeline: "Spring 2023 \n(1 month)" },
+          { Tools: "Java, \nMedibang Paint Pro" },
         ],
       },
       {
@@ -59,6 +59,40 @@ export const ProjectData = [
         label: "Reflection",
         content:
           "For our final project, we presented Quack a Goose! to our AP Computer Science A class, and it was chosen as the second-best project by our peers. And of course, the $5 Amazon gift card we earned felt like a fun and rewarding bonus after all the hard work. Creating Quack a Goose was both an enjoyable and educational experience that challenged me to think deeply about game design, user engagement, and collaboration. Designing a fast-paced game within a 30-second time limit required careful consideration of pacing and difficulty, especially as more geese spawned over time to keep players engaged. This project also marked my first time working collaboratively on a large-scale coding project, which taught me how important communication and teamwork are when developing complex programs. One of the most rewarding aspects of the project was adding the “People” game mode. Incorporating photos of classmates and our teacher, with their permission, made the game more personal and entertaining, and demonstrated how small creative decisions can significantly enhance the user experience. This feature pushed me to think beyond basic functionality and consider how personalization and humor can make a project more memorable.",
+      },
+    ],
+  },
+  {
+    id: "study-buddy",
+    subTitle: "Study Buddy",
+    image: StudyBuddy,
+    sections: [
+      {
+        id: "overview",
+        label: "Overview",
+        content: [
+          { Team: "2 frontend developers \n2 backend developers \n1 UI/UX designer" },
+          { Role: "UI/UX Designer" },
+          { Timeline: "Fall 2025 \n(1 week)" },
+          { Tools: "Figma" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "creator-cuts",
+    subTitle: "Creator's Cuts",
+    image: CreatorsCut,
+    sections: [
+      {
+        id: "overview",
+        label: "Overview",
+        content: [
+          { Team: "Solo" },
+          { Role: "UI/UX Designer" },
+          { Timeline: "Fall 2025 \n(3 months)" },
+          { Tools: "Figma" },
+        ],
       },
     ],
   },

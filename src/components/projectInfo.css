@@ -43,6 +43,7 @@ html {
 .overview-list {
   list-style: none;
   display: flex;
+  align-items: flex-start;
 
   gap: 50px;
 }
@@ -53,7 +54,7 @@ html {
 }
 
 .overview-list span {
-  max-width: 12vw;
+  max-width: 13vw;
 }
 
 .content-image {
