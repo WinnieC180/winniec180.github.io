@@ -26,6 +26,17 @@ export const ProjectData = [
           "Oh My Camel is a game created for the CS 3110 (Data Structures and Functional Programming) course. A camel pet simulator game with turn-based logic. The player starts with a petcamel with happiness, hunger, and hygiene statistics set at a maximum value of 100 and a certainamount of coins. \n\nThe player can choose what to do in each turn/day: play with a pet, feed a pet, clean a pet, or play mini games.",
       },
       {
+        id: "play-through",
+        label: "Play Throughs",
+        subLabel: "Minigames that could earn you coins!",
+        videos: [
+            {name: "Jumping Game", link: "./videos/Jumping.mp4"},
+            {name: "Memory Game", link: "./videos/Memorygame.mp4"},
+            {name: "Number Game & Inventory", link: "./videos/numberGame.mp4"},
+            {name: "Dune!", link: "./videos/Dune!.mp4"}
+        ],
+      },
+      {
         id: "reflection",
         label: "Reflection",
         content:

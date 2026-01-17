@@ -13,7 +13,7 @@ html {
 
   width: 22vw;
   height: 100vh;
-  padding: 180px 40px 40px 150px;
+  padding: 180px 40px;
 
   box-shadow: 0 0 30px hsl(from var(--clr-primary-800) h s l / 0.5);
 }
@@ -36,8 +36,10 @@ html {
   flex-direction: column;
   flex: 1;
   gap: 30px;
-  padding: 40px 160px;
-  margin-left: 20vw;
+  padding: 40px 60px;
+  margin-left: 22vw;
+
+  width: calc(100% - 22vw);
 }
 
 .overview-list {
@@ -67,4 +69,35 @@ html {
 
 .section-body p {
   white-space: pre-line; /* This makes \n render as an actual line break! */
+}
+
+.video-section {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 40px; 
+  width: 100%;
+}
+
+.video-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.video-card video {
+  border-radius: 10px;
+  background-color: var(--clr-primary-800); 
+  width: 100%;
+  height: auto;
+}
+
+.video-name {
+  color: var(--clr-neutral-100);
+  font-size: 1rem;
+  font-weight: 500;
 }
