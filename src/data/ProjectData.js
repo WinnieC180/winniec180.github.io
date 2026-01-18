@@ -113,6 +113,13 @@ export const ProjectData = [
         peopleProblem:
           "How might we make it easier for students to find the right people to study with during high-stress academic periods?",
       },
+      {
+        id: "user-personas",
+        label: "User Personas",
+        content:
+          "As this was a fast-paced, one-week project, there was limited time to conduct in-depth user research. To guide our design decisions, we created two representative personas based on common student experiences at Cornell, informal conversations with peers, and our own academic experiences. These personas helped us stay user-focused while prioritizing core needs and constraints.",
+        personas: ["./photos/Persona1-studybuddy.svg", "./photos/Persona2-studybuddy.svg"],
+      },
     ],
   },
   {

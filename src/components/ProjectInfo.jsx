@@ -15,7 +15,7 @@ function ProjectInfo() {
       // Remove the '#' from the start (e.g., '#overview' -> 'overview')
       const targetId = hash.replace("#", "");
       const element = document.getElementById(targetId);
-      
+
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
@@ -115,7 +115,7 @@ function ProjectInfo() {
               ) : (
                 <div
                   style={{
-                    gap: "30px",
+                    gap: "20px",
                     display: "flex",
                     flexDirection: "column",
                   }}
@@ -140,6 +140,19 @@ function ProjectInfo() {
                       <p className="problem-text">
                         <b>{section.peopleProblem}</b>
                       </p>
+                    </div>
+                  )}
+                  {section.personas && (
+                    <div className="persona-grid centerFlex" style={{flexDirection: "column", gap: "30px"}}>
+                      {section.personas.map((personaImg, index) => (
+                        <img
+                          key={index}
+                          src={personaImg}
+                          alt={`User Persona ${index + 1}`}
+                          className="persona-image"
+                          style={{maxWidth: "45vw", marginTop: "20px"}}
+                        />
+                      ))}
                     </div>
                   )}
                 </div>
