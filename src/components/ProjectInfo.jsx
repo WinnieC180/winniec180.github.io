@@ -142,14 +142,14 @@ function ProjectInfo() {
                       </p>
                     </div>
                   )}
-                  {section.personas && (
-                    <div className="persona-grid centerFlex" style={{flexDirection: "column", gap: "30px"}}>
-                      {section.personas.map((personaImg, index) => (
+                  {section.pictures && (
+                    <div className="centerFlex" style={{flexDirection: "column", gap: "30px"}}>
+                      {section.pictures.map((personaImg, index) => (
                         <img
                           key={index}
                           src={personaImg}
                           alt={`User Persona ${index + 1}`}
-                          className="persona-image"
+                          className="caseStudyImage"
                           style={{maxWidth: "45vw", marginTop: "20px"}}
                         />
                       ))}
