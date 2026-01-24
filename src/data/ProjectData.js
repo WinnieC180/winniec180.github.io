@@ -181,6 +181,14 @@ export const ProjectData = [
         peopleProblem:
           "How might we enable users to effortlessly find specific content on YouTube during breaks while minimizing distractions from visually appealing but irrelevant videos?",
       },
+      {
+        id: "user-research",
+        label: "User Research",
+        content:
+          "YouTube allows users to find specific content they are searching for during a break, but it is difficult to find that content because… \n\n1. Users prefer quick, effortless discovery instead of actively searching for videos\n2. Users often get distracted by other visually appealing content, straying away from original goal",
+        peopleProblem:
+          "Originally I had a different people problem, so how did I come up with this people problem?",
+      },
     ],
   },
 ];
