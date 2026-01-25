@@ -32,18 +32,6 @@ function Projects() {
       isComplete: true,
     },
     {
-      id: "SUSB",
-      title: "Sustainabytes",
-      subTitle: "Club Website",
-      description:
-        "Developing the website of Sustainabytes @ Cornell University. Spreading Computational Sustainability.",
-      timeSpent: "1 month",
-      tools: ["Figma", "React", "CSS", "JavaScript"],
-      image: SUSB,
-      isComplete: true,
-      externalLink: "https://sustainabytes.org",
-    },
-    {
       id: "study-buddy",
       title: "A Friend to Lock in with",
       subTitle: "Study Buddy",
@@ -64,6 +52,18 @@ function Projects() {
       tools: ["Figma"],
       image: CreatorCuts,
       isComplete: true,
+    },
+    {
+      id: "SUSB",
+      title: "Sustainabytes",
+      subTitle: "Club Website",
+      description:
+        "Developing the website of Sustainabytes @ Cornell University. Spreading Computational Sustainability.",
+      timeSpent: "1 month",
+      tools: ["Figma", "React", "CSS", "JavaScript"],
+      image: SUSB,
+      isComplete: true,
+      externalLink: "https://sustainabytes.org",
     },
   ];
 
