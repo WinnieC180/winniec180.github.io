@@ -6,6 +6,7 @@ import Quack from "../imgProjects/Quack-A-Goose.svg";
 import StudyBuddy from "../imgProjects/StudyBuddy.svg";
 import CreatorCuts from "../imgProjects/CreatorsCuts.svg";
 import SUSB from "../imgProjects/SUSB.svg";
+import FamJam from "../imgProjects/FamJam.svg";
 
 function Projects() {
   const projects = [
@@ -21,6 +22,18 @@ function Projects() {
       isComplete: true,
     },
     {
+      id: "FamJam",
+      title: "FamJam",
+      subTitle: "Rice Design-a-thon 2026",
+      description:
+        "Created an inclusive game to close the gap between different generations. Won best beginner design!",
+      timeSpent: "2 days",
+      tools: ["Figma", "Acting"],
+      image: FamJam,
+      isComplete: true,
+      externalLink: "https://devpost.com/software/team-tennn?ref_content=my-projects-tab&ref_feature=my_projects",
+    },
+    {
       id: "quack-a-goose",
       title: "A mole, a goose, or...?",
       subTitle: "Qu-wack a Mole",
@@ -29,17 +42,6 @@ function Projects() {
       timeSpent: "1 month",
       tools: ["Java", "Medibang Paint"],
       image: Quack,
-      isComplete: true,
-    },
-    {
-      id: "study-buddy",
-      title: "A Friend to Lock in with",
-      subTitle: "Study Buddy",
-      description:
-        "Won best backend award in AppDev’s Hack Challenge. An app that helps Cornell students study friends!",
-      timeSpent: "1 week",
-      tools: ["Figma", "Swift", "Docker"],
-      image: StudyBuddy,
       isComplete: true,
     },
     {
@@ -64,6 +66,17 @@ function Projects() {
       image: SUSB,
       isComplete: true,
       externalLink: "https://sustainabytes.org",
+    },
+    {
+      id: "study-buddy",
+      title: "A Friend to Lock in with",
+      subTitle: "Study Buddy",
+      description:
+        "Won best backend award in AppDev’s Hack Challenge. An app that helps Cornell students study friends!",
+      timeSpent: "1 week",
+      tools: ["Figma", "Swift", "Docker"],
+      image: StudyBuddy,
+      isComplete: true,
     },
   ];
 
