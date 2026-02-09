@@ -12,7 +12,6 @@ function ProjectInfo() {
 
   useEffect(() => {
     if (hash) {
-      // Remove the '#' from the start (e.g., '#overview' -> 'overview')
       const targetId = hash.replace("#", "");
       const element = document.getElementById(targetId);
 
@@ -99,7 +98,9 @@ function ProjectInfo() {
                     {section.label}
                   </p>
                   <p>{section.subLabel}</p>
-                  <div className={`video-section ${section.id === "case-preview" ? "preview-layout" : ""}`}>
+                  <div
+                    className={`video-section ${section.id === "case-preview" ? "preview-layout" : ""}`}
+                  >
                     <div className="video-grid">
                       {section.videos.map((vid, index) => (
                         <ScrollVideo
@@ -128,6 +129,26 @@ function ProjectInfo() {
                     section.content.map((item, idx) => {
                       if (item.type === "text") {
                         return <p key={idx}>{item.value}</p>;
+                      }
+                      if (item.type === "highlight") {
+                        return (
+                          <div
+                            className="people-problem-box centerFlex"
+                            style={{ gap: "20px" }}
+                            key={idx}
+                          >
+                            <div
+                              style={{
+                                backgroundColor: "var(--clr-secondary-300)",
+                                width: "10px",
+                                alignSelf: "stretch",
+                              }}
+                            ></div>
+                            <p className="problem-text">
+                              <b>{item.value}</b>
+                            </p>
+                          </div>
+                        );
                       }
                       if (item.type === "image") {
                         return (

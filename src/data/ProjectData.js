@@ -136,7 +136,7 @@ export const ProjectData = [
           {
             type: "text",
             value:
-              "As a developer myself, I was mindful of technical feasibility. After discussing constraints with the development team, we determined that within the limited timeframe we could realistically implement the core features, including swipe-based profile matching, group chat, and study partner matches.",
+              "As a developer myself, I had to turn off my developer side and not constraint myself based on feasibility and how something is implemented, so I won't constraint what i could design based on feasibility in the early stage. After the low-fi and discussing constraints with the development team, we determined that within the limited timeframe we could realistically implement the core features, including swipe-based profile matching, group chat, and study partner matches.",
           },
         ],
       },
@@ -184,10 +184,33 @@ export const ProjectData = [
       {
         id: "user-research",
         label: "User Research",
-        content:
-          "YouTube allows users to find specific content they are searching for during a break, but it is difficult to find that content because… \n\n1. Users prefer quick, effortless discovery instead of actively searching for videos\n2. Users often get distracted by other visually appealing content, straying away from original goal",
-        peopleProblem:
-          "Originally I had a different people problem, so how did I come up with this people problem?",
+        content: [
+          {
+            type: "text",
+            value:
+              "YouTube allows users to find specific content they are searching for during a break, but it is difficult to find that content because… \n\n1. Users prefer quick, effortless discovery instead of actively searching for videos\n2. Users often get distracted by other visually appealing content, straying away from original goal",
+          },
+          {
+            type: "highlight",
+            value:
+              "Originally I had a different people problem, so how did I come up with this people problem?",
+          },
+          {
+            type: "text",
+            value: 
+              "After conducting some reasearch, I have created some personas"
+          },
+          {
+            type: "image",
+            value: 
+              ""
+          },
+          {
+            type: "text",
+            value: 
+              "After conducting some reasearch, I have created some personas"
+          },
+        ],
       },
     ],
   },
