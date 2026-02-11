@@ -73,7 +73,7 @@ html, body {
     /* Moves the element backwards by 50% of its own width. */
     transform: translateX(-50%);
     background-color: hsl(from var(--clr-primary-800) h s l / 0.7);
-    border: 5px solid var(--clr-primary-700);
+    border: 5px solid hsl(from var(--clr-primary-700) h s l / 0.6);
 
     padding: 12px 40px;
     border-radius: 16px;
@@ -143,11 +143,11 @@ html, body {
     flex-direction: column;
     background-color: hsl( from var(--clr-neutral-100) h s l / 0.95);
     opacity: 0.8;
-    min-height: 420px;
+    min-height: 430px;
 
     border: 3px solid var(--clr-primary-650);
     border-radius: 24px;
-    box-shadow: 0 0 30px hsl(from var(--clr-primary-500) h s l / 0.5);
+    box-shadow: 0 0 40px hsl(from var(--clr-primary-500) h s l / 0.6);
 }
 
 .basedin {
