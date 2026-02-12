@@ -161,7 +161,7 @@ export const ProjectData = [
         id: "context",
         label: "Context",
         content:
-          "Creator’s Cuts is a YouTube feature concept that allows users to organize videos and Shorts into custom, color-coded categories they create themselves. By intentionally categorizing content, users can influence their recommendation feed, enabling YouTube to surface videos that better match their interests and viewing intent while reducing irrelevant recommendations.",
+          "Creator’s Cuts is a YouTube feature concept that allows users to cut their for you page into custom, color-coded categories they create themselves. By intentionally categorizing content, users can influence their recommendation feed, enabling YouTube to surface videos that better match their interests and viewing intent while reducing irrelevant recommendations.",
       },
       {
         id: "case-preview",
@@ -198,17 +198,42 @@ export const ProjectData = [
           {
             type: "text",
             value: 
-              "After conducting some reasearch, I have created some personas"
+              "After conducting some reasearch, here is the user persona"
           },
           {
             type: "image",
             value: 
-              ""
+              "./photos/Felix.png"
           },
           {
             type: "text",
             value: 
-              "After conducting some reasearch, I have created some personas"
+              "So, how might we simplify the searching process for someone like Felix?"
+          },
+        ],
+      },
+      {
+        id: "brainstorm",
+        label: "Brainstorming",
+        content: [
+          {
+            type: "text",
+            value: "So from analyzing the data I got from user research I created some possible solutions!"
+          },
+          {
+            type: "image",
+            value: 
+              "./photos/HMW.png"
+          },
+          {
+            type: "image",
+            value: 
+              "./photos/Solutions.png"
+          },
+          {
+            type: "image",
+            value: 
+              "./photos/vote.png"
           },
         ],
       },
