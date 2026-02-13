@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 function Works() {
   const gap = {
-    margin: "80px 0",
+    margin: "70px 0",
   };
 
   const direction = {

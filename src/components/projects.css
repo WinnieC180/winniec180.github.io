@@ -1,11 +1,11 @@
 .projects {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin: 20px auto;
-    gap: 4vw;
-    width: min(1500px, 90vw);
+    margin: auto;
+    gap: 3vw;
+    width: min(1500px, 86vw);
     
-    padding: 20px;
+    padding: 50px;
 }
 
 .project {
