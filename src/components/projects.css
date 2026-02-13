@@ -108,3 +108,21 @@
     border: 2px solid hsl(from var(--clr-primary-800) h s l / 0.5);
     padding: 10px;
 }
+
+@media (max-width: 600px) {
+    .projects {
+        padding: 20px; 
+    }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+    .projects {
+       padding: 20px; 
+    }
+}
+
+@media (min-width: 901px) and (max-width: 1280px) {
+    .projects {
+       padding: 20px 2px; 
+    }
+}
