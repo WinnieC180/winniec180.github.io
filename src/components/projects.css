@@ -5,7 +5,7 @@
     gap: 3vw;
     width: min(1500px, 86vw);
     
-    padding: 50px;
+    padding: 40px;
 }
 
 .project {
@@ -111,18 +111,18 @@
 
 @media (max-width: 600px) {
     .projects {
-        padding: 20px; 
+        padding: 30px; 
     }
 }
 
 @media (min-width: 600px) and (max-width: 900px) {
     .projects {
-       padding: 20px; 
+       padding: 30px; 
     }
 }
 
 @media (min-width: 901px) and (max-width: 1280px) {
     .projects {
-       padding: 20px 2px; 
+       padding: 30px 2px; 
     }
 }

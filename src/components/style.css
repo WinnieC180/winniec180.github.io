@@ -51,8 +51,6 @@ html, body {
 }
 
 .logo {
-    padding: 8px;
-    
     border-radius: 20px;
 }
 
@@ -72,7 +70,7 @@ html, body {
     left: 50%;
     /* Moves the element backwards by 50% of its own width. */
     transform: translateX(-50%);
-    background-color: hsl(from var(--clr-primary-800) h s l / 0.7);
+    background-color: hsl(from var(--clr-primary-800) h s l / 0.9);
     border: 5px solid hsl(from var(--clr-primary-700) h s l / 0.6);
 
     padding: 12px 40px;
@@ -141,9 +139,9 @@ html, body {
 
 .description {
     flex-direction: column;
-    background-color: hsl( from var(--clr-neutral-100) h s l / 0.95);
+    background-color: hsl( from var(--clr-neutral-100) h s l / 0.9);
     min-height: 430px;
-    opacity: 0.9;
+    opacity: 0.95;
 
     border: 3px solid var(--clr-primary-650);
     border-radius: 24px;
@@ -186,10 +184,10 @@ html, body {
 .more {
     display: inline-block;
     margin-top: 20px;
-    padding: 10px 20px;
+    padding: 8px 15px;
     background-color: var(--clr-primary-650);
-    border-radius: 10px;
-    border: 2px solid transparent;
+    border-radius: 8px;
+    border: 2px solid var(--clr-primary-300);
 
     transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
 }
@@ -198,7 +196,7 @@ html, body {
     background-color: var(--clr-primary-800);
     border: 2px solid var(--clr-secondary-300);
 
-    transform: scale(1.08);
+    transform: scale(1.04);
 }
 
 .more a {
@@ -206,26 +204,40 @@ html, body {
     color: var(--clr-secondary-300);
 }
 
-.icons {
-    margin-top: 10px;
-    padding-right: 20px;
-    gap: 20px;
+.team {
+    width: clamp(24px, 5vw, 40px);
+    height: clamp(24px, 5vw, 40px);
+}
+
+.icons, .teams {
+    gap: 10px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--clr-primary-800);
 }
 
 .icons a {
     display: inline-flex;
     gap: 8px;
     text-decoration: none;
-    color: var(--clr-neutral-100);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(14px, 1vw + 0.5rem, 20px);
+
+    color: var(--clr-primary-800);
     transition: color 0.3s ease-in-out;
 }
 
 .icons a:hover{
     color: var(--clr-secondary-300);
     
+}
+
+.teams {
+    margin-top: 10px;
+    padding-right: 20px;
 }
 
 .fishes {
@@ -336,8 +348,8 @@ html, body {
     }
 
     .front {
-        top: 540px;
-        left: -22vw;
+        top: 450px;
+        left: -25vw;
         width: 70vw;
     }
 
@@ -405,6 +417,10 @@ html, body {
         top: 500px;
         left: -8vw;
         width: 50vw;
+    }
+
+    .description {
+        min-height: 380px;
     }
 
     .projects {
