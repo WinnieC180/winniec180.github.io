@@ -2,7 +2,6 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./style.css";
 import winLogo from "../assets/logo-light.svg";
-import resume from "../assets/ResumeWinnieChan.pdf";
 import { X, Menu } from "lucide-react";
 
 function NavBar() {
@@ -49,7 +48,7 @@ function NavBar() {
     { name: "Work", path: "#work", type: "anchor" },
     { name: "About", path: "/about", type: "route" },
     { name: "Explorations", path: "/explorations", type: "route" },
-    { name: "Resume", path: resume, type: "file" },
+    { name: "Resume", path: "https://drive.google.com/file/d/13GOqvRqhn9KUzzz5bAEHSO200yBovthh/view?usp=sharing", type: "file" },
   ];
 
   return (
