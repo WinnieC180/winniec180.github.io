@@ -155,7 +155,7 @@ html, body {
 .nametag {
     padding: 0;
     color: var(--clr-primary-650);
-    font-size: clamp(55px, 15vw + 1rem, 90px);
+    font-size: clamp(40px, 12vw + 1rem, 90px);
     font-weight: 500;
 
     font-family: 'Petrona', serif;

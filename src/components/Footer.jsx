@@ -28,7 +28,7 @@ function Footer() {
 
       <div style={{display: "flex", flexDirection: "column"}}>
         <div className="centerFlex" style={{ marginTop: "30px", color: "var(--clr-primary-400)" }}>
-          <p>Developed and designed with React and Figma</p>
+          <p style={{ textAlign: "center" }}>Developed and designed with React and Figma</p>
         </div>
         <img
           src={Line}
