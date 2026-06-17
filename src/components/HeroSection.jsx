@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import backFishes from "../assets/backFishes.svg";
 import frontFishes from "../assets/frontFishes.svg";
+import frontHook from "../assets/hookFront.svg";
+import backHook from "../assets/hookBack.svg";
 import DTI from "../assets/DTI.svg";
 import SUSB from "../assets/SUSB_Logo.svg";
 
 import "./style.css";
+import { TextAlignCenter } from "lucide-react";
 
 function HeroSection() {
   return (
@@ -17,16 +20,22 @@ function HeroSection() {
           />
         </picture>
 
+        <img
+            src={backHook}
+            alt="A digital drawing of some blue cartoon fishes"
+            className="backHook"
+          />
+
         <div className="label">
-          <div className="description centerFlex">
+          <div className="description">
             <p className="basedin">
               <span>●</span> CURRENTLY BASED IN: NEW YORK
             </p>
             <h1 className="nametag">Winnie</h1>
-            <div className="breifintro centerFlex">
+            <div className="briefintro">
                 {/* <h3 className="quote">Navigating the depths of technology</h3> */}
                 
-                <div className="icons">
+              <div className="icons" style={{textAlign:"left"}}>
               <a
                 href="https://github.com/WinnieC180"
                 target="_blank"
@@ -81,17 +90,17 @@ function HeroSection() {
                 as well as exploring <span>backend</span> development.
               </p>
             </div>
-            <div className="more">
+            {/* <div className="more">
               <Link to="/about">More about me &gt;</Link>
-            </div>
+            </div> */}
           </div>
 
           <div className="teams centerFlex" style={{ gap: "10px" }}>
             <div className="centerFlex" style={{ gap: "10px" }}>
               <h3 style={{ color: "var(--clr-neutral-100)" }}>
-                Designer || Developer @
+                Developer ✦ Designer
               </h3>
-              <a
+              {/* <a
                 href="https://new.cornelldti.org/"
                 target="_blank"
                 className="centerFlex"
@@ -104,9 +113,9 @@ function HeroSection() {
                     borderRadius: "50px",
                   }}
                 />
-              </a>
+              </a> */}
             </div>
-            <div className="centerFlex" style={{ gap: "10px" }}>
+            {/* <div className="centerFlex" style={{ gap: "10px" }}>
               <a
                 href="https://www.sustainabytes.org/"
                 target="_blank"
@@ -118,7 +127,7 @@ function HeroSection() {
                   className="team"
                 />
               </a>
-            </div>
+            </div> */}
           </div>
           
         </div>
@@ -126,6 +135,11 @@ function HeroSection() {
           src={frontFishes}
           alt="A digital drawing of some blue cartoon fishes"
           className="fishes front"
+        />
+        <img
+          src={frontHook}
+          alt="A digital drawing of some blue cartoon fishes"
+          className="frontHook"
         />
       </div>
     </section>

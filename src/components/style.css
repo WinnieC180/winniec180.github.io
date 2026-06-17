@@ -122,9 +122,9 @@ html, body {
 
 .heroesection {
     flex-direction: column;
-    padding: 40px;
+    padding: 30px;
 
-    margin-top: 155px;
+    margin-top: 130px;
 }
 
 .label {
@@ -134,17 +134,19 @@ html, body {
     flex-grow: 1;
     max-width: 100%;
 
-    width: 600px;
+    width: 580px;
 }
 
 .description {
+    display: flex;
     flex-direction: column;
+    padding: 40px 0 40px 50px; 
     background-color: hsl( from var(--clr-neutral-100) h s l / 0.9);
-    min-height: 430px;
+    transform: rotate(-1deg);
     opacity: 0.95;
 
     border: 3px solid var(--clr-primary-650);
-    border-radius: 24px;
+    border-radius: 8px;
     box-shadow: 0 0 40px hsl(from var(--clr-primary-500) h s l / 0.6);
 }
 
@@ -161,7 +163,7 @@ html, body {
     font-family: 'Petrona', serif;
 }
 
-.breifintro {
+.briefintro {
     flex-direction: column;
     gap: 10px;
 }
@@ -173,7 +175,7 @@ html, body {
 }
 
 .briefme {
-    text-align: center;
+    text-align: left;
     font-size: clamp(14px, 1vw + 0.5rem, 18px);
     font-weight: 300;
 
@@ -224,7 +226,6 @@ html, body {
 .icons, .teams {
     gap: 10px;
     display: flex;
-    justify-content: flex-end;
     align-items: center;
 
     font-family: 'Cormorant Garamond', serif;
@@ -248,6 +249,7 @@ html, body {
 }
 
 .teams {
+    justify-content: flex-start;
     margin-top: 10px;
     padding-right: 20px;
 }
@@ -257,17 +259,34 @@ html, body {
     position: absolute;
     pointer-events: none;
     user-select: none;
-    top: 20px;
-    margin-right: 230px;
+    top: 0px;
     animation: float 7s ease-in-out infinite;
 }
 
 .front {
     max-width: 100%; /* Prevents the image box from being wider than the screen */
     height: auto;
-    top: 500px;
-    margin-right: 460px;
+    top: 290px;
+    margin-left: 520px;
     animation: float 5s ease-in-out infinite;
+}
+
+.back {
+    margin-right: 250px;
+}
+
+.frontHook, .backHook {
+    position: absolute;
+}
+
+.backHook {
+    top: 60px;
+    margin-left: 540px;
+}
+
+.frontHook {
+    top: 90px;
+    margin-left: 360px;
 }
 
 @keyframes float {
@@ -344,25 +363,35 @@ html, body {
     }
     
     .description {
-        min-height: 350px;
+        padding-left: 30px;
+        min-height: 270px;
+    }
+
+    .briefme {
+        width: 80%
     }
 
     .back {
         position: absolute;
-        top: 70px;
+        top: 60px;
         left: -5vw;
 
         width: 105vw;
+        z-index: -5;
     }
 
     .fishes.back img  {
-        width: 130vw;
+        width: 100vw;
     }
 
     .front {
-        top: 450px;
-        left: -25vw;
-        width: 70vw;
+        top: 345px;
+        right: 2vw;
+        width: 50vw;
+    }
+
+    .frontHook, .backHook {
+        display: none;
     }
 
     .projects {
@@ -411,28 +440,41 @@ html, body {
     .links ul {
         gap: 22px;
     }
+
+    .briefme {
+        width: 80%
+    }
     
     .back {
         position: absolute;
-        top: 70px;
-        left: -5vw;
+        top: 20px;
+        left: 1vw;
 
         width: 105vw;
+        z-index: -5;
     }
 
     .fishes.back img  {
-        width: 110vw;
+        width: 80vw;
     }
 
     .front {
         position: absolute;
-        top: 500px;
-        left: -8vw;
+        top: 280px;
+        right: -1vw;
         width: 50vw;
     }
 
+    .frontHook {
+        margin-right: 35px;
+    }
+
+    .backHook {
+        margin-right: 35px;
+    }
+
     .description {
-        min-height: 380px;
+        min-height: 280px;
     }
 
     .projects {
@@ -455,14 +497,14 @@ html, body {
 @media (min-width: 901px) and (max-width: 1280px) {
     .back {
         position: absolute;
-        top: 0;
-        left: 0vw;
-
+        top: 10px;
+        left: 3vw;
         width: 100vw;
+        z-index: -5;
     }
 
     .front {
-        left: 0vw;
+        left: 150;
     }
 
     .project .image{

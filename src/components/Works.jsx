@@ -23,7 +23,7 @@ function Works() {
     >
       <div className="centerFlex">
         <img src={Line} alt="A short line" style={{ width: "28vw" }} />
-        <p style={{ fontSize: "clamp(10px, 1.0vw + 0.5rem, 18px)" }}>
+        <p style={{ fontSize: "clamp(10px, 1.0vw + 0.5rem, 16px)" }}>
           EXPEDITION LOG
         </p>
         <img src={Line} alt="A short line" style={{ width: "28vw" }} />

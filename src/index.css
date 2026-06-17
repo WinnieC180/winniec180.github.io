@@ -7,7 +7,8 @@
   --clr-primary-400: hsl(221, 32%, 71%);
   --clr-primary-300: hsl(221, 27%, 80%);
 
-  --clr-secondary-400: hsl(218, 35%, 18%);
+  /* hsl(218, 35%, 18%) */
+  --clr-secondary-400: hsl(230, 24%, 15%); 
   --clr-secondary-300: hsl(195, 100%, 65%);
 
   --clr-neutral-200: hsl(0, 0%, 66%);
