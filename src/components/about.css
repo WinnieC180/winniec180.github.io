@@ -4,7 +4,7 @@
     align-items: center;
 
     margin-top: 170px;
-    gap: clamp(10px, 3vw, 50px);
+    gap: 10px;
 
     padding: 20px 0; 
 }
@@ -16,12 +16,22 @@
     flex: 0 1 auto;
 }
 
+.hellowwin {
+    padding: 0;
+    color: var(--clr-primary-300);
+    font-size: clamp(20px, 5vw + 0.5rem, 35px);
+    font-weight: 500;
+    text-align: left;
+
+    font-family: 'Petrona', serif;
+}
+
 .hello {
     display: inline-block;
-    transform-origin: bottom left; 
-    animation: wave 2s ease-in-out 1;
+    /* transform-origin: bottom left; 
+    animation: wave 2s ease-in-out 1; */
 
-    padding: 10px;
+    padding: 0 20px 0 20px;
 }
 
 .hello:hover {

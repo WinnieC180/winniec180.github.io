@@ -38,8 +38,8 @@ html, body {
 }
 
 .navbar.scrolled .links {
-    background-color: hsl(from var(--clr-neutral-100) h s l / 0.9);
-    border: 4px solid var(--clr-primary-300);
+    background-color: hsl(from var(--clr-neutral-100) h s l / 0.95);
+    border: 2px solid var(--clr-primary-700);
 }
 
 .navbar.scrolled .links ul li a {
