@@ -1,6 +1,7 @@
 import "./projects.css";
 import { Link } from "react-router-dom";
 import WhirlPool from "../assets/whirlPool.svg";
+import BeeWitched from "../imgProjects/BeeWitched.svg";
 import OhMyCamel from "../imgProjects/Oh-My-Camel.svg";
 import Quack from "../imgProjects/Quack-A-Goose.svg";
 import StudyBuddy from "../imgProjects/StudyBuddy.svg";
@@ -11,15 +12,16 @@ import FamJam from "../imgProjects/FamJam.svg";
 function Projects() {
   const projects = [
     {
-      id: "oh-my-camel",
-      title: "Your Desert Buddy",
-      subTitle: "Oh My Camel!",
+      id: "BeeWitched",
+      title: "BeeWitched",
+      subTitle: "Available on Steam",
       description:
-        "A wholesome pet sim… with a very lumpy twist! A fun game developed and designed for the CS3110 final project.",
-      timeSpent: "3 weeks",
-      tools: ["OCaml", "Raylib"],
-      image: OhMyCamel,
+        "A relaxing and charming gardening simulator combined with potion crafting. The shop depends on you!",
+      timeSpent: "4 months",
+      tools: ["Java", "LibGDX"],
+      image: BeeWitched,
       isComplete: true,
+      externalLink: "https://store.steampowered.com/app/4811560/BeeWitched/",
     },
     {
       id: "FamJam",
@@ -32,6 +34,17 @@ function Projects() {
       image: FamJam,
       isComplete: true,
       externalLink: "https://devpost.com/software/team-tennn?ref_content=my-projects-tab&ref_feature=my_projects",
+    },
+    {
+      id: "oh-my-camel",
+      title: "Your Desert Buddy",
+      subTitle: "Oh My Camel!",
+      description:
+        "A wholesome pet sim… with a very lumpy twist! A fun game developed and designed for the CS3110 final project.",
+      timeSpent: "3 weeks",
+      tools: ["OCaml", "Raylib"],
+      image: OhMyCamel,
+      isComplete: true,
     },
     {
       id: "quack-a-goose",
@@ -67,17 +80,17 @@ function Projects() {
       isComplete: true,
       externalLink: "https://sustainabytes.org",
     },
-    {
-      id: "study-buddy",
-      title: "A Friend to Lock in with",
-      subTitle: "Study Buddy",
-      description:
-        "Won best backend award in AppDev’s Hack Challenge. An app that helps Cornell students study friends!",
-      timeSpent: "1 week",
-      tools: ["Figma", "Swift", "Docker"],
-      image: StudyBuddy,
-      isComplete: true,
-    },
+    // {
+    //   id: "study-buddy",
+    //   title: "A Friend to Lock in with",
+    //   subTitle: "Study Buddy",
+    //   description:
+    //     "Won best backend award in AppDev’s Hack Challenge. An app that helps Cornell students study friends!",
+    //   timeSpent: "1 week",
+    //   tools: ["Figma", "Swift", "Docker"],
+    //   image: StudyBuddy,
+    //   isComplete: true,
+    // },
   ];
 
   return (

@@ -34,13 +34,6 @@
     padding: 0 20px 0 20px;
 }
 
-.hello:hover {
-    cursor: pointer;
-
-    animation: greeting 2s ease-in-out 1;
-}
-
-
 @keyframes wave {
     0% {
         transform: translateY(10px) rotate(0deg);
