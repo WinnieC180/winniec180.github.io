@@ -271,6 +271,20 @@ html, body {
     animation: float 5s ease-in-out infinite;
 }
 
+.footerFishes {
+    overflow-x: hidden;
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    max-width: 100%;
+    height: auto;
+    margin-left: 255px;
+    left: 0;
+    bottom: 0;
+    margin-bottom: 35px;
+    animation: float 5s ease-in-out infinite;
+}
+
 .back {
     margin-right: 250px;
 }
