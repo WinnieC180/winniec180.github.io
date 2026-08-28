@@ -278,10 +278,10 @@ html, body {
     user-select: none;
     max-width: 100%;
     height: auto;
-    margin-left: 255px;
+    margin-left: 16vw;
     left: 0;
     bottom: 0;
-    margin-bottom: 35px;
+    margin-bottom: 38px;
     animation: float 5s ease-in-out infinite;
 }
 
