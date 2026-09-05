@@ -7,7 +7,7 @@ function Introduction() {
     <div className="centerFlex myBio">
       <div className="intro">
         <h3 className="hello hellowwin">Hello, I'm Winnie Chan</h3>
-        <p style={{ maxWidth: "500px", width: "100%", padding: "20px" }}>
+        <div style={{ maxWidth: "500px", width: "100%", padding: "20px" }}>
           Currently at Cornell University studying Computer Science, and pursuing minors in Game Design & Information Science. 
           <br />
           <br />
@@ -21,7 +21,7 @@ function Introduction() {
           <br />
           I build projects that connect both technology and creativity, and to me, that's
           what make my experience truly colorful.
-        </p>
+        </div>
       </div>
       <div style={{padding: "20px"}}>
         <div className="myPhoto">

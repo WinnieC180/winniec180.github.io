@@ -1,5 +1,5 @@
 import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
-import { useEffect} from "react";
+import { useEffect } from "react";
 import ProjectInfo from "./components/ProjectInfo";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -11,6 +11,7 @@ function App() {
     const { pathname } = useLocation();
 
     useEffect(() => {
+      if (sessionStorage.getItem("scrollTarget")) return;
       window.scrollTo(0, 0);
     }, [pathname]);
 

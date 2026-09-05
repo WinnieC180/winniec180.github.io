@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: auto;
+    margin-bottom: 96px;
     gap: 3vw;
     width: min(1500px, 86vw);
     
@@ -12,7 +13,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin: auto;
-    margin-bottom: 50px;
+    margin-top: 36px;
+    margin-bottom: 148px;
     gap: 0.8vw;
     width: min(1500px, 100vw);
     
@@ -141,11 +143,26 @@
     .projects {
         padding: 30px; 
     }
+
+    .communities {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .comImage {
+        max-height: 50vw;
+    }
 }
 
 @media (min-width: 600px) and (max-width: 900px) {
     .projects {
        padding: 30px; 
+    }
+
+    .communities {
+        grid-template-columns: 1fr;
+        max-width: 80vw;
+        gap: 24px;
     }
 }
 

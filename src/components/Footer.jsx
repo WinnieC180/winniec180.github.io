@@ -1,10 +1,14 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import winLogo from "../assets/logo-light.svg";
 import Line from "../assets/line.png";
 import { ArrowUpRight } from "lucide-react";
 import frontFishes from "../assets/frontFishes.svg";
+import "./style.css";
 
 function Footer() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const footer = {
     flexDirection: "column",
     gap: "30px",
@@ -12,10 +16,19 @@ function Footer() {
     padding: "50px 10vw",
   };
 
+  const goToWork = () => {
+    if (location.pathname === "/") {
+      document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      sessionStorage.setItem("scrollTarget", "work");
+      navigate("/");
+    }
+  };
+
   return (
     <div className="footer" style={{ ...footer, width: "100%", position: "relative" }}>
       <div style={{ display: "flex", gap: "20px", flexDirection: "column" }}>
-        <img src={winLogo} alt="Winnie's Logo, Chinese character for win" style={{ width: "6vw" }} />
+        <img src={winLogo} alt="Winnie's Logo, Chinese character for win" style={{ width: "max(6vw, 80px)" }} />
         <div style={{ display: "flex", gap: "20px", flexDirection: "column" }}>
           <h3 style={{ fontWeight: "300", width: "305px" }}>
             <em>
@@ -27,7 +40,7 @@ function Footer() {
         </div>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <div style={{ display: "flex", flexDirection: "column" }} className="footerLinks">
         <div
           style={{
             display: "flex",
@@ -41,15 +54,17 @@ function Footer() {
           }}
         >
           <p>Pages:</p>
-          <a
-            href={"##work"}
+          <button
+            onClick={goToWork}
             style={{
+              all: "unset",
+              cursor: "pointer",
               textDecoration: "none",
-              color: "var(--clr-primary-400)"
-            }} 
+              color: "var(--clr-primary-400)",
+            }}
           >
             Work
-          </a>
+          </button>
           <NavLink
             to={"/about"}
             style={{
@@ -110,7 +125,7 @@ function Footer() {
       <div className="centerFlex">
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
-            className="centerFlex"
+            className="centerFlex backTop"
             style={{
               textDecoration: "none",
               backgroundColor: "var(--clr-primary-400)",

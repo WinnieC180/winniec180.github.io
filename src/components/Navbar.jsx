@@ -1,4 +1,4 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./style.css";
 import winLogo from "../assets/logo-light.svg";
@@ -9,6 +9,7 @@ function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeTab, setActiveTab] = useState("");
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,7 +19,6 @@ function NavBar() {
         const workSection = document.getElementById("work");
         if (workSection) {
           const rect = workSection.getBoundingClientRect();
-          // If work section is in view
           if (rect.top <= 150 && rect.bottom >= 150) {
             setActiveTab("work");
           } else {
@@ -32,20 +32,19 @@ function NavBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location]);
 
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash.includes("#work")) {
-      setTimeout(() => {
-        const element = document.getElementById("work");
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 150);
+  const goToWork = () => {
+    setIsMenuOpen(false);
+
+    if (location.pathname === "/") {
+      document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      sessionStorage.setItem("scrollTarget", "work");
+      navigate("/");
     }
-  }, [location]);
+  };
 
   const links = [
-    { name: "Work", path: "#work", type: "anchor" },
+    { name: "Work", type: "anchor" },
     { name: "About", path: "/about", type: "route" },
     { name: "Explorations", path: "/explorations", type: "route" },
     { name: "Resume", path: "https://drive.google.com/file/d/13GOqvRqhn9KUzzz5bAEHSO200yBovthh/view?usp=sharing", type: "file" },
@@ -63,16 +62,14 @@ function NavBar() {
           {links.map((link) => (
             <li key={link.name}>
               {link.type === "anchor" ? (
-                <a
-                  href={`#${link.path}`} 
-                  className={
-                    activeTab === "work" && location.pathname === "/"
-                      ? "active"
-                      : ""
-                  }
+                <button
+                  onClick={goToWork}
+                  className={`navLinkButton ${
+                    activeTab === "work" && location.pathname === "/" ? "active" : ""
+                  }`}
                 >
                   {link.name}
-                </a>
+                </button>
               ) : link.type === "file" ? (
                 <a href={link.path} target="_blank">
                   {link.name}
@@ -102,8 +99,18 @@ function NavBar() {
           <ul>
             {links.map((link, index) => (
               <li key={link.name} style={{ animationDelay: `${index * 0.1}s` }}>
-                {link.path.startsWith("/#") ? (
-                  <a href={link.path} onClick={() => setIsMenuOpen(false)}>
+                {link.type === "anchor" ? (
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      goToWork();
+                    }}
+                  >
+                    {link.name}
+                  </a>
+                ) : link.type === "file" ? (
+                  <a href={link.path} target="_blank" onClick={() => setIsMenuOpen(false)}>
                     {link.name}
                   </a>
                 ) : (
