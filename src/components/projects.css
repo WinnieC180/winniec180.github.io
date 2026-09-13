@@ -47,7 +47,7 @@
     padding: 14px 12px;
 
     border-radius: 16px;
-    border: 2px solid var(--clr-secondary-300);
+    border: 2px solid var(--clr-primary-650);
     background-color: var(--clr-secondary-400);
     box-shadow: 0 0 0 hsl(from var(--clr-secondary-300) h s l / 0);
 
@@ -77,15 +77,16 @@
 }
 
 .notDone {
-    border: 2px solid hsl(352 100% 65%);
+    opacity: 0.7;
+    border: 2px solid hsl(212, 100%, 92%);
 }
 
 .notDone::after {
-    background-color: hsl(352 100% 65%);
+    background-color: hsl(212, 100%, 92%);
 }
 
 .notDone:hover {
-    box-shadow: 0 0 30px hsl(352 100% 65% / 0.5);
+    box-shadow: 0 0 30px hsla(209, 100%, 89%, 0.5);
 }
 
 .project:hover .title span {
@@ -93,7 +94,7 @@
 }
 
 .project:hover .not span {
-    color: hsl(352 100% 65%);
+    color: hsl(212, 100%, 92%);
 }
 
 .header {

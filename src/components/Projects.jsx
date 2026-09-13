@@ -8,6 +8,8 @@ import StudyBuddy from "../imgProjects/StudyBuddy.svg";
 import CreatorCuts from "../imgProjects/CreatorsCuts.svg";
 import SUSB from "../imgProjects/SUSB.svg";
 import FamJam from "../imgProjects/FamJam.svg";
+import CornellGO from "../imgProjects/CornellGO.svg";
+import Loop from "../imgProjects/Loop.svg";
 
 function Projects() {
   const projects = [
@@ -34,6 +36,30 @@ function Projects() {
       image: FamJam,
       isComplete: true,
       externalLink: "https://devpost.com/software/team-tennn?ref_content=my-projects-tab&ref_feature=my_projects",
+    },
+    {
+      id: "Loop",
+      title: "Loop",
+      subTitle: "Chrome Extension",
+      description:
+        "Created an inclusive game to close the gap between different generations. Won best beginner design!",
+      timeSpent: "-----",
+      tools: ["Figma"],
+      image: Loop,
+      isComplete: false,
+      externalLink: "https://new.cornelldti.org/products#loop",
+    },
+    {
+      id: "CornellGO",
+      title: "CornellGO",
+      subTitle: "Gamified Navigation",
+      description:
+        "Created an inclusive game to close the gap between different generations. Won best beginner design!",
+      timeSpent: "2 months",
+      tools: ["Figma", "User Research"],
+      image: CornellGO,
+      isComplete: true,
+      externalLink: "https://new.cornelldti.org/products#cornellgo",
     },
     {
       id: "oh-my-camel",
@@ -126,8 +152,8 @@ function Projects() {
                   <p>~ {project.timeSpent}</p>
                 </div>
               ) : (
-                <div className="header" style={{ color: "hsl(352 100% 65%)" }}>
-                  <p>CURRENTLY EXPLORING</p>
+                <div className="header" style={{ color: "var(--clr-primary-300)" }}>
+                  <p>COMING SOON!</p>
                   <p>......</p>
                 </div>
               )}

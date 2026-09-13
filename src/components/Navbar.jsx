@@ -47,7 +47,7 @@ function NavBar() {
     { name: "Work", type: "anchor" },
     { name: "About", path: "/about", type: "route" },
     { name: "Explorations", path: "/explorations", type: "route" },
-    { name: "Resume", path: "https://drive.google.com/file/d/13GOqvRqhn9KUzzz5bAEHSO200yBovthh/view?usp=sharing", type: "file" },
+    { name: "Resume", path: "https://drive.google.com/file/d/1FsZhuG9mBveiLF2bkk_u5Yclsn_5AVfi/view?usp=sharing", type: "file" },
   ];
 
   return (
