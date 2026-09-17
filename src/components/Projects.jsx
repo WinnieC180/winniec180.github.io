@@ -42,7 +42,7 @@ function Projects() {
       title: "Loop",
       subTitle: "Chrome Extension",
       description:
-        "Created an inclusive game to close the gap between different generations. Won best beginner design!",
+        "Chrome extension that helps Cornell students cut through listserv clutter and find events, opportunities, and resources that matter to them.",
       timeSpent: "-----",
       tools: ["Figma"],
       image: Loop,
@@ -54,7 +54,7 @@ function Projects() {
       title: "CornellGO",
       subTitle: "Gamified Navigation",
       description:
-        "Created an inclusive game to close the gap between different generations. Won best beginner design!",
+        "CornellGO is a scavenger hunt app that makes discovering campus easy and fun through interactive, location-based challenges.",
       timeSpent: "2 months",
       tools: ["Figma", "User Research"],
       image: CornellGO,
