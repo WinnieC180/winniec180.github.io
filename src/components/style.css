@@ -72,7 +72,7 @@ html, body {
     margin-left: 20px;
     height: 100vh;
     width: 280px;
-    padding: 100px 18px;
+    padding: 110px 18px;
     z-index: 10;
     display: flex;
     align-items: flex-start;
@@ -80,7 +80,7 @@ html, body {
 
 .navSidebarHook {
     position: absolute;
-    top: 23px;
+    top: 35px;
     left: 60%;
     transform: translateX(-50%);
     width: 90px;
@@ -89,7 +89,7 @@ html, body {
 
 .navSidebarHookBack {
     position: absolute;
-    top: -22px;
+    top: -10px;
     left: 53%;
     transform: translateX(30%);
     width: 120px;
@@ -101,7 +101,7 @@ html, body {
     width: 100%;
     margin-top: 0px;
     padding: 32px 24px;
-    background-color: var(--clr-navbar-bg);
+    background-color: hsl(from var(--clr-navbar-bg) h s l / 0.9);
     border: 2px solid hsl(from var(--clr-primary-700) h s l / 0.7);
     border-radius: 20px;
     box-shadow: 0 10px 30px hsl(from var(--clr-primary-700) h s l / 0.12);

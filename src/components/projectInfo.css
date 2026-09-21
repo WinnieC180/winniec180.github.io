@@ -4,10 +4,10 @@ html {
 
 .project-container {
   display: flex;
-  margin: 120px auto;
+  margin: 30px auto;
 }
 
-.sidebar {
+/* .sidebar {
   position: fixed;
   top: 0;
 
@@ -30,12 +30,12 @@ html {
   color: var(--clr-neutral-100);
 
   font-size: 16px;
-}
+} */
 
 .content-area {
   flex-direction: column;
   flex: 1;
-  gap: 30px;
+  gap: 10px;
   padding: 40px 60px;
   margin-left: 22vw;
 

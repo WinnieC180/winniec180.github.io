@@ -27,7 +27,7 @@ function ProjectInfo() {
     <div>
       <NavBar />
       <div className="project-container">
-        <aside className="sidebar">
+        {/* <aside className="sidebar">
           <Link
             to="/"
             className="back-link"
@@ -46,14 +46,13 @@ function ProjectInfo() {
               </a>
             ))}
           </nav>
-        </aside>
+        </aside> */}
 
         <main className="content-area centerFlex">
           <div
             className="centerFlex"
             style={{
               flexDirection: "column",
-              backgroundColor: "var(--clr-primary-650)",
               width: "100%",
               padding: "30px",
               borderRadius: "20px",
@@ -63,6 +62,7 @@ function ProjectInfo() {
               className="content-image"
               src={project.image}
               alt="A image of the home page of my project"
+              style={{marginBottom: "20px"}}
             />
             <h2>{project.subTitle}</h2>
           </div>
