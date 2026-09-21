@@ -2,8 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import backFishes from "../assets/backFishes.svg";
 import frontFishes from "../assets/frontFishes.svg";
-import frontHook from "../assets/hookFront.svg";
-import backHook from "../assets/hookBack.svg";
+// import frontHook from "../assets/hookFront.svg";
+// import backHook from "../assets/hookBack.svg";
 import DTI from "../assets/DTI.svg";
 import SUSB from "../assets/SUSB_Logo.svg";
 
@@ -54,18 +54,18 @@ function HeroSection() {
             />
           </picture>
 
-          <img
+          {/* <img
             src={backHook}
             alt="A digital drawing of some blue cartoon fishes"
             className="backHook"
-          />
+          /> */}
 
           <div className="label">
             <div className="description">
               <p className="basedin">
                 <span>●</span> CURRENTLY BASED IN: NEW YORK
               </p>
-              <h1 className="nametag">Winnie</h1>
+              <h1 className="nametag">Winnie Chan</h1>
               <div className="briefintro">
                 <div className="icons" style={{ textAlign: "left" }}>
                   <a  
@@ -127,7 +127,7 @@ function HeroSection() {
 
             <div className="teams centerFlex" style={{ gap: "10px" }}>
               <div className="centerFlex" style={{ gap: "10px" }}>
-                <h3 style={{ color: "var(--clr-neutral-100)" }}>
+                <h3 style={{ color: "var(--clr-page-span)" }}>
                   Developer ✦ Designer
                 </h3>
               </div>
@@ -139,11 +139,11 @@ function HeroSection() {
             alt="A digital drawing of some blue cartoon fishes"
             className="fishes front"
           />
-          <img
+          {/* <img
             src={frontHook}
             alt="A digital drawing of some blue cartoon fishes"
             className="frontHook"
-          />
+          /> */}
         </div>
 
         <div className="clickRippleLayer">

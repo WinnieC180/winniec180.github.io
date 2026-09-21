@@ -4,7 +4,7 @@
     margin: auto;
     margin-bottom: 96px;
     gap: 3vw;
-    width: min(1500px, 86vw);
+    width: min(1300px, 80vw);
     
     padding: 20px 30px 30px 30px;
 }
@@ -16,7 +16,7 @@
     margin-top: 36px;
     margin-bottom: 148px;
     gap: 0.8vw;
-    width: min(1500px, 100vw);
+    width: min(1300px, 90vw);
     
     padding: 20px;
 }
@@ -47,8 +47,8 @@
     padding: 14px 12px;
 
     border-radius: 16px;
-    border: 2px solid var(--clr-primary-650);
-    background-color: var(--clr-secondary-400);
+    border: 2px solid var(--clr-project-border);
+    background-color: var(--clr-project-bg);
     box-shadow: 0 0 0 hsl(from var(--clr-secondary-300) h s l / 0);
 
     overflow-x: hidden;
@@ -94,7 +94,7 @@
 }
 
 .project:hover .not span {
-    color: hsl(212, 100%, 92%);
+    color: hsl(from var(--clr-secondary-500));
 }
 
 .header {
@@ -120,8 +120,8 @@
     height: 100%;
 }
 
-.title span {
-    color: var(--clr-primary-600);
+.title .subtitle {
+    color: var(--clr-page-span);
     transition: color 0.3s ease;
 }
 
@@ -134,9 +134,10 @@
 }
 
 .tool {
-    background-color: var(--clr-primary-650);
+    background-color: var(--clr-project-tool);
+    color: var(--clr-primary-300);
     border-radius: 10px;
-    border: 2px solid hsl(from var(--clr-primary-800) h s l / 0.5);
+    border: 2px solid hsl(from var(--clr-primary-700) h s l / 0.5);
     padding: 10px;
 }
 
@@ -158,6 +159,7 @@
 @media (min-width: 600px) and (max-width: 900px) {
     .projects {
        padding: 30px; 
+       width: min(1300px, 80vw);
     }
 
     .communities {
@@ -169,6 +171,7 @@
 
 @media (min-width: 901px) and (max-width: 1280px) {
     .projects {
+       width: min(1000px, 70vw);
        padding: 30px 2px; 
     }
 }

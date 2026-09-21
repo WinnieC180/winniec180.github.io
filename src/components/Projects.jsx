@@ -73,17 +73,6 @@ function Projects() {
       isComplete: true,
     },
     {
-      id: "quack-a-goose",
-      title: "A mole, a goose, or...?",
-      subTitle: "Qu-wack a Mole",
-      description:
-        "A whack a mole game but without a mole?? drew and implemented a interactive project for APCSA.",
-      timeSpent: "1 month",
-      tools: ["Java", "Medibang Paint"],
-      image: Quack,
-      isComplete: true,
-    },
-    {
       id: "creator-cuts",
       title: "YouTube Case Study",
       subTitle: "Creator’s Cuts",
@@ -92,6 +81,17 @@ function Projects() {
       timeSpent: "3 months",
       tools: ["Figma"],
       image: CreatorCuts,
+      isComplete: true,
+    },
+    {
+      id: "quack-a-goose",
+      title: "A mole, a goose, or...?",
+      subTitle: "Qu-wack a Mole",
+      description:
+        "A whack a mole game but without a mole?? drew and implemented a interactive project for APCSA.",
+      timeSpent: "1 month",
+      tools: ["Java", "Medibang Paint"],
+      image: Quack,
       isComplete: true,
     },
     {
@@ -136,7 +136,7 @@ function Projects() {
                 }
               : { to: project.isComplete ? `/${project.id}` : "#" })}
             className="project-card-link"
-            style={{ textDecoration: "none", color: "var(--clr-neutral-100)" }}
+            style={{ textDecoration: "none", color: "var(--clr-page-text)" }}
           >
             <div
               key={index}
@@ -146,13 +146,13 @@ function Projects() {
               {project.isComplete ? (
                 <div
                   className="header"
-                  style={{ color: "var(--clr-secondary-300)" }}
+                  style={{ color: "var(--clr-secondary-500)" }}
                 >
-                  <p>MISSON COMPLETE</p>
+                  <p>MISSION COMPLETE</p>
                   <p>~ {project.timeSpent}</p>
                 </div>
               ) : (
-                <div className="header" style={{ color: "var(--clr-primary-300)" }}>
+                <div className="header" style={{ color: "var(--clr-primary-600)" }}>
                   <p>COMING SOON!</p>
                   <p>......</p>
                 </div>
@@ -164,13 +164,13 @@ function Projects() {
 
               <div className="name" style={{ display: "flex" }}>
                 <h2 className={project.isComplete ? "title" : "title not"}>
-                  {project.title} <span>✦ {project.subTitle}</span>
+                  {project.title} <span className="subtitle">✦ {project.subTitle}</span>
                 </h2>
               </div>
 
               <p
                 className="projectBio"
-                style={{ color: "var(--clr-primary-500)" }}
+                style={{ color: "var(--clr-secondary-500)" }}
               >
                 {project.description}
               </p>

@@ -37,7 +37,7 @@ function Home () {
         <div>
             {!entered && <IntroAnimation onEnter={handleEnter} />}
             <NavBar />
-            <main>
+            <main className="mainContent">
                 <HeroSection />
                 <Works />
             </main>

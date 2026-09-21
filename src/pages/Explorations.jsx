@@ -4,6 +4,7 @@ import NavBar from "../components/Navbar";
 import "./Explorations.css";
 import Portrait from "../assets/portrait.svg";
 import Line from "../assets/line.png";
+import LineLight from "../assets/line-light.png";
 import { Move } from "lucide-react";
 
 import gal1 from "../gallery/gallery_1.png";
@@ -50,6 +51,15 @@ const galleryItems = [
   { id: 20, src: gal20, x: -1150, y: 150, title: "Pandaa" },
 ];
 
+function ThemedImg({ src, srcDark, alt, className = "", style }) {
+  return (
+    <>
+      <img src={src} alt={alt} className={`${className} themeImg-default`} style={style} />
+      <img src={srcDark} alt={alt} className={`${className} themeImg-dark`} style={style} />
+    </>
+  );
+}
+
 function Explorations() {
   const [isSpread, setIsSpread] = useState(false);
   const constraintsRef = useRef(null);
@@ -80,11 +90,11 @@ function Explorations() {
                 <img src={Portrait} alt="Click to Explore" />
               </div>
               <div className="centerFlex" style={{ marginTop: "clamp(10px, 3vw, 30px)" }}>
-                <img src={Line} alt="A short line" style={{ width: "28vw" }} />
-                <p style={{ fontSize: "clamp(12px, 1.5vw + 0.5rem, 20px)" }}>
+                <ThemedImg src={Line} srcDark={LineLight} alt="A short line" style={{ width: "28vw" }} />
+                <p style={{ fontSize: "clamp(12px, 1.5vw + 0.5rem, 20px)", color: "var(--clr-page-text)"}}>
                   SIDEQUEST LOG
                 </p>
-                <img src={Line} alt="A short line" style={{ width: "28vw" }} />
+                <ThemedImg src={Line} srcDark={LineLight} alt="A short line" style={{ width: "28vw" }} />
               </div>
             </Motion.div>
           ) : (
@@ -108,7 +118,7 @@ function Explorations() {
                 <h2 style={{ width: "300px", textAlign: "center", fontSize: "1.6rem" }}>
                   <em>Letting my creativity flow freely across the surface</em>
                 </h2>
-                <p className= "centerFlex" style={{gap: "10px", color: "var(--clr-primary-400)"}}><Move height={"20px"}/> Drag to move</p>
+                <p className= "centerFlex" style={{gap: "10px", color: "var(--clr-page-span)"}}><Move height={"20px"}/> Drag to move</p>
               </div>
             </>
           )}

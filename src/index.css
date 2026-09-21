@@ -1,25 +1,62 @@
-:root {
+:root,
+:root[data-theme="dark"] {
   --clr-primary-800: hsl(230, 33%, 11%);
-  --clr-primary-700: hsl(230, 24%, 15%);
+  --clr-primary-700: hsl(230, 31%, 15%);
   --clr-primary-650: hsl(223, 36%, 27%);
   --clr-primary-600: hsl(218, 30%, 41%);
   --clr-primary-500: hsl(220, 22%, 57%);
   --clr-primary-400: hsl(221, 32%, 71%);
   --clr-primary-300: hsl(221, 27%, 80%);
 
+  --clr-secondary-400: hsl(230, 24%, 15%);
+  --clr-secondary-300: hsl(195, 100%, 60%);
+
+  --clr-neutral-200: hsl(0, 0%, 66%);
+  --clr-neutral-100: hsl(0, 0%, 100%);
+
+  --clr-navbar-bg: hsl(217, 33%, 83%);
+  --clr-page-bg: var(--clr-primary-700);
+  --clr-page-text: var(--clr-neutral-100);
+  --clr-page-span: var(--clr-primary-500);
+  --clr-project-border: var(--clr-primary-600);
+  --clr-project-bg: var(--clr-primary-700);
+  --clr-project-tool: var(--clr-primary-650);
+  --clr-footer-bg: var(--clr-primary-800);
+}
+
+:root[data-theme="light"] {
+  /* --clr-primary-800: hsl(230, 33%, 11%);
+  --clr-primary-700: hsl(206, 18%, 92%); */
+  --clr-primary-700: hsl(220, 44%, 20%);
+  --clr-primary-600: hsl(209, 42%, 69%);
+  --clr-primary-500: hsl(209, 56%, 78%);
+  --clr-primary-400: hsl(205, 40%, 84%);
+  --clr-primary-300: hsl(206, 18%, 92%);
+  --clr-primary-200: hsl(210, 100%, 97%);
+
   /* hsl(218, 35%, 18%) */
+  --clr-secondary-500: hsl(217, 53%, 35%);
   --clr-secondary-400: hsl(230, 24%, 15%); 
   --clr-secondary-300: hsl(195, 100%, 60%);
 
   --clr-neutral-200: hsl(0, 0%, 66%);
   --clr-neutral-100: hsl(0, 0%, 100%);
 
-  background-color: var(--clr-primary-700);
-  color: var(--clr-neutral-100);
+  --clr-navbar-bg: var(--clr-neutral-100);
+  --clr-page-bg: var(--clr-primary-300);
+  --clr-page-text: var(--clr-primary-700);
+  --clr-page-span: var(--clr-secondary-500);
+  --clr-project-border: var(--clr-primary-700);
+  --clr-project-bg: var(--clr-primary-200);
+  --clr-project-tool: var(--clr-primary-700);
+  --clr-footer-bg: var(--clr-primary-500);
 }
 
 body {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: "Nunito", sans-serif;
+  background-color: var(--clr-page-bg);
+  color: var(--clr-page-text);
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 h1, h2, h3 {

@@ -4,6 +4,7 @@ import Introduction from "../components/Introduction"
 import Experience from "../components/Experience"
 import Community from "../components/Community"
 import { useEffect } from "react"
+import "../components/about.css";
 
 function About () {
     useEffect(() => {
@@ -12,9 +13,8 @@ function About () {
 
     return (
         <div>
-            <NavBar />
-
-            <main>
+            <main className="aboutMainContent">
+                <NavBar />
                 <Introduction />
                 <Experience />
                 <Community />

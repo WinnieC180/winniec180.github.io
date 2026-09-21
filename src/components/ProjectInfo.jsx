@@ -64,7 +64,7 @@ function ProjectInfo() {
               src={project.image}
               alt="A image of the home page of my project"
             />
-            <h1>{project.subTitle}</h1>
+            <h2>{project.subTitle}</h2>
           </div>
 
           {project.sections.map((section, id) => (

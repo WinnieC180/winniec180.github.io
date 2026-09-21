@@ -14,6 +14,7 @@
 .hero-container {
     margin-bottom: 60px;
     cursor: pointer;
+    margin-left: 280px;
 }
 
 .portrait img {
@@ -55,9 +56,9 @@
     background: white;
     padding: 5px;
     border-radius: 20px;
-    box-shadow: 0 10px 30px hsl(from var(--clr-primary-800) h s l / 0.6);
+    box-shadow: 0 10px 30px hsl(from var(--clr-primary-700) h s l / 0.6);
     cursor: grab;
-    color: var(--clr-primary-800);
+    color: var(--clr-primary-700);
     font-size: 0.8rem;
 }
 
@@ -91,12 +92,36 @@
     cursor: pointer;
 }
 
+.themeImg-dark {
+    display: none;
+}
+
+html[data-theme="dark"] .themeImg-default {
+    display: none;
+}
+
+html[data-theme="dark"] .themeImg-dark {
+    display: inline-block;
+}
+
 @media (max-width: 600px) {
     .scatter-card {
         width: 60vw;
     }
+
+    .hero-container {
+        margin-left: 0px;
+    }
 }
 
 @media (min-width: 600px) and (max-width: 900px) {
+    .hero-container {
+        margin-left: 0px;
+    } 
+}
 
+@media (min-width: 901px) and (max-width: 1280px) {
+    .hero-container {
+        margin-left: 0px;
+    }
 }

@@ -1,40 +1,41 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./style.css";
-import winLogo from "../assets/logo-light.svg";
-import { X, Menu } from "lucide-react";
+import winLogo from "../assets/logo.svg";
+import navHook from "../assets/hookFront.svg";
+import navHookBack from "../assets/hookBack.svg";
+import { X, Menu, Github, Linkedin, Sun, Moon } from "lucide-react";
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [activeTab, setActiveTab] = useState("");
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("theme") || "dark"
+  );
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
+  useEffect(() => {
+    const handleScroll = () => {
       if (location.pathname === "/") {
         const workSection = document.getElementById("work");
         if (workSection) {
           const rect = workSection.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            setActiveTab("work");
-          } else {
-            setActiveTab("");
-          }
+          setActiveTab(rect.top <= 150 && rect.bottom >= 150 ? "work" : "");
         }
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location]);
 
   const goToWork = () => {
     setIsMenuOpen(false);
-
     if (location.pathname === "/") {
       document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
     } else {
@@ -43,49 +44,35 @@ function NavBar() {
     }
   };
 
-  const links = [
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
+
+  const navLinks = [
     { name: "Work", type: "anchor" },
     { name: "About", path: "/about", type: "route" },
     { name: "Explorations", path: "/explorations", type: "route" },
-    { name: "Resume", path: "https://drive.google.com/file/d/1FsZhuG9mBveiLF2bkk_u5Yclsn_5AVfi/view?usp=sharing", type: "file" },
+  ];
+
+  const externalLinks = [
+    {
+      name: "Github",
+      path: "https://github.com/WinnieC180",
+      icon: <Github size={16} />,
+    },
+    {
+      name: "LinkedIn",
+      path: "https://www.linkedin.com/in/winnie-chan-503804367/",
+      icon: <Linkedin size={16} />,
+    },
+    {
+      name: "Resume",
+      path: "https://drive.google.com/file/d/1FsZhuG9mBveiLF2bkk_u5Yclsn_5AVfi/view?usp=sharing",
+    },
   ];
 
   return (
-    <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
-      <div className="logo centerFlex">
-        <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-          <img src={winLogo} alt="Winnie's Logo, Chinese character for win" />
-        </Link>
-      </div>
-      <div className="links">
-        <ul>
-          {links.map((link) => (
-            <li key={link.name}>
-              {link.type === "anchor" ? (
-                <button
-                  onClick={goToWork}
-                  className={`navLinkButton ${
-                    activeTab === "work" && location.pathname === "/" ? "active" : ""
-                  }`}
-                >
-                  {link.name}
-                </button>
-              ) : link.type === "file" ? (
-                <a href={link.path} target="_blank">
-                  {link.name}
-                </a>
-              ) : (
-                <NavLink
-                  to={link.path}
-                  className={({ isActive }) => (isActive ? "active" : "")}
-                >
-                  {link.name}
-                </NavLink>
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
+    <>
       <button
         onClick={() => setIsMenuOpen((prev) => !prev)}
         className="menu centerFlex"
@@ -93,37 +80,88 @@ function NavBar() {
         {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
-      {/* mobile menu */}
-      {isMenuOpen && (
-        <div className="mobileMenu centerFlex">
-          <ul>
-            {links.map((link, index) => (
-              <li key={link.name} style={{ animationDelay: `${index * 0.1}s` }}>
-                {link.type === "anchor" ? (
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      goToWork();
-                    }}
-                  >
+      <aside className={`navSidebar ${isMenuOpen ? "open" : ""}`}>
+        <img src={navHook} alt="" className="navSidebarHook" />
+
+        <div className="navSidebarCard">
+          <Link
+            to="/"
+            onClick={() => {
+              setIsMenuOpen(false);
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="navSidebarLogo"
+            style={{ display: "flex" }}
+          >
+            <img src={winLogo} alt="Winnie's Logo, Chinese character for win" />
+            <span className="navSidebarLogoCaption">' To Win'</span>
+          </Link>
+
+          <div className="navSidebarSection">
+            <p className="navSidebarLabel">Navigation</p>
+            <ul>
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  {link.type === "anchor" ? (
+                    <button
+                      onClick={goToWork}
+                      className={`navLinkButton ${
+                        activeTab === "work" && location.pathname === "/"
+                          ? "active"
+                          : ""
+                      }`}
+                    >
+                      {link.name}
+                    </button>
+                  ) : (
+                    <NavLink
+                      to={link.path}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={({ isActive }) => (isActive ? "active" : "")}
+                    >
+                      {link.name}
+                    </NavLink>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="navSidebarSection">
+            <p className="navSidebarLabel">Links</p>
+            <ul>
+              {externalLinks.map((link) => (
+                <li key={link.name}>
+                  <a href={link.path} target="_blank" rel="noreferrer">
                     {link.name}
                   </a>
-                ) : link.type === "file" ? (
-                  <a href={link.path} target="_blank" onClick={() => setIsMenuOpen(false)}>
-                    {link.name}
-                  </a>
-                ) : (
-                  <Link to={link.path} onClick={() => setIsMenuOpen(false)}>
-                    {link.name}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <button
+            className="themeToggle centerFlex"
+            onClick={toggleTheme}
+            aria-label="Toggle dark mode"
+          >
+            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+            <span>{theme === "dark" ? "Light mode" : "Dark mode"}</span>
+          </button>
+
+          <div className="navSidebarFooter">
+            <p>© Winnie Chan 2026</p>
+            <p>Supported by the love and encouragement of some amazing individuals!</p>
+            <p>Made by Figma and React.js</p>
+          </div>
         </div>
+        <img src={navHookBack} alt="" className="navSidebarHookBack" />
+      </aside>
+
+      {isMenuOpen && (
+        <div className="navSidebarOverlay" onClick={() => setIsMenuOpen(false)} />
       )}
-    </nav>
+    </>
   );
 }
 

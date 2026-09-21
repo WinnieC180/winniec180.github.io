@@ -26,7 +26,7 @@ function Communities() {
     },
     {
       id: "AdvantageAcademy",
-      title: "Last Day of STEM Class",
+      title: "STEM Class",
       subTitle: "Fun Experiment",
       description:
         "My last day teaching in the summer! We made ice cream from scratch to celebrate.",
@@ -49,14 +49,14 @@ function Communities() {
             </div>
 
             <div className="name" style={{ display: "flex" }}>
-            <h2 className={"title"}>
-                {project.title} <span>✦ {project.subTitle}</span>
+            <h2 className={"title"} style={{color:"var(--clr-page-text)"}}>
+                {project.title} <span className="subtitle">✦ {project.subTitle}</span>
             </h2>
             </div>
 
             <p
             className="projectBio"
-            style={{ color: "var(--clr-primary-500)" }}
+            style={{ color: "var(--clr-page-text)" }}
             >
             {project.description}
             </p>
