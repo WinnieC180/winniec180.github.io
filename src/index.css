@@ -22,6 +22,7 @@
   --clr-project-bg: var(--clr-primary-700);
   --clr-project-tool: var(--clr-primary-650);
   --clr-footer-bg: var(--clr-primary-800);
+  --clr-ripple: var(--clr-primary-650);
 }
 
 :root[data-theme="light"] {
@@ -50,6 +51,7 @@
   --clr-project-bg: var(--clr-primary-200);
   --clr-project-tool: var(--clr-primary-700);
   --clr-footer-bg: var(--clr-primary-500);
+  --clr-ripple: var(--clr-primary-500);
 }
 
 body {

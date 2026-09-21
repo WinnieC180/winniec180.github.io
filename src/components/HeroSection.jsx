@@ -10,7 +10,7 @@ import SUSB from "../assets/SUSB_Logo.svg";
 import "./style.css";
 
 const RIPPLE_COLORS = [
-  "var(--clr-primary-650)",
+  "var(--clr-ripple)",
 ];
 
 function HeroSection() {
