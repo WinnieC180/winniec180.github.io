@@ -14,12 +14,12 @@
   --clr-neutral-200: hsl(0, 0%, 66%);
   --clr-neutral-100: hsl(0, 0%, 100%);
 
-  --clr-navbar-bg: hsl(205, 40%, 84%);
+  --clr-navbar-bg: hsl(221, 36%, 91%);
   --clr-page-bg: var(--clr-primary-700);
   --clr-page-text: var(--clr-neutral-100);
-  --clr-page-span: var(--clr-primary-500);
+  --clr-page-span: var(--clr-primary-600);
   --clr-project-border: var(--clr-primary-600);
-  --clr-project-bg: var(--clr-primary-700);
+  --clr-project-bg: var(--clr-secondary-400);
   --clr-project-tool: var(--clr-primary-650);
   --clr-footer-bg: var(--clr-primary-800);
   --clr-ripple: var(--clr-primary-650);
