@@ -10,6 +10,7 @@ import SUSB from "../imgProjects/SUSB.svg";
 import FamJam from "../imgProjects/FamJam.svg";
 import CornellGO from "../imgProjects/CornellGO.svg";
 import Loop from "../imgProjects/Loop.svg";
+import Darn from "../imgProjects/Darn.svg";
 
 function Projects() {
   const projects = [
@@ -60,6 +61,17 @@ function Projects() {
       image: CornellGO,
       isComplete: true,
       externalLink: "https://new.cornelldti.org/products#cornellgo",
+    },
+    {
+      id: "darn",
+      title: "Darn",
+      subTitle: "Resource Website",
+      description:
+        "Redesigned DARN's internal and admin website utilizing Claude-code to speed up high-fis to production on wordpress within 2 months",
+      timeSpent: "2 months",
+      tools: ["Figma", "Claude-Code", "UiChemy", "Wordpress"],
+      image: Darn,
+      isComplete: true,
     },
     {
       id: "oh-my-camel",

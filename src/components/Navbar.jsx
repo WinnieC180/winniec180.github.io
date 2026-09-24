@@ -4,6 +4,8 @@ import "./style.css";
 import winLogo from "../assets/logo.svg";
 import navHook from "../assets/hookFront.svg";
 import navHookBack from "../assets/hookBack.svg";
+import navbarBg from "../assets/Navbar_bg.svg";
+import navbarBgDark from "../assets/Navbar_bg_dark.svg";
 import { X, Menu, Github, Linkedin, Sun, Moon } from "lucide-react";
 
 function NavBar() {
@@ -83,7 +85,10 @@ function NavBar() {
       <aside className={`navSidebar ${isMenuOpen ? "open" : ""}`}>
         <img src={navHook} alt="" className="navSidebarHook" />
 
-        <div className="navSidebarCard">
+        <div
+          className="navSidebarCard"
+          style={{ backgroundImage: theme === "dark" ? `url(${navbarBgDark})` : `url(${navbarBg})` }}
+        >
           <Link
             to="/"
             onClick={() => {

@@ -101,10 +101,10 @@ html, body {
     width: 100%;
     margin-top: 0px;
     padding: 32px 24px;
-    background-color: hsl(from var(--clr-navbar-bg) h s l / 0.9);
-    border: 2px solid hsl(from var(--clr-primary-700) h s l / 0.7);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px hsl(from var(--clr-primary-700) h s l / 0.12);
+    background-image: none;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     gap: 28px;

@@ -9,12 +9,12 @@
   --clr-primary-300: hsl(221, 27%, 80%);
 
   --clr-secondary-400: hsl(230, 24%, 15%);
-  --clr-secondary-300: hsl(195, 100%, 60%);
+  --clr-secondary-300: hsl(195, 90%, 39%);
 
   --clr-neutral-200: hsl(0, 0%, 66%);
   --clr-neutral-100: hsl(0, 0%, 100%);
 
-  --clr-navbar-bg: hsl(221, 36%, 91%);
+  --clr-navbar-bg: hsl(221, 35%, 91%);
   --clr-page-bg: var(--clr-primary-700);
   --clr-page-text: var(--clr-neutral-100);
   --clr-page-span: var(--clr-primary-600);

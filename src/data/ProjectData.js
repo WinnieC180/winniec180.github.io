@@ -2,6 +2,7 @@ import OhMyCamel from "../imgProjects/Oh-My-Camel.svg";
 import QuackAGoose from "../imgProjects/Quack-A-Goose.svg";
 import CreatorsCut from "../imgProjects/CreatorsCuts.svg";
 import StudyBuddy from "../imgProjects/StudyBuddy.svg";
+import Darn from "../imgProjects/Darn.svg";
 
 export const ProjectData = [
   {
@@ -161,7 +162,7 @@ export const ProjectData = [
         id: "context",
         label: "Context",
         content:
-          "Creator’s Cuts is a YouTube feature concept that allows users to cut their for you page into custom, color-coded categories they create themselves. By intentionally categorizing content, users can influence their recommendation feed, enabling YouTube to surface videos that better match their interests and viewing intent while reducing irrelevant recommendations.",
+          "Creator's Cuts is a YouTube feature concept that allows users to cut their for you page into custom, color-coded categories they create themselves. By intentionally categorizing content, users can influence their recommendation feed, enabling YouTube to surface videos that better match their interests and viewing intent while reducing irrelevant recommendations.",
       },
       {
         id: "case-preview",
@@ -174,8 +175,29 @@ export const ProjectData = [
         ],
       },
       {
+        id: "Defining the problem",
+        label: "Defining the problem???",
+        content: [
+          {
+            type: "text",
+            value:
+              "Originally when I was doing this case study I created the following people problem: ",
+          },
+          {
+            type: "highlight",
+            value:
+              "As someone who always doom scrolls, I sometimes want to watch funny clips of longer streams that I didn't have time to. ",
+          },
+          {
+            type: "image",
+            value: 
+              "./photos/But....png"
+          },
+        ],
+      },
+      {
         id: "problem-space",
-        label: "Problem Space",
+        label: "NEW Problem Space",
         content:
           "YouTube allows users to find specific content they are searching for during a break, but it is difficult to find that content because… \n\n1. Users prefer quick, effortless discovery instead of actively searching for videos\n2. Users often get distracted by other visually appealing content, straying away from original goal",
         peopleProblem:
@@ -186,19 +208,14 @@ export const ProjectData = [
         label: "User Research",
         content: [
           {
-            type: "text",
-            value:
-              "YouTube allows users to find specific content they are searching for during a break, but it is difficult to find that content because… \n\n1. Users prefer quick, effortless discovery instead of actively searching for videos\n2. Users often get distracted by other visually appealing content, straying away from original goal",
-          },
-          {
             type: "highlight",
             value:
-              "Originally I had a different people problem, so how did I come up with this people problem?",
+              "How did I come up with the new problem space? What do I do to make it not MY problem with YouTube, the answer is user research!",
           },
           {
             type: "text",
             value: 
-              "After conducting some reasearch, here is the user persona"
+              "After conducting some interviewers of people who uses YouTube (either frequently or not often), here is the user persona I created to address some common pain points:"
           },
           {
             type: "image",
@@ -236,6 +253,29 @@ export const ProjectData = [
               "./photos/vote.png"
           },
         ],
+      },
+    ],
+  },
+    {
+    id: "darn",
+    subTitle: "DARN",
+    image: Darn,
+    sections: [
+      {
+        id: "overview",
+        label: "Overview",
+        content: [
+          { Team: "1 PM, 1 TPM, 2 developers, 3 designers" },
+          { Role: "Designer" },
+          { Timeline: "Summer 2026 \n(2 months)" },
+          { Tools: "Figma, Claude-Code, UiChemy, Wordpress" },
+        ],
+      },
+      {
+        id: "description",
+        label: "Description",
+        content:
+          "DARN (Developmental Assets Resource Network) is a non-profit organization located in Bexley, Ohio. My role as a designer was to redesign their internal website and counselor/admin page to help manage resources better between counselors across different areas of Ohio. We met with a representative at DARN, and with the help of Claude Code and UiChemy, we pushed our designs quickly from Figma to WordPress and delivered a finished product. We connected with DARN through the Develop for Good program.",
       },
     ],
   },

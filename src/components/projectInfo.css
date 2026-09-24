@@ -35,7 +35,7 @@ html {
 .content-area {
   flex-direction: column;
   flex: 1;
-  gap: 10px;
+  gap: 30px;
   padding: 40px 60px;
   margin-left: 22vw;
 
@@ -66,13 +66,14 @@ html {
 
 .section-body {
   margin-bottom: 70px;
-  max-width: 50vw;
+  max-width: 60vw;
 
   scroll-margin-top: 200px;
 }
 
 .section-body p {
   white-space: pre-line; /* This makes \n render as an actual line break! */
+  font-size: clamp(0.8rem, 1.7vw + 0.5rem, 1.2rem);
 }
 
 .video-section {
@@ -123,7 +124,7 @@ html {
 
 .preview-layout .video-name {
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin-top: 10px;
   color: var(--clr-secondary-300);
 }
