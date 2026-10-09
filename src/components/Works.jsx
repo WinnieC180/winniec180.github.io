@@ -14,7 +14,7 @@ function ThemedImg({ src, srcDark, alt, className = "", style }) {
 
 function Works() {
   const gap = {
-    margin: "24px 0",
+    padding: "24px 0",
   };
 
   const direction = {
@@ -28,7 +28,7 @@ function Works() {
   return (
     <section
       className="centerFlex"
-      style={{ ...direction, ...gap, scrollMarginTop: "120px" }}
+      style={{ ...direction, ...gap, scrollMarginTop: "120px", backgroundColor: "var(--clr-works-bg)", }}
       id="work"
     >
       <div className="centerFlex">

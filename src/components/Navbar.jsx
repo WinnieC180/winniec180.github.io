@@ -1,172 +1,69 @@
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import "./style.css";
-import winLogo from "../assets/logo.svg";
-import navHook from "../assets/hookFront.svg";
-import navHookBack from "../assets/hookBack.svg";
-import navbarBg from "../assets/Navbar_bg.svg";
-import navbarBgDark from "../assets/Navbar_bg_dark.svg";
-import { X, Menu, Github, Linkedin, Sun, Moon } from "lucide-react";
+import { useEffect, useState } from "react";
+import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
+import { Sun, Moon, Menu, X } from "lucide-react";
+import { useTheme, toggleTheme } from "../theme";
+import logo from "../assets/sea/roundfish-gold.png";
+import "./navbar.css";
+
+const RESUME = "https://drive.google.com/file/d/1FsZhuG9mBveiLF2bkk_u5Yclsn_5AVfi/view?usp=sharing";
 
 function NavBar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("");
-  const [theme, setTheme] = useState(
-    () => localStorage.getItem("theme") || "dark"
-  );
+  const night = useTheme() === "dark";
+  const [open, setOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
+  // links close the menu on click; Escape closes it too
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (location.pathname === "/") {
-        const workSection = document.getElementById("work");
-        if (workSection) {
-          const rect = workSection.getBoundingClientRect();
-          setActiveTab(rect.top <= 150 && rect.bottom >= 150 ? "work" : "");
-        }
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [location]);
-
-  const goToWork = () => {
-    setIsMenuOpen(false);
+  const goToWork = (e) => {
+    e.preventDefault();
+    setOpen(false);
     if (location.pathname === "/") {
-      document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
+      const el = document.getElementById("work");
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 40, behavior: "smooth" });
     } else {
       sessionStorage.setItem("scrollTarget", "work");
       navigate("/");
     }
   };
 
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
-  };
-
-  const navLinks = [
-    { name: "Work", type: "anchor" },
-    { name: "About", path: "/about", type: "route" },
-    { name: "Explorations", path: "/explorations", type: "route" },
-  ];
-
-  const externalLinks = [
-    {
-      name: "Github",
-      path: "https://github.com/WinnieC180",
-      icon: <Github size={16} />,
-    },
-    {
-      name: "LinkedIn",
-      path: "https://www.linkedin.com/in/winnie-chan-503804367/",
-      icon: <Linkedin size={16} />,
-    },
-    {
-      name: "Resume",
-      path: "https://drive.google.com/file/d/1FsZhuG9mBveiLF2bkk_u5Yclsn_5AVfi/view?usp=sharing",
-    },
-  ];
+  const links = (
+    <>
+      <a href="#work" onClick={goToWork}>Work</a>
+      <NavLink to="/about" onClick={() => setOpen(false)}>About</NavLink>
+      <NavLink to="/explorations" onClick={() => setOpen(false)}>Explorations</NavLink>
+      <a href={RESUME} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>Resume</a>
+    </>
+  );
 
   return (
-    <>
-      <button
-        onClick={() => setIsMenuOpen((prev) => !prev)}
-        className="menu centerFlex"
-      >
-        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
-
-      <aside className={`navSidebar ${isMenuOpen ? "open" : ""}`}>
-        <img src={navHook} alt="" className="navSidebarHook" />
-
-        <div
-          className="navSidebarCard"
-          style={{ backgroundImage: theme === "dark" ? `url(${navbarBgDark})` : `url(${navbarBg})` }}
+    <nav className={`pillNav${night ? " night" : ""}${open ? " isOpen" : ""}`}>
+      <div className="pillNavBar">
+        <Link to="/" className="pillNavLogo" onClick={() => { setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
+          <img src={logo} alt="Home" />
+        </Link>
+        <div className="pillNavLinks">{links}</div>
+        <button type="button" className="pillNavIcon pillNavTheme" onClick={toggleTheme} aria-label={night ? "Switch to day" : "Switch to night"}>
+          {night ? <Sun size={16} /> : <Moon size={16} />}
+        </button>
+        <button
+          type="button"
+          className="pillNavIcon pillNavBurger"
+          onClick={() => setOpen((o) => !o)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="pillNavMenu"
         >
-          <Link
-            to="/"
-            onClick={() => {
-              setIsMenuOpen(false);
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-            className="navSidebarLogo"
-            style={{ display: "flex" }}
-          >
-            <img src={winLogo} alt="Winnie's Logo, Chinese character for win" />
-            <span className="navSidebarLogoCaption">' To Win'</span>
-          </Link>
-
-          <div className="navSidebarSection">
-            <p className="navSidebarLabel">Navigation</p>
-            <ul>
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  {link.type === "anchor" ? (
-                    <button
-                      onClick={goToWork}
-                      className={`navLinkButton ${
-                        activeTab === "work" && location.pathname === "/"
-                          ? "active"
-                          : ""
-                      }`}
-                    >
-                      {link.name}
-                    </button>
-                  ) : (
-                    <NavLink
-                      to={link.path}
-                      onClick={() => setIsMenuOpen(false)}
-                      className={({ isActive }) => (isActive ? "active" : "")}
-                    >
-                      {link.name}
-                    </NavLink>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="navSidebarSection">
-            <p className="navSidebarLabel">Links</p>
-            <ul>
-              {externalLinks.map((link) => (
-                <li key={link.name}>
-                  <a href={link.path} target="_blank" rel="noreferrer">
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <button
-            className="themeToggle centerFlex"
-            onClick={toggleTheme}
-            aria-label="Toggle dark mode"
-          >
-            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-            <span>{theme === "dark" ? "Light mode" : "Dark mode"}</span>
-          </button>
-
-          <div className="navSidebarFooter">
-            <p>© Winnie Chan 2026</p>
-            <p>Supported by the love and encouragement of some amazing individuals!</p>
-            <p>Made by Figma and React.js</p>
-          </div>
-        </div>
-        <img src={navHookBack} alt="" className="navSidebarHookBack" />
-      </aside>
-
-      {isMenuOpen && (
-        <div className="navSidebarOverlay" onClick={() => setIsMenuOpen(false)} />
-      )}
-    </>
+          {open ? <X size={18} /> : <Menu size={18} />}
+        </button>
+      </div>
+      <div id="pillNavMenu" className="pillNavMenu" hidden={!open}>{links}</div>
+    </nav>
   );
 }
 

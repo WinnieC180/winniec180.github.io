@@ -17,9 +17,10 @@
   --clr-navbar-bg: hsl(221, 35%, 91%);
   --clr-page-bg: var(--clr-primary-700);
   --clr-page-text: var(--clr-neutral-100);
-  --clr-page-span: var(--clr-primary-600);
+  --clr-page-span: var(--clr-primary-500);
+  --clr-works-bg: hsl(216, 33%, 47%);
   --clr-project-border: var(--clr-primary-600);
-  --clr-project-bg: var(--clr-secondary-400);
+  --clr-project-bg: hsl(217, 40%, 26%);
   --clr-project-tool: var(--clr-primary-650);
   --clr-footer-bg: var(--clr-primary-800);
   --clr-ripple: var(--clr-primary-650);
@@ -47,6 +48,7 @@
   --clr-page-bg: var(--clr-primary-300);
   --clr-page-text: var(--clr-primary-700);
   --clr-page-span: var(--clr-secondary-500);
+  --clr-works-bg: hsl(206, 82%, 87%);
   --clr-project-border: var(--clr-primary-700);
   --clr-project-bg: var(--clr-primary-200);
   --clr-project-tool: var(--clr-primary-700);
@@ -58,10 +60,18 @@ body {
   font-family: "Nunito", sans-serif;
   background-color: var(--clr-page-bg);
   color: var(--clr-page-text);
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
 }
 
 h1, h2, h3 {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 500;
+}
+
+#work {
+  transition: background-color 0.8s ease;
+}
+
+:root[data-theme="dark"] #work {
+  transition: background-color 0.8s ease 0.7s;
 }

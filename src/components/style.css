@@ -60,10 +60,6 @@ html, body {
     transform: scale(1.05);
 }
 
-.mainContent {
-    margin-left: 280px; /* matches .navSidebar width */
-}
-
 /* Navigation Bar */
 .navSidebar {
     position: fixed;
@@ -542,10 +538,6 @@ html, body {
         animation: fadeInUpwards 0.3s ease forwards;
     }
 
-    .mainContent {
-        margin-left: 0;
-    }
-
     .menu {
         display: flex;
     }
@@ -734,10 +726,6 @@ html, body {
         width: 430vw !important;
     }
 
-    .mainContent {
-        margin-left: 0;
-    }
-
     .menu {
         display: flex;
         backdrop-filter: blur(10px);
@@ -782,11 +770,7 @@ html, body {
     .navSidebar {
         width: 250px;
     }
-
-    .mainContent {
-        margin-left: 250px;
-    }
-
+    
     .project .image{
         height: 30vw !important;
     }

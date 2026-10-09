@@ -1,162 +1,319 @@
-import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
-import backFishes from "../assets/backFishes.svg";
-import frontFishes from "../assets/frontFishes.svg";
-// import frontHook from "../assets/hookFront.svg";
-// import backHook from "../assets/hookBack.svg";
-import DTI from "../assets/DTI.svg";
-import SUSB from "../assets/SUSB_Logo.svg";
+import { useEffect, useRef, useState } from "react";
+import { useTheme, toggleTheme } from "../theme";
+import "./hero.css";
 
-import "./style.css";
+const SPRITES = import.meta.glob("../assets/sea/*.png", { eager: true, import: "default" });
+const sea = (name) => SPRITES[`../assets/sea/${name}.png`];
 
-const RIPPLE_COLORS = [
-  "var(--clr-ripple)",
+// n = the angle the sprite's nose points at in the image, w = base width
+const JUMPERS = [
+  { s: "puffer-gold", n: 0, w: 64 }, { s: "minnow", n: -20, w: 84 }, { s: "sunfish-gold", n: 12, w: 80 },
+  { s: "minnow-gold", n: -15, w: 80 }, { s: "sardine", n: 6, w: 78 }, { s: "dolphin", n: -52, w: 88 },
+  { s: "tinyfish-gold", n: -30, w: 56 }, { s: "roundfish-gold", n: 180, w: 62 }, { s: "angelfish-gold", n: -8, w: 72 },
 ];
 
+const CLOUDS = [
+  { top: 110, w: 190, delay: 0, flip: 1, o: 1 },
+  { top: 262, w: 130, delay: -30, flip: -1, o: 0.85 },
+  { top: 146, w: 215, delay: -60, flip: 1, o: 1 },
+  { top: 318, w: 110, delay: -90, flip: -1, o: 0.75 },
+  { top: 200, w: 160, delay: -120, flip: 1, o: 0.95 },
+];
+
+const BUBBLE = {
+  depth: "Not just how it looks on the surface, but how it holds up below. The logic, the systems, the decisions that don\u2019t show up in a screenshot.",
+  ships: "Bridging the gap between designers and engineers to build toward a shared vision that lasts.",
+};
+
+const BUBBLE_PATH =
+  "M30 0 H370 A30 30 0 0 1 400 30 V42 A30 30 0 0 1 370 72 H160.3 C177.1 87.6 226.1 113.5 288 92.5 C260 106.4 191.2 121.8 140 72 H30 A30 30 0 0 1 0 42 V30 A30 30 0 0 1 30 0 Z";
+const WAVE_PATH = "M0 16 " + "q60 -16 120 0 q60 16 120 0 ".repeat(14) + "V300 H0 Z";
+
+const STARS = (() => {
+  let z = 7;
+  const r = () => (z = (z * 9301 + 49297) % 233280) / 233280;
+  return Array.from({ length: 34 }, () => ({
+    left: (r() * 100).toFixed(1) + "%",
+    top: (4 + r() * 58).toFixed(1) + "%",
+    size: (1.5 + r() * 2.5).toFixed(1) + "px",
+    dur: (1.8 + r() * 2.4).toFixed(1) + "s",
+    delay: (-r() * 4).toFixed(1) + "s",
+  }));
+})();
+
+/* Jumping fish, splashes and the hover fish run outside React state (direct DOM + rAF) so they stay smooth. */
+class Ocean {
+  constructor(refs) {
+    this.r = refs;
+    this.fish = [];
+    this.SURF = 540;
+    this.Y0 = 630;
+    this.G = 900;
+  }
+  start() {
+    this.tick = () => {
+      const h = this.r.fishLayer.current?.clientHeight;
+      if (h) { this.SURF = h - 100; this.Y0 = h - 10; }
+      this.step(performance.now());
+      this.raf = requestAnimationFrame(this.tick);
+    };
+    this.raf = requestAnimationFrame(this.tick);
+    this.to = setTimeout(() => { this.launch(); this.schedule(); }, 600);
+  }
+  stop() {
+    cancelAnimationFrame(this.raf);
+    [this.to, this.ht, this.ct].forEach(clearTimeout);
+    this.fish.forEach((f) => f.el.remove());
+    this.fish = [];
+  }
+  schedule() {
+    this.to = setTimeout(() => {
+      if (this.fish.length < 3) this.launch();
+      this.schedule();
+    }, 900 + Math.random() * 1400);
+  }
+  launch(o = {}) {
+    const layer = this.r.fishLayer.current;
+    if (!layer || document.hidden) return;
+    const W = layer.clientWidth, R = Math.random;
+    let x0, right;
+    if (o.x0 != null) { x0 = o.x0; right = x0 > W / 2; }
+    else {
+      right = this.fish.length ? !this.fish[this.fish.length - 1].right : R() < 0.5;
+      x0 = W * (right ? 0.72 + R() * 0.16 : 0.12 + R() * 0.16);
+    }
+    const sp = JUMPERS[Math.floor(R() * JUMPERS.length)];
+    const h = o.h ?? 110 + R() * 160, H = h + (this.Y0 - this.SURF);
+    const T = 2 * Math.sqrt((2 * H) / this.G) * 1000;
+    const D = (right ? 1 : -1) * (80 + R() * 130);
+    let n = sp.n, sx = 1;
+    if ((D > 0) !== (Math.abs(n) < 90)) { sx = -1; n = 180 - n; }
+    const w = sp.w * (0.85 + R() * 0.3);
+    const el = document.createElement("div");
+    el.className = "heroJumper";
+    el.style.width = w + "px";
+    el.innerHTML = `<img src="${sea(sp.s)}" alt="">`;
+    layer.appendChild(el);
+    this.fish.push({ el, x0, D, H, T, n, sx, w, right, t0: performance.now(), out: false, back: false });
+    this.step(performance.now());
+  }
+  step(now) {
+    this.fish = this.fish.filter((f) => {
+      const s = (now - f.t0) / f.T;
+      if (s >= 1) { f.el.remove(); return false; }
+      const x = f.x0 + f.D * s, y = this.Y0 - 4 * f.H * s * (1 - s);
+      const th = (Math.atan2(-4 * f.H * (1 - 2 * s), f.D) * 180) / Math.PI;
+      let rot = th - f.n;
+      rot = ((rot + 540) % 360) - 180;
+      f.el.style.transform = `translate(${x}px,${y}px) translate(-50%,-50%) rotate(${rot}deg) scaleX(${f.sx})`;
+      if (!f.out && y < this.SURF) { f.out = true; this.splash(x, f.w); }
+      if (f.out && !f.back && s > 0.5 && y > this.SURF) { f.back = true; this.splash(x, f.w * 1.2); }
+      return true;
+    });
+  }
+  splash(x, size, y = this.SURF, count = 7) {
+    const layer = this.r.splashLayer.current;
+    if (!layer) return;
+    const k = Math.min(1.4, size / 70);
+    for (let i = 0; i < count; i++) {
+      const d = document.createElement("div");
+      const rr = (2.4 + Math.random() * 2.4) * k;
+      d.className = "heroDrop";
+      d.style.width = rr * 1.6 + "px";
+      d.style.height = rr * 2 + "px";
+      layer.appendChild(d);
+      const c = (count - 1) / 2;
+      const vx = (i - c) * (9 + Math.random() * 6) * k, up = (40 + Math.random() * 50) * k, frames = [];
+      for (let j = 0; j <= 10; j++) {
+        const t = j / 10;
+        frames.push({ transform: `translate(${x + vx * t}px,${y + 4 - up * 4 * t * (1 - t) + 30 * t * t}px)`, opacity: t > 0.85 ? 0 : 1 });
+      }
+      d.animate(frames, { duration: 650 + Math.random() * 250, easing: "linear" }).onfinish = () => d.remove();
+    }
+  }
+  bulge(x) {
+    const layer = this.r.splashLayer.current;
+    if (!layer) return;
+    const d = document.createElement("div");
+    d.className = "heroBulge";
+    d.style.left = x - 70 + "px";
+    d.style.top = this.SURF - 26 + "px";
+    layer.appendChild(d);
+    d.animate(
+      [{ transform: "scale(.6,0)" }, { transform: "scale(1,1)", offset: 0.3 }, { transform: "scale(1.1,.4)", offset: 0.55 }, { transform: "scale(.95,.8)", offset: 0.75 }, { transform: "scale(.6,0)" }],
+      { duration: 720, easing: "ease-in-out" }
+    ).onfinish = () => d.remove();
+  }
+  waveClick(e) {
+    const L = this.r.fishLayer.current.getBoundingClientRect(), x = e.clientX - L.left;
+    this.bulge(x);
+    clearTimeout(this.ct);
+    this.ct = setTimeout(() => this.launch({ x0: x, h: 90 + Math.random() * 90 }), 420);
+  }
+  fishX(fr) {
+    const r = this.r.hoverFish.current.getBoundingClientRect(), L = this.r.splashLayer.current.getBoundingClientRect();
+    return r.left - L.left + r.width * fr;
+  }
+  hoverIn() {
+    clearTimeout(this.ht);
+    const f = this.r.hoverFish.current;
+    if (!f) return;
+    const cs = getComputedStyle(f);
+    const from = { transform: cs.transform === "none" ? "translateY(150px)" : cs.transform, opacity: cs.opacity };
+    const wasDown = parseFloat(cs.opacity) < 0.5;
+    this.fa?.cancel();
+    this.imgA?.cancel();
+    this.fa = f.animate([from, { transform: "translateY(0px) rotate(0deg)", opacity: 1 }], { duration: 550, easing: "cubic-bezier(.34,1.56,.64,1)", fill: "forwards" });
+    if (wasDown) this.ht = setTimeout(() => this.splash(this.fishX(0.5), 70), 140);
+  }
+  hoverOut() {
+    clearTimeout(this.ht);
+    const f = this.r.hoverFish.current, img = this.r.hoverImg.current;
+    if (!f || !img) return;
+    const cs = getComputedStyle(f);
+    if (parseFloat(cs.opacity) < 0.5) return;
+    const from = { transform: cs.transform === "none" ? "translateY(0px)" : cs.transform, opacity: 1 };
+    this.fa?.cancel();
+    this.imgA?.cancel();
+    // arcs head-first into the water, flicks its tail, dips under
+    this.fa = f.animate([
+      from,
+      { transform: "translate(-10px,-12px) rotate(-30deg)", opacity: 1, offset: 0.2, easing: "ease-in" },
+      { transform: "translate(-22px,58px) rotate(-92deg)", opacity: 1, offset: 0.48 },
+      { transform: "translate(-23px,62px) rotate(-94deg)", opacity: 1, offset: 0.72, easing: "ease-in" },
+      { transform: "translate(-26px,170px) rotate(-98deg)", opacity: 1, offset: 0.97 },
+      { transform: "translate(-26px,175px) rotate(-98deg)", opacity: 0 },
+    ], { duration: 1150, fill: "forwards" });
+    this.imgA = img.animate([
+      { transform: "rotate(42deg)", offset: 0 }, { transform: "rotate(42deg)", offset: 0.5 },
+      { transform: "rotate(54deg)", offset: 0.58 }, { transform: "rotate(32deg)", offset: 0.66 },
+      { transform: "rotate(42deg)", offset: 0.73 }, { transform: "rotate(42deg)", offset: 1 },
+    ], { duration: 1150, easing: "ease-in-out" });
+    this.ht = setTimeout(() => {
+      this.splash(this.fishX(0.3), 60);
+      this.ht = setTimeout(() => this.splash(this.fishX(0.5), 44, this.SURF, 5), 520);
+    }, 330);
+  }
+}
+
+function Wave({ kind }) {
+  return (
+    <div className={`heroWave heroWave--${kind}`}>
+      <svg width="3360" height="300" viewBox="0 0 3360 300"><path d={WAVE_PATH} /></svg>
+      <svg className="heroWaveNight" width="3360" height="300" viewBox="0 0 3360 300"><path d={WAVE_PATH} /></svg>
+    </div>
+  );
+}
+
 function HeroSection() {
-  const heroRef = useRef(null);
-  const [ripples, setRipples] = useState([]);
-  const idRef = useRef(0);
-  const colorIndexRef = useRef(0);
+  const night = useTheme() === "dark";
+  const [active, setActive] = useState(null);
+  const [topic, setTopic] = useState("ships");
+  const activeRef = useRef(null);
+  const leaveTimer = useRef(0);
+  const refs = {
+    fishLayer: useRef(null),
+    splashLayer: useRef(null),
+    hoverFish: useRef(null),
+    hoverImg: useRef(null),
+  };
+  const ocean = useRef(null);
 
   useEffect(() => {
-    const spawnRipple = () => {
-      const el = heroRef.current;
-      if (!el) return;
-
-      const x = Math.random() * el.clientWidth;
-      const y = Math.random() * el.clientHeight;
-
-      const id = idRef.current++;
-      const color = RIPPLE_COLORS[colorIndexRef.current % RIPPLE_COLORS.length];
-      colorIndexRef.current += 1;
-
-      setRipples((prev) => [...prev, { id, x, y, color }]);
-
-      window.setTimeout(() => {
-        setRipples((prev) => prev.filter((r) => r.id !== id));
-      }, 800);
-    };
-
-    const intervalId = setInterval(spawnRipple, 1000);
-
-    return () => clearInterval(intervalId);
+    const o = new Ocean(refs);
+    ocean.current = o;
+    o.start();
+    return () => { o.stop(); clearTimeout(leaveTimer.current); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const enter = (k) => {
+    clearTimeout(leaveTimer.current);
+    const wasActive = !!activeRef.current;
+    activeRef.current = k;
+    setTopic(k);
+    setActive(k);
+    if (!wasActive) ocean.current?.hoverIn();
+  };
+  const leave = () => {
+    clearTimeout(leaveTimer.current);
+    leaveTimer.current = setTimeout(() => {
+      activeRef.current = null;
+      setActive(null);
+      ocean.current?.hoverOut();
+    }, 180);
+  };
+  const diveDown = (e) => {
+    e.preventDefault();
+    const el = document.getElementById("work");
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 40, behavior: "smooth" });
+  };
+
   return (
-    <section>
-      <div className="heroWrapper" ref={heroRef}>
-        <div className="heroesection centerFlex">
-          <picture className="fishes back">
-            <img
-              src={backFishes}
-              alt="A digital drawing of some blue cartoon fishes"
-            />
-          </picture>
-
-          {/* <img
-            src={backHook}
-            alt="A digital drawing of some blue cartoon fishes"
-            className="backHook"
-          /> */}
-
-          <div className="label">
-            <div className="description">
-              <p className="basedin">
-                <span>●</span> CURRENTLY BASED IN: NEW YORK
-              </p>
-              <h1 className="nametag">Winnie Chan</h1>
-              <div className="briefintro">
-                <div className="icons" style={{ textAlign: "left" }}>
-                  <a  
-                    href="https://github.com/WinnieC180"
-                    target="_blank"
-                    className="centerFlex"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-github-icon lucide-github"
-                    >
-                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                      <path d="M9 18c-4.51 2-5-2-7-2" />
-                    </svg>
-                    Github
-                  </a>{" "}
-                  |
-                  <a
-                    href="https://www.linkedin.com/in/winnie-chan-503804367/"
-                    target="_blank"
-                    className="centerFlex"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-linkedin-icon lucide-linkedin"
-                    >
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                      <rect width="4" height="12" x="2" y="9" />
-                      <circle cx="4" cy="4" r="2" />
-                    </svg>
-                    LinkedIn
-                  </a>
-                </div>
-
-                <p className="briefme">
-                  A <span>computer science student</span> focused on{" "}
-                  <span>frontend</span> development & <span>UI/UX</span>{" "}
-                  design, as well as exploring <span>backend</span>{" "}
-                  development.
-                </p>
-              </div>
-            </div>
-
-            <div className="teams centerFlex" style={{ gap: "10px" }}>
-              <div className="centerFlex" style={{ gap: "10px" }}>
-                <h3 style={{ color: "var(--clr-page-span)" }}>
-                  Developer ✦ Designer
-                </h3>
-              </div>
-            </div>
-          </div>
-
-          <img
-            src={frontFishes}
-            alt="A digital drawing of some blue cartoon fishes"
-            className="fishes front"
-          />
-          {/* <img
-            src={frontHook}
-            alt="A digital drawing of some blue cartoon fishes"
-            className="frontHook"
-          /> */}
-        </div>
-
-        <div className="clickRippleLayer">
-          {ripples.map((r) => (
-            <span
-              key={r.id}
-              className="clickRipple"
-              style={{ left: r.x, top: r.y, "--ripple-color": r.color }}
-            />
-          ))}
-        </div>
+    <header className={`hero${night ? " night" : ""}`}>
+      <div className="heroSky heroSky--sunset" />
+      <div className="heroSky heroSky--night" />
+      <div className="heroSky heroStars">
+        {STARS.map((s, i) => (
+          <i key={i} style={{ left: s.left, top: s.top, width: s.size, height: s.size, animationDuration: s.dur, animationDelay: s.delay }} />
+        ))}
       </div>
-    </section>
+
+      {CLOUDS.map((c, i) => (
+        <div key={i} className="heroCloudTrack" style={{ top: c.top, animationDelay: `${c.delay}s` }}>
+          <div className="heroCloudShape" style={{ width: c.w, opacity: c.o, transform: `scaleX(${c.flip})` }}>
+            <div className="heroCloud" />
+          </div>
+        </div>
+      ))}
+
+      <div className="heroOrbTrack heroOrbTrack--sun"><div className="heroSun" /></div>
+      <div className="heroOrbTrack heroOrbTrack--moon"><div className="heroMoon" /></div>
+      <button
+        type="button"
+        className="heroSunCloud"
+        onClick={toggleTheme}
+        title={night ? "Bring back the sun" : "Watch the sunset"}
+        aria-label={night ? "Switch to day" : "Switch to night"}
+      >
+        <span className="heroSunCloudShape"><span className="heroCloud" /><span className="heroCloud heroCloud--night" /></span>
+      </button>
+
+      <Wave kind="back" />
+      <Wave kind="mid" />
+      <div ref={refs.fishLayer} className="heroLayer heroLayer--fish" />
+      <div ref={refs.hoverFish} className="heroHoverFish">
+        <img ref={refs.hoverImg} src={sea("roundfish")} alt="" />
+      </div>
+      <Wave kind="front" />
+      <div className="heroWaterHit" onClick={(e) => ocean.current?.waveClick(e)} />
+      <div ref={refs.splashLayer} className="heroLayer heroLayer--splash" />
+
+      <div className="heroContent">
+        <div className="heroLabel">PRODUCT DESIGNER ✦ ENGINEER</div>
+        <h1 className="heroName">Winnie Chan</h1>
+        <p className="heroTagline">
+          is a designer that develops and{" "}
+          <span className={`heroHot${active === "ships" ? " isActive" : ""}`} onMouseEnter={() => enter("ships")} onMouseLeave={leave}>
+            ships meaningful experiences
+          </span>{" "}
+          with{" "}
+          <span className={`heroHot${active === "depth" ? " isActive" : ""}`} onMouseEnter={() => enter("depth")} onMouseLeave={leave}>
+            depth
+          </span>
+          .
+        </p>
+        <a href="#work" className="heroDive" onClick={diveDown}>dive down into my projects</a>
+      </div>
+
+      <div className={`heroBubble${active ? " isOn" : ""}`} aria-live="polite">
+        <svg width="400" height="120" viewBox="0 0 400 120">
+          <path d={BUBBLE_PATH} className="heroBubbleFill" />
+          <path d={BUBBLE_PATH} className="heroBubbleStroke" pathLength="1" />
+        </svg>
+        <div className="heroBubbleText">{BUBBLE[topic]}</div>
+      </div>
+    </header>
   );
 }
 

@@ -9,10 +9,6 @@
     padding: 20px 0; 
 }
 
-.aboutMainContent {
-    margin-left: 280px;
-}
-
 .intro {
     flex-direction: column;
     color: var(--clr-page-text);
@@ -196,10 +192,6 @@ html[data-theme="dark"] .winLogoSlide-dark {
         gap: 20px;
     }
 
-    .aboutMainContent {
-        margin-left: 0px;
-    }
-
     .intro {
         display: contents; 
     }
@@ -247,10 +239,6 @@ html[data-theme="dark"] .winLogoSlide-dark {
         gap: 20px;
     }
 
-    .aboutMainContent {
-        margin-left: 0px;
-    }
-
     .intro {
         display: contents; 
     }
@@ -285,10 +273,7 @@ html[data-theme="dark"] .winLogoSlide-dark {
 }
 
 
-@media (min-width: 901px) and (max-width: 1280px) {
-    .aboutMainContent {
-        margin-left: 0;
-    }
+/* @media (min-width: 901px) and (max-width: 1280px) {
 
     .aboutMainContent .menu {
         display: flex;
@@ -306,4 +291,4 @@ html[data-theme="dark"] .winLogoSlide-dark {
     .aboutMainContent .navSidebar.open {
         transform: translateX(0);
     }
-}
+} */

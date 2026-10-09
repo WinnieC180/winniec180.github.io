@@ -1,0 +1,103 @@
+@keyframes pillNavDrop { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+
+.pillNav {
+  position: sticky;
+  top: 25px;
+  z-index: 50;
+  height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px;
+  overflow: visible;
+  font-family: "Nunito", sans-serif;
+}
+.pillNavBar {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  height: 58px;
+  width: 550px;
+  max-width: 100%;
+  padding: 24px 16px;
+  border-radius: 100px;
+  background: rgba(254,254,254,.95);
+  box-shadow: inset 0 0 0 1px rgb(197,216,230), 0 0 0 1px rgb(197,216,230), 4.16px 4.16px 8.32px 0 rgba(18,21,36,.3);
+  transition: background-color .8s ease;
+}
+.pillNav.night .pillNavBar,
+.pillNav.night .pillNavMenu { background: rgba(28,40,66,.96); transition: background-color .8s ease .7s; }
+.pillNavLogo { display: flex; margin: 0 16px; }
+.pillNavLogo img { width: 50px; display: block; }
+.pillNavLinks { display: flex; align-items: center; gap: 32px; }
+.pillNav a {
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  color: rgb(28,43,72);
+  transition: color .3s ease;
+}
+.pillNav.night a { color: rgb(232,240,248); }
+.pillNav a:hover,
+.pillNav a.active,
+.pillNav.night a:hover,
+.pillNav.night a.active { color: rgb(53,139,201); }
+
+.pillNavIcon {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  color: rgb(28,43,72);
+  background: rgb(232,242,250);
+  transition: background-color .3s ease, color .3s ease;
+}
+.pillNav.night .pillNavIcon { color: rgb(232,240,248); background: rgb(42,58,92); }
+.pillNav.night .pillNavTheme { color: rgb(255,214,140); }
+.pillNavIcon:hover { background: rgb(208,232,249); }
+.pillNav.night .pillNavIcon:hover { background: rgb(54,80,124); }
+.pillNavIcon:focus-visible { outline: 2px solid rgb(53,139,201); outline-offset: 2px; }
+.pillNavTheme { margin-left: auto; }
+.pillNavBurger { display: none; }
+
+/* dropdown (mobile only) */
+.pillNavMenu {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  max-width: 540px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 24px;
+  background: rgba(254,254,254,.97);
+  box-shadow: inset 0 0 0 1px rgb(197,216,230), 0 0 0 1px rgb(197,216,230), 4.16px 4.16px 8.32px 0 rgba(18,21,36,.3);
+  animation: pillNavDrop .2s ease;
+}
+.pillNavMenu[hidden] { display: none !important; }
+.pillNavMenu a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: 14px;
+  font-size: 17px;
+}
+.pillNavMenu a:hover { background: rgb(232,242,250); }
+.pillNav.night .pillNavMenu a:hover { background: rgb(42,58,92); }
+
+@media (max-width: 640px) {
+  .pillNav { top: 16px; padding: 0 12px; }
+  .pillNavBar { gap: 10px; height: 54px; padding: 0 10px 0 14px; }
+  .pillNavLogo { margin-left: 0; }
+  .pillNavLogo img { width: 40px; }
+  .pillNavLinks { display: none; }
+  .pillNavIcon { width: 40px; height: 40px; }
+  .pillNavBurger { display: grid; }
+  .pillNav.isOpen .pillNavMenu { display: flex; }
+  .pillNav .pillNavBar, .pillNav.night .pillNavBar { background: none; box-shadow: none; }
+}

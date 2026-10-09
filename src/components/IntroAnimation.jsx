@@ -1,59 +1,43 @@
-import { useState, useEffect } from "react";
-import "./style.css";
+import { useEffect, useRef } from "react";
+import loaderSvg from "../assets/fishLoader.svg?raw";
+import loaderSvgNight from "../assets/fishLoaderNight.svg?raw";
+import "./intro.css";
+
+// Plays once (~3.7s): fish jumps inside the sky window, then a circle opens from the splash to reveal the page.
+const DURATION = 3700;
 
 function IntroAnimation({ onEnter }) {
-  const [isRevealing, setIsRevealing] = useState(false);
-  const [dimensions] = useState(() => ({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  }));
+  const stage = useRef(null);
+  const enterRef = useRef(onEnter);
 
   useEffect(() => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        setIsRevealing(true);
-      });
-    });
-
-    const timeoutId = setTimeout(() => {
-      onEnter();
-    }, 1000);
-
-    return () => clearTimeout(timeoutId);
+    enterRef.current = onEnter;
   }, [onEnter]);
 
-  const { width, height } = dimensions;
-  const cx = width / 2;
-  const cy = height / 2;
-  const maxRadius = Math.sqrt(cx * cx + cy * cy) * 1.05; // covers farthest corner
-  const radius = isRevealing ? maxRadius : 0;
+  useEffect(() => {
+    const el = stage.current;
+    const night = document.documentElement.getAttribute("data-theme") === "dark";
+    el.innerHTML = night ? loaderSvgNight : loaderSvg; // re-inserting restarts the SVG animation
+    const svg = el.querySelector("svg");
 
-  return (
-    <>
-      <svg width="0" height="0" style={{ position: "absolute" }}>
-        <mask id="revealMask" maskUnits="userSpaceOnUse" x="0" y="0" width={width} height={height}>
-          <rect x="0" y="0" width={width} height={height} fill="white" />
-          <circle
-            cx={cx}
-            cy={cy}
-            r={radius}
-            fill="black"
-            style={{ transition: "r 1s cubic-bezier(0.65, 0, 0.35, 1)" }}
-          />
-        </mask>
-      </svg>
+    // Keep the window at 1:1 size, centered; shrink only on small screens.
+    const fit = () => {
+      const w = window.innerWidth, h = window.innerHeight;
+      const k = Math.min(1, w / 520, h / 480), vw = w / k, vh = h / k;
+      svg.setAttribute("viewBox", `${720 - vw / 2} ${442 - vh / 2} ${vw} ${vh}`);
+    };
+    fit();
+    window.addEventListener("resize", fit);
+    const t = setTimeout(() => enterRef.current?.(), DURATION);
 
-      <div
-        className="introAnimation"
-        style={{
-          maskImage: "url(#revealMask)",
-          WebkitMaskImage: "url(#revealMask)",
-        }}
-      >
-        {/* Your video/image/label content goes here if you still want something visible while it plays */}
-      </div>
-    </>
-  );
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("resize", fit);
+      el.innerHTML = "";
+    };
+  }, []);
+
+  return <div ref={stage} className="fishIntro" role="img" aria-label="Loading" />;
 }
 
 export default IntroAnimation;
