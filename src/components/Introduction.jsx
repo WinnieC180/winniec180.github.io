@@ -7,6 +7,12 @@ import winLogoLight from "../assets/logo-light.svg";
 function Introduction() {
   return (
     <div className="centerFlex myBio">
+      <div style={{padding: "20px"}}>
+        <div className="myPhoto">
+          <img src={Photo} alt="" style={{ width: "380px", height: "450px" }} />
+        </div>
+      </div>
+      
       <div className="intro">
         <h3 className="hello hellowwin">
           Hello, I'm{" "}
@@ -34,11 +40,7 @@ function Introduction() {
           what make my experience truly colorful.
         </div>
       </div>
-      <div style={{padding: "20px"}}>
-        <div className="myPhoto">
-          <img src={Photo} alt="" style={{ width: "380px", height: "450px" }} />
-        </div>
-      </div>
+    
     </div>
   );
 }

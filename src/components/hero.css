@@ -18,7 +18,7 @@
 /* ---------- sky ---------- */
 .heroSky { position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0; }
 .heroSky--sunset {
-  background: linear-gradient(180deg, rgb(120,124,184) 0%, rgb(226,166,166) 55%, rgb(252,214,178) 100%);
+  background: linear-gradient(180deg, hsl(246, 17%, 58%) 0%, hsl(342, 40%, 65%) 18%, hsl(1, 63%, 75%) 36%, hsl(19, 72%, 76%) 54%, hsl(54, 90%, 88%) 72%);
   transition: opacity .8s ease .6s;
 }
 .night .heroSky--sunset { opacity: 1; transition: opacity .9s ease .1s; }

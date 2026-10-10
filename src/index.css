@@ -9,7 +9,7 @@
   --clr-primary-300: hsl(221, 27%, 80%);
 
   --clr-secondary-400: hsl(230, 24%, 15%);
-  --clr-secondary-300: hsl(195, 90%, 39%);
+  --clr-secondary-300: hsl(208, 68%, 75%);
 
   --clr-neutral-200: hsl(0, 0%, 66%);
   --clr-neutral-100: hsl(0, 0%, 100%);
@@ -21,7 +21,8 @@
   --clr-works-bg: hsl(216, 33%, 47%);
   --clr-project-border: var(--clr-primary-600);
   --clr-project-bg: hsl(217, 40%, 26%);
-  --clr-project-tool: var(--clr-primary-650);
+  --clr-project-tool: hsl(205, 40%, 84%);
+  --clr-project-tool-text: var(--clr-primary-800);
   --clr-footer-bg: var(--clr-primary-800);
   --clr-ripple: var(--clr-primary-650);
 }
@@ -39,7 +40,7 @@
   /* hsl(218, 35%, 18%) */
   --clr-secondary-500: hsl(217, 53%, 35%);
   --clr-secondary-400: hsl(230, 24%, 15%); 
-  --clr-secondary-300: hsl(195, 100%, 60%);
+  --clr-secondary-300: hsl(208, 68%, 75%);
 
   --clr-neutral-200: hsl(0, 0%, 66%);
   --clr-neutral-100: hsl(0, 0%, 100%);
@@ -52,6 +53,7 @@
   --clr-project-border: var(--clr-primary-700);
   --clr-project-bg: var(--clr-primary-200);
   --clr-project-tool: var(--clr-primary-700);
+  --clr-project-tool-text: var(--clr-primary-200);
   --clr-footer-bg: var(--clr-primary-500);
   --clr-ripple: var(--clr-primary-500);
 }
@@ -64,7 +66,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: "Nunito", sans-serif;
   font-weight: 500;
 }
 
@@ -75,3 +77,29 @@ h1, h2, h3 {
 :root[data-theme="dark"] #work {
   transition: background-color 0.8s ease 0.7s;
 }
+
+html {
+  scrollbar-color: rgb(42, 77, 135) transparent;
+  scrollbar-width: 12px;
+}
+:root[data-theme="dark"] {
+  scrollbar-color: rgb(161, 203, 255) rgb(18, 28, 48);
+}
+
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgb(161, 203, 255), rgb(42, 77, 135));
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box; /* makes the thumb look thinner and float */
+}
+::-webkit-scrollbar-thumb:hover { background-color: rgb(42, 77, 135); }
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgb(214, 226, 240), rgb(90, 120, 170));
+  background-clip: padding-box;
+}
+
+.footFixed { scrollbar-width: none; }
+.footFixed::-webkit-scrollbar { display: none; }
+

@@ -21,7 +21,7 @@ function Projects() {
       description:
         "A relaxing and charming gardening simulator combined with potion crafting. The shop depends on you!",
       timeSpent: "4 months",
-      tools: ["Java", "LibGDX"],
+      tools: ["Shipped", "BostonFig Finalist", "2026"],
       image: BeeWitched,
       isComplete: true,
       externalLink: "https://store.steampowered.com/app/4811560/BeeWitched/",
@@ -33,7 +33,7 @@ function Projects() {
       description:
         "Created an inclusive game to close the gap between different generations. Won best beginner design!",
       timeSpent: "2 days",
-      tools: ["Figma", "Acting"],
+      tools: ["Concept", "2026"],
       image: FamJam,
       isComplete: true,
       externalLink: "https://devpost.com/software/team-tennn?ref_content=my-projects-tab&ref_feature=my_projects",
@@ -45,7 +45,7 @@ function Projects() {
       description:
         "Chrome extension that helps Cornell students cut through listserv clutter and find events, opportunities, and resources that matter to them.",
       timeSpent: "-----",
-      tools: ["Figma"],
+      tools: ["Launching Soon!"],
       image: Loop,
       isComplete: false,
       externalLink: "https://new.cornelldti.org/products#loop",
@@ -57,7 +57,7 @@ function Projects() {
       description:
         "CornellGO is a scavenger hunt app that makes discovering campus easy and fun through interactive, location-based challenges.",
       timeSpent: "2 months",
-      tools: ["Figma", "User Research"],
+      tools: ["Shipped", "2026"],
       image: CornellGO,
       isComplete: true,
       externalLink: "https://new.cornelldti.org/products#cornellgo",
@@ -69,7 +69,8 @@ function Projects() {
       description:
         "Redesigned DARN's internal and admin website utilizing Claude-code to speed up high-fis to production on wordpress within 2 months",
       timeSpent: "2 months",
-      tools: ["Figma", "Claude-Code", "UiChemy", "Wordpress"],
+      // tools: ["Figma", "Claude-Code", "UiChemy", "Wordpress"],
+      tools: ["Shipped", "2026"],
       image: Darn,
       isComplete: true,
     },
@@ -80,7 +81,7 @@ function Projects() {
       description:
         "A wholesome pet sim… with a very lumpy twist! A fun game developed and designed for the CS3110 final project.",
       timeSpent: "3 weeks",
-      tools: ["OCaml", "Raylib"],
+      tools: ["Prototype", "2025"],
       image: OhMyCamel,
       isComplete: true,
     },
@@ -91,7 +92,7 @@ function Projects() {
       description:
         "Conducted user research to design a new feature of YouTube to help users create more personalized recommendations.",
       timeSpent: "3 months",
-      tools: ["Figma"],
+      tools: ["Case-Study", "2025"],
       image: CreatorCuts,
       isComplete: true,
     },
@@ -102,7 +103,7 @@ function Projects() {
       description:
         "A whack a mole game but without a mole?? drew and implemented a interactive project for APCSA.",
       timeSpent: "1 month",
-      tools: ["Java", "Medibang Paint"],
+      tools: ["Prototype", "2023"],
       image: Quack,
       isComplete: true,
     },
@@ -113,11 +114,12 @@ function Projects() {
       description:
         "Developing the website of Sustainabytes @ Cornell University. Spreading Computational Sustainability.",
       timeSpent: "1 month",
-      tools: ["Figma", "React", "CSS", "JavaScript"],
+      tools: ["Shipped", "2025"],
       image: SUSB,
       isComplete: true,
       externalLink: "https://sustainabytes.org",
     },
+    
     // {
     //   id: "study-buddy",
     //   title: "A Friend to Lock in with",
@@ -125,7 +127,7 @@ function Projects() {
     //   description:
     //     "Won best backend award in AppDev’s Hack Challenge. An app that helps Cornell students study friends!",
     //   timeSpent: "1 week",
-    //   tools: ["Figma", "Swift", "Docker"],
+    //   tools: ["Concept", "2025"],
     //   image: StudyBuddy,
     //   isComplete: true,
     // },
@@ -155,7 +157,7 @@ function Projects() {
               className={project.isComplete ? "project" : "project notDone"}
               style={project.isComplete ? {} : { cursor: "default" }}
             >
-              {project.isComplete ? (
+              {/* {project.isComplete ? (
                 <div
                   className="header"
                   style={{ color: "var(--clr-secondary-500)" }}
@@ -168,16 +170,25 @@ function Projects() {
                   <p>COMING SOON!</p>
                   <p>......</p>
                 </div>
-              )}
+              )} */}
 
               <div className="image">
                 <img src={project.image} alt="" />
               </div>
 
-              <div className="name" style={{ display: "flex" }}>
-                <h2 className={project.isComplete ? "title" : "title not"}>
-                  {project.title} <span className="subtitle">✦ {project.subTitle}</span>
+              <div className="name" style={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                <h2 className={project.isComplete ? "title" : "title not"} >
+                  {project.title} 
+                  {/* <span className="subtitle">✦ {project.subTitle}</span> */}
                 </h2>
+
+                <div className="tools">
+                  {project.tools.map((tool, toolInd) => (
+                    <p key={toolInd} className="tool">
+                      {tool}
+                    </p>
+                  ))}
+                </div>
               </div>
 
               <p
@@ -187,13 +198,6 @@ function Projects() {
                 {project.description}
               </p>
 
-              <div className="tools">
-                {project.tools.map((tool, toolInd) => (
-                  <p key={toolInd} className="tool">
-                    {tool}
-                  </p>
-                ))}
-              </div>
             </div>
           </Tag>
         );

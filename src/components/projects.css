@@ -4,7 +4,7 @@
     margin: auto;
     margin-bottom: 96px;
     gap: 3vw;
-    width: min(1300px, 80vw);
+    width: min(1350px, 85vw);
     
     padding: 20px 30px 30px 30px;
 }
@@ -47,12 +47,17 @@
     padding: 14px 12px;
 
     border-radius: 16px;
-    border: 2px solid var(--clr-project-border);
     background-color: var(--clr-project-bg);
     box-shadow: 0 0 0 hsl(from var(--clr-secondary-300) h s l / 0);
+    border: 2px solid hsl(212, 100%, 92%);
 
     overflow-x: hidden;
-    transition: box-shadow 0.3s ease; 
+    translate: 0 0;
+    transition: box-shadow 0.3s ease, background-color 0.8s ease, translate 0.4s cubic-bezier(.2, .7, .3, 1);
+}
+
+:root[data-theme="dark"] .project {
+    transition: box-shadow 0.3s ease, background-color 0.8s ease 0.7s, translate 0.4s cubic-bezier(.2, .7, .3, 1);
 }
 
 .project::after {
@@ -64,7 +69,6 @@
     left: 0;
     bottom: 0;
     border-radius: 4px;
-
     transition: width 0.5s ease;
 }
 
@@ -74,6 +78,7 @@
 
 .project:hover {
     box-shadow: 0 0 30px hsl(from var(--clr-secondary-300) h s l / 0.5);
+    translate: 0 -10px;
 }
 
 .notDone {
@@ -135,10 +140,10 @@
 
 .tool {
     background-color: var(--clr-project-tool);
-    color: var(--clr-primary-300);
+    color: var(--clr-project-tool-text);
     border-radius: 10px;
-    border: 2px solid hsl(from var(--clr-primary-700) h s l / 0.5);
-    padding: 10px;
+    border: 2px solid hsl(from var(--clr-primary-200) h s l / 0.5);
+    padding: 6px 8px;
 }
 
 @media (max-width: 600px) {

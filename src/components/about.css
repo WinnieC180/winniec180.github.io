@@ -114,8 +114,6 @@ html[data-theme="dark"] .winLogoSlide-dark {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    background-color: var(--clr-neutral-100);
-    padding: 10px;
     border-radius: 10px;
 
     animation: bubble 5s ease-in-out infinite;

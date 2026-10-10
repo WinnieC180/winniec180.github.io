@@ -37,7 +37,7 @@ html {
   flex: 1;
   gap: 30px;
   padding: 40px 60px;
-  margin-left: 22vw;
+  margin-top: 50px;
 
   width: calc(100% - 22vw);
 }

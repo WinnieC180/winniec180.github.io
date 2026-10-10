@@ -14,7 +14,7 @@ function ThemedImg({ src, srcDark, alt, className = "", style }) {
 
 function Works() {
   const gap = {
-    padding: "24px 0",
+    padding: "8px 0",
   };
 
   const direction = {
