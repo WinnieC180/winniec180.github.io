@@ -60,6 +60,8 @@
 @keyframes a-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 @keyframes inv-pop { 0% { opacity: 0; transform: translateY(30px) scale(.6) rotate(-12deg); } 60% { opacity: 1; transform: translateY(-8px) scale(1.08) rotate(4deg); } 100% { transform: none; } }
 @keyframes inv-float { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-12px) rotate(2deg); } }
+/* for rotated items (laptop): X in the rotated frame = up/down on screen */
+@keyframes inv-float-y { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(12px); } }
 @keyframes inv-shadow { 0%, 100% { transform: scaleX(1); opacity: .22; } 50% { transform: scaleX(.8); opacity: .12; } }
 @keyframes inv-bubble { 0% { transform: translateY(0) scale(.6); opacity: 0; } 15% { opacity: .7; } 100% { transform: translateY(-320px) scale(1.1); opacity: 0; } }
 @keyframes caret { 50% { opacity: 0; } }
@@ -89,12 +91,13 @@
 .invStage { flex: 1 1 480px; max-width: 600px; position: relative; aspect-ratio: 600 / 500; }
 .invBubbles { position: absolute; inset: 0; overflow: hidden; border-radius: 8px; pointer-events: none; }
 .invBubbles span { position: absolute; bottom: -20px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--ab-bubble-ring); background: var(--ab-bubble); animation: inv-bubble 8s linear infinite; }
-.invItemWrap { position: absolute; inset: 0 0 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.invItem { position: relative; width: 42%; aspect-ratio: 1; animation: inv-pop .6s cubic-bezier(.34, 1.56, .64, 1) both; }
-.invItem img { width: 100%; height: 100%; display: block; animation: inv-float 4s ease-in-out .6s infinite; filter: drop-shadow(0 6px 10px rgba(28, 43, 72, .18)); }
+.invItemWrap { position: absolute; z-index: 1; inset: 0 0 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.invItem { position: relative; height: calc(100% - 24px); max-width: 72%; aspect-ratio: 1; animation: inv-pop .6s cubic-bezier(.34, 1.56, .64, 1) both; }
+.invItem img { width: 100%; height: 100%; object-fit: contain; display: block; animation: inv-float 4s ease-in-out .6s infinite; filter: drop-shadow(0 6px 10px rgba(28, 43, 72, .18)); }
+.invItem img.isVertical { animation-name: inv-float-y; }
 .invShadow { width: 26%; height: 14px; margin-top: 6px; border-radius: 50%; background: var(--ab-floor); animation: inv-shadow 4s ease-in-out infinite; }
 
-.invDialog { position: absolute; left: 16px; right: 16px; bottom: -16px; padding: 68px 20px 26px; color: #fff; }
+.invDialog { position: absolute; z-index: 3; left: 16px; right: 16px; bottom: -16px; padding: 68px 20px 26px; color: #fff; }
 .invDialogBg { position: absolute; inset: 34px 0 0; background: var(--ab-dialog); border-radius: 8px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%); }
 .invTitle { position: absolute; z-index: 2; left: 20px; top: 19px; background: rgb(208, 232, 249); color: rgb(42, 77, 135); font-size: 16.85px; line-height: 1; padding: 6px 44px 7px 9px; border-radius: 2px; clip-path: polygon(0 0, 100% 0, calc(100% - 26px) 100%, 0 100%); }
 .invDialog ul { position: relative; z-index: 1; margin: 0; padding-left: 20px; font-size: 16.85px; line-height: 1.3; min-height: 46px; }
@@ -105,7 +108,7 @@
 .invGrid { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .invSlot { position: relative; aspect-ratio: 1; border: none; padding: 0; background: url("../assets/inventory/slot.svg") center / 100% 100% no-repeat; cursor: pointer; transition: transform .2s cubic-bezier(.34, 1.56, .64, 1); }
 .invSlot:not(.isSelected):hover { transform: translateY(-4px) scale(1.04); }
-.invSlot img { position: absolute; inset: 18%; width: 64%; height: 64%; transition: transform .3s cubic-bezier(.34, 1.56, .64, 1); }
+.invSlot img { position: absolute; inset: 10%; width: 80%; height: 80%; object-fit: contain; transition: transform .3s cubic-bezier(.34, 1.56, .64, 1); }
 .invSlot.isSelected img { transform: scale(1.12) rotate(-6deg); }
 .invFrame { position: absolute; left: 0; top: 0; width: calc((100% - 48px) / 4); aspect-ratio: 1; pointer-events: none; transition: transform .45s cubic-bezier(.34, 1.3, .64, 1); }
 .invFrame::after { content: ""; position: absolute; left: -3%; top: -3%; width: 106%; height: 106%; background: url("../assets/inventory/slot-frame.svg") center / 100% 100% no-repeat; }

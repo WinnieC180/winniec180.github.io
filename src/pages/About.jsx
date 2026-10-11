@@ -103,7 +103,9 @@ function Inventory() {
           </div>
           <div className="invItemWrap">
             <div className="invItem" key={sel}>
-              <img src={cur.icon} alt={cur.title} />
+              <img src={cur.icon} alt={cur.title}
+                className={cur.float === "vertical" ? "isVertical" : ""}
+                style={{ rotate: cur.rot || "0deg", scale: String(cur.displayScale || 1), translate: `0 ${cur.displayY || 0}px` }} />
             </div>
             <div className="invShadow" />
           </div>
@@ -124,7 +126,7 @@ function Inventory() {
             {INVENTORY.map((it, i) => (
               <button key={it.title} type="button" title={it.title} aria-label={it.title}
                 className={`invSlot${i === sel ? " isSelected" : ""}`} onClick={() => pick(i)}>
-                <img src={it.icon} alt="" />
+                <img src={it.icon} alt="" style={{ rotate: it.rot || "0deg", scale: String(it.slotScale || 1) }} />
               </button>
             ))}
             <div className="invFrame" style={{ transform: `translate(calc(${sel % 4} * (100% + 16px)), calc(${Math.floor(sel / 4)} * (100% + 16px)))` }} />
