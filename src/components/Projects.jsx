@@ -1,6 +1,8 @@
 import "./projects.css";
 import { Link } from "react-router-dom";
 import { useTheme } from "../theme";
+
+// Night images (main folder)
 import BeeWitched from "../imgProjects/BeeWitched.svg";
 import OhMyCamel from "../imgProjects/Oh-My-Camel.svg";
 import Quack from "../imgProjects/Quack-A-Goose.svg";
@@ -11,6 +13,18 @@ import FamJam from "../imgProjects/FamJam.svg";
 import CornellGO from "../imgProjects/CornellGO.svg";
 import Loop from "../imgProjects/Loop.svg";
 import Darn from "../imgProjects/Darn.svg";
+
+// Day images
+import BeeWitchedDay from "../imgProjects/day/BeeWitched.svg";
+import OhMyCamelDay from "../imgProjects/day/Oh-My-Camel.svg";
+import QuackDay from "../imgProjects/day/Quack-A-Goose.svg";
+import CreatorCutsDay from "../imgProjects/day/CreatorsCuts.svg";
+import SUSBDay from "../imgProjects/day/SUSB.svg";
+import FamJamDay from "../imgProjects/day/FamJam.svg";
+import CornellGODay from "../imgProjects/day/CornellGO.svg";
+import LoopDay from "../imgProjects/day/Loop.svg";
+import DarnDay from "../imgProjects/day/Darn.svg";
+
 import loaderDay from "../assets/fishStatic.svg";
 import loaderNight from "../assets/fishStaticNight.svg";
 
@@ -27,6 +41,7 @@ function Projects() {
       timeSpent: "4 months",
       tools: ["Shipped", "BostonFig Finalist", "2026"],
       image: BeeWitched,
+      imageDay: BeeWitchedDay,
       isComplete: true,
       externalLink: "https://store.steampowered.com/app/4811560/BeeWitched/",
     },
@@ -39,6 +54,7 @@ function Projects() {
       timeSpent: "2 days",
       tools: ["Concept", "2026"],
       image: FamJam,
+      imageDay: FamJamDay,
       isComplete: true,
       externalLink: "https://devpost.com/software/team-tennn?ref_content=my-projects-tab&ref_feature=my_projects",
     },
@@ -51,6 +67,7 @@ function Projects() {
       timeSpent: "-----",
       tools: ["Launching Soon!"],
       image: Loop,
+      imageDay: LoopDay,
       isComplete: false,
       externalLink: "https://new.cornelldti.org/products#loop",
     },
@@ -63,6 +80,7 @@ function Projects() {
       timeSpent: "2 months",
       tools: ["Shipped", "2026"],
       image: CornellGO,
+      imageDay: CornellGODay,
       isComplete: true,
       externalLink: "https://new.cornelldti.org/products#cornellgo",
     },
@@ -76,6 +94,7 @@ function Projects() {
       // tools: ["Figma", "Claude-Code", "UiChemy", "Wordpress"],
       tools: ["Shipped", "2026"],
       image: Darn,
+      imageDay: DarnDay,
       isComplete: true,
     },
     {
@@ -87,6 +106,7 @@ function Projects() {
       timeSpent: "3 weeks",
       tools: ["Prototype", "2025"],
       image: OhMyCamel,
+      imageDay: OhMyCamelDay,
       isComplete: true,
     },
     {
@@ -98,6 +118,7 @@ function Projects() {
       timeSpent: "3 months",
       tools: ["Case-Study", "2025"],
       image: CreatorCuts,
+      imageDay: CreatorCutsDay,
       isComplete: true,
     },
     {
@@ -109,6 +130,7 @@ function Projects() {
       timeSpent: "1 month",
       tools: ["Prototype", "2023"],
       image: Quack,
+      imageDay: QuackDay,
       isComplete: true,
     },
     {
@@ -120,6 +142,7 @@ function Projects() {
       timeSpent: "1 month",
       tools: ["Shipped", "2025"],
       image: SUSB,
+      imageDay: SUSBDay,
       isComplete: true,
       externalLink: "https://sustainabytes.org",
     },
@@ -141,8 +164,9 @@ function Projects() {
     <div className="projects">
       {projects.map((project, index) => {
         const isExternal = !!project.externalLink;
-
         const Tag = isExternal ? "a" : Link;
+        // Use the day image in light mode if one exists; otherwise fall back to the main image
+
         return (
           <Tag
             key={index}
@@ -162,7 +186,8 @@ function Projects() {
               style={project.isComplete ? {} : { cursor: "default" }}
             >
               <div className="image">
-                <img src={project.image} alt="" />
+                <img src={project.imageDay || project.image} alt="" className="imgDay" />
+                <img src={project.image} alt="" className="imgNight" />
               </div>
 
               <div className="name" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>

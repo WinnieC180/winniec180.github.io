@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import loaderSvg from "../assets/fishLoader.svg?raw";
 import loaderSvgNight from "../assets/fishLoaderNight.svg?raw";
 import "./intro.css";
@@ -14,7 +14,7 @@ function IntroAnimation({ onEnter }) {
     enterRef.current = onEnter;
   }, [onEnter]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = stage.current;
     const night = document.documentElement.getAttribute("data-theme") === "dark";
     el.innerHTML = night ? loaderSvgNight : loaderSvg; // re-inserting restarts the SVG animation
