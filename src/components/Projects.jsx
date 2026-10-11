@@ -1,6 +1,6 @@
 import "./projects.css";
 import { Link } from "react-router-dom";
-import WhirlPool from "../assets/whirlPool.svg";
+import { useTheme } from "../theme";
 import BeeWitched from "../imgProjects/BeeWitched.svg";
 import OhMyCamel from "../imgProjects/Oh-My-Camel.svg";
 import Quack from "../imgProjects/Quack-A-Goose.svg";
@@ -11,8 +11,12 @@ import FamJam from "../imgProjects/FamJam.svg";
 import CornellGO from "../imgProjects/CornellGO.svg";
 import Loop from "../imgProjects/Loop.svg";
 import Darn from "../imgProjects/Darn.svg";
+import loaderDay from "../assets/fishStatic.svg";
+import loaderNight from "../assets/fishStaticNight.svg";
 
 function Projects() {
+  const night = useTheme() === "dark";
+
   const projects = [
     {
       id: "BeeWitched",
@@ -119,7 +123,7 @@ function Projects() {
       isComplete: true,
       externalLink: "https://sustainabytes.org",
     },
-    
+
     // {
     //   id: "study-buddy",
     //   title: "A Friend to Lock in with",
@@ -157,29 +161,13 @@ function Projects() {
               className={project.isComplete ? "project" : "project notDone"}
               style={project.isComplete ? {} : { cursor: "default" }}
             >
-              {/* {project.isComplete ? (
-                <div
-                  className="header"
-                  style={{ color: "var(--clr-secondary-500)" }}
-                >
-                  <p>MISSION COMPLETE</p>
-                  <p>~ {project.timeSpent}</p>
-                </div>
-              ) : (
-                <div className="header" style={{ color: "var(--clr-primary-600)" }}>
-                  <p>COMING SOON!</p>
-                  <p>......</p>
-                </div>
-              )} */}
-
               <div className="image">
                 <img src={project.image} alt="" />
               </div>
 
-              <div className="name" style={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-                <h2 className={project.isComplete ? "title" : "title not"} >
-                  {project.title} 
-                  {/* <span className="subtitle">✦ {project.subTitle}</span> */}
+              <div className="name" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <h2 className={project.isComplete ? "title" : "title not"}>
+                  {project.title}
                 </h2>
 
                 <div className="tools">
@@ -197,12 +185,11 @@ function Projects() {
               >
                 {project.description}
               </p>
-
             </div>
           </Tag>
         );
       })}
-      {projects.length % 2 == 0 ? (
+      {projects.length % 2 === 0 ? (
         <div></div>
       ) : (
         <div
@@ -210,15 +197,10 @@ function Projects() {
           style={{ flexDirection: "column", gap: "10px" }}
         >
           <img
-            src={WhirlPool}
-            alt="A whirlpool of fish"
-            style={{
-              width: "65%",
-              background:
-                "radial-gradient(circle, var(--clr-primary-600) 0%, hsl( from var(--clr-primary-600) h s l / 0) 60% )",
-            }}
+            src={night ? loaderNight : loaderDay}
+            alt="A fish leaping over the waves"
+            style={{ width: "65%", display: "block", border: "4px solid hsl(209, 49%, 75%)", borderRadius: "22px"}}
           />
-
           <p>More projects to come!</p>
         </div>
       )}

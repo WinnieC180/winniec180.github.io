@@ -1,8 +1,10 @@
 @keyframes pillNavDrop { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
 
 .pillNav {
-  position: sticky;
+  position: fixed;
   top: 25px;
+  left: 0;
+  right: 0;
   z-index: 50;
   height: 0;
   display: flex;
@@ -11,7 +13,17 @@
   padding: 0 16px;
   overflow: visible;
   font-family: "Nunito", sans-serif;
+  transition: transform .45s cubic-bezier(.2, .8, .2, 1), opacity .3s ease;
 }
+.pillNav.isCompact {
+  transform: translateY(-15px) scale(.9);
+}
+.pillNav.isHidden {
+  transform: translateY(-140px);
+  opacity: 0;
+  pointer-events: none;
+}
+
 .pillNavBar {
   display: flex;
   align-items: center;
@@ -100,4 +112,9 @@
   .pillNavBurger { display: grid; }
   .pillNav.isOpen .pillNavMenu { display: flex; }
   .pillNav .pillNavBar, .pillNav.night .pillNavBar { background: none; box-shadow: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pillNav { transition: opacity .2s ease; }
+  .pillNav.isHidden { transform: none; }
 }

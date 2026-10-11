@@ -181,9 +181,9 @@ function Footer() {
       hk.animate([{ transform: "translateY(0)" }, { transform: "translateY(10px)", offset: 0.12 }, { transform: `translateY(${-lift}px)` }],
         { duration: 1100, easing: "cubic-bezier(.5,0,.6,1)", fill: "forwards" });
       setTimeout(() => {
-        if (location.pathname !== "/") navigate("/");
         window.scrollTo({ top: 0, behavior: "smooth" });
       }, 450);
+      
       fish.animate([0, 0.12, 0.3, 0.5, 0.7, 1].map((o, i) => ({
         offset: o,
         transform: `translate(${ex}px,${ey + (o === 0 ? 0 : o === 0.12 ? 10 : -lift * ((o - 0.12) / 0.88) ** 1.6)}px) rotate(${o === 0 ? 0 : (i % 2 ? -1 : 1) * 14 - 50}deg)`,

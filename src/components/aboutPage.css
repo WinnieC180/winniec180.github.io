@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Freckle+Face&display=swap");
+
+.aboutPage {
+  --ab-bg: rgb(233, 237, 241);
+  --ab-ink: rgb(29, 44, 73);
+  --ab-accent: rgb(105, 149, 193);
+  --ab-rule: rgb(28, 43, 72);
+  --ab-label: #000;
+  --ab-card: rgb(236, 242, 247);
+  --ab-card-ink: rgb(29, 44, 73);
+  --ab-card-title: rgb(42, 77, 135);
+  --ab-card-line: rgba(105, 149, 193, .28);
+  --ab-shadow: rgba(0, 0, 0, .25);
+  --ab-stamp: rgba(42, 77, 135, .55);
+  --ab-stamp-ink: rgba(42, 77, 135, .75);
+  --ab-deco: rgb(53, 139, 201);
+  --ab-deco-2: rgb(105, 149, 193);
+  --ab-dialog: rgba(28, 43, 72, .8);
+  --ab-floor: rgb(28, 43, 72);
+  --ab-bubble: rgba(255, 255, 255, .35);
+  --ab-bubble-ring: rgba(105, 149, 193, .7);
+  --ab-bar-track-a: rgb(56, 88, 150);
+  --ab-bar-track-b: rgb(41, 59, 93);
+
+  font-family: "Nunito", sans-serif;
+  color: var(--ab-ink);
+  background: var(--ab-bg);
+  min-height: 100vh;
+  overflow-x: clip;
+  transition: background-color .4s ease, color .4s ease;
+}
+
+[data-theme="dark"] .aboutPage {
+  --ab-bg: rgb(17, 25, 43);
+  --ab-ink: rgb(222, 231, 242);
+  --ab-accent: rgb(150, 190, 232);
+  --ab-rule: rgb(190, 207, 230);
+  --ab-label: rgb(222, 231, 242);
+  --ab-card: rgb(34, 48, 76);
+  --ab-card-ink: rgb(222, 231, 242);
+  --ab-card-title: rgb(167, 199, 231);
+  --ab-card-line: rgba(167, 199, 231, .16);
+  --ab-shadow: rgba(0, 0, 0, .5);
+  --ab-stamp: rgba(167, 199, 231, .6);
+  --ab-stamp-ink: rgba(167, 199, 231, .85);
+  --ab-deco: rgb(120, 175, 225);
+  --ab-deco-2: rgb(150, 190, 232);
+  --ab-dialog: rgba(6, 12, 26, .78);
+  --ab-floor: #000;
+  --ab-bubble: rgba(255, 255, 255, .08);
+  --ab-bubble-ring: rgba(150, 190, 232, .55);
+  --ab-bar-track-a: rgb(30, 46, 78);
+  --ab-bar-track-b: rgb(14, 22, 40);
+}
+
+.aboutPage * { box-sizing: border-box; }
+
+@keyframes a-bob { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-10px) rotate(4deg); } }
+@keyframes a-blink { 0%, 100% { opacity: 1; transform: translateX(0); } 50% { opacity: .4; transform: translateX(3px); } }
+@keyframes a-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes inv-pop { 0% { opacity: 0; transform: translateY(30px) scale(.6) rotate(-12deg); } 60% { opacity: 1; transform: translateY(-8px) scale(1.08) rotate(4deg); } 100% { transform: none; } }
+@keyframes inv-float { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-12px) rotate(2deg); } }
+@keyframes inv-shadow { 0%, 100% { transform: scaleX(1); opacity: .22; } 50% { transform: scaleX(.8); opacity: .12; } }
+@keyframes inv-bubble { 0% { transform: translateY(0) scale(.6); opacity: 0; } 15% { opacity: .7; } 100% { transform: translateY(-320px) scale(1.1); opacity: 0; } }
+@keyframes caret { 50% { opacity: 0; } }
+
+.bob { position: absolute; animation: a-bob 4s ease-in-out infinite; pointer-events: none; }
+
+/* Intro */
+.aboutIntro { max-width: 1440px; margin: 0 auto; padding: 100px clamp(20px, 12.4vw, 178px) 0; min-height: 700px; display: flex; flex-wrap: wrap; gap: 32px 36px; align-items: center; justify-content: center; }
+.aboutPortrait { flex: 0 1 335px; position: relative; animation: a-rise .8s cubic-bezier(.2, .8, .2, 1) both; }
+.aboutPortraitImg { width: 100%; aspect-ratio: 335 / 400; object-fit: cover; border-radius: 12px; display: block; }
+.aboutCopy { flex: 0 1 600px; position: relative; padding: 16px; max-width: 600px; color: var(--ab-ink); animation: a-rise .8s cubic-bezier(.2, .8, .2, 1) .15s both; }
+.aboutCopy h1 { margin: 0; font-size: clamp(24px, 2.1vw, 30px); font-weight: 500; line-height: 1; }
+.aboutName { font-family: "Freckle Face", cursive; font-weight: 400; font-size: 1.08em; }
+.aboutCopy h2 { margin: 8px 0 0; font-size: clamp(20px, 1.7vw, 24px); font-weight: 500; line-height: 1; }
+.aboutCopy h2 b { color: var(--ab-accent); font-weight: 700; }
+.aboutParas { margin-top: 18px; display: flex; flex-direction: column; gap: 12px; font-size: 16px; font-weight: 500; line-height: 1.3; max-width: 740px; text-wrap: pretty; }
+.aboutParas p { margin: 0; }
+.aboutParas .aboutMajor { color: var(--ab-accent); }
+
+/* Inventory */
+.inv { max-width: 1440px; margin: 0 auto; padding: 100px clamp(20px, 12.2vw, 176px) 0; opacity: 0; transform: translateY(40px); transition: opacity .8s ease, transform .8s cubic-bezier(.2, .8, .2, 1); }
+.inv.isVisible { opacity: 1; transform: none; }
+.invHeading { display: flex; align-items: center; gap: 46px; max-width: 1058px; margin: 0 auto 43px; font-family: "JetBrains Mono", monospace; font-size: 16.85px; line-height: 24px; color: var(--ab-rule); white-space: nowrap; }
+.invRule { flex: 1; height: 1px; opacity: .7; background: linear-gradient(90deg, transparent, var(--ab-rule) 5%, var(--ab-rule) 95%, transparent); }
+.invBody { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; justify-content: center; }
+
+.invStage { flex: 1 1 480px; max-width: 600px; position: relative; aspect-ratio: 600 / 500; }
+.invBubbles { position: absolute; inset: 0; overflow: hidden; border-radius: 8px; pointer-events: none; }
+.invBubbles span { position: absolute; bottom: -20px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--ab-bubble-ring); background: var(--ab-bubble); animation: inv-bubble 8s linear infinite; }
+.invItemWrap { position: absolute; inset: 0 0 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.invItem { position: relative; width: 42%; aspect-ratio: 1; animation: inv-pop .6s cubic-bezier(.34, 1.56, .64, 1) both; }
+.invItem img { width: 100%; height: 100%; display: block; animation: inv-float 4s ease-in-out .6s infinite; filter: drop-shadow(0 6px 10px rgba(28, 43, 72, .18)); }
+.invShadow { width: 26%; height: 14px; margin-top: 6px; border-radius: 50%; background: var(--ab-floor); animation: inv-shadow 4s ease-in-out infinite; }
+
+.invDialog { position: absolute; left: 16px; right: 16px; bottom: -16px; padding: 68px 20px 26px; color: #fff; }
+.invDialogBg { position: absolute; inset: 34px 0 0; background: var(--ab-dialog); border-radius: 8px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%); }
+.invTitle { position: absolute; z-index: 2; left: 20px; top: 19px; background: rgb(208, 232, 249); color: rgb(42, 77, 135); font-size: 16.85px; line-height: 1; padding: 6px 44px 7px 9px; border-radius: 2px; clip-path: polygon(0 0, 100% 0, calc(100% - 26px) 100%, 0 100%); }
+.invDialog ul { position: relative; z-index: 1; margin: 0; padding-left: 20px; font-size: 16.85px; line-height: 1.3; min-height: 46px; }
+.invCaret { animation: caret .8s steps(1) infinite; }
+.invNext { position: relative; z-index: 1; margin-top: 12px; background: none; border: none; padding: 0; cursor: pointer; display: flex; animation: a-blink 1.4s ease-in-out infinite; }
+
+.invSide { flex: 1 1 380px; max-width: 452px; display: flex; flex-direction: column; gap: 56px; padding-top: 14px; }
+.invGrid { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.invSlot { position: relative; aspect-ratio: 1; border: none; padding: 0; background: url("../assets/inventory/slot.svg") center / 100% 100% no-repeat; cursor: pointer; transition: transform .2s cubic-bezier(.34, 1.56, .64, 1); }
+.invSlot:not(.isSelected):hover { transform: translateY(-4px) scale(1.04); }
+.invSlot img { position: absolute; inset: 18%; width: 64%; height: 64%; transition: transform .3s cubic-bezier(.34, 1.56, .64, 1); }
+.invSlot.isSelected img { transform: scale(1.12) rotate(-6deg); }
+.invFrame { position: absolute; left: 0; top: 0; width: calc((100% - 48px) / 4); aspect-ratio: 1; pointer-events: none; transition: transform .45s cubic-bezier(.34, 1.3, .64, 1); }
+.invFrame::after { content: ""; position: absolute; left: -3%; top: -3%; width: 106%; height: 106%; background: url("../assets/inventory/slot-frame.svg") center / 100% 100% no-repeat; }
+
+.invStats { display: flex; flex-direction: column; gap: 22px; }
+.invStat { display: flex; flex-direction: column; gap: 6px; }
+.invStatLabel { display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 12px; line-height: 1; color: var(--ab-label); }
+.invBar { height: 25px; border-radius: 8px; background: radial-gradient(closest-side, var(--ab-bar-track-a), var(--ab-bar-track-b)); padding: 2px; overflow: hidden; }
+.invBar > div { height: 21px; border-radius: 6px; box-shadow: inset 0 0 0 2px #fff; background: linear-gradient(90deg, rgb(195, 227, 250), rgb(84, 136, 183)); transition: width .7s cubic-bezier(.34, 1.3, .64, 1); }
+
+/* Daily Life */
+.life { max-width: 1440px; margin: 0 auto; padding: 150px 0 200px; }
+.lifeBoard { position: relative; width: 100%; aspect-ratio: 1440 / 900; }
+.lifeCard { position: absolute; opacity: 0; transform: translateY(60px) rotate(var(--rotIn)); transition: opacity .6s ease, transform .7s cubic-bezier(.34, 1.4, .64, 1); }
+.life.isVisible .lifeCard { opacity: 1; transform: rotate(var(--rot)); }
+.lifeHit { perspective: 1200px; }
+.lifeFlip { position: relative; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.3, 1.3, .5, 1); pointer-events: none; }
+.lifeFlip.isFlipped { transform: rotateY(180deg) scale(1.04); }
+.lifeFront, .lifeBack { backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 6.4px; box-shadow: 0 4px 4px var(--ab-shadow); background-color: var(--ab-card); }
+.lifeFront { padding: 4px 4px 0; }
+.lifeFront img { width: 100%; object-fit: cover; border-radius: 2px; display: block; }
+.lifeLip { height: clamp(14px, 2.1vw, 30.4px); }
+.lifeBack { position: absolute; inset: 0; transform: rotateY(180deg); overflow: hidden; background-image: repeating-linear-gradient(0deg, transparent 0 21px, var(--ab-card-line) 21px 22px); padding: clamp(10px, 1.1vw, 16px); display: flex; flex-direction: column; justify-content: center; gap: 6px; color: var(--ab-card-ink); }
+.lifeBackTitle { font-family: "Oooh Baby", cursive; font-size: clamp(16px, 1.5vw, 22px); line-height: 1; color: var(--ab-card-title); }
+.lifeBackText { font-size: clamp(10px, .85vw, 13px); line-height: 1.4; text-wrap: pretty; overflow: hidden; }
+
+.lifeTape { position: absolute; left: 50%; top: -12px; width: 34%; height: 22px; margin-left: -17%; opacity: .85; box-shadow: 0 1px 2px rgba(0, 0, 0, .12); clip-path: polygon(2% 0, 98% 4%, 100% 50%, 97% 100%, 3% 96%, 0 50%); pointer-events: none; }
+.tapeStripe { background: repeating-linear-gradient(45deg, rgb(167, 199, 231) 0 6px, rgb(208, 232, 249) 6px 12px); }
+.tapeDots { background: radial-gradient(circle, #fff 1.6px, transparent 2px) 0 0 / 8px 8px, rgb(105, 149, 193); }
+.tapeBands { background: repeating-linear-gradient(90deg, rgb(208, 232, 249) 0 8px, rgb(236, 242, 247) 8px 16px); }
+.tapePlain { background: rgb(167, 199, 231); }
+
+.deco { position: absolute; pointer-events: none; }
+.decoArrow { color: var(--ab-deco); }
+.decoClip { color: var(--ab-deco-2); }
+.looseTape { height: 2.6%; opacity: .85; clip-path: polygon(1% 0, 99% 6%, 100% 50%, 98% 100%, 2% 94%, 0 50%); }
+.postStamp { width: 5.6%; aspect-ratio: .82; rotate: 9deg; z-index: 1; padding: 5px; background: radial-gradient(circle at 50% 50%, var(--ab-bg) 3px, transparent 3.5px) -5px -5px / 10px 10px, #fff; filter: drop-shadow(0 2px 3px rgba(31, 43, 74, .2)); }
+.postStamp > div { width: 100%; height: 100%; background: rgb(105, 149, 193); box-shadow: inset 0 0 0 2px #fff, inset 0 0 0 3px rgb(42, 77, 135); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #fff; font-family: "JetBrains Mono", monospace; font-size: clamp(6px, .6vw, 9px); }
+.postStamp img { width: 62%; }
+.inkStamp { width: 6%; aspect-ratio: 1; border-radius: 50%; rotate: -14deg; box-shadow: inset 0 0 0 2px var(--ab-stamp), inset 0 0 0 5px var(--ab-bg), inset 0 0 0 6px var(--ab-stamp); display: flex; align-items: center; justify-content: center; text-align: center; font-family: "JetBrains Mono", monospace; font-size: clamp(6px, .62vw, 9px); line-height: 1.3; color: var(--ab-stamp-ink); }
+.lifeTitle { width: 24%; color: var(--ab-ink); }
+.lifeSmall { font-size: clamp(9px, .94vw, 13.48px); }
+.lifeScript { font-family: "Oooh Baby", cursive; font-size: clamp(26px, 3.1vw, 44.8px); line-height: .9; }
+
+@media (prefers-reduced-motion: reduce) {
+  .aboutPage *, .aboutPage *::before, .aboutPage *::after { animation: none !important; transition: none !important; }
+  .inv, .lifeCard { opacity: 1 !important; }
+}

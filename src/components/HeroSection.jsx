@@ -276,6 +276,10 @@ function HeroSection() {
         title={night ? "Bring back the sun" : "Watch the sunset"}
         aria-label={night ? "Switch to day" : "Switch to night"}
       >
+        <span className="heroHint" aria-hidden="true" style={{marginTop: "8px", marginLeft: "4px"}}>
+          <svg width="26" height="20" viewBox="0 0 26 20"><path d="M22 20 C14 18 8 12 6 3 M6 3 L2 9 M6 3 L11 7" /></svg>
+          <span>{night ? "watch the sunrise" : "watch the sunset"}</span>
+        </span>
         <span className="heroSunCloudShape"><span className="heroCloud" /><span className="heroCloud heroCloud--night" /></span>
       </button>
 
