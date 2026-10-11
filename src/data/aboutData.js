@@ -19,11 +19,11 @@ import life8 from "../assets/about/life-8.jpg";
 // Inventory Log: icon, title, typed notes, three stats (0-100)
 // Optional: rot (rotation), slotScale (size in slot grid only), float: "vertical" (no side swing)
 export const INVENTORY = [
-  { icon: earring, slotScale: 0.8, displayScale: 0.8, displayY: -20, title: "Bone Appétit Earring", notes: ["One of my favorite earrings :)", "Collection from Freddie Chen x STUDIOCULT"], stats: [["Wearability", 100], ["Aesthetic", 90], ["Daily Usage", 80]] },
   { icon: laptop, rot: "-90deg", slotScale: 0.85, float: "vertical",  displayY: -10, title: "Laptop", notes: ["Must need everywhere", "It collects stickers from my journey along the way"], stats: [["Battery Life", 50], ["Importance", 100], ["Sticker Coverage", 80]] },
   { icon: headphones, slotScale: 0.85, displayScale: 0.8,  displayY: -10, title: "Headphones", notes: ["Focus mode: on", "Listening to StrayKids or ATEEZ"], stats: [["Noise Cancelling", 85], ["Comfort", 75], ["Playlist", 100]] },
+  { icon: key, slotScale: 0.85, rot: "10deg",  displayY: -20, title: "Keys", notes: ["Small but very important", "Jingles all the wayy"], stats: [["Importance", 100], ["Times Misplaced", 55], ["Jingle Factor", 70]] },
   { icon: bottle, title: "Water Bottle", notes: ["Hydration is important!!!", "Survived many dents :("], stats: [["Hydration", 100], ["Dents", 70], ["Durability", 95]] },
-  { icon: key, rot: "10deg",  displayY: -20, title: "Keys", notes: ["Small but very important", "Jingles all the wayy"], stats: [["Importance", 100], ["Times Misplaced", 55], ["Jingle Factor", 70]] },
+  { icon: earring, slotScale: 0.8, displayScale: 0.8, displayY: -20, title: "Bone Appétit Earring", notes: ["One of my favorite earrings :)", "Collection from Freddie Chen x STUDIOCULT"], stats: [["Wearability", 100], ["Aesthetic", 90], ["Daily Usage", 80]] },
   { icon: fannypack, title: "Fanny Pack", notes: ["Hands-free everything", "Fits more than you would expect"], stats: [["Storage", 80], ["Convenience", 100], ["Style", 85]] },
   { icon: seaweed, title: "Seaweed Snack", notes: ["Go-to study fuel", "I eat too much at once"], stats: [["Crunch", 90], ["Saltiness", 70], ["Yummyness", 100]] },
   { icon: sunscreen,  displayY: -20, title: "Sunscreen", notes: ["Need to remind myself to always bring it", "Reapply, reapply, reapply"], stats: [["Protection", 100], ["Importance", 100], ["Daily Usage", 95]] },
