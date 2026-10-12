@@ -16,7 +16,7 @@ export const ProjectData = [
         label: "Overview",
         content: [
           { Team: "4 developers" },
-          { Role: "Developer & Artist" },
+          { Role: "Developer &amp; Artist" },
           { Timeline: "Fall 2025 \n(3 weeks)" },
           { Tools: "OCaml, Raylib, \nMedibang Paint Pro" },
         ],
@@ -25,7 +25,7 @@ export const ProjectData = [
         id: "description",
         label: "Description",
         content:
-          "Oh My Camel is a game created for the CS 3110 (Data Structures and Functional Programming) course. A camel pet simulator game with turn-based logic. The player starts with a petcamel with happiness, hunger, and hygiene statistics set at a maximum value of 100 and a certainamount of coins. \n\nThe player can choose what to do in each turn/day: play with a pet, feed a pet, clean a pet, or play mini games.",
+          "Oh My Camel is a game created for CS 3110 (Data Structures and Functional Programming). It is a turn-based camel pet simulator. The player starts with a pet camel whose happiness, hunger, and hygiene stats begin at a maximum of 100, along with a set amount of coins. \n\nEach turn (or day), the player chooses what to do: play with the camel, feed it, clean it, or play minigames.",
       },
       {
         id: "play-through",
@@ -34,7 +34,7 @@ export const ProjectData = [
         videos: [
           { name: "Jumping Game", link: "./videos/Jumping.mp4" },
           { name: "Memory Game", link: "./videos/Memorygame.mp4" },
-          { name: "Number Game & Inventory", link: "./videos/numberGame.mp4" },
+          { name: "Number Game &amp; Inventory", link: "./videos/numberGame.mp4" },
           { name: "Dune!", link: "./videos/Dune!.mp4" },
         ],
       },
@@ -42,7 +42,7 @@ export const ProjectData = [
         id: "reflection",
         label: "Reflection",
         content:
-          "Overall, working on Oh My Camel was an incredibly fun and rewarding experience. It was a fast-paced, highly collaborative coding project that grew to over 1,600 lines of code and required constant iteration and refinement of our ideas. As a team, we explored multiple concepts, evaluating what was both feasible and impactful, in order to meet the project requirements and complete it within the allotted time. \n\n Through this process, I learned a great deal about collaboration and the realities of building a project as a group. Balancing creativity with practicality. I also gained valuable experience in prioritizing features, understanding when to refine ideas, and recognizing which features to set aside to keep the project reasonable, functional, and enjoyable for everyone.",
+          "Working on Oh My Camel was an incredibly fun and rewarding experience. It was a fast-paced, highly collaborative project that grew to over 1,600 lines of code and required constant iteration on our ideas. As a team, we explored multiple concepts and weighed what was both feasible and impactful so we could meet the project requirements within the allotted time. \n\nThrough this process, I learned a great deal about collaboration and the realities of building a project as a group, especially how to balance creativity with practicality. I also gained experience prioritizing features: knowing when to refine an idea and when to set one aside to keep the project reasonable, functional, and enjoyable for everyone.",
       },
     ],
   },
@@ -56,7 +56,7 @@ export const ProjectData = [
         label: "Overview",
         content: [
           { Team: "2 developers" },
-          { Role: "Developer & Artist" },
+          { Role: "Developer &amp; Artist" },
           { Timeline: "Spring 2023 \n(1 month)" },
           { Tools: "Java, \nMedibang Paint Pro" },
         ],
@@ -65,7 +65,7 @@ export const ProjectData = [
         id: "description",
         label: "Description",
         content:
-          "Quack a Goose is a fun, fast-paced game inspired by Whack-a-Mole, where players try to quack geese as they pop up on the screen. Within a 30-second time limit, players test their reaction speed by hitting as many geese as possible, with the challenge increasing as more geese spawn over time. But there’s a twist! The game features an alternate mode called “People,” where—thanks to volunteers from our AP Computer Science A class—photos of fellow CS students and even our teacher take on the role of the geese, adding a personalized and humorous element to the gameplay.",
+          "Quack a Goose is a fun, fast-paced game inspired by Whack-a-Mole, where players try to quack geese as they pop up on the screen. Within a 30-second time limit, players test their reaction speed by hitting as many geese as possible, with the challenge increasing as more geese spawn over time. But there’s a twist! The game features an alternate mode called “People,” where, thanks to volunteers from our AP Computer Science A class, photos of fellow CS students and even our teacher take the place of the geese, adding a personal and humorous touch to the gameplay.",
       },
       {
         id: "play-through",
@@ -80,7 +80,7 @@ export const ProjectData = [
         id: "reflection",
         label: "Reflection",
         content:
-          "For our final project, we presented Quack a Goose! to our AP Computer Science A class, and it was chosen as the second-best project by our peers. And of course, the $5 Amazon gift card we earned felt like a fun and rewarding bonus after all the hard work. Creating Quack a Goose was both an enjoyable and educational experience that challenged me to think deeply about game design, user engagement, and collaboration. Designing a fast-paced game within a 30-second time limit required careful consideration of pacing and difficulty, especially as more geese spawned over time to keep players engaged. This project also marked my first time working collaboratively on a large-scale coding project, which taught me how important communication and teamwork are when developing complex programs. One of the most rewarding aspects of the project was adding the “People” game mode. Incorporating photos of classmates and our teacher, with their permission, made the game more personal and entertaining, and demonstrated how small creative decisions can significantly enhance the user experience. This feature pushed me to think beyond basic functionality and consider how personalization and humor can make a project more memorable.",
+          "We presented Quack a Goose! to our AP Computer Science A class as our final project, and our peers voted it the second-best project. The $5 Amazon gift card we earned was a fun bonus after all the hard work. Creating Quack a Goose was both enjoyable and educational, and it challenged me to think deeply about game design, user engagement, and collaboration. Designing a fast-paced game within a 30-second time limit required careful attention to pacing and difficulty, especially as more geese spawned over time to keep players engaged. This project was also my first time working collaboratively on a large coding project, which taught me how important communication and teamwork are when developing complex programs. One of the most rewarding parts was adding the “People” game mode. Incorporating photos of classmates and our teacher, with their permission, made the game more personal and entertaining, and showed me how small creative decisions can significantly improve the user experience. This feature pushed me to think beyond basic functionality and consider how personalization and humor can make a project more memorable.",
       },
     ],
   },
@@ -105,13 +105,13 @@ export const ProjectData = [
         id: "context",
         label: "Context",
         content:
-          "Study Buddy is a mobile application created for Cornell University students to help them find compatible study partners based on shared study habits, schedules, and preferences. By reducing the friction of coordinating study sessions, Study Buddy aims to ease academic stress during high-pressure periods such as prelims and finals, while fostering accountability, collaboration, and community among students.",
+          "Study Buddy is a mobile app created for Cornell University students to help them find compatible study partners based on shared study habits, schedules, and preferences. By reducing the friction of coordinating study sessions, Study Buddy aims to ease academic stress during high-pressure periods such as prelims and finals, while fostering accountability, collaboration, and community among students.",
       },
       {
         id: "problem-space",
         label: "Problem Space",
         content:
-          "Students often experience intense academic pressure, especially during prelim and final seasons. While studying with others can improve motivation and understanding, finding a compatible study partner is challenging. Students struggle with: \n\n• Mismatched study styles (quiet vs. collaborative)\n• Scheduling conflicts\n• Awkward or time-consuming coordination through group chats\n• Lack of a centralized platform for finding study companions\n\n",
+          "Students often experience intense academic pressure, especially during prelim and finals season. While studying with others can improve motivation and understanding, finding a compatible study partner is challenging. Students struggle with: \n\n• Mismatched study styles (quiet vs. collaborative)\n• Scheduling conflicts\n• Awkward or time-consuming coordination through group chats\n• No centralized platform for finding study companions\n\n",
         peopleProblem:
           "How might we make it easier for students to find the right people to study with during high-stress academic periods?",
       },
@@ -119,7 +119,7 @@ export const ProjectData = [
         id: "user-personas",
         label: "User Personas",
         content:
-          "As this was a fast-paced, one-week project, there was limited time to conduct in-depth user research. To guide our design decisions, we created two representative personas based on common student experiences at Cornell, informal conversations with peers, and our own academic experiences. These personas helped us stay user-focused while prioritizing core needs and constraints.",
+          "Because this was a fast-paced, one-week project, there was limited time for in-depth user research. To guide our design decisions, we created two representative personas based on common student experiences at Cornell, informal conversations with peers, and our own academic experiences. These personas helped us stay user-focused while prioritizing core needs and constraints.",
         pictures: [
           "./photos/Persona1-studybuddy.svg",
           "./photos/Persona2-studybuddy.svg",
@@ -132,13 +132,13 @@ export const ProjectData = [
           {
             type: "text",
             value:
-              "I created low-fidelity sketches to quickly visualize and refine the core experience of Study Buddy, centering on swipe-based study partner matching, calendar-based planning, and group messaging to make organizing study sessions effortless.",
+              "I created low-fidelity sketches to quickly visualize and refine the core experience of Study Buddy, centered on swipe-based study partner matching, calendar-based planning, and group messaging to make organizing study sessions effortless.",
           },
           { type: "image", value: "./photos/LowFi-studdybuddy.png" },
           {
             type: "text",
             value:
-              "As a developer myself, I had to turn off my developer side and not constraint myself based on feasibility and how something is implemented, so I won't constraint what i could design based on feasibility in the early stage. After the low-fi and discussing constraints with the development team, we determined that within the limited timeframe we could realistically implement the core features, including swipe-based profile matching, group chat, and study partner matches.",
+              "As a developer myself, I had to switch off my developer mindset during the early stages so that feasibility and implementation details wouldn't limit what I designed. After sharing the low-fi sketches and discussing constraints with the development team, we determined that within the limited timeframe we could realistically build the core features: swipe-based profile matching, group chat, and study partner matches.",
           },
         ],
       },
@@ -180,8 +180,8 @@ export const ProjectData = [
       },
       {
         id: "problem",
-        label: "The problem",
-        heading: "My first problem statement was too personal",
+        label: "Problem",
+        heading: "How did my first problem statement hold up?",
         content: [
           { type: "text", value: "I started this case study with a people problem drawn from my own viewing habits:" },
           {
@@ -245,16 +245,81 @@ export const ProjectData = [
         content: [
           {
             type: "text",
-            value: "Using the patterns from my interviews, I wrote How Might We statements, sketched out possible solutions, and voted on which ideas were worth pursuing.",
+            value: "Using the patterns from my interviews, I wrote How Might We statements, sketched possible solutions, and voted on which ideas were worth pursuing.",
           },
           { type: "image", value: "./photos/HMW.png" },
           { type: "image", value: "./photos/Solutions.png" },
           { type: "image", value: "./photos/vote.png" },
+          {
+            type: "text",
+            value: "I then sketched low-fidelity wireframes for the three most-voted and most feasible ideas:",
+          },
+          {
+            type: "list",
+            items: [
+              "Historical Archives: a playlist-like folder that resurfaces creators you watch often so you can rewatch their videos.",
+              "Break Timer: a Pomodoro-style timer, similar to what many third-party apps offer.",
+              "Custom Category Tags: letting users group videos together and get more recommendations like them in categorized folders.",
+            ],
+          },
+          {
+            type: "text",
+            value: "After gathering feedback, I moved forward with Custom Category Tags, which later became Creator’s Cuts.",
+          },
+          { type: "image", value: "./photos/YouTubeLow1.png" },
+          { type: "image", value: "./photos/YouTubeLow2.png" },
+        ],
+      },
+      {
+        id: "design-decisions",
+        label: "Design decisions",
+        heading: "What did I change, and what did I keep?",
+        content: [
+          {
+            type: "text",
+            value: "Entry point: how do users view their cuts?",
+          },
+          { type: "image", value: "./photos/DesignChoices1YT.png" },
+          {
+            type: "text",
+            value: "How do users edit and delete a cut?",
+          },
+          { type: "image", value: "./photos/DesignChoices2YT.png" },
+          // TODO: this block duplicated the one above (same text + image). Swap in the third decision, or delete.
+          {
+            type: "text",
+            value: "How do users edit and delete a cut?",
+          },
+          { type: "image", value: "./photos/DesignChoices2YT.png" },
+        ],
+      },
+      {
+        id: "reflections",
+        label: "Reflections",
+        heading: "What did I learn from my first case study?",
+        content: [
+          {
+            type: "text",
+            value: "Creator’s Cuts was my first full case study, and the biggest lesson came before I designed a single screen: my starting problem was my own. I assumed other viewers wanted what I wanted, short clips from long streams. Interviewing frequent and occasional YouTube users showed me the shared problem was different. People wanted to find something specific during a break without getting pulled away by eye-catching, unrelated videos.",
+          },
+          {
+            type: "highlight",
+            label: "Key takeaway",
+            value: "Validate the problem before solving it. My own frustration was a starting point, not evidence.",
+          },
+          {
+            type: "text",
+            value: "Working through How Might We statements, solution sketches, and voting taught me to go wide before narrowing down. I wireframed three directions and let feedback decide which one to pursue, rather than committing to my first idea. Keeping Felix in mind made later design decisions, like where cuts live and how they are edited, easier to make and explain.",
+          },
+          {
+            type: "text",
+            value: "Since this was a solo project, I was responsible for every step, from research to final flows. If I continued Creator’s Cuts, I would run usability tests on the final designs with the same viewers I interviewed to see whether sorting their feed into cuts actually helps them find what they came for.",
+          },
         ],
       },
     ],
   },
-    {
+  {
     id: "darn",
     subTitle: "DARN",
     image: Darn,
@@ -266,14 +331,14 @@ export const ProjectData = [
           { Team: "1 PM, 1 TPM, 2 developers, 3 designers" },
           { Role: "Designer" },
           { Timeline: "Summer 2026 \n(2 months)" },
-          { Tools: "Figma, Claude-Code, UiChemy, Wordpress" },
+          { Tools: "Figma, Claude Code, UiChemy, WordPress" },
         ],
       },
       {
         id: "description",
         label: "Description",
         content:
-          "DARN (Developmental Assets Resource Network) is a non-profit organization located in Bexley, Ohio. My role as a designer was to redesign their internal website and counselor/admin page to help manage resources better between counselors across different areas of Ohio. We met with a representative at DARN, and with the help of Claude Code and UiChemy, we pushed our designs quickly from Figma to WordPress and delivered a finished product. We connected with DARN through the Develop for Good program.",
+          "DARN (Developmental Assets Resource Network) is a nonprofit organization based in Bexley, Ohio. We connected with DARN through the Develop for Good program. As a designer, I helped redesign their internal website and counselor/admin pages to better manage resources among counselors across Ohio. We met with a DARN representative throughout the project, and with the help of Claude Code and UiChemy, we moved our designs quickly from Figma to WordPress and delivered a finished product.",
       },
     ],
   },
