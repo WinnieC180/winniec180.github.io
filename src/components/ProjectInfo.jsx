@@ -1,213 +1,204 @@
-import { Link, useParams, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ProjectData } from "../data/ProjectData.js";
 import "./projectInfo.css";
 import NavBar from "./Navbar.jsx";
 import { ScrollVideo } from "./ScrollVideo.jsx";
 
+// Day images
+import LoopDay from "../imgProjects/day/Loop.svg";
+import CornellGODay from "../imgProjects/day/CornellGO.svg";
+import CreatorCutsDay from "../imgProjects/day/CreatorsCuts.svg";
+import FamJamDay from "../imgProjects/day/FamJam.svg";
+import DarnDay from "../imgProjects/day/Darn.svg";
+// Night images
+import LoopNight from "../imgProjects/Loop.svg";
+import CornellGONight from "../imgProjects/CornellGO.svg";
+import CreatorCutsNight from "../imgProjects/CreatorsCuts.svg";
+import FamJamNight from "../imgProjects/FamJam.svg";
+import DarnNight from "../imgProjects/Darn.svg";
+
+// "Explore more" cards: projects in the Case Studies tab (current one is skipped, max 2 shown)
+const MORE = [
+  { id: "Loop", name: "Loop", desc: "Chrome extension that helps Cornell students cut through listserv clutter", year: "2026", imageDay: LoopDay, imageNight: LoopNight, link: "https://new.cornelldti.org/products#loop" },
+  { id: "CornellGO", name: "CornellGO", desc: "A scavenger hunt app that makes discovering campus easy and fun", year: "2026", imageDay: CornellGODay, imageNight: CornellGONight, link: "https://new.cornelldti.org/products#cornellgo" },
+  { id: "creator-cuts", name: "Creator’s Cuts", desc: "Giving viewers control over their YouTube recommendations", year: "2025", imageDay: CreatorCutsDay, imageNight: CreatorCutsNight, to: "/creator-cuts" },
+  { id: "darn", name: "DARN", desc: "Redesigning a nonprofit’s internal and admin website", year: "2026", imageDay: DarnDay, imageNight: DarnNight, to: "/darn" },
+  { id: "FamJam", name: "FamJam", desc: "An inclusive game that closes the gap between generations", year: "2026", imageDay: FamJamDay, imageNight: FamJamNight, link: "https://devpost.com/software/team-tennn?ref_content=my-projects-tab&ref_feature=my_projects" },
+];
+
+function Callout({ label, text, dark }) {
+  return (
+    <div className={dark ? "cs-callout dark" : "cs-callout"}>
+      {label && <span className="cs-callout-label">{label}</span>}
+      <p>{text}</p>
+    </div>
+  );
+}
+
 function ProjectInfo() {
   const { projectId } = useParams();
-  const { hash } = useLocation();
   const project = ProjectData.find((p) => p.id === projectId);
 
-  useEffect(() => {
-    if (hash) {
-      const targetId = hash.replace("#", "");
-      const element = document.getElementById(targetId);
+  const overview = project?.sections.find((s) => s.id === "overview");
+  const sections = project ? project.sections.filter((s) => s.id !== "overview") : [];
 
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  }, [hash]);
+  const [active, setActive] = useState(sections[0]?.id);
+  const [underline, setUnderline] = useState(null);
+  const labelRefs = useRef({});
+
+  // Track which section is on screen
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const onScroll = () => {
+      let cur = sections[0]?.id;
+      sections.forEach((s) => {
+        const el = document.getElementById(s.id);
+        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.35) cur = s.id;
+      });
+      setActive(cur);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [projectId]);
+
+  // Move the sidebar underline under the active tab
+  useLayoutEffect(() => {
+    const place = () => {
+      const el = labelRefs.current[active];
+      if (el) setUnderline({ top: el.offsetTop + el.offsetHeight + 2, width: el.offsetWidth });
+    };
+    place();
+    window.addEventListener("resize", place);
+    document.fonts?.ready.then(place).catch(() => {});
+    return () => window.removeEventListener("resize", place);
+  }, [active]);
+
+  const goTo = (e, id) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 110, behavior: "smooth" });
+  };
 
   if (!project) return <div>Project not found</div>;
 
-  return (
-    <div>
-      <NavBar />
-      <div className="project-container">
-        {/* <aside className="sidebar">
-          <Link
-            to="/"
-            className="back-link"
-            style={{
-              backgroundColor: "var(--clr-primary-500)",
-              padding: "10px",
-              borderRadius: "10px",
-            }}
-          >
-            ← Home
-          </Link>
-          <nav>
-            {project.sections.map((section) => (
-              <a key={section.id} href={`#/${project.id}#${section.id}`}>
-                {section.label}
-              </a>
-            ))}
-          </nav>
-        </aside> */}
+  const more = MORE.filter((m) => m.id !== project.id).slice(0, 2);
 
-        <main className="content-area centerFlex">
-          <div
-            className="centerFlex"
-            style={{
-              flexDirection: "column",
-              width: "100%",
-              padding: "30px",
-              borderRadius: "20px",
-            }}
-          >
-            <img
-              className="content-image"
-              src={project.image}
-              alt="A image of the home page of my project"
-              style={{marginBottom: "20px"}}
-            />
-            <h2>{project.subTitle}</h2>
+  const renderItem = (item, idx) => {
+    if (item.type === "text") return <p key={idx} className="cs-body">{item.value}</p>;
+    if (item.type === "highlight") return <Callout key={idx} label={item.label} text={item.value} />;
+    if (item.type === "list")
+      return (
+        <ol key={idx} className="cs-list">
+          {item.items.map((li, i) => <li key={i}>{li}</li>)}
+        </ol>
+      );
+    if (item.type === "image") return <img key={idx} src={item.value} alt="" className="cs-image" />;
+    return null;
+  };
+
+  return (
+    <div className="cs-page">
+      <NavBar />
+      <div className="cs-layout">
+        <aside className="cs-toc">
+          <ol>
+            {underline && (
+              <div className="cs-underline" style={{ top: underline.top, width: underline.width }} />
+            )}
+            {sections.map((s) => (
+              <li key={s.id}>
+                <a
+                  href={`#${s.id}`}
+                  onClick={(e) => goTo(e, s.id)}
+                  className={active === s.id ? "active" : ""}
+                >
+                  <span ref={(el) => (labelRefs.current[s.id] = el)}>{s.label}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </aside>
+
+        <article className="cs-article">
+          <div className="cs-hero">
+            {/* Uses the 3:1 banner if the project has one, otherwise the regular project image */}
+            <img src={project.banner || project.image} alt={project.subTitle} />
           </div>
 
-          {project.sections.map((section, id) => (
-            <div className="section-body centerFlex" key={id} id={section.id}>
-              {Array.isArray(section.content) && section.id === "overview" ? (
-                <ul className="overview-list">
-                  {section.content.map((item, i) => {
-                    const [label, value] = Object.entries(item)[0];
-                    return (
-                      <li
-                        key={i}
-                        className="centerFlex"
-                        style={{ gap: "10px" }}
-                      >
-                        <strong style={{ color: "var(--clr-secondary-300)" }}>
-                          {label} <br />
-                        </strong>
-                        <span> {value} </span>
-                      </li>
+          <div className="cs-column">
+            <h1 className="cs-title">{project.title || project.subTitle}</h1>
+
+            {overview && (
+              <div className="cs-meta">
+                {overview.content.map((item, i) => {
+                  const [label, value] = Object.entries(item)[0];
+                  return (
+                    <div key={i}>
+                      <span className="cs-meta-label">{label}</span>
+                      <span className="cs-meta-value">{value}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {sections.map((section) => (
+              <section key={section.id} id={section.id} className="cs-section">
+                <div className="cs-eyebrow">{section.eyebrow || section.label}</div>
+                {section.heading && <h2 className="cs-heading">{section.heading}</h2>}
+                {section.subLabel && <p className="cs-body">{section.subLabel}</p>}
+
+                {section.videos ? (
+                  <div className="cs-videos">
+                    {section.videos.map((vid, i) => (
+                      <ScrollVideo key={i} src={vid.link} name={vid.name} />
+                    ))}
+                  </div>
+                ) : Array.isArray(section.content) ? (
+                  section.content.map(renderItem)
+                ) : (
+                  section.content && <p className="cs-body">{section.content}</p>
+                )}
+
+                {section.peopleProblem && <Callout dark label="How might we" text={section.peopleProblem} />}
+
+                {section.pictures &&
+                  section.pictures.map((pic, i) => <img key={i} src={pic} alt="" className="cs-image" />)}
+              </section>
+            ))}
+
+            {more.length > 0 && (
+              <section className="cs-more">
+                <h2>Explore more of my projects!</h2>
+                <div className="cs-more-grid">
+                  {more.map((m) => {
+                    const inner = (
+                      <>
+                        <div className="cs-more-img">
+                          <img src={m.imageDay} alt={m.name} className="moreDay" />
+                          <img src={m.imageNight} alt="" className="moreNight" />
+                        </div>
+                        <div className="cs-more-text">
+                          <p><strong>{m.name}</strong></p>
+                          <span>{m.year}</span>
+                        </div>
+                      </>
+                    );
+                    return m.to ? (
+                      <Link key={m.id} to={m.to} className="cs-more-card">{inner}</Link>
+                    ) : (
+                      <a key={m.id} href={m.link} target="_blank" rel="noreferrer" className="cs-more-card">{inner}</a>
                     );
                   })}
-                </ul>
-              ) : section.videos ? (
-                <div>
-                  <p
-                    style={{
-                      color: "var(--clr-secondary-300)",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    {section.label}
-                  </p>
-                  <p>{section.subLabel}</p>
-                  <div
-                    className={`video-section ${section.id === "case-preview" ? "preview-layout" : ""}`}
-                  >
-                    <div className="video-grid">
-                      {section.videos.map((vid, index) => (
-                        <ScrollVideo
-                          key={index}
-                          src={vid.link}
-                          name={vid.name}
-                        />
-                      ))}
-                    </div>
-                  </div>
                 </div>
-              ) : (
-                <div
-                  style={{
-                    gap: "20px",
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "100%",
-                  }}
-                >
-                  <p style={{ color: "var(--clr-secondary-300)" }}>
-                    {section.label}
-                  </p>
+              </section>
+            )}
 
-                  {Array.isArray(section.content) ? (
-                    section.content.map((item, idx) => {
-                      if (item.type === "text") {
-                        return <p key={idx}>{item.value}</p>;
-                      }
-                      if (item.type === "highlight") {
-                        return (
-                          <div
-                            className="people-problem-box centerFlex"
-                            style={{ gap: "20px" }}
-                            key={idx}
-                          >
-                            <div
-                              style={{
-                                backgroundColor: "var(--clr-secondary-300)",
-                                width: "10px",
-                                alignSelf: "stretch",
-                              }}
-                            ></div>
-                            <p className="problem-text">
-                              <b>{item.value}</b>
-                            </p>
-                          </div>
-                        );
-                      }
-                      if (item.type === "image") {
-                        return (
-                          <img
-                            key={idx}
-                            src={item.value}
-                            alt="Process Step"
-                            className="caseStudyImage"
-                            style={{
-                              width: "100%",
-                              borderRadius: "15px",
-                              margin: "10px 0",
-                            }}
-                          />
-                        );
-                      }
-                      return null;
-                    })
-                  ) : (
-                    <p>{section.content}</p>
-                  )}
-                  {section.peopleProblem && (
-                    <div
-                      className="people-problem-box centerFlex"
-                      style={{ gap: "20px" }}
-                    >
-                      <div
-                        style={{
-                          backgroundColor: "var(--clr-secondary-300)",
-                          width: "10px",
-                          alignSelf: "stretch",
-                        }}
-                      ></div>
-                      <p className="problem-text">
-                        <b>{section.peopleProblem}</b>
-                      </p>
-                    </div>
-                  )}
-
-                  {section.pictures && !Array.isArray(section.content) && (
-                    <div
-                      className="centerFlex"
-                      style={{ flexDirection: "column", gap: "30px" }}
-                    >
-                      {section.pictures.map((pic, index) => (
-                        <img
-                          key={index}
-                          src={pic}
-                          className="caseStudyImage"
-                          style={{ maxWidth: "45vw" }}
-                        />
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          ))}
-        </main>
+            <Link to="/" className="cs-back">← Back to the Expedition Log</Link>
+          </div>
+        </article>
       </div>
     </div>
   );

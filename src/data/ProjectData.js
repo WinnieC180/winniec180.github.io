@@ -3,6 +3,7 @@ import QuackAGoose from "../imgProjects/Quack-A-Goose.svg";
 import CreatorsCut from "../imgProjects/CreatorsCuts.svg";
 import StudyBuddy from "../imgProjects/StudyBuddy.svg";
 import Darn from "../imgProjects/Darn.svg";
+import YouTubeBanner from "../assets/banners/YouTubeBanner.png";
 
 export const ProjectData = [
   {
@@ -146,112 +147,109 @@ export const ProjectData = [
   {
     id: "creator-cuts",
     subTitle: "Creator's Cuts",
+    title: "Creator’s Cuts: Giving viewers control over their YouTube recommendations",
     image: CreatorsCut,
+    banner: YouTubeBanner,
     sections: [
       {
         id: "overview",
         label: "Overview",
         content: [
-          { Team: "Solo" },
           { Role: "UI/UX Designer" },
-          { Timeline: "Fall 2025 \n(3 months)" },
+          { Timeline: "Fall 2025 (3 months)" },
+          { Team: "Solo" },
           { Tools: "Figma" },
         ],
       },
       {
         id: "context",
         label: "Context",
+        heading: "What is Creator’s Cuts?",
         content:
-          "Creator's Cuts is a YouTube feature concept that allows users to cut their for you page into custom, color-coded categories they create themselves. By intentionally categorizing content, users can influence their recommendation feed, enabling YouTube to surface videos that better match their interests and viewing intent while reducing irrelevant recommendations.",
+          "Creator’s Cuts is a YouTube feature concept that lets viewers divide their For You page into custom, color-coded categories they define themselves. By sorting content intentionally, viewers send clearer signals to the recommendation algorithm, so YouTube can surface videos that match their interests and viewing intent while showing fewer irrelevant suggestions.",
       },
       {
         id: "case-preview",
-        label: "Preview",
-        subLabel: "",
+        label: "Final designs",
+        heading: "Three core flows",
         videos: [
           { name: "Entry points", link: "./videos/entry-point.mp4" },
           { name: "Creating a new cut", link: "./videos/creating-cut.mp4" },
-          { name: "Editing & Deleting existing cuts", link: "./videos/edit-delete-cut.mp4" },
+          { name: "Editing and deleting cuts", link: "./videos/edit-delete-cut.mp4" },
         ],
       },
       {
-        id: "Defining the problem",
-        label: "Defining the problem???",
+        id: "problem",
+        label: "The problem",
+        heading: "My first problem statement was too personal",
         content: [
-          {
-            type: "text",
-            value:
-              "Originally when I was doing this case study I created the following people problem: ",
-          },
+          { type: "text", value: "I started this case study with a people problem drawn from my own viewing habits:" },
           {
             type: "highlight",
-            value:
-              "As someone who always doom scrolls, I sometimes want to watch funny clips of longer streams that I didn't have time to. ",
+            label: "Original people problem",
+            value: "As someone who often doom-scrolls, I want to watch short, funny clips from long streams I didn’t have time to see.",
           },
+          { type: "image", value: "./photos/But....png" },
           {
-            type: "image",
-            value: 
-              "./photos/But....png"
+            type: "text",
+            value: "This statement described my own frustration, not a need I had confirmed with other viewers. Before designing anything, I needed to find out whether other people shared it.",
           },
         ],
       },
       {
         id: "problem-space",
-        label: "NEW Problem Space",
-        content:
-          "YouTube allows users to find specific content they are searching for during a break, but it is difficult to find that content because… \n\n1. Users prefer quick, effortless discovery instead of actively searching for videos\n2. Users often get distracted by other visually appealing content, straying away from original goal",
+        label: "Reframing",
+        eyebrow: "Problem space",
+        heading: "Reframing the problem",
+        content: [
+          {
+            type: "text",
+            value: "Viewers often open YouTube during a break to find something specific, but getting to it is harder than it should be:",
+          },
+          {
+            type: "list",
+            items: [
+              "Viewers prefer quick, effortless discovery over actively searching for videos.",
+              "Eye-catching but unrelated videos pull viewers away from what they came to watch.",
+            ],
+          },
+        ],
         peopleProblem:
           "How might we enable users to effortlessly find specific content on YouTube during breaks while minimizing distractions from visually appealing but irrelevant videos?",
       },
       {
         id: "user-research",
-        label: "User Research",
+        label: "Research",
+        eyebrow: "User research",
+        heading: "Learning from YouTube viewers",
         content: [
           {
-            type: "highlight",
-            value:
-              "How did I come up with the new problem space? What do I do to make it not MY problem with YouTube, the answer is user research!",
+            type: "text",
+            value: "To make sure I was solving a shared problem rather than my own, I interviewed both frequent and occasional YouTube users about how they find videos and where they get stuck.",
           },
           {
             type: "text",
-            value: 
-              "After conducting some interviewers of people who uses YouTube (either frequently or not often), here is the user persona I created to address some common pain points:"
+            value: "From their most common pain points, I created a persona, Felix, to represent the people I was designing for:",
           },
-          {
-            type: "image",
-            value: 
-              "./photos/Felix.png"
-          },
+          { type: "image", value: "./photos/Felix.png" },
           {
             type: "text",
-            value: 
-              "So, how might we simplify the searching process for someone like Felix?"
+            value: "This led to the central question: how might we make finding content effortless for someone like Felix?",
           },
         ],
       },
       {
         id: "brainstorm",
-        label: "Brainstorming",
+        label: "Ideation",
+        heading: "From insights to ideas",
         content: [
           {
             type: "text",
-            value: "So from analyzing the data I got from user research I created some possible solutions!"
+            value: "Using the patterns from my interviews, I wrote How Might We statements, sketched out possible solutions, and voted on which ideas were worth pursuing.",
           },
-          {
-            type: "image",
-            value: 
-              "./photos/HMW.png"
-          },
-          {
-            type: "image",
-            value: 
-              "./photos/Solutions.png"
-          },
-          {
-            type: "image",
-            value: 
-              "./photos/vote.png"
-          },
+          { type: "image", value: "./photos/HMW.png" },
+          { type: "image", value: "./photos/Solutions.png" },
+          { type: "image", value: "./photos/vote.png" },
         ],
       },
     ],

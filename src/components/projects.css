@@ -166,6 +166,49 @@
     transition-delay: 0.7s;
 }
 
+.filterTags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 12px;
+    margin: 16px auto 8px;
+    padding: 0 20px;
+}
+
+.filterTag {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    line-height: 20px;
+    padding: 7px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: var(--clr-page-text);
+    opacity: 0.6;
+    box-shadow: inset 0 0 0 1.5px transparent;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1.5px;
+    transition: box-shadow 0.25s ease, background-color 0.25s ease, opacity 0.25s ease, text-decoration-color 0.25s ease, color 0.8s ease;
+}
+
+.filterTag:hover {
+    opacity: 1;
+    text-decoration-color: currentColor;
+}
+
+.filterTag.active {
+    opacity: 1;
+    box-shadow: inset 0 0 0 1.5px var(--clr-page-text);
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+:root[data-theme="dark"] .filterTag.active {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
 @media (max-width: 600px) {
     .projects {
         padding: 30px; 

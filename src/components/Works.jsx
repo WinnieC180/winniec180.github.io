@@ -1,7 +1,9 @@
 import Line from "../assets/line.png";
 import Projects from "./Projects";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import LineLight from "../assets/line-light.png";
+
+const FILTERS = ["All", "Featured", "Coding & Design", "Case Studies", "Web", "Mobile"];
 
 function ThemedImg({ src, srcDark, alt, className = "", style }) {
   return (
@@ -13,6 +15,8 @@ function ThemedImg({ src, srcDark, alt, className = "", style }) {
 }
 
 function Works() {
+  const [filter, setFilter] = useState("Featured");
+
   const gap = {
     padding: "8px 0",
   };
@@ -38,7 +42,23 @@ function Works() {
         </p>
         <ThemedImg src={Line} srcDark={LineLight} alt="A short line" style={{ width: "28vw" }} />
       </div>
-      <Projects />
+
+      <div className="filterTags" role="tablist" aria-label="Filter projects">
+        {FILTERS.map((label) => (
+          <button
+            key={label}
+            type="button"
+            role="tab"
+            aria-selected={filter === label}
+            className={filter === label ? "filterTag active" : "filterTag"}
+            onClick={() => setFilter(label)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      <Projects filter={filter} />
     </section>
   );
 }
