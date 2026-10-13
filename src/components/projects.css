@@ -1,12 +1,19 @@
 .projects {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    align-items: flex-start;
     margin: auto;
     margin-bottom: 96px;
     gap: 3vw;
     width: min(1350px, 85vw);
-    
     padding: 20px 30px 30px 30px;
+}
+
+.projectsCol {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3vw;
 }
 
 .communities {
@@ -17,7 +24,6 @@
     margin-bottom: 148px;
     gap: 0.8vw;
     width: min(1300px, 90vw);
-    
     padding: 20px;
 }
 
@@ -26,16 +32,18 @@
     height: 350px;
     overflow: hidden;
     border-radius: 16px;
-
     background-color: var(--clr-primary-300);
 }
 
 .comImage img {
     object-fit: cover;
     object-position: center;
-
     width: 100%;
     height: 100%;
+}
+
+.project-card-link {
+    display: block;
 }
 
 .project {
@@ -45,12 +53,10 @@
     cursor: pointer;
     gap: 10px;
     padding: 14px 12px;
-
     border-radius: 16px;
     background-color: var(--clr-project-bg);
     box-shadow: 0 0 0 hsl(from var(--clr-secondary-300) h s l / 0);
     border: 2px solid hsl(212, 100%, 92%);
-
     overflow-x: hidden;
     translate: 0 0;
     transition: box-shadow 0.3s ease, background-color 0.8s ease, translate 0.4s cubic-bezier(.2, .7, .3, 1);
@@ -102,8 +108,76 @@
     color: hsl(from var(--clr-secondary-500));
 }
 
+/* Inline details: touch devices only */
+.projectDetails { display: none; }
+
+.projectDetails dl,
+.projectTip dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px 16px;
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+.projectDetails dl {
+    padding-top: 16px;
+    border-top: 2px dashed var(--clr-secondary-300);
+}
+
+.projectDetails dt, .projectTip dt {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--clr-secondary-500);
+    padding-top: 2px;
+}
+
+.projectDetails dd, .projectTip dd {
+    margin: 0;
+    font-size: 16px;
+    color: var(--clr-page-text);
+}
+
+/* Floating hover box */
+.projectTip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    pointer-events: none;
+    width: max-content;
+    max-width: 320px;
+    transition: transform 0.18s cubic-bezier(.2, .7, .3, 1);
+}
+
+.projectTipInner {
+    padding: 16px 18px;
+    border-radius: 14px;
+    background-color: hsl(from var(--clr-project-bg) h s l / 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 2px dashed var(--clr-secondary-300);
+    box-shadow: 0 12px 32px hsl(from var(--clr-secondary-300) h s l / 0.25);
+    opacity: 0;
+    scale: 0.94;
+    transform-origin: top left;
+    transition: opacity 0.2s ease, scale 0.25s cubic-bezier(.2, .7, .3, 1);
+}
+
+.projectTip.show .projectTipInner {
+    opacity: 1;
+    scale: 1;
+}
+
+@media (hover: none) {
+    .projectDetails { display: block; }
+    .projectTip { display: none; }
+}
+
 .header {
-    display: flex; 
+    display: flex;
     justify-content: space-between;
     align-items: center;
 }
@@ -114,7 +188,6 @@
     height: 420px;
     overflow: hidden;
     border-radius: 16px;
-
     background-color: var(--clr-primary-300);
     transition: background-color 0.8s ease;
 }
@@ -124,10 +197,10 @@
     inset: 0;
     object-fit: cover;
     object-position: center;
-
     width: 100%;
     height: 100%;
     transition: opacity 0.8s ease;
+    will-change: transform;
 }
 
 .image .imgNight {
@@ -148,7 +221,6 @@
     display: flex;
     gap: 10px;
     margin-top: auto;
-
     flex-wrap: wrap;
 }
 
@@ -211,7 +283,7 @@
 
 @media (max-width: 600px) {
     .projects {
-        padding: 30px; 
+        padding: 30px;
     }
 
     .communities {
@@ -226,8 +298,8 @@
 
 @media (min-width: 600px) and (max-width: 900px) {
     .projects {
-       padding: 30px; 
-       width: min(1300px, 80vw);
+        padding: 30px;
+        width: min(1300px, 80vw);
     }
 
     .communities {
@@ -239,7 +311,7 @@
 
 @media (min-width: 901px) and (max-width: 1280px) {
     .projects {
-       width: min(1000px, 70vw);
-       padding: 30px 2px; 
+        width: min(1000px, 70vw);
+        padding: 30px 2px;
     }
 }

@@ -1,5 +1,5 @@
 import "./projects.css";
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../theme";
 
@@ -30,13 +30,26 @@ import loaderDay from "../assets/fishStatic.svg";
 import loaderNight from "../assets/fishStaticNight.svg";
 
 // Order of cards when "Featured" is selected
-const FEATURED_ORDER = ["Loop", "BeeWitched", "CornellGO", "creator-cuts"];
+const FEATURED_ORDER = ["Loop", "darn", "creator-cuts",  "BeeWitched", "CornellGO", "FamJam"];
 const EASE = "cubic-bezier(.2,.7,.3,1)";
 
 function Projects({ filter = "All" }) {
   const night = useTheme() === "dark";
   const gridRef = useRef(null);
   const prevIds = useRef(null);
+  const tipRef = useRef(null);
+  const [tip, setTip] = useState({ data: null, show: false });
+
+  // Floating details box follows the cursor, flips near screen edges
+  const moveTip = (e) => {
+    const el = tipRef.current;
+    if (!el) return;
+    const pad = 20, w = el.offsetWidth, h = el.offsetHeight;
+    let x = e.clientX + pad, y = e.clientY + pad;
+    if (x + w > window.innerWidth - 12) x = e.clientX - w - pad;
+    if (y + h > window.innerHeight - 12) y = e.clientY - h - pad;
+    el.style.transform = `translate(${x}px, ${y}px)`;
+  };
 
   const projects = [
     {
@@ -51,7 +64,35 @@ function Projects({ filter = "All" }) {
       image: Loop,
       imageDay: LoopDay,
       isComplete: false,
-      externalLink: "https://new.cornelldti.org/products#loop",
+      details: { role: "Product Designer", team: "1 PM, 1 APM, 1 TPM, 3 devs, 2 designers, 2 PMMs", tools: "Figma, Notion" },
+    },
+    {
+      id: "creator-cuts",
+      title: "YouTube Case Study",
+      subTitle: "Creator’s Cuts",
+      description:
+        "Conducted user research to design a new feature of YouTube to help users create more personalized recommendations.",
+      timeSpent: "3 months",
+      tools: ["Case-Study", "2025"],
+      categories: ["Featured", "Case Studies", "Mobile"],
+      image: CreatorCuts,
+      imageDay: CreatorCutsDay,
+      isComplete: true,
+      details: { role: "Designer", team: "Solo", tools: "Figma" },
+    },
+    {
+      id: "darn",
+      title: "Darn",
+      subTitle: "Resource Website",
+      description:
+        "Redesigned DARN's internal and admin website utilizing Claude-code to speed up high-fis to production on wordpress within 2 months",
+      timeSpent: "2 months",
+      tools: ["Shipped", "2026"],
+      categories: ["Featured", "Case Studies", "Web"],
+      image: Darn,
+      imageDay: DarnDay,
+      isComplete: true,
+      details: { role: "Designer", team: "1 PM, 1 TPM, 2 engineers, 3 designers", tools: "Figma, WordPress, UiChemy, Claude Designs" },
     },
     {
       id: "BeeWitched",
@@ -66,6 +107,7 @@ function Projects({ filter = "All" }) {
       imageDay: BeeWitchedDay,
       isComplete: true,
       externalLink: "https://store.steampowered.com/app/4811560/BeeWitched/",
+      details: { role: "Programmer + Artist", team: "5 developers, 3 designers", tools: "LibGDX, Java, Figma" },
     },
     {
       id: "CornellGO",
@@ -79,20 +121,7 @@ function Projects({ filter = "All" }) {
       image: CornellGO,
       imageDay: CornellGODay,
       isComplete: true,
-      externalLink: "https://new.cornelldti.org/products#cornellgo",
-    },
-    {
-      id: "creator-cuts",
-      title: "YouTube Case Study",
-      subTitle: "Creator’s Cuts",
-      description:
-        "Conducted user research to design a new feature of YouTube to help users create more personalized recommendations.",
-      timeSpent: "3 months",
-      tools: ["Case-Study", "2025"],
-      categories: ["Featured", "Case Studies", "Mobile"],
-      image: CreatorCuts,
-      imageDay: CreatorCutsDay,
-      isComplete: true,
+      details: { role: "Designer", team: "1 PM, 1 APM, 1 TPM, 4 devs, 2 designers, 1 PMM", tools: "Figma" },
     },
     {
       id: "FamJam",
@@ -102,25 +131,12 @@ function Projects({ filter = "All" }) {
         "Created an inclusive game to close the gap between different generations. Won best beginner design!",
       timeSpent: "2 days",
       tools: ["Concept", "2026"],
-      categories: ["Case Studies", "Mobile"],
+      categories: ["Featured", "Case Studies", "Mobile"],
       image: FamJam,
       imageDay: FamJamDay,
       isComplete: true,
-      externalLink: "https://devpost.com/software/team-tennn?ref_content=my-projects-tab&ref_feature=my_projects",
-    },
-    {
-      id: "darn",
-      title: "Darn",
-      subTitle: "Resource Website",
-      description:
-        "Redesigned DARN's internal and admin website utilizing Claude-code to speed up high-fis to production on wordpress within 2 months",
-      timeSpent: "2 months",
-      // tools: ["Figma", "Claude-Code", "UiChemy", "Wordpress"],
-      tools: ["Shipped", "2026"],
-      categories: ["Case Studies", "Web"],
-      image: Darn,
-      imageDay: DarnDay,
-      isComplete: true,
+      // externalLink: "https://devpost.com/software/team-tennn?ref_content=my-projects-tab&ref_feature=my_projects",
+      details: { role: "Designer", team: "4 designers", tools: "Figma" },
     },
     {
       id: "oh-my-camel",
@@ -134,6 +150,7 @@ function Projects({ filter = "All" }) {
       image: OhMyCamel,
       imageDay: OhMyCamelDay,
       isComplete: true,
+      details: { role: "Programmer + Artist", team: "4 programmers", tools: "OCaml, Raylib" },
     },
     {
       id: "quack-a-goose",
@@ -147,6 +164,7 @@ function Projects({ filter = "All" }) {
       image: Quack,
       imageDay: QuackDay,
       isComplete: true,
+      details: { role: "Programmer + Artist", team: "1 developer, 1 programmer + artist", tools: "Java, Medibang Paint" },
     },
     {
       id: "SUSB",
@@ -161,6 +179,7 @@ function Projects({ filter = "All" }) {
       imageDay: SUSBDay,
       isComplete: true,
       externalLink: "https://sustainabytes.org",
+      details: { role: "Programmer + Designer", team: "2 programmers + designers", tools: "Figma, React.js, CSS" },
     },
 
     // {
@@ -187,12 +206,11 @@ function Projects({ filter = "All" }) {
   }
 
   // Shuffle animation: cards that stay slide to their new spot, new cards fade up one by one.
-  // Safe to click quickly: each card starts from wherever it currently is on screen.
   useLayoutEffect(() => {
     const cards = [...gridRef.current.querySelectorAll("[data-pid]")];
     const old = prevIds.current;
     prevIds.current = new Set(cards.map((el) => el.dataset.pid));
-    if (!old) return; // skip on first page load
+    if (!old) return;
 
     const visual = cards.map((el) => el.getBoundingClientRect());
     cards.forEach((el) => el.getAnimations().forEach((a) => a.cancel()));
@@ -217,74 +235,94 @@ function Projects({ filter = "All" }) {
     });
   }, [filter]);
 
+  const renderCard = (project) => {
+    const isExternal = !!project.externalLink;
+    const Tag = isExternal ? "a" : Link;
+    const d = project.details;
+
+    return (
+      <Tag
+        key={project.id}
+        data-pid={project.id}
+        {...(isExternal
+          ? { href: project.externalLink, target: "_blank", rel: "noreferrer" }
+          : { to: `/${project.id}`})}
+        className="project-card-link"
+        style={{ textDecoration: "none", color: "var(--clr-page-text)" }}
+        onMouseEnter={(e) => { if (d) { setTip({ data: d, show: true }); moveTip(e); } }}
+        onMouseMove={moveTip}
+        onMouseLeave={() => setTip((t) => ({ ...t, show: false }))}
+      >
+        <div
+          className={project.isComplete ? "project" : "project notDone"}
+          style={project.isComplete ? {} : { cursor: "default" }}
+        >
+          <div className="image">
+            <img src={project.imageDay || project.image} alt="" className="imgDay" />
+            <img src={project.image} alt="" className="imgNight" />
+          </div>
+
+          <div className="name" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <h2 className={project.isComplete ? "title" : "title not"}>
+              {project.title}
+            </h2>
+            <div className="tools">
+              {project.tools.map((tool, toolInd) => (
+                <p key={toolInd} className="tool">{tool}</p>
+              ))}
+            </div>
+          </div>
+
+          <p className="projectBio" style={{ color: "var(--clr-secondary-500)" }}>
+            {project.description}
+          </p>
+
+          {/* Shown inline on touch devices only */}
+          {d && (
+            <div className="projectDetails">
+              <dl>
+                {d.role && (<><dt>Role</dt><dd>{d.role}</dd></>)}
+                {d.team && (<><dt>Team</dt><dd>{d.team}</dd></>)}
+                {d.tools && (<><dt>Tools</dt><dd>{d.tools}</dd></>)}
+              </dl>
+            </div>
+          )}
+        </div>
+      </Tag>
+    );
+  };
+
+  const left = shown.filter((_, i) => i % 2 === 0);
+  const right = shown.filter((_, i) => i % 2 === 1);
+
   return (
     <div className="projects" ref={gridRef}>
-      {shown.map((project) => {
-        const isExternal = !!project.externalLink;
-        const Tag = isExternal ? "a" : Link;
+      <div className="projectsCol">{left.map(renderCard)}</div>
+      <div className="projectsCol">
+        {right.map(renderCard)}
+        {shown.length % 2 === 1 && (
+          <div className="centerFlex" style={{ flexDirection: "column", gap: "10px" }}>
+            <img
+              src={night ? loaderNight : loaderDay}
+              alt="A fish leaping over the waves"
+              style={{ width: "65%", display: "block", border: "4px solid hsl(209, 49%, 75%)", borderRadius: "22px" }}
+            />
+            <p>More projects to come!</p>
+          </div>
+        )}
+      </div>
 
-        return (
-          <Tag
-            key={project.id}
-            data-pid={project.id}
-            {...(isExternal
-              ? {
-                  href: project.externalLink,
-                  target: "_blank",
-                  rel: "noreferrer",
-                }
-              : { to: project.isComplete ? `/${project.id}` : "#" })}
-            className="project-card-link"
-            style={{ textDecoration: "none", color: "var(--clr-page-text)" }}
-          >
-            <div
-              className={project.isComplete ? "project" : "project notDone"}
-              style={project.isComplete ? {} : { cursor: "default" }}
-            >
-              <div className="image">
-                <img src={project.imageDay || project.image} alt="" className="imgDay" />
-                <img src={project.image} alt="" className="imgNight" />
-              </div>
-
-              <div className="name" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <h2 className={project.isComplete ? "title" : "title not"}>
-                  {project.title}
-                </h2>
-
-                <div className="tools">
-                  {project.tools.map((tool, toolInd) => (
-                    <p key={toolInd} className="tool">
-                      {tool}
-                    </p>
-                  ))}
-                </div>
-              </div>
-
-              <p
-                className="projectBio"
-                style={{ color: "var(--clr-secondary-500)" }}
-              >
-                {project.description}
-              </p>
-            </div>
-          </Tag>
-        );
-      })}
-      {shown.length % 2 === 0 ? (
-        <div></div>
-      ) : (
-        <div
-          className="centerFlex"
-          style={{ flexDirection: "column", gap: "10px" }}
-        >
-          <img
-            src={night ? loaderNight : loaderDay}
-            alt="A fish leaping over the waves"
-            style={{ width: "65%", display: "block", border: "4px solid hsl(209, 49%, 75%)", borderRadius: "22px"}}
-          />
-          <p>More projects to come!</p>
-        </div>
-      )}
+      <div ref={tipRef} className={tip.show ? "projectTip show" : "projectTip"} aria-hidden="true">
+        {tip.data && (
+          <div className="projectTipInner">
+            <dl>
+              {tip.data.role && (<><dt>Role</dt><dd>{tip.data.role}</dd></>)}
+              {tip.data.team && (<><dt>Team</dt><dd>{tip.data.team}</dd></>)}
+              {tip.data.tools && (<><dt>Tools</dt><dd>{tip.data.tools}</dd></>)}
+            </dl>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

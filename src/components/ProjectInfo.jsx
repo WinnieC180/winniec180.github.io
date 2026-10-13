@@ -18,13 +18,13 @@ import CreatorCutsNight from "../imgProjects/CreatorsCuts.svg";
 import FamJamNight from "../imgProjects/FamJam.svg";
 import DarnNight from "../imgProjects/Darn.svg";
 
-// "Explore more" cards: projects in the Case Studies tab (current one is skipped, max 2 shown)
+// "Explore more" cards: first two that aren't the current page are shown
 const MORE = [
+  { id: "darn", name: "DARN", desc: "Redesigning a nonprofit’s internal and admin website", year: "2026", imageDay: DarnDay, imageNight: DarnNight, to: "/darn" },
+  { id: "creator-cuts", name: "Creator’s Cuts", desc: "Giving viewers control over their YouTube recommendations", year: "2025", imageDay: CreatorCutsDay, imageNight: CreatorCutsNight, to: "/creator-cuts" },
   { id: "Loop", name: "Loop", desc: "Chrome extension that helps Cornell students cut through listserv clutter", year: "2026", imageDay: LoopDay, imageNight: LoopNight, link: "https://new.cornelldti.org/products#loop" },
   { id: "CornellGO", name: "CornellGO", desc: "A scavenger hunt app that makes discovering campus easy and fun", year: "2026", imageDay: CornellGODay, imageNight: CornellGONight, link: "https://new.cornelldti.org/products#cornellgo" },
-  { id: "creator-cuts", name: "Creator’s Cuts", desc: "Giving viewers control over their YouTube recommendations", year: "2025", imageDay: CreatorCutsDay, imageNight: CreatorCutsNight, to: "/creator-cuts" },
-  { id: "darn", name: "DARN", desc: "Redesigning a nonprofit’s internal and admin website", year: "2026", imageDay: DarnDay, imageNight: DarnNight, to: "/darn" },
-  { id: "FamJam", name: "FamJam", desc: "An inclusive game that closes the gap between generations", year: "2026", imageDay: FamJamDay, imageNight: FamJamNight, link: "https://devpost.com/software/team-tennn?ref_content=my-projects-tab&ref_feature=my_projects" },
+  { id: "FamJam", name: "FamJam", desc: "An inclusive game that closes the gap between generations", year: "2026", imageDay: FamJamDay, imageNight: FamJamNight, to: "/FamJam" },
 ];
 
 function Callout({ label, text, dark }) {
@@ -94,7 +94,18 @@ function ProjectInfo() {
           {item.items.map((li, i) => <li key={i}>{li}</li>)}
         </ol>
       );
-    if (item.type === "image") return <img key={idx} src={item.value} alt="" className="cs-image" />;
+    if (item.type === "image")
+      return <img key={idx} src={item.value} alt="" className={item.size === "mobile" ? "cs-image mobile" : "cs-image"} />;
+    if (item.type === "preview")
+      return (
+        <div key={idx} className="cs-preview">
+          <div className="cs-preview-bar">
+            <span /><span /><span />
+            <a href={item.value} target="_blank" rel="noreferrer">{item.value.replace(/^https?:\/\//, "").replace(/\/$/, "")}</a>
+          </div>
+          <iframe src={item.value} title="Live site preview" loading="lazy" />
+        </div>
+      );
     return null;
   };
 
@@ -129,6 +140,12 @@ function ProjectInfo() {
 
           <div className="cs-column">
             <h1 className="cs-title">{project.title || project.subTitle}</h1>
+
+            {project.link && (
+              <a href={project.link} target="_blank" rel="noreferrer" className="cs-link">
+                {project.linkLabel || "View project"} ↗
+              </a>
+            )}
 
             {overview && (
               <div className="cs-meta">

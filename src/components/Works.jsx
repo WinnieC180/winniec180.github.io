@@ -15,7 +15,15 @@ function ThemedImg({ src, srcDark, alt, className = "", style }) {
 }
 
 function Works() {
-  const [filter, setFilter] = useState("Featured");
+  // Remember the last tab picked so coming back from a project restores it
+  const [filter, setFilter] = useState(() => {
+    const saved = sessionStorage.getItem("worksFilter");
+    return FILTERS.includes(saved) ? saved : "Featured";
+  });
+
+  useEffect(() => {
+    sessionStorage.setItem("worksFilter", filter);
+  }, [filter]);
 
   const gap = {
     padding: "8px 0",

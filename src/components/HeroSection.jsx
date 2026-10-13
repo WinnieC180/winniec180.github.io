@@ -25,6 +25,9 @@ const BUBBLE = {
   ships: "Bridging the gap between designers and engineers to build toward a shared vision that lasts.",
 };
 
+const CLOUD_PATH =
+  "M89.1409 2.59201C61.9393 2.5922 39.8881 24.6434 39.8879 51.8449C39.8879 55.7229 40.3379 59.4958 41.1863 63.1152C41.6407 65.0537 40.0626 66.9738 38.0715 66.9738C19.1927 66.9739 3.88809 82.2777 3.88794 101.156C3.88794 120.035 19.1927 135.34 38.0715 135.34C50.5427 135.34 61.4536 128.661 67.4236 118.686C68.4928 116.899 70.8875 116.276 72.6653 117.36C80.0792 121.879 89.5573 124.592 99.8879 124.592C111.795 124.592 122.572 120.99 130.358 115.171C132.11 113.862 134.712 114.335 135.889 116.177C142.81 127.002 154.934 134.179 168.736 134.179C182.201 134.179 194.07 127.348 201.068 116.962C202.592 114.699 206.398 114.575 208.276 116.554C212.562 121.07 218.622 123.887 225.34 123.887C238.332 123.887 248.864 113.355 248.865 100.363C248.865 87.3716 238.332 76.8391 225.34 76.8391C220.159 76.8392 215.37 78.5147 211.483 81.353C209.278 82.9638 205.553 82.1522 204.46 79.6491C200.246 69.9911 192.231 62.3731 182.304 58.685C180.453 57.9974 179.44 55.9263 180.041 54.0456C181.29 50.1349 181.968 45.9469 181.968 41.592C181.968 20.0529 165.403 2.59201 144.968 2.59201C136.174 2.59201 128.098 5.82696 121.75 11.2281C120.503 12.2889 118.679 12.3948 117.337 11.4565C109.35 5.86983 99.6279 2.59201 89.1409 2.59201Z";
+
 const BUBBLE_PATH =
   "M30 0 H370 A30 30 0 0 1 400 30 V42 A30 30 0 0 1 370 72 H160.3 C177.1 87.6 226.1 113.5 288 92.5 C260 106.4 191.2 121.8 140 72 H30 A30 30 0 0 1 0 42 V30 A30 30 0 0 1 30 0 Z";
 const WAVE_PATH = "M0 16 " + "q60 -16 120 0 q60 16 120 0 ".repeat(14) + "V300 H0 Z";
@@ -276,11 +279,23 @@ function HeroSection() {
         title={night ? "Bring back the sun" : "Watch the sunset"}
         aria-label={night ? "Switch to day" : "Switch to night"}
       >
-        <span className="heroHint" aria-hidden="true" style={{marginTop: "8px", marginLeft: "4px"}}>
+        <span className="heroHint" aria-hidden="true" style={{ marginTop: "8px", marginLeft: "4px" }}>
           <svg width="26" height="20" viewBox="0 0 26 20"><path d="M22 20 C14 18 8 12 6 3 M6 3 L2 9 M6 3 L11 7" /></svg>
           <span>{night ? "watch the sunrise" : "watch the sunset"}</span>
         </span>
         <span className="heroSunCloudShape"><span className="heroCloud" /><span className="heroCloud heroCloud--night" /></span>
+        <svg className="heroCloudTrace" viewBox="0 0 253 141" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <defs>
+            <mask id="heroCloudGap" maskUnits="userSpaceOnUse" x="-20" y="-20" width="293" height="181">
+              <rect x="-20" y="-20" width="293" height="181" fill="#ffffff" />
+              <path d={CLOUD_PATH} fill="#000" stroke="#000" strokeWidth="3.6" />
+            </mask>
+          </defs>
+          <g mask="url(#heroCloudGap)">
+            <path className="heroCloudTrace__base" pathLength="100" d={CLOUD_PATH} />
+            <path className="heroCloudTrace__run" pathLength="100" d={CLOUD_PATH} />
+          </g>
+        </svg>
       </button>
 
       <Wave kind="back" />

@@ -97,6 +97,27 @@ html {
   text-wrap: pretty;
 }
 
+/* External project link (e.g. Devpost) */
+.cs-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  margin-top: 16px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 2px dashed var(--clr-secondary-300);
+  font-size: 15px;
+  color: var(--clr-page-text);
+  text-decoration: none;
+  transition: background-color .25s ease, color .25s ease;
+}
+
+.cs-link:hover {
+  background-color: hsl(from var(--clr-secondary-300) h s l / 0.15);
+  color: var(--clr-secondary-500);
+}
+
 .cs-meta {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -168,6 +189,12 @@ html {
   width: 100%;
   display: block;
   border-radius: 12px;
+}
+
+/* Phone screenshots: keep them phone-sized and centered */
+.cs-image.mobile {
+  max-width: 320px;
+  margin-inline: auto;
 }
 
 .cs-callout {
@@ -333,6 +360,48 @@ html {
   font-weight: 600;
   text-decoration: none;
   color: var(--clr-secondary-300);
+}
+
+/* Live site preview in a simple browser frame */
+.cs-preview {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid hsl(from var(--clr-secondary-300) h s l / 0.35);
+  background: var(--clr-project-bg);
+}
+
+.cs-preview-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-bottom: 1px solid hsl(from var(--clr-secondary-300) h s l / 0.35);
+}
+
+.cs-preview-bar span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: hsl(from var(--clr-secondary-300) h s l / 0.45);
+}
+
+.cs-preview-bar a {
+  margin-left: 10px;
+  font-size: 14px;
+  color: var(--clr-secondary-500);
+  text-decoration: none;
+}
+
+.cs-preview-bar a:hover {
+  color: var(--clr-page-text);
+}
+
+.cs-preview iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 0;
+  background: #fff;
 }
 
 /* Responsive */
