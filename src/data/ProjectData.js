@@ -255,23 +255,118 @@ export const ProjectData = [
   },
   {
     id: "CornellGO",
-    subTitle: "Cornell GO",
+    subTitle: "CornellGO",
+    title: "CornellGO: Designing a coupons system that rewards students for exploring campus",
     image: CornellGoBanner,
+    banner: CornellGoBanner,
+    link: "https://new.cornelldti.org/products#cornellgo",
+    linkLabel: "View on Cornell DTI",
     sections: [
       {
         id: "overview",
         label: "Overview",
         content: [
-          { Team: "1 PM, 1 APM, 1 TPM, 4 devs, 2 designers, 1 PMM" },
-          { Role: "Designer" },
+          { Role: "Product Designer" },
           { Timeline: "Spring 2026 \n(2 months)" },
+          { Team: "1 PM, 1 APM, 1 TPM, 4 devs, 2 designers, 1 PMM" },
           { Tools: "Figma, Notion, Slack" },
         ],
       },
       {
-        id: "description",
-        label: "Description",
-        content: "",
+        id: "context",
+        label: "Context",
+        heading: "What is CornellGO?",
+        content: [
+          {
+            type: "text",
+            value: "CornellGO is a scavenger hunt app from Cornell DTI that gamifies campus exploration. Students join events, solve location-based challenges, and discover landmarks, hidden gems, and cultural spots across Cornell’s 2,300-acre campus, alone or with friends.",
+          },
+          {
+            type: "text",
+            value: "Student organizations and campus groups can also create their own hunts to promote activities, recruit members, and bring people to events.",
+          },
+        ],
+      },
+      {
+        id: "problem",
+        label: "Problem",
+        heading: "Why students don’t explore",
+        content: [
+          {
+            type: "text",
+            value: "Cornell’s campus is full of opportunities, but many students struggle with knowing where to start. Without guidance, they miss out on experiences that could deepen their connection to campus and the people around them.",
+          },
+          {
+            type: "text",
+            value: "Our team’s interviews with 9 students surfaced a few patterns:",
+          },
+          {
+            type: "list",
+            items: [
+              "Students don’t explore during their first week because the campus feels overwhelming and they don’t know where to go.",
+              "Many attended orientation tours for the social side, not the tour itself.",
+              "Students find new places through word of mouth, Reddit, social media, following friends, and events with food.",
+              "Students are relationship-oriented: they’ll go anywhere their friends are going.",
+            ],
+          },
+          {
+            type: "highlight",
+            label: "Student interview",
+            value: "“It’s not about the place, it’s about the people.”",
+          },
+        ],
+      },
+      {
+        id: "problem-space",
+        label: "Reframing",
+        eyebrow: "Problem space",
+        heading: "Getting students to come back",
+        content: [
+          {
+            type: "text",
+            value: "Scavenger hunts gave students a reason to explore once. But to reach our goals, like onboarding first-year students and partnering with student organizations, CornellGO needed students to keep using it after their first hunt.",
+          },
+          {
+            type: "text",
+            value: "We realized the app was missing an incentive system: something that rewards students for continuing to explore, and gives them a real benefit for doing so.",
+          },
+        ],
+        peopleProblem:
+          "How might we reward students for exploring campus so they keep coming back to CornellGO and get something valuable out of it?",
+      },
+      {
+        id: "design",
+        label: "Coupons",
+        eyebrow: "New feature",
+        heading: "Designing coupons",
+        content: [
+          {
+            type: "text",
+            value: "I designed a coupons feature that lets students earn rewards by completing challenges and events. Coupons connect exploration to tangible benefits on and around campus.",
+          },
+          { type: "image", value: "./photos/cornellgo-coupons-1.png", size: "mobile" },
+          { type: "image", value: "./photos/cornellgo-coupons-2.png", size: "mobile" },
+          {
+            type: "highlight",
+            label: "Status",
+            value: "CornellGO is live, but the coupons feature was not shipped. The CornellGO team was sunsetted before it could be built.",
+          },
+        ],
+      },
+      {
+        id: "reflections",
+        label: "Reflections",
+        heading: "What did I learn?",
+        content: [
+          {
+            type: "text",
+            value: "Joining a product that had already shipped meant designing within an existing app, its users, and its goals rather than starting from scratch. Coupons came from a gap we noticed: students had a reason to explore once, but not a reason to come back.",
+          },
+          {
+            type: "text",
+            value: "The feature didn’t ship because the team was sunsetted, but working on it taught me to think about retention and incentives as part of the product, not an afterthought.",
+          },
+        ],
       },
     ],
   },
