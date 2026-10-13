@@ -26,11 +26,11 @@ const PROJECTS = [
   { label: "BeeWitched", to: "https://store.steampowered.com/app/4811560/BeeWitched/" },
   { label: "YouTube Creator’s Cuts", to: "/creator-cuts" },
   { label: "Oh-My-Camel", to: "/oh-my-camel" },
-  { label: "Cornell GO", to: "https://new.cornelldti.org/products#cornellgo" },
+  { label: "Cornell GO", to: "/CornellGO" },
   { label: "Qu-wack a Mole", to: "/quack-a-goose" },
-  { label: "Loop", to: "https://new.cornelldti.org/products#loop" },
+  { label: "Loop", to: "/Loop" },
   { label: "Sustainabytes", to: "https://sustainabytes.org" },
-  { label: "FamJam", to: "https://devpost.com/software/team-tennn?ref_content=my-projects-tab&ref_feature=my_projects" },
+  { label: "FamJam", to: "/FamJam" },
 ];
 
 const RIPPLE_MASK = "radial-gradient(ellipse 80% 95% at 70% 0%,#000 45%,transparent 100%)";
