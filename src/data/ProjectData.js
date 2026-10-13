@@ -8,12 +8,15 @@ import DarnBanner from "../assets/banners/DarnBanner.png";
 import FamJamBanner from "../assets/banners/FamJamBanner.png";
 import CornellGoBanner from "../assets/banners/CornellGoBanner.png";
 import LoopBanner from "../assets/banners/LoopBanner.png";
+import CamelBanner from "../assets/banners/OhMyCamelBanner.png";
+import GooseBanner from "../assets/banners/QuwackAMoleBanner.png";
 
 export const ProjectData = [
   {
     id: "oh-my-camel",
     subTitle: "Oh My Camel!",
     image: OhMyCamel,
+    banner: CamelBanner,
     sections: [
       {
         id: "overview",
@@ -374,6 +377,7 @@ export const ProjectData = [
     id: "quack-a-goose",
     subTitle: "Quack A Goose",
     image: QuackAGoose,
+    banner: GooseBanner,
     sections: [
       {
         id: "overview",
