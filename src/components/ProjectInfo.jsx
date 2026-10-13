@@ -22,8 +22,8 @@ import DarnNight from "../imgProjects/Darn.svg";
 const MORE = [
   { id: "darn", name: "DARN", desc: "Redesigning a nonprofit’s internal and admin website", year: "2026", imageDay: DarnDay, imageNight: DarnNight, to: "/darn" },
   { id: "creator-cuts", name: "Creator’s Cuts", desc: "Giving viewers control over their YouTube recommendations", year: "2025", imageDay: CreatorCutsDay, imageNight: CreatorCutsNight, to: "/creator-cuts" },
-  { id: "Loop", name: "Loop", desc: "Chrome extension that helps Cornell students cut through listserv clutter", year: "2026", imageDay: LoopDay, imageNight: LoopNight, link: "https://new.cornelldti.org/products#loop" },
-  { id: "CornellGO", name: "CornellGO", desc: "A scavenger hunt app that makes discovering campus easy and fun", year: "2026", imageDay: CornellGODay, imageNight: CornellGONight, link: "https://new.cornelldti.org/products#cornellgo" },
+  { id: "Loop", name: "Loop", desc: "Chrome extension that helps Cornell students cut through listserv clutter", year: "2026", imageDay: LoopDay, imageNight: LoopNight, to: "/Loop" },
+  { id: "CornellGO", name: "CornellGO", desc: "A scavenger hunt app that makes discovering campus easy and fun", year: "2026", imageDay: CornellGODay, imageNight: CornellGONight, to: "/CornellGO" },
   { id: "FamJam", name: "FamJam", desc: "An inclusive game that closes the gap between generations", year: "2026", imageDay: FamJamDay, imageNight: FamJamNight, to: "/FamJam" },
 ];
 
