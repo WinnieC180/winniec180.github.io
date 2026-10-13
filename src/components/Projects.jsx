@@ -67,20 +67,6 @@ function Projects({ filter = "All" }) {
       details: { role: "Product Designer", team: "1 PM, 1 APM, 1 TPM, 3 devs, 2 designers, 2 PMMs", tools: "Figma, Notion" },
     },
     {
-      id: "creator-cuts",
-      title: "YouTube Case Study",
-      subTitle: "Creator’s Cuts",
-      description:
-        "Conducted user research to design a new feature of YouTube to help users create more personalized recommendations.",
-      timeSpent: "3 months",
-      tools: ["Case-Study", "2025"],
-      categories: ["Featured", "Case Studies", "Mobile"],
-      image: CreatorCuts,
-      imageDay: CreatorCutsDay,
-      isComplete: true,
-      details: { role: "Designer", team: "Solo", tools: "Figma" },
-    },
-    {
       id: "darn",
       title: "Darn",
       subTitle: "Resource Website",
@@ -93,6 +79,20 @@ function Projects({ filter = "All" }) {
       imageDay: DarnDay,
       isComplete: true,
       details: { role: "Designer", team: "1 PM, 1 TPM, 2 engineers, 3 designers", tools: "Figma, WordPress, UiChemy, Claude Designs" },
+    },
+    {
+      id: "creator-cuts",
+      title: "YouTube Case Study",
+      subTitle: "Creator’s Cuts",
+      description:
+        "Conducted user research to design a new feature of YouTube to help users create more personalized recommendations.",
+      timeSpent: "3 months",
+      tools: ["Case-Study", "2025"],
+      categories: ["Featured", "Case Studies", "Mobile"],
+      image: CreatorCuts,
+      imageDay: CreatorCutsDay,
+      isComplete: true,
+      details: { role: "Designer", team: "Solo", tools: "Figma" },
     },
     {
       id: "BeeWitched",
