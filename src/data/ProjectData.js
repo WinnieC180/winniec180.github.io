@@ -79,7 +79,7 @@ export const ProjectData = [
         content: [
           {
             type: "text",
-            value: "Communication is key, but there’s no denying that it can be difficult, especially when it feels like you’re separated by so much. Within families, obstacles such as differing values, priorities, and opinions can lead to generational divides, making each member even more unlikely to share their true thoughts.",
+            value: "Communication is key, but there's no denying that it can be difficult, especially when it feels like you're separated by so much. Within families, obstacles such as differing values, priorities, and opinions can lead to generational divides, making each member even more unlikely to share their true thoughts.",
           },
           {
             type: "text",
@@ -104,7 +104,7 @@ export const ProjectData = [
         content: [
           {
             type: "text",
-            value: "To get a better understanding of the needs of our users, we created a survey with both short response and multiple-choice questions, and fielded responses from Discord, Reddit, and personal group chats. We aimed for a range of participants, posting in online spaces where we could reach people in different age ranges, and collected data on respondents’ birth years, preferred communication styles, and family misunderstandings.",
+            value: "To get a better understanding of the needs of our users, we created a survey with both short response and multiple-choice questions, and fielded responses from Discord, Reddit, and personal group chats. We aimed for a range of participants, posting in online spaces where we could reach people in different age ranges, and collected data on respondents' birth years, preferred communication styles, and family misunderstandings.",
           },
           {
             type: "text",
@@ -129,7 +129,7 @@ export const ProjectData = [
           {
             type: "highlight",
             label: "Survey respondent",
-            value: "“My mother often doesn’t understand the importance I place on having a robust support network outside of family (friends, peers, etc.) and this leads to many disagreements about priorities.”",
+            value: "“My mother often doesn't understand the importance I place on having a robust support network outside of family (friends, peers, etc.) and this leads to many disagreements about priorities.”",
           },
           {
             type: "highlight",
@@ -188,11 +188,11 @@ export const ProjectData = [
         content: [
           {
             type: "text",
-            value: "We used AI to check that our survey questions weren’t leading, which made the questionnaire clearer and the responses more meaningful. After collecting responses, we used AI to summarize the data and surface recurring keywords.",
+            value: "We used AI to check that our survey questions weren't leading, which made the questionnaire clearer and the responses more meaningful. After collecting responses, we used AI to summarize the data and surface recurring keywords.",
           },
           {
             type: "text",
-            value: "“Tech literacy” came up often: Gen X respondents struggled with it, while Gen Z saw it as a major barrier between generations. The issue wasn’t technology itself, but keeping up with rapidly changing UI. Users preferred simple, intuitive buttons, which guided our choice of a design style that works for both generations.",
+            value: "“Tech literacy” came up often: Gen X respondents struggled with it, while Gen Z saw it as a major barrier between generations. The issue wasn't technology itself, but keeping up with rapidly changing UI. Users preferred simple, intuitive buttons, which guided our choice of a design style that works for both generations.",
           },
         ],
       },
@@ -244,7 +244,7 @@ export const ProjectData = [
           {
             type: "highlight",
             label: "Coming soon",
-            value: "Loop is launching soon. Right now I’m refining the designs based on user research and feedback, and designing a new feature.",
+            value: "Loop is launching soon. Right now I'm refining the designs based on user research and feedback, and designing a new feature.",
           },
         ],
       },
@@ -282,7 +282,7 @@ export const ProjectData = [
         content: [
           {
             type: "text",
-            value: "CornellGO is a scavenger hunt app from Cornell DTI that gamifies campus exploration. Students join events, solve location-based challenges, and discover landmarks, hidden gems, and cultural spots across Cornell’s 2,300-acre campus, alone or with friends.",
+            value: "CornellGO is a scavenger hunt app from Cornell DTI that gamifies campus exploration. Students join events, solve location-based challenges, and discover landmarks, hidden gems, and cultural spots across Cornell's 2,300-acre campus, alone or with friends.",
           },
           {
             type: "text",
@@ -293,29 +293,29 @@ export const ProjectData = [
       {
         id: "problem",
         label: "Problem",
-        heading: "Why students don’t explore",
+        heading: "Why students don't explore",
         content: [
           {
             type: "text",
-            value: "Cornell’s campus is full of opportunities, but many students struggle with knowing where to start. Without guidance, they miss out on experiences that could deepen their connection to campus and the people around them.",
+            value: "Cornell's campus is full of opportunities, but many students struggle with knowing where to start. Without guidance, they miss out on experiences that could deepen their connection to campus and the people around them.",
           },
           {
             type: "text",
-            value: "Our team’s interviews with 9 students surfaced a few patterns:",
+            value: "Our team's interviews with 9 students surfaced a few patterns:",
           },
           {
             type: "list",
             items: [
-              "Students don’t explore during their first week because the campus feels overwhelming and they don’t know where to go.",
+              "Students don't explore during their first week because the campus feels overwhelming and they don't know where to go.",
               "Many attended orientation tours for the social side, not the tour itself.",
               "Students find new places through word of mouth, Reddit, social media, following friends, and events with food.",
-              "Students are relationship-oriented: they’ll go anywhere their friends are going.",
+              "Students are relationship-oriented: they'll go anywhere their friends are going.",
             ],
           },
           {
             type: "highlight",
             label: "Student interview",
-            value: "“It’s not about the place, it’s about the people.”",
+            value: "“It's not about the place, it's about the people.”",
           },
         ],
       },
@@ -367,7 +367,7 @@ export const ProjectData = [
           },
           {
             type: "text",
-            value: "The feature didn’t ship because the team was sunsetted, but working on it taught me to think about retention and incentives as part of the product, not an afterthought.",
+            value: "The feature didn't ship because the team was sunsetted, but working on it taught me to think about retention and incentives as part of the product, not an afterthought.",
           },
         ],
       },
@@ -393,7 +393,7 @@ export const ProjectData = [
         id: "description",
         label: "Description",
         content:
-          "Quack a Goose is a fun, fast-paced game inspired by Whack-a-Mole, where players try to quack geese as they pop up on the screen. Within a 30-second time limit, players test their reaction speed by hitting as many geese as possible, with the challenge increasing as more geese spawn over time. But there’s a twist! The game features an alternate mode called “People,” where, thanks to volunteers from our AP Computer Science A class, photos of fellow CS students and even our teacher take the place of the geese, adding a personal and humorous touch to the gameplay.",
+          "Quack a Goose is a fun, fast-paced game inspired by Whack-a-Mole, where players try to quack geese as they pop up on the screen. Within a 30-second time limit, players test their reaction speed by hitting as many geese as possible, with the challenge increasing as more geese spawn over time. But there's a twist! The game features an alternate mode called “People,” where, thanks to volunteers from our AP Computer Science A class, photos of fellow CS students and even our teacher take the place of the geese, adding a personal and humorous touch to the gameplay.",
       },
       {
         id: "play-through",
@@ -470,7 +470,7 @@ export const ProjectData = [
   {
     id: "creator-cuts",
     subTitle: "Creator's Cuts",
-    title: "Creator’s Cuts: Giving viewers control over their YouTube recommendations",
+    title: "Creator's Cuts: Giving viewers control over their YouTube recommendations",
     image: CreatorsCut,
     banner: YouTubeBanner,
     sections: [
@@ -487,9 +487,9 @@ export const ProjectData = [
       {
         id: "context",
         label: "Context",
-        heading: "What is Creator’s Cuts?",
+        heading: "What is Creator's Cuts?",
         content:
-          "Creator’s Cuts is a YouTube feature concept that lets viewers divide their For You page into custom, color-coded categories they define themselves. By sorting content intentionally, viewers send clearer signals to the recommendation algorithm, so YouTube can surface videos that match their interests and viewing intent while showing fewer irrelevant suggestions.",
+          "Creator's Cuts is a YouTube feature concept that lets viewers divide their For You page into custom, color-coded categories they define themselves. By sorting content intentionally, viewers send clearer signals to the recommendation algorithm, so YouTube can surface videos that match their interests and viewing intent while showing fewer irrelevant suggestions.",
       },
       {
         id: "case-preview",
@@ -510,7 +510,7 @@ export const ProjectData = [
           {
             type: "highlight",
             label: "Original people problem",
-            value: "As someone who often doom-scrolls, I want to watch short, funny clips from long streams I didn’t have time to see.",
+            value: "As someone who often doom-scrolls, I want to watch short, funny clips from long streams I didn't have time to see.",
           },
           { type: "image", value: "./photos/But....png" },
           {
@@ -587,7 +587,7 @@ export const ProjectData = [
           },
           {
             type: "text",
-            value: "After gathering feedback, I moved forward with Custom Category Tags, which later became Creator’s Cuts.",
+            value: "After gathering feedback, I moved forward with Custom Category Tags, which later became Creator's Cuts.",
           },
           { type: "image", value: "./photos/YouTubeLow1.png" },
           { type: "image", value: "./photos/YouTubeLow2.png" },
@@ -614,7 +614,7 @@ export const ProjectData = [
         content: [
           {
             type: "text",
-            value: "Creator’s Cuts was my first full case study, and the biggest lesson came before I designed a single screen: my starting problem was my own. I assumed other viewers wanted what I wanted, short clips from long streams. Interviewing frequent and occasional YouTube users showed me the shared problem was different. People wanted to find something specific during a break without getting pulled away by eye-catching, unrelated videos.",
+            value: "Creator's Cuts was my first full case study, and the biggest lesson came before I designed a single screen: my starting problem was my own. I assumed other viewers wanted what I wanted, short clips from long streams. Interviewing frequent and occasional YouTube users showed me the shared problem was different. People wanted to find something specific during a break without getting pulled away by eye-catching, unrelated videos.",
           },
           {
             type: "highlight",
@@ -627,7 +627,7 @@ export const ProjectData = [
           },
           {
             type: "text",
-            value: "Since this was a solo project, I was responsible for every step, from research to final flows. If I continued Creator’s Cuts, I would run usability tests on the final designs with the same viewers I interviewed to see whether sorting their feed into cuts actually helps them find what they came for.",
+            value: "Since this was a solo project, I was responsible for every step, from research to final flows. If I continued Creator's Cuts, I would run usability tests on the final designs with the same viewers I interviewed to see whether sorting their feed into cuts actually helps them find what they came for.",
           },
         ],
       },
@@ -782,6 +782,35 @@ export const ProjectData = [
         ],
       },
       {
+        id: "ai-process",
+        label: "AI integration",
+        heading: "Using AI to iterate faster",
+        content: [
+          {
+            type: "text",
+            value: "With 16 weeks to deliver two products, we needed to get from ideas to testable designs quickly. After sketching low-fidelity wireframes ourselves, we used Claude Code to generate high-fidelity versions of each screen.",
+          },
+          {
+            type: "text",
+            value: "AI gave us a fast first draft, not a finished design. We reviewed every generated screen and adjusted it to match our design system, fixing spacing, components, and hierarchy so the website and portal stayed consistent.",
+          },
+          {
+            type: "list",
+            items: [
+              "Low-fi first: we decided layout, content, and flows by hand before using AI.",
+              "Generate: Claude Code turned our wireframes into high-fidelity screens.",
+              "Refine: we adjusted each screen to our design system and accessibility needs.",
+              "Review: we brought updated designs to DARN each week for feedback.",
+            ],
+          },
+          {
+            type: "highlight",
+            label: "Impact",
+            value: "Shorter design iterations meant more rounds of client feedback within the same timeline.",
+          },
+        ],
+      },
+      {
         id: "design",
         label: "Design system",
         heading: "From components to high fidelity",
@@ -795,7 +824,7 @@ export const ProjectData = [
           { type: "image", value: "./photos/darn-hifi-requests.png" },
           {
             type: "text",
-            value: "With UiChemy and Claude Code, we moved designs from Figma into WordPress quickly. We chose WordPress because DARN already knew it, which made handoff to volunteers smoother.",
+            value: "UiChemy and Claude Code also helped us move finished designs into WordPress. We chose WordPress because DARN already knew it, which made handoff to volunteers smoother.",
           },
         ],
       },
@@ -806,7 +835,7 @@ export const ProjectData = [
         content: [
           {
             type: "text",
-            value: "We met with DARN weekly and adjusted as feedback came in and technical constraints became clearer. The biggest change was request tracking. We had planned a detailed set of statuses with admin-only notes on every request.",
+            value: "We met with DARN weekly, and because we could produce updated high-fidelity screens quickly, each check-in focused on real designs instead of descriptions of changes. The biggest change was request tracking. We had planned a detailed set of statuses with admin-only notes on every request.",
           },
           {
             type: "highlight",
@@ -855,7 +884,7 @@ export const ProjectData = [
           },
           {
             type: "text",
-            value: "Moving designs into WordPress with UiChemy and Claude Code shortened the path from Figma to a working site. If I continued the project, I would run usability tests with counselors after launch to see how the portal holds up across a full school year.",
+            value: "Using AI in our process taught me where it helps and where judgment still matters. Claude Code got us from wireframe to high fidelity in a fraction of the time, but the decisions about what to build, and refining the output to fit our design system, were still ours. If I continued the project, I would run usability tests with counselors after launch to see how the portal holds up across a full school year.",
           },
         ],
       },
