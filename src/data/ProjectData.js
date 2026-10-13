@@ -100,7 +100,7 @@ export const ProjectData = [
         id: "user-research",
         label: "Research",
         eyebrow: "User research",
-        heading: "Surveying 99 people across generations",
+        heading: "Surveying 100+ people across generations",
         content: [
           {
             type: "text",
@@ -108,7 +108,7 @@ export const ProjectData = [
           },
           {
             type: "text",
-            value: "From 99 respondents ranging from Gen X to Gen Alpha, a common pattern emerged: while people care for each other, how this is communicated can often lead to arguments.",
+            value: "From 100+ respondents ranging from Gen X to Gen Alpha, a common pattern emerged: while people care for each other, how this is communicated can often lead to arguments.",
           },
           {
             type: "list",
