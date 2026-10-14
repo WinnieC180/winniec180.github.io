@@ -23,7 +23,7 @@ export const ProjectData = [
         label: "Overview",
         content: [
           { Team: "4 developers" },
-          { Role: "Developer & Artist" },
+          { Role: "Programmer and Lead Designer" },
           { Timeline: "Fall 2025 \n(3 weeks)" },
           { Tools: "OCaml, Raylib, \nMedibang Paint Pro" },
         ],
@@ -92,7 +92,7 @@ export const ProjectData = [
           {
             type: "highlight",
             label: "Rice Design-a-thon 2026",
-            value: "Won Best Beginner Design.",
+            value: "Won First in the Beginner Track.",
           },
         ],
       },
@@ -600,9 +600,6 @@ export const ProjectData = [
         content: [
           { type: "text", value: "Entry point: how do users view their cuts?" },
           { type: "image", value: "./photos/DesignChoices1YT.png" },
-          { type: "text", value: "How do users edit and delete a cut?" },
-          { type: "image", value: "./photos/DesignChoices2YT.png" },
-          // TODO: this block duplicated the one above (same text + image). Swap in the third decision, or delete.
           { type: "text", value: "How do users edit and delete a cut?" },
           { type: "image", value: "./photos/DesignChoices2YT.png" },
         ],
