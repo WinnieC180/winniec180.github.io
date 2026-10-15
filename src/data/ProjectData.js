@@ -331,7 +331,7 @@ export const ProjectData = [
           },
           {
             type: "text",
-            value: "We realized the app was missing an incentive system: something that rewards students for continuing to explore, and gives them a real benefit for doing so.",
+            value: "Our interviews showed students explore when there's a social or tangible reason to go, like friends or free food. The app was missing that kind of incentive: something that rewards students for continuing to explore and gives them a real benefit for doing so.",
           },
         ],
         peopleProblem:
@@ -803,7 +803,7 @@ export const ProjectData = [
           {
             type: "highlight",
             label: "Impact",
-            value: "Shorter design iterations meant more rounds of client feedback within the same timeline.",
+            value: "Because we could turn wireframes into high-fidelity screens quickly, every weekly check-in with DARN reviewed real designs, so feedback turned into changes the same week.",
           },
         ],
       },
@@ -832,12 +832,12 @@ export const ProjectData = [
         content: [
           {
             type: "text",
-            value: "We met with DARN weekly, and because we could produce updated high-fidelity screens quickly, each check-in focused on real designs instead of descriptions of changes. The biggest change was request tracking. We had planned a detailed set of statuses with admin-only notes on every request.",
+            value: "We met with DARN weekly and presented updated high-fidelity screens at each check-in, so feedback was based on real designs instead of descriptions of changes. The biggest change was request tracking. We had planned a detailed set of statuses with admin-only notes on every request.",
           },
           {
             type: "highlight",
             label: "What we learned",
-            value: "Counselors mainly needed quick visibility and reassurance, not a detailed pipeline.",
+            value: "When we walked DARN through the planned statuses, we learned counselors mainly needed quick visibility and reassurance, not a detailed pipeline.",
           },
           {
             type: "text",
@@ -855,6 +855,7 @@ export const ProjectData = [
           {
             type: "list",
             items: [
+              "Consolidation: requests that moved between a Google Form, a spreadsheet, and email threads now live in one portal, going from 3 tools to 1.",
               "Security: an invite-only portal with role-based permissions and family codes replaced the spreadsheet workflow.",
               "Visibility: counselors submit and track requests in one place instead of following up by email.",
               "Maintainability: volunteers can update the public site in WordPress without developer support.",
