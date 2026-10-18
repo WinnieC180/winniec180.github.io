@@ -9,8 +9,11 @@ import { hasPlayedIntro, markIntroPlayed } from "../introState"
 function Home () {
     const [entered, setEntered] = useState(hasPlayedIntro);
 
-    const handleEnter = () => {
+    useEffect(() => {
         markIntroPlayed();
+    }, []);
+
+    const handleEnter = () => {
         setEntered(true);
     };
 
