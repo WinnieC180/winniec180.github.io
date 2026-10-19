@@ -309,7 +309,7 @@ function HeroSection() {
       <div ref={refs.splashLayer} className="heroLayer heroLayer--splash" />
 
       <div className="heroContent">
-        <div className="heroLabel">PRODUCT DESIGNER ✦ ENGINEER</div>
+        <div className="heroLabel">UI/UX DESIGNER ✦ ENGINEER</div>
         <h1 className="heroName">Winnie Chan</h1>
         <p className="heroTagline">
           is a designer that develops and{" "}
