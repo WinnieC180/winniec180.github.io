@@ -1,5 +1,5 @@
 import "./projects.css";
-import { useRef, useLayoutEffect, useState } from "react";
+import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../theme";
 
@@ -33,8 +33,21 @@ import loaderNight from "../assets/fishStaticNight.svg";
 const FEATURED_ORDER = ["Loop", "darn", "creator-cuts", "BeeWitched", "CornellGO", "FamJam"];
 const EASE = "cubic-bezier(.2,.7,.3,1)";
 
+// True when the screen is phone-sized
+function useIsMobile(query = "(max-width: 900px)") {
+  const [match, setMatch] = useState(() => window.matchMedia(query).matches);
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    const onChange = (e) => setMatch(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, [query]);
+  return match;
+}
+
 function Projects({ filter = "All" }) {
   const night = useTheme() === "dark";
+  const isMobile = useIsMobile();
   const gridRef = useRef(null);
   const prevIds = useRef(null);
   const tipRef = useRef(null);
@@ -298,22 +311,33 @@ function Projects({ filter = "All" }) {
   const left = shown.filter((_, i) => i % 2 === 0);
   const right = shown.filter((_, i) => i % 2 === 1);
 
+  const moreToCome = (
+    <div className="centerFlex" style={{ flexDirection: "column", gap: "10px" }}>
+      <img
+        src={night ? loaderNight : loaderDay}
+        alt="A fish leaping over the waves"
+        style={{ width: "65%", display: "block", border: "4px solid hsl(209, 49%, 75%)", borderRadius: "22px" }}
+      />
+      <p>More projects to come!</p>
+    </div>
+  );
+
   return (
     <div className="projects" ref={gridRef}>
-      <div className="projectsCol">{left.map(renderCard)}</div>
-      <div className="projectsCol">
-        {right.map(renderCard)}
-        {shown.length % 2 === 1 && (
-          <div className="centerFlex" style={{ flexDirection: "column", gap: "10px" }}>
-            <img
-              src={night ? loaderNight : loaderDay}
-              alt="A fish leaping over the waves"
-              style={{ width: "65%", display: "block", border: "4px solid hsl(209, 49%, 75%)", borderRadius: "22px" }}
-            />
-            <p>More projects to come!</p>
+      {isMobile ? (
+        <div className="projectsCol">
+          {shown.map(renderCard)}
+          {moreToCome}
+        </div>
+      ) : (
+        <>
+          <div className="projectsCol">{left.map(renderCard)}</div>
+          <div className="projectsCol">
+            {right.map(renderCard)}
+            {shown.length % 2 === 1 && moreToCome}
           </div>
-        )}
-      </div>
+        </>
+      )}
 
       <div ref={tipRef} className={tip.show ? "projectTip show" : "projectTip"} aria-hidden="true">
         {tip.data && (

@@ -619,7 +619,6 @@ html, body {
         grid-template-columns: 1fr !important; 
         width: 100% !important;
         gap: 50px !important; 
-        width: clamp(50vw, 800px) !important;
     }
 
     .project .image {
@@ -708,13 +707,6 @@ html, body {
 
     .description {
         min-height: 280px;
-    }
-
-    .projects {
-        grid-template-columns: 1fr !important; 
-        width: 100% !important;
-        gap: 50px !important; 
-        width: clamp(600px, 70vw, 900px) !important;
     }
 
     .footerBio {

@@ -174,8 +174,8 @@
 @media (max-width: 860px) { .hero { --sc: .7; --cloud-top: 100px; } }
 /* phones: cloud sits above the copy instead of beside it */
 @media (max-width: 719px) {
-  .hero { --sc: .56; --cloud-top: 104px; }
-  .heroContent { padding-top: 196px; }
+  .hero { --sc: .56; --cloud-top: 76px; }
+  .heroContent { padding-top: 216px; }
   .heroHint { left: calc(100% + 6px); top: 30%; }
   .heroHint svg { transform: scaleX(-1) rotate(70deg); margin-top: 0; }
   .heroHint span { font-size: 18px; }

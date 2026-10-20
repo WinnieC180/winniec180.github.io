@@ -48,12 +48,17 @@ const galleryItems = [
   { id: 20, src: gal20, x: -1150, y: 150, title: "Pandaa" },
 ];
 
+// Remembered for the session, so the pop-out only plays on the first visit
+let hasAnimated = false;
+
 function Explorations() {
   const [resetKey, setResetKey] = useState(0);
   const constraintsRef = useRef(null);
+  const [animateIn] = useState(() => !hasAnimated);
 
   useEffect(() => {
     document.title = "Winnie's Explorations";
+    hasAnimated = true;
   }, []);
 
   return (
@@ -76,7 +81,7 @@ function Explorations() {
               drag
               dragMomentum={false}
               dragPropagation={false}
-              initial={{ scale: 0, opacity: 0 }}
+              initial={animateIn && resetKey === 0 ? { scale: 0, opacity: 0 } : false}
               animate={{ x: item.x, y: item.y, scale: 1, opacity: 1 }}
             >
               <img src={item.src} alt={item.alt ?? item.title} draggable="false" />
