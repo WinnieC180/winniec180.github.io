@@ -157,3 +157,60 @@
   .aboutPage *, .aboutPage *::before, .aboutPage *::after { animation: none !important; transition: none !important; }
   .inv, .lifeCard { opacity: 1 !important; }
 }
+
+/* ---------- mobile ---------- */
+@media (max-width: 900px) {
+  /* Inventory: bigger item, dialog overlaps the bottom of it */
+  .invStage { flex-basis: 100%; aspect-ratio: 1 / 1; }
+  .invItemWrap { inset: 0 0 72px; transform: translateY(12%); }
+  .invItem { height: 100%; max-width: 96%; }
+  .invShadow { display: none; }
+
+  .invDialog { left: 8px; right: 8px; bottom: 0; padding: 54px 48px 16px 18px; }
+  .invDialogBg { inset: 32px 0 0; opacity: .92; }
+  .invTitle { left: 18px; top: 18px; font-size: 17px; }
+  .invDialog ul { font-size: 16.5px; line-height: 1.35; min-height: 0; padding-left: 20px; }
+  .invNext { position: absolute; right: 20px; bottom: 18px; margin-top: 0; }
+
+  /* Daily Life: title on one line on top, photos in a bigger grid */
+  .life { padding: 80px 32px 120px; }
+  .lifeBoard {
+    aspect-ratio: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 20px;
+    align-items: start;
+  }
+  .lifeCard {
+    position: relative;
+    left: auto !important;
+    top: auto !important;
+    width: auto !important;
+  }
+  .lifeCard:nth-child(3n + 1) { grid-column: 1 / -1; width: 88% !important; justify-self: center; }
+  .lifeFront img { aspect-ratio: 4 / 5 !important; object-fit: cover; }
+  .lifeCard:nth-child(3n + 1) .lifeFront img { aspect-ratio: 4 / 3 !important; }
+  .lifeLip { height: 18px; }
+  .lifeTape { height: 18px; top: -10px; }
+
+  .lifeBack { padding: 12px; gap: 6px; }
+  .lifeBackTitle { font-size: 21px; }
+  .lifeBackText { font-size: 13px; line-height: 1.35; }
+
+  .lifeBoard .deco { display: none; }
+  .lifeBoard .deco.lifeTitle {
+    display: flex;
+    position: static;
+    order: -1;
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-bottom: 8px;
+    justify-content: center;
+    align-items: baseline;
+    gap: 1.2vw;
+    white-space: nowrap;
+  }
+  .lifeTitle > div { margin: 0 !important; }
+  .lifeTitle .lifeSmall { font-size: min(3vw, 18px); }
+  .lifeTitle .lifeScript { font-size: min(6.4vw, 48px); }
+}
