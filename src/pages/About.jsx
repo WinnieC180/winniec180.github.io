@@ -44,9 +44,9 @@ function Intro() {
         <h1>Hello, I’m <span className="aboutName">Winnie</span> :)</h1>
         <h2>A <b>designer</b>, <b>artist</b>, and <b>engineer</b></h2>
         <div className="aboutParas">
-          <p>Experimenting with different mediums of art as a kid shaped how I solve problems, always looking for a new, creative angle.</p>
-          <p>That mindset led me to computer science and technology, where I found the same joy in building something from nothing. Then, during my sophomore year of college, I discovered product design. A way to bring that my creativity into the visual world and directly shape how users experience a product.</p>
-          <p>Now, I combine my technical background with my design sensibility to build solutions that are as thoughtful as they are functional.</p>
+          <p>As a kid, I loved <span className="aboutColor">colors</span>. I was always making something, whether I was filling pages with markers or building with Legos and robots. In high school, I picked up crochet. Every new medium came with its own challenges, and figuring them out taught me to solve problems creatively.</p>
+          <p>That curiosity led me to computer science, where I found the same joy in building programs that made people smile, full of <span className="aboutColor">colorful</span> interactions and worlds. In my sophomore year, I discovered product design and realized it connected everything I loved.</p>
+          <p>Now I design things that make people happy and that everyone can use, with character and equity in mind. I can honestly say my journey through design has been truly <span className="aboutColor">colorful</span>.</p>
           <p className="aboutMajor">Major: Computer Science | Minors: Game Design &amp; Information Science</p>
         </div>
       </div>

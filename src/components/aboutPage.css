@@ -153,6 +153,30 @@
 .lifeSmall { font-size: clamp(9px, .94vw, 13.48px); }
 .lifeScript { font-family: "Oooh Baby", cursive; font-size: clamp(26px, 3.1vw, 44.8px); line-height: .9; }
 
+@keyframes rainbow-glide { from { background-position: 200% 50%; } to { background-position: 0% 50%; } }
+
+.aboutColor {
+  font-weight: 700;
+  background-image: linear-gradient(90deg,
+    rgb(29, 44, 73) 0%, rgb(29, 44, 73) 30%,
+    rgb(232, 93, 117) 38%, rgb(240, 160, 75) 44%, rgb(236, 200, 70) 50%,
+    rgb(96, 180, 130) 56%, rgb(84, 136, 183) 62%, rgb(150, 110, 200) 68%,
+    rgb(29, 44, 73) 76%, rgb(29, 44, 73) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow-glide 3.5s linear infinite;
+}
+
+[data-theme="dark"] .aboutColor {
+  background-image: linear-gradient(90deg,
+    rgb(222, 231, 242) 0%, rgb(222, 231, 242) 30%,
+    rgb(255, 140, 160) 38%, rgb(255, 190, 120) 44%, rgb(255, 225, 120) 50%,
+    rgb(140, 215, 170) 56%, rgb(150, 190, 232) 62%, rgb(195, 160, 240) 68%,
+    rgb(222, 231, 242) 76%, rgb(222, 231, 242) 100%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .aboutPage *, .aboutPage *::before, .aboutPage *::after { animation: none !important; transition: none !important; }
   .inv, .lifeCard { opacity: 1 !important; }
