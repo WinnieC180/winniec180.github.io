@@ -30,7 +30,7 @@ import loaderDay from "../assets/fishStatic.svg";
 import loaderNight from "../assets/fishStaticNight.svg";
 
 // Order of cards when "Featured" is selected
-const FEATURED_ORDER = ["Loop", "darn", "creator-cuts",  "BeeWitched", "CornellGO", "FamJam"];
+const FEATURED_ORDER = ["Loop", "darn", "creator-cuts", "BeeWitched", "CornellGO", "FamJam"];
 const EASE = "cubic-bezier(.2,.7,.3,1)";
 
 function Projects({ filter = "All" }) {
@@ -63,7 +63,7 @@ function Projects({ filter = "All" }) {
       categories: ["Featured", "Case Studies", "Web"],
       image: Loop,
       imageDay: LoopDay,
-      isComplete: false,
+      isComplete: false, // false = greyed out, "Coming soon", not clickable
       details: { role: "Product Designer", team: "1 PM, 1 APM, 1 TPM, 3 devs, 2 designers, 2 PMMs", tools: "Figma, Notion" },
     },
     {
@@ -236,34 +236,37 @@ function Projects({ filter = "All" }) {
   }, [filter]);
 
   const renderCard = (project) => {
+    const comingSoon = !project.isComplete;
     const isExternal = !!project.externalLink;
-    const Tag = isExternal ? "a" : Link;
+    const Tag = comingSoon ? "div" : isExternal ? "a" : Link;
     const d = project.details;
+
+    const linkProps = comingSoon
+      ? { "aria-disabled": "true" }
+      : isExternal
+      ? { href: project.externalLink, target: "_blank", rel: "noreferrer" }
+      : { to: `/${project.id}` };
 
     return (
       <Tag
         key={project.id}
         data-pid={project.id}
-        {...(isExternal
-          ? { href: project.externalLink, target: "_blank", rel: "noreferrer" }
-          : { to: `/${project.id}`})}
-        className="project-card-link"
+        {...linkProps}
+        className={comingSoon ? "project-card-link disabled" : "project-card-link"}
         style={{ textDecoration: "none", color: "var(--clr-page-text)" }}
-        onMouseEnter={(e) => { if (d) { setTip({ data: d, show: true }); moveTip(e); } }}
-        onMouseMove={moveTip}
+        onMouseEnter={(e) => { if (d && !comingSoon) { setTip({ data: d, show: true }); moveTip(e); } }}
+        onMouseMove={comingSoon ? undefined : moveTip}
         onMouseLeave={() => setTip((t) => ({ ...t, show: false }))}
       >
-        <div
-          className={project.isComplete ? "project" : "project notDone"}
-          style={project.isComplete ? {} : { cursor: "default" }}
-        >
+        <div className={comingSoon ? "project notDone" : "project"}>
           <div className="image">
             <img src={project.imageDay || project.image} alt="" className="imgDay" />
             <img src={project.image} alt="" className="imgNight" />
+            {comingSoon && <span className="comingSoon">Coming soon</span>}
           </div>
 
           <div className="name" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <h2 className={project.isComplete ? "title" : "title not"}>
+            <h2 className={comingSoon ? "title not" : "title"}>
               {project.title}
             </h2>
             <div className="tools">

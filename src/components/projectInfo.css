@@ -7,70 +7,122 @@ html {
   color: var(--clr-page-text);
 }
 
-.cs-layout {
-  display: grid;
-  grid-template-columns: 170px minmax(0, 1fr);
-  gap: 48px;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 150px clamp(20px, 3vw, 48px) 120px 12px;
+/* ---------- Progress bar ---------- */
+.cs-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-/* Sidebar: fixed, always visible */
+.cs-progress.show {
+  opacity: 1;
+}
+
+.cs-progress div {
+  height: 100%;
+  background: var(--hero-bg);
+  border-radius: 0 3px 3px 0;
+}
+
+/* ---------- Side tabs (lines) ---------- */
 .cs-toc {
-  width: 170px;
+  --toc-on: var(--clr-page-text);
+  --toc-off: hsl(from var(--clr-secondary-300) h s l / 0.9);
+  position: fixed;
+  left: clamp(20px, 3vw, 48px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+}
+
+/* Over the colored header, use the header's contrasting colors */
+.cs-toc.on-hero {
+  --toc-on: var(--hero-text);
+  --toc-off: var(--hero-line-off);
 }
 
 .cs-toc ol {
-  position: fixed;
-  top: 150px;
-  left: calc(max(0px, (100vw - 1440px) / 2) + 12px);
-  width: 170px;
-  z-index: 10;
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
 .cs-toc a {
-  display: inline-flex;
-  padding-bottom: 4px;
-  font-size: 16px;
-  font-weight: 500;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 72px;            /* wider hover target than the line itself */
+  padding: 6px 0;         /* gap between lines: make smaller/larger here */
+  line-height: 1;
   text-decoration: none;
-  color: var(--clr-secondary-500);
-  opacity: 0.75;
-  transition: color 0.25s ease, opacity 0.25s ease;
 }
 
-.cs-toc a:hover,
-.cs-toc a.active {
-  color: var(--clr-page-text);
-  opacity: 1;
-}
-
-.cs-underline {
-  position: absolute;
-  left: 0;
-  height: 2px;
+.cs-toc-line {
+  display: block;
+  height: 3px;
+  width: 22px;
   border-radius: 2px;
-  background: var(--clr-secondary-300);
-  pointer-events: none;
-  transition: top 0.45s cubic-bezier(.2, .7, .3, 1), width 0.45s cubic-bezier(.2, .7, .3, 1);
+  background-color: var(--toc-off);
+  /* Slow slide back + fade when un-hovered (the trailing effect) */
+  transition: width 1.1s cubic-bezier(.25, .6, .3, 1), background-color 1.6s ease;
 }
 
-/* Hero + header */
-.cs-article {
-  min-width: 0;
+.cs-toc a.active .cs-toc-line {
+  width: 40px;
+  background-color: var(--toc-on);
+}
+
+.cs-toc a:hover .cs-toc-line {
+  width: 64px;
+  background-color: var(--toc-on);
+  /* Fast extend + darken on hover */
+  transition: width 0.18s cubic-bezier(.2, .8, .3, 1), background-color 0.12s ease;
+}
+
+.cs-toc-label {
+  position: absolute;
+  left: 78px;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--toc-on);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.25s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.cs-toc a:hover .cs-toc-label {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Colored header ---------- */
+.cs-band {
+  background: var(--hero-bg);
+  padding: 130px clamp(20px, 4vw, 48px) 64px;
+}
+
+.cs-band-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .cs-hero {
   aspect-ratio: 3 / 1;
-  max-width: 1100px;
-  margin: 0 auto;
+  width: 100%;
   border-radius: 20px;
   overflow: hidden;
   background: var(--clr-primary-300);
@@ -83,21 +135,16 @@ html {
   display: block;
 }
 
-.cs-column {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
 .cs-title {
   margin: 44px 0 0;
-  font-size: clamp(22px, 2.3vw, 30px);
+  font-size: clamp(24px, 2.6vw, 34px);
   line-height: 1.25;
   font-weight: 600;
   letter-spacing: -0.01em;
+  color: var(--hero-text);
   text-wrap: pretty;
 }
 
-/* External project link (e.g. Devpost) */
 .cs-link {
   display: inline-flex;
   align-items: center;
@@ -106,16 +153,17 @@ html {
   margin-top: 16px;
   padding: 8px 14px;
   border-radius: 10px;
-  border: 2px dashed var(--clr-secondary-300);
+  border: 2px dashed var(--hero-muted);
   font-size: 15px;
-  color: var(--clr-page-text);
+  background-color: var(--clr-primary-700);
+  color: var(--clr-primary-300);
   text-decoration: none;
-  transition: background-color .25s ease, color .25s ease;
+  transition: background-color .25s ease;
 }
 
 .cs-link:hover {
-  background-color: hsl(from var(--clr-secondary-300) h s l / 0.15);
-  color: var(--clr-secondary-500);
+  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--hero-text);
 }
 
 .cs-meta {
@@ -123,8 +171,6 @@ html {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
   margin-top: 36px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid hsl(from var(--clr-secondary-300) h s l / 0.35);
 }
 
 .cs-meta div {
@@ -136,15 +182,22 @@ html {
 .cs-meta-label {
   font-size: 18px;
   font-weight: 700;
+  color: var(--hero-text);
 }
 
 .cs-meta-value {
   font-size: 17px;
-  color: var(--clr-secondary-500);
+  color: var(--hero-muted);
   white-space: pre-line;
 }
 
-/* Sections */
+/* ---------- Content ---------- */
+.cs-main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 20px 120px;
+}
+
 .cs-section {
   padding-top: 88px;
   display: flex;
@@ -191,7 +244,6 @@ html {
   border-radius: 12px;
 }
 
-/* Phone screenshots: keep them phone-sized and centered */
 .cs-image.mobile {
   max-width: 320px;
   margin-inline: auto;
@@ -235,7 +287,7 @@ html {
   color: rgb(195, 227, 250);
 }
 
-/* Videos (ScrollVideo cards) */
+/* ---------- Videos ---------- */
 .cs-videos {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
@@ -254,7 +306,6 @@ html {
   height: auto;
   display: block;
   background: transparent;
-  /* Round corners as a % of the video's size so they follow the phone's shape at any width */
   clip-path: inset(0 round 15% / 7.4%);
 }
 
@@ -265,7 +316,7 @@ html {
   color: var(--clr-secondary-300);
 }
 
-/* Explore more */
+/* ---------- Explore more ---------- */
 .cs-more {
   padding-top: 112px;
   display: flex;
@@ -362,7 +413,7 @@ html {
   color: var(--clr-secondary-300);
 }
 
-/* Live site preview in a simple browser frame */
+/* ---------- Live site preview ---------- */
 .cs-preview {
   border-radius: 12px;
   overflow: hidden;
@@ -404,19 +455,18 @@ html {
   background: #fff;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .cs-layout {
-    grid-template-columns: minmax(0, 1fr);
-    padding: 120px 20px 80px;
-  }
-
+/* ---------- Responsive ---------- */
+@media (max-width: 1180px) {
   .cs-toc {
     display: none;
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 640px) {
+  .cs-band {
+    padding-top: 110px;
+  }
+
   .cs-meta {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

@@ -641,10 +641,10 @@ export const ProjectData = [
         id: "overview",
         label: "Overview",
         content: [
-          { Role: "Product Designer" },
+          { Role: "Designer" },
           { Timeline: "Summer 2026 \n(16 weeks)" },
-          { Team: "1 PM, 1 TPM, 2 developers, 3 designers" },
-          { Tools: "Figma, WordPress, UiChemy, Claude Code" },
+          { Team: "1 PM, 1 TPM, \n2 developers, 3 designers" },
+          { Tools: "Figma, WordPress, \nUiChemy, Claude Code" },
         ],
       },
       {

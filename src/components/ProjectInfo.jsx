@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ProjectData } from "../data/ProjectData.js";
 import "./projectInfo.css";
 import NavBar from "./Navbar.jsx";
@@ -18,6 +18,22 @@ import CreatorCutsNight from "../imgProjects/CreatorsCuts.svg";
 import FamJamNight from "../imgProjects/FamJam.svg";
 import DarnNight from "../imgProjects/Darn.svg";
 
+// Hero band color for each project, keyed by project id. Change these hex codes anytime.
+const HERO_COLORS = {
+  darn: "#195cae",
+  FamJam: "#ff8c49",
+  Loop: "#2F5DA8",
+  CornellGO: "#df5049",
+  "creator-cuts": "#dd4c47",
+  "oh-my-camel": "#f0b259",
+  "quack-a-goose": "#4fd6d8",
+  "study-buddy": "#6C63B5",
+};
+const DEFAULT_HERO = "#2A4D87";
+
+// Projects that are not ready yet; hidden from "Explore more"
+const COMING_SOON = ["Loop"];
+
 // "Explore more" cards: first two that aren't the current page are shown
 const MORE = [
   { id: "darn", name: "DARN", desc: "Redesigning a nonprofit’s internal and admin website", year: "2026", imageDay: DarnDay, imageNight: DarnNight, to: "/darn" },
@@ -26,6 +42,13 @@ const MORE = [
   { id: "CornellGO", name: "CornellGO", desc: "A scavenger hunt app that makes discovering campus easy and fun", year: "2026", imageDay: CornellGODay, imageNight: CornellGONight, to: "/CornellGO" },
   { id: "FamJam", name: "FamJam", desc: "An inclusive game that closes the gap between generations", year: "2026", imageDay: FamJamDay, imageNight: FamJamNight, to: "/FamJam" },
 ];
+
+// Is this hex color light enough to need dark text on top of it?
+function isLight(hex) {
+  const n = parseInt(hex.replace("#", ""), 16);
+  const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255 > 0.6;
+}
 
 function Callout({ label, text, dark }) {
   return (
@@ -44,36 +67,42 @@ function ProjectInfo() {
   const sections = project ? project.sections.filter((s) => s.id !== "overview") : [];
 
   const [active, setActive] = useState(sections[0]?.id);
-  const [underline, setUnderline] = useState(null);
-  const labelRefs = useRef({});
+  const [progress, setProgress] = useState(0);
+  const [pastHero, setPastHero] = useState(false);
+  const [onHero, setOnHero] = useState(true);
+  const heroRef = useRef(null);
+  const mainRef = useRef(null);
 
-  // Track which section is on screen
   useEffect(() => {
     window.scrollTo(0, 0);
     const onScroll = () => {
+      // Which section is on screen
       let cur = sections[0]?.id;
       sections.forEach((s) => {
         const el = document.getElementById(s.id);
-        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.35) cur = s.id;
+        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.4) cur = s.id;
       });
       setActive(cur);
+
+      // Progress bar starts after the colored header
+      const hero = heroRef.current;
+      const main = mainRef.current;
+      if (!hero || !main) return;
+      const y = window.scrollY;
+      const start = hero.getBoundingClientRect().bottom + y;
+      const end = main.getBoundingClientRect().bottom + y - window.innerHeight;
+      setPastHero(y >= start - 1);
+      setOnHero(y + window.innerHeight / 2 < start); // tab lines sit over the header
+      setProgress(end > start ? Math.min(1, Math.max(0, (y - start) / (end - start))) : 0);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [projectId]);
-
-  // Move the sidebar underline under the active tab
-  useLayoutEffect(() => {
-    const place = () => {
-      const el = labelRefs.current[active];
-      if (el) setUnderline({ top: el.offsetTop + el.offsetHeight + 2, width: el.offsetWidth });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
-    place();
-    window.addEventListener("resize", place);
-    document.fonts?.ready.then(place).catch(() => {});
-    return () => window.removeEventListener("resize", place);
-  }, [active]);
+  }, [projectId]);
 
   const goTo = (e, id) => {
     e.preventDefault();
@@ -83,7 +112,16 @@ function ProjectInfo() {
 
   if (!project) return <div>Project not found</div>;
 
-  const more = MORE.filter((m) => m.id !== project.id).slice(0, 2);
+  const more = MORE.filter((m) => m.id !== project.id && !COMING_SOON.includes(m.id)).slice(0, 2);
+
+  const heroBg = HERO_COLORS[project.id] || DEFAULT_HERO;
+  const light = isLight(heroBg);
+  const themeVars = {
+    "--hero-bg": heroBg,
+    "--hero-text": light ? "#1F2B4A" : "#FFFFFF",
+    "--hero-muted": light ? "#000000" : "#dadada",
+    "--hero-line-off": light ? "rgba(31,43,74,0.3)" : "rgba(255,255,255,0.4)",
+  };
 
   const renderItem = (item, idx) => {
     if (item.type === "text") return <p key={idx} className="cs-body">{item.value}</p>;
@@ -110,113 +148,120 @@ function ProjectInfo() {
   };
 
   return (
-    <div className="cs-page">
+    <div className="cs-page" style={themeVars}>
       <NavBar />
-      <div className="cs-layout">
-        <aside className="cs-toc">
-          <ol>
-            {underline && (
-              <div className="cs-underline" style={{ top: underline.top, width: underline.width }} />
-            )}
-            {sections.map((s) => (
-              <li key={s.id}>
-                <a
-                  href={`#${s.id}`}
-                  onClick={(e) => goTo(e, s.id)}
-                  className={active === s.id ? "active" : ""}
-                >
-                  <span ref={(el) => (labelRefs.current[s.id] = el)}>{s.label}</span>
-                </a>
-              </li>
-            ))}
-          </ol>
-        </aside>
 
-        <article className="cs-article">
+      {/* Reading progress bar, in the project's color */}
+      <div className={pastHero ? "cs-progress show" : "cs-progress"}>
+        <div style={{ width: `${progress * 100}%` }} />
+      </div>
+
+      {/* Side tabs: lines, label shows on hover */}
+      <aside className={onHero ? "cs-toc on-hero" : "cs-toc"}>
+        <ol>
+          {sections.map((s) => (
+            <li key={s.id}>
+              <a
+                href={`#${s.id}`}
+                onClick={(e) => goTo(e, s.id)}
+                className={active === s.id ? "active" : ""}
+                aria-label={s.label}
+              >
+                <span className="cs-toc-line" />
+                <span className="cs-toc-label">{s.label}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </aside>
+
+      {/* Colored header */}
+      <header ref={heroRef} className="cs-band">
+        <div className="cs-band-inner">
           <div className="cs-hero">
-            {/* Uses the 3:1 banner if the project has one, otherwise the regular project image */}
             <img src={project.banner || project.image} alt={project.subTitle} />
           </div>
 
-          <div className="cs-column">
-            <h1 className="cs-title">{project.title || project.subTitle}</h1>
+          <h1 className="cs-title">{project.title || project.subTitle}</h1>
 
-            {project.link && (
-              <a href={project.link} target="_blank" rel="noreferrer" className="cs-link">
-                {project.linkLabel || "View project"} ↗
-              </a>
-            )}
+          {project.link && (
+            <a href={project.link} target="_blank" rel="noreferrer" className="cs-link">
+              {project.linkLabel || "View project"} ↗
+            </a>
+          )}
 
-            {overview && (
-              <div className="cs-meta">
-                {overview.content.map((item, i) => {
-                  const [label, value] = Object.entries(item)[0];
-                  return (
-                    <div key={i}>
-                      <span className="cs-meta-label">{label}</span>
-                      <span className="cs-meta-value">{value}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-
-            {sections.map((section) => (
-              <section key={section.id} id={section.id} className="cs-section">
-                <div className="cs-eyebrow">{section.eyebrow || section.label}</div>
-                {section.heading && <h2 className="cs-heading">{section.heading}</h2>}
-                {section.subLabel && <p className="cs-body">{section.subLabel}</p>}
-
-                {section.videos ? (
-                  <div className="cs-videos">
-                    {section.videos.map((vid, i) => (
-                      <ScrollVideo key={i} src={vid.link} name={vid.name} />
-                    ))}
+          {overview && (
+            <div className="cs-meta">
+              {overview.content.map((item, i) => {
+                const [label, value] = Object.entries(item)[0];
+                return (
+                  <div key={i}>
+                    <span className="cs-meta-label">{label}</span>
+                    <span className="cs-meta-value">{value}</span>
                   </div>
-                ) : Array.isArray(section.content) ? (
-                  section.content.map(renderItem)
-                ) : (
-                  section.content && <p className="cs-body">{section.content}</p>
-                )}
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </header>
 
-                {section.peopleProblem && <Callout dark label="How might we" text={section.peopleProblem} />}
+      {/* Content */}
+      <main ref={mainRef} className="cs-main">
+        {sections.map((section) => (
+          <section key={section.id} id={section.id} className="cs-section">
+            <div className="cs-eyebrow">{section.eyebrow || section.label}</div>
+            {section.heading && <h2 className="cs-heading">{section.heading}</h2>}
+            {section.subLabel && <p className="cs-body">{section.subLabel}</p>}
 
-                {section.pictures &&
-                  section.pictures.map((pic, i) => <img key={i} src={pic} alt="" className="cs-image" />)}
-              </section>
-            ))}
-
-            {more.length > 0 && (
-              <section className="cs-more">
-                <h2>Explore more of my projects!</h2>
-                <div className="cs-more-grid">
-                  {more.map((m) => {
-                    const inner = (
-                      <>
-                        <div className="cs-more-img">
-                          <img src={m.imageDay} alt={m.name} className="moreDay" />
-                          <img src={m.imageNight} alt="" className="moreNight" />
-                        </div>
-                        <div className="cs-more-text">
-                          <p><strong>{m.name}</strong></p>
-                          <span>{m.year}</span>
-                        </div>
-                      </>
-                    );
-                    return m.to ? (
-                      <Link key={m.id} to={m.to} className="cs-more-card">{inner}</Link>
-                    ) : (
-                      <a key={m.id} href={m.link} target="_blank" rel="noreferrer" className="cs-more-card">{inner}</a>
-                    );
-                  })}
-                </div>
-              </section>
+            {section.videos ? (
+              <div className="cs-videos">
+                {section.videos.map((vid, i) => (
+                  <ScrollVideo key={i} src={vid.link} name={vid.name} />
+                ))}
+              </div>
+            ) : Array.isArray(section.content) ? (
+              section.content.map(renderItem)
+            ) : (
+              section.content && <p className="cs-body">{section.content}</p>
             )}
 
-            <Link to="/" className="cs-back">← Back to the Expedition Log</Link>
-          </div>
-        </article>
-      </div>
+            {section.peopleProblem && <Callout dark label="How might we" text={section.peopleProblem} />}
+
+            {section.pictures &&
+              section.pictures.map((pic, i) => <img key={i} src={pic} alt="" className="cs-image" />)}
+          </section>
+        ))}
+
+        {more.length > 0 && (
+          <section className="cs-more">
+            <h2>Explore more of my projects!</h2>
+            <div className="cs-more-grid">
+              {more.map((m) => {
+                const inner = (
+                  <>
+                    <div className="cs-more-img">
+                      <img src={m.imageDay} alt={m.name} className="moreDay" />
+                      <img src={m.imageNight} alt="" className="moreNight" />
+                    </div>
+                    <div className="cs-more-text">
+                      <p><strong>{m.name}</strong></p>
+                      <span>{m.year}</span>
+                    </div>
+                  </>
+                );
+                return m.to ? (
+                  <Link key={m.id} to={m.to} className="cs-more-card">{inner}</Link>
+                ) : (
+                  <a key={m.id} href={m.link} target="_blank" rel="noreferrer" className="cs-more-card">{inner}</a>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        <Link to="/" className="cs-back">← Back to the Expedition Log</Link>
+      </main>
     </div>
   );
 }
