@@ -37,7 +37,7 @@ const COMING_SOON = ["Loop"];
 // "Explore more" cards: first two that aren't the current page are shown
 const MORE = [
   { id: "darn", name: "DARN", desc: "Redesigning a nonprofit's internal and admin website", year: "2026", imageDay: DarnDay, imageNight: DarnNight, to: "/darn" },
-  { id: "creator-cuts", name: "Creator's Cuts", desc: "Giving viewers control over their YouTube recommendations", year: "2025", imageDay: CreatorCutsDay, imageNight: CreatorCutsNight, to: "/creator-cuts" },
+  { id: "creator-cuts", name: "Creators Cuts", desc: "Giving viewers control over their YouTube recommendations", year: "2025", imageDay: CreatorCutsDay, imageNight: CreatorCutsNight, to: "/creator-cuts" },
   { id: "Loop", name: "Loop", desc: "Chrome extension that helps Cornell students cut through listserv clutter", year: "2026", imageDay: LoopDay, imageNight: LoopNight, to: "/Loop" },
   { id: "CornellGO", name: "CornellGO", desc: "A scavenger hunt app that makes discovering campus easy and fun", year: "2026", imageDay: CornellGODay, imageNight: CornellGONight, to: "/CornellGO" },
   { id: "FamJam", name: "FamJam", desc: "An inclusive game that closes the gap between generations", year: "2026", imageDay: FamJamDay, imageNight: FamJamNight, to: "/FamJam" },
@@ -73,14 +73,18 @@ function ProjectInfo() {
   const heroRef = useRef(null);
   const mainRef = useRef(null);
 
-  useEffect(() => {
+    useEffect(() => {
     window.scrollTo(0, 0);
+    const ids = (ProjectData.find((p) => p.id === projectId)?.sections ?? [])
+      .filter((s) => s.id !== "overview")
+      .map((s) => s.id);
+
     const onScroll = () => {
       // Which section is on screen
-      let cur = sections[0]?.id;
-      sections.forEach((s) => {
-        const el = document.getElementById(s.id);
-        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.4) cur = s.id;
+      let cur = ids[0];
+      ids.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.4) cur = id;
       });
       setActive(cur);
 
