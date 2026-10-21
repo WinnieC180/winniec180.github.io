@@ -470,9 +470,10 @@ export const ProjectData = [
   {
     id: "creator-cuts",
     subTitle: "Creator's Cuts",
-    title: "Creator's Cuts: Giving viewers control over their YouTube recommendations",
+    title: "Giving viewers control over their YouTube recommendations",
     image: CreatorsCut,
     banner: YouTubeBanner,
+    heroWord: "YouTube",
     sections: [
       {
         id: "overview",
@@ -485,21 +486,38 @@ export const ProjectData = [
         ],
       },
       {
+        id: "intro",
+        label: "Overview",
+        steps: [
+          {
+            title: "Creator's Cuts",
+            video: "./videos/YouTube-loading.mp4",
+            crop: true,
+            body: "Creator's Cuts was my first case study. Through it, I learned the process of designing a new feature, learned Figma, and discovered my interest in digital product design.\n\nComing from a technical computer science background, it made me realize that a product is created to help users, not just to show technical work.",
+          },
+          {
+            title: "Entry points",
+            video: "./videos/entry-point.mp4",
+            body: "Cuts appear as color-coded chips at the top of the Home feed, next to All. Viewers can also open them from the Creator's cuts playlist in the You tab, or add the video they're watching to a cut from its menu.",
+          },
+          {
+            title: "Creating a new cut",
+            video: "./videos/creating-cut.mp4",
+            body: "Tapping + opens a short form: name the cut, set its visibility, and pick a color so it's easy to spot in the feed. Viewers can turn on Collaborate to build a cut with friends.",
+          },
+          {
+            title: "Editing and deleting cuts",
+            video: "./videos/edit-delete-cut.mp4",
+            body: "From All creator's cuts, each cut's menu lets viewers rename it, change its color, or delete it, so their categories can change as their interests do.",
+          },
+        ],
+      },
+      {
         id: "context",
         label: "Context",
         heading: "What is Creator's Cuts?",
         content:
           "Creator's Cuts is a YouTube feature concept that lets viewers divide their For You page into custom, color-coded categories they define themselves. By sorting content intentionally, viewers send clearer signals to the recommendation algorithm, so YouTube can surface videos that match their interests and viewing intent while showing fewer irrelevant suggestions.",
-      },
-      {
-        id: "case-preview",
-        label: "Final designs",
-        heading: "Three core flows",
-        videos: [
-          { name: "Entry points", link: "./videos/entry-point.mp4" },
-          { name: "Creating a new cut", link: "./videos/creating-cut.mp4" },
-          { name: "Editing and deleting cuts", link: "./videos/edit-delete-cut.mp4" },
-        ],
       },
       {
         id: "problem",
@@ -633,9 +651,10 @@ export const ProjectData = [
   {
     id: "darn",
     subTitle: "DARN",
-    title: "DARN: A public website and secure Counselor Portal for a Bexley nonprofit",
+    title: "A public website and secure Counselor & Admin Portal for a Bexley nonprofit",
     image: Darn,
     banner: DarnBanner,
+    heroWord: "Bexley DARN",
     sections: [
       {
         id: "overview",

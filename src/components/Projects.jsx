@@ -73,7 +73,7 @@ function Projects({ filter = "All" }) {
         "Chrome extension that helps Cornell students cut through listserv clutter and find events, opportunities, and resources that matter to them.",
       timeSpent: "-----",
       tools: ["Launching Soon!"],
-      categories: ["Featured", "Case Studies", "Web"],
+      categories: ["Featured", "Web"],
       image: Loop,
       imageDay: LoopDay,
       isComplete: false, // false = greyed out, "Coming soon", not clickable

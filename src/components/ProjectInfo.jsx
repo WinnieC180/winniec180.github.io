@@ -4,6 +4,7 @@ import { ProjectData } from "../data/ProjectData.js";
 import "./projectInfo.css";
 import NavBar from "./Navbar.jsx";
 import { ScrollVideo } from "./ScrollVideo.jsx";
+import { ScrollSteps } from "./ScrollSteps.jsx";
 
 // Day images
 import LoopDay from "../imgProjects/day/Loop.svg";
@@ -181,61 +182,71 @@ function ProjectInfo() {
 
       {/* Colored header */}
       <header ref={heroRef} className="cs-band">
-        <div className="cs-band-inner">
+        <div className={project.heroWord ? "cs-band-inner has-word" : "cs-band-inner"}>
+          {project.heroWord && <div className="cs-hero-word" aria-hidden="true">{project.heroWord}</div>}
           <div className="cs-hero">
             <img src={project.banner || project.image} alt={project.subTitle} />
           </div>
 
-          <h1 className="cs-title">{project.title || project.subTitle}</h1>
+          <div className="cs-hero-text">
+            <h1 className="cs-title">{project.title || project.subTitle}</h1>
 
-          {project.link && (
-            <a href={project.link} target="_blank" rel="noreferrer" className="cs-link">
-              {project.linkLabel || "View project"} ↗
-            </a>
-          )}
+            {project.link && (
+              <a href={project.link} target="_blank" rel="noreferrer" className="cs-link">
+                {project.linkLabel || "View project"} ↗
+              </a>
+            )}
 
-          {overview && (
-            <div className="cs-meta">
-              {overview.content.map((item, i) => {
-                const [label, value] = Object.entries(item)[0];
-                return (
-                  <div key={i}>
-                    <span className="cs-meta-label">{label}</span>
-                    <span className="cs-meta-value">{value}</span>
-                  </div>
-                );
-              })}
-            </div>
-          )}
+            {overview && (
+              <div className="cs-meta">
+                {overview.content.map((item, i) => {
+                  const [label, value] = Object.entries(item)[0];
+                  return (
+                    <div key={i}>
+                      <span className="cs-meta-label">{label}</span>
+                      <span className="cs-meta-value">{value}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+          
         </div>
       </header>
 
       {/* Content */}
       <main ref={mainRef} className="cs-main">
-        {sections.map((section) => (
-          <section key={section.id} id={section.id} className="cs-section">
-            <div className="cs-eyebrow">{section.eyebrow || section.label}</div>
-            {section.heading && <h2 className="cs-heading">{section.heading}</h2>}
-            {section.subLabel && <p className="cs-body">{section.subLabel}</p>}
+        {sections.map((section) =>
+          section.steps ? (
+            <section key={section.id} id={section.id}>
+              <ScrollSteps eyebrow={section.label} steps={section.steps} />
+            </section>
+          ) : (
+            <section key={section.id} id={section.id} className="cs-section">
+              <div className="cs-eyebrow">{section.eyebrow || section.label}</div>
+              {section.heading && <h2 className="cs-heading">{section.heading}</h2>}
+              {section.subLabel && <p className="cs-body">{section.subLabel}</p>}
 
-            {section.videos ? (
-              <div className="cs-videos">
-                {section.videos.map((vid, i) => (
-                  <ScrollVideo key={i} src={vid.link} name={vid.name} />
-                ))}
-              </div>
-            ) : Array.isArray(section.content) ? (
-              section.content.map(renderItem)
-            ) : (
-              section.content && <p className="cs-body">{section.content}</p>
-            )}
+              {section.videos ? (
+                <div className="cs-videos">
+                  {section.videos.map((vid, i) => (
+                    <ScrollVideo key={i} src={vid.link} name={vid.name} />
+                  ))}
+                </div>
+              ) : Array.isArray(section.content) ? (
+                section.content.map(renderItem)
+              ) : (
+                section.content && <p className="cs-body">{section.content}</p>
+              )}
 
-            {section.peopleProblem && <Callout dark label="How might we" text={section.peopleProblem} />}
+              {section.peopleProblem && <Callout dark label="How might we" text={section.peopleProblem} />}
 
-            {section.pictures &&
-              section.pictures.map((pic, i) => <img key={i} src={pic} alt="" className="cs-image" />)}
-          </section>
-        ))}
+              {section.pictures &&
+                section.pictures.map((pic, i) => <img key={i} src={pic} alt="" className="cs-image" />)}
+            </section>
+          )
+        )}
 
         {more.length > 0 && (
           <section className="cs-more">

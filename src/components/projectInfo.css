@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap");
+
 html {
   scroll-behavior: smooth;
 }
@@ -110,7 +112,7 @@ html {
 /* ---------- Colored header ---------- */
 .cs-band {
   background: var(--hero-bg);
-  padding: 130px clamp(20px, 4vw, 48px) 64px;
+  padding: 110px clamp(20px, 4vw, 48px) 64px;
 }
 
 .cs-band-inner {
@@ -125,7 +127,6 @@ html {
   width: 100%;
   border-radius: 20px;
   overflow: hidden;
-  background: var(--clr-primary-300);
 }
 
 .cs-hero img {
@@ -133,6 +134,66 @@ html {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* Big wordmark behind the banner (projects with heroWord) */
+.cs-band-inner.has-word {
+  max-width: 1320px;
+}
+
+.has-word {
+  padding-top: 0;
+}
+
+.cs-hero-word {
+  position: relative;
+  z-index: 0;
+  margin-top: 0.05em;
+  margin-bottom: -0.15em;   /* card position: closer to 0 = banner lower / more word showing */
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;         /* thinner: try 400 for even lighter */
+  font-size: clamp(80px, min(13vw, 22vh), 220px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--hero-text);
+}
+
+/* Smaller banner: narrower, and capped by screen height so the details below stay visible */
+.has-word .cs-hero {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1100px, 3 * 38vh);
+  margin-inline: auto;
+}
+
+/* Title + details: same width as the banner and centered under it, contents left-aligned */
+.cs-hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.has-word .cs-hero-text {
+  width: min(100%, 1100px, 3 * 38vh);
+  margin-inline: auto;
+}
+
+.cs-hero-text .cs-meta {
+  width: 100%;
+}
+
+.has-word .cs-title {
+  margin-top: 28px;
+}
+
+.has-word .cs-meta {
+  margin-top: 24px;
+}
+
+.has-word .cs-meta-value {
+  color: var(--hero-text);
 }
 
 .cs-title {

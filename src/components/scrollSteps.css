@@ -1,0 +1,157 @@
+/* Break out of the 760px .cs-main column so the section can use the full width */
+.ss-track {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+.ss-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(20px, 4vw, 48px);
+}
+
+.ss-grid {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(24px, 4vw, 64px);
+  align-items: center;
+}
+
+.ss-text {
+  min-height: 320px;
+}
+
+.ss-copy {
+  position: relative;
+  margin-top: 16px;
+}
+
+/* First step sets the height; the others stack on top of it */
+.ss-step {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .45s ease, transform .55s cubic-bezier(.2, .7, .3, 1);
+}
+.ss-step:first-child { position: relative; }
+.ss-step.is-next { transform: translateY(14px); }
+.ss-step.is-past { transform: translateY(-14px); }
+.ss-step.is-active { opacity: 1; transform: none; pointer-events: auto; }
+
+.ss-title {
+  margin: 0;
+  font-size: clamp(28px, 3.4vw, 48px);
+  line-height: 1.1;
+  font-weight: 700;
+  color: var(--clr-page-text);
+  text-wrap: pretty;
+}
+
+.ss-body {
+  margin: 20px 0 0;
+  max-width: 520px;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.6;
+  color: var(--clr-secondary-500);
+  white-space: pre-line;
+  text-wrap: pretty;
+}
+
+.ss-dots {
+  display: flex;
+  gap: 10px;
+  margin-top: 32px;
+}
+.ss-dots button {
+  border: 0;
+  padding: 8px 0;
+  background: none;
+  cursor: pointer;
+}
+.ss-dots span {
+  display: block;
+  width: 22px;
+  height: 4px;
+  border-radius: 2px;
+  background: hsl(from var(--clr-secondary-300) h s l / 0.35);
+  transition: width .4s cubic-bezier(.2, .7, .3, 1), background-color .3s ease;
+}
+.ss-dots button.active span {
+  background: var(--clr-page-text);
+}
+
+/* Phone frame */
+.ss-phone-wrap {
+  display: flex;
+  justify-content: center;
+}
+.ss-phone {
+  height: min(78vh, 760px);
+  aspect-ratio: 9 / 19.3;
+  border-radius: 15% / 7%;
+  background: #111;
+  padding: 3.2%;
+  box-shadow: 0 0 0 2px #3b3b3b, 0 24px 60px rgba(18, 21, 36, .25);
+}
+.ss-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 13% / 6.2%;
+  overflow: hidden;
+  background: #1c1c1c;
+}
+
+.ss-island {
+  position: absolute;
+  top: 2.2%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  height: 3.6%;
+  border-radius: 999px;
+  background: #000;
+  z-index: 20;
+}
+
+/* Videos slide in from the right */
+.ss-video {
+  position: absolute;
+  /* Zoomed slightly so the phone edge recorded in the videos is hidden behind the frame */
+  top: -3.5%;
+  left: -4.5%;
+  width: 109%;
+  height: 107%;
+  object-fit: cover;
+  transform: translateX(105%);
+  transition: transform .7s cubic-bezier(.65, 0, .25, 1);
+}
+.ss-video.in { transform: translateX(0); }
+
+/* Zooms the uncropped YouTube-loading video to just its phone screen.
+   Once the video is cropped, remove `crop: true` from ProjectData. */
+.ss-video.crop {
+  left: -41.8%;
+  top: -15.2%;
+  width: 183.7%;
+  height: 130.3%;
+  object-fit: fill;
+}
+
+@media (max-width: 900px) {
+  .ss-sticky { padding: 0px 20px 24px; }
+  .ss-grid { grid-template-columns: 1fr; gap: 20px; }
+  .ss-text { min-height: 0; }
+  .ss-dots { margin-top: 12px; }
+  .ss-phone { height: min(50vh, 460px); }
+}
