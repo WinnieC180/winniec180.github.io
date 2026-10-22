@@ -503,7 +503,7 @@ export const ProjectData = [
           {
             title: "Creating a new cut",
             video: "./videos/creating-cut.mp4",
-            body: "Tapping + opens a short form: name the cut, set its visibility, and pick a color so it's easy to spot in the feed. Viewers can turn on Collaborate to build a cut with friends.",
+            body: "Tapping + opens a short form: name the cut, set its visibility, and pick a color so it's easy to spot in the feed as a border around the video or shorts.",
           },
           {
             title: "Editing and deleting cuts",
@@ -522,42 +522,29 @@ export const ProjectData = [
       {
         id: "problem",
         label: "Problem",
-        heading: "How did my first problem statement hold up?",
-        content: [
-          { type: "text", value: "I started this case study with a people problem drawn from my own viewing habits:" },
+        problemSteps: [
           {
-            type: "highlight",
-            label: "Original people problem",
-            value: "As someone who often doom-scrolls, I want to watch short, funny clips from long streams I didn't have time to see.",
-          },
-          { type: "image", value: "./photos/But....png" },
-          {
-            type: "text",
-            value: "This statement described my own frustration, not a need I had confirmed with other viewers. Before designing anything, I needed to find out whether other people shared it.",
-          },
-        ],
-      },
-      {
-        id: "problem-space",
-        label: "Reframing",
-        eyebrow: "Problem space",
-        heading: "Reframing the problem",
-        content: [
-          {
-            type: "text",
-            value: "Viewers often open YouTube during a break to find something specific, but getting to it is harder than it should be:",
+            image: "./photos/me_1.png",
+            alt: "Winnie looking at her phone, confused",
+            body: "I am a habit user of YouTube whether it is videos or shorts. When I was asked to create a People's Problem, I picked up YouTube (and may or may not have ended in me doomscrolling) and got increasingly annoyed when creators would say come back for part 2 and you could not find the continuation to that reel",
           },
           {
-            type: "list",
-            items: [
-              "Viewers prefer quick, effortless discovery over actively searching for videos.",
-              "Eye-catching but unrelated videos pull viewers away from what they came to watch.",
+            image: "./photos/me_2.png",
+            alt: "Winnie with a blank phone, thinking",
+            body: "When presenting this problem a critique I got was this sounds more like my problem rather than the users, how is creating a feature that solves this one issue make the app experience of YouTube better?",
+          },
+          {
+            image: "./photos/me_3.png",
+            alt: "Winnie with a notepad and pencil, pointing up",
+            body: "Now I need to figure out the problem space, but how should I do that? Through user research!!!  I did so by:",
+            list: [
+              "Interviewing users of the app, whom each have used the app at varying frequencies and at different times",
+              "Seeing them go through YouTube and what they frequent on the app",
             ],
           },
         ],
-        peopleProblem:
-          "How might we enable users to effortlessly find specific content on YouTube during breaks while minimizing distractions from visually appealing but irrelevant videos?",
       },
+
       {
         id: "user-research",
         label: "Research",
@@ -578,6 +565,28 @@ export const ProjectData = [
             value: "This led to the central question: how might we make finding content effortless for someone like Felix?",
           },
         ],
+      },
+
+      {
+        id: "problem-space",
+        label: "Reframing",
+        eyebrow: "Problem space",
+        heading: "Reframing the problem",
+        content: [
+          {
+            type: "text",
+            value: "Viewers often open YouTube during a break to find something specific, but getting to it is harder than it should be:",
+          },
+          {
+            type: "list",
+            items: [
+              "Viewers prefer quick, effortless discovery over actively searching for videos.",
+              "Eye-catching but unrelated videos pull viewers away from what they came to watch.",
+            ],
+          },
+        ],
+        peopleProblem:
+          "How might we enable users to effortlessly find specific content on YouTube during breaks while minimizing distractions from visually appealing but irrelevant videos?",
       },
       {
         id: "brainstorm",

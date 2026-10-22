@@ -1,0 +1,149 @@
+.ps-track {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+.ps-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(20px, 4vw, 48px);
+  overflow: hidden;
+}
+.ps-grid {
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: center;
+}
+
+/* Title animation */
+.ps-title {
+  margin: 16px 0 0;
+  font-size: clamp(28px, 3.4vw, 48px);
+  line-height: 1.15;
+  font-weight: 700;
+  color: var(--clr-page-text);
+  white-space: nowrap;
+}
+.ps-slot {
+  display: inline-block;
+  vertical-align: bottom;
+  overflow-x: clip;
+  overflow-y: visible;
+  white-space: pre;
+}
+.ps-the, .ps-space {
+  max-width: 0;
+  transition: max-width .6s cubic-bezier(.65, 0, .25, 1);
+}
+.ps-pop {
+  display: inline-block;
+  color: #FF0033;
+  opacity: 0;
+  transform: translateY(-.9em) scale(.4) rotate(-10deg);
+  transition: transform .7s cubic-bezier(.34, 1.8, .5, 1), opacity .3s ease;
+}
+.ps-my {
+  max-width: 2.2em;
+  transition: max-width .5s cubic-bezier(.65, 0, .25, 1) .3s;
+}
+.ps-my-word {
+  position: relative;
+  display: inline-block;
+  transform-origin: left bottom;
+  transition: transform .55s cubic-bezier(.55, 0, .9, .4), opacity .45s ease .1s, color .4s ease .3s;
+}
+.ps-strike {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  top: 52%;
+  height: .12em;
+  border-radius: .06em;
+  background: #FF0033;
+  transform-origin: left center;
+  transform: rotate(-6deg) scaleX(0);
+  transition: transform .75s cubic-bezier(.7, 0, .2, 1.3);
+}
+.ps-problem {
+  display: inline-block;
+  transition: color .4s ease, transform .7s cubic-bezier(.34, 1.8, .5, 1);
+}
+
+/* Step 2: strike through "my" */
+.step-1 .ps-strike, .step-2 .ps-strike { transform: rotate(-6deg) scaleX(1); }
+.step-1 .ps-my-word { color: rgb(150, 160, 180); }
+
+/* Step 3: "my" falls away, "the" + "space" pop in, all red */
+.step-2 .ps-my { max-width: 0; transition-delay: .35s; }
+.step-2 .ps-my-word { opacity: 0; color: rgb(150, 160, 180); transform: translateY(1.1em) rotate(28deg); }
+.step-2 .ps-the, .step-2 .ps-space { max-width: 3.4em; transition-delay: .4s; }
+.step-2 .ps-the { max-width: 2.2em; }
+.step-2 .ps-pop { opacity: 1; transform: none; }
+.step-2 .ps-the .ps-pop { transition-delay: .75s; }
+.step-2 .ps-space .ps-pop { transition-delay: .9s; }
+.step-2 .ps-problem { color: #FF0033; transform: scale(1.04); transition-delay: .75s; }
+
+/* Body text: stacked in one grid cell so the tallest step sets the height */
+.ps-copy {
+  display: grid;
+  margin-top: 4px;
+}
+.ps-step {
+  grid-area: 1 / 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .45s ease, transform .55s cubic-bezier(.2, .7, .3, 1);
+}
+.ps-step.is-next { transform: translateY(32px); }
+.ps-step.is-past { transform: translateY(-32px); }
+.ps-step.is-active { opacity: 1; transform: none; pointer-events: auto; }
+
+.ps-body, .ps-list {
+  max-width: 560px;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.6;
+  color: var(--clr-secondary-500);
+  text-wrap: pretty;
+}
+.ps-body { margin: 20px 0 0; white-space: pre-line; }
+.ps-list {
+  margin: 16px 0 0;
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Illustrations: crossfade in place */
+.ps-art-wrap { display: flex; justify-content: center; }
+.ps-art {
+  position: relative;
+  height: min(62vh, 540px);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  mix-blend-mode: multiply;
+}
+.ps-art img {
+  position: absolute;
+  left: -30%;
+  top: -24%;
+  width: 160%;
+  height: 160%;
+  display: block;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+.ps-art img.in { opacity: 1; }
+
+@media (max-width: 900px) {
+  .ps-sticky { padding: 90px 20px 24px; }
+  .ps-grid { grid-template-columns: 1fr; gap: 20px; }
+  .ps-art { height: min(36vh, 340px); }
+}

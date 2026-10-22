@@ -5,6 +5,7 @@ import "./projectInfo.css";
 import NavBar from "./Navbar.jsx";
 import { ScrollVideo } from "./ScrollVideo.jsx";
 import { ScrollSteps } from "./ScrollSteps.jsx";
+import { ProblemSteps } from "./ProblemSteps.jsx";
 
 // Day images
 import LoopDay from "../imgProjects/day/Loop.svg";
@@ -218,7 +219,11 @@ function ProjectInfo() {
       {/* Content */}
       <main ref={mainRef} className="cs-main">
         {sections.map((section) =>
-          section.steps ? (
+          section.problemSteps ? (
+            <section key={section.id} id={section.id}>
+              <ProblemSteps eyebrow={section.label} steps={section.problemSteps} />
+            </section>
+          ) : section.steps ? (
             <section key={section.id} id={section.id}>
               <ScrollSteps eyebrow={section.label} steps={section.steps} />
             </section>
