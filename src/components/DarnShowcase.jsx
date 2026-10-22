@@ -134,8 +134,11 @@ export function DarnShowcase({ eyebrow, heading, content, showcase }) {
                       playsInline
                       preload="auto"
                       className="ds-video"
-                      style={{ opacity: i === demo ? 1 : 0 }}
-                    />
+                      style={{
+                        opacity: i === demo ? 1 : 0,
+                        top: f.cropTop ? `-${f.cropTop}%` : 0,
+                        height: f.cropTop ? `${100 + f.cropTop}%` : "100%",
+                      }}                    />
                   ) : (
                     i === demo && <img key={f.label} src={f.image} alt={f.label} className="ds-screen-full" />
                   )

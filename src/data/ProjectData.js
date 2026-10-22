@@ -737,7 +737,7 @@ export const ProjectData = [
           frame: "./photos/macbook-frame.png",
           flyScreen: "./photos/darn-housing.png",
           flows: [
-            { label: "Public Website", video: "./videos/DARN_Public_Website.mp4" },
+            { label: "Public Website", video: "./videos/DARN_Public_Website.mp4", cropTop: 4.5 },
             { label: "Counselor Login", video: "./videos/DARN_Counselor_Login.mp4" },
             { label: "Admin Login", video: "./videos/DARN_Admin_Login.mp4" },
           ],
