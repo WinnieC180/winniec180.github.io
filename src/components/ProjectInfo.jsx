@@ -6,6 +6,7 @@ import NavBar from "./Navbar.jsx";
 import { ScrollVideo } from "./ScrollVideo.jsx";
 import { ScrollSteps } from "./ScrollSteps.jsx";
 import { ProblemSteps } from "./ProblemSteps.jsx";
+import { PersonaCard } from "./PersonaCard.jsx";
 
 // Day images
 import LoopDay from "../imgProjects/day/Loop.svg";
@@ -148,6 +149,24 @@ function ProjectInfo() {
             <a href={item.value} target="_blank" rel="noreferrer">{item.value.replace(/^https?:\/\//, "").replace(/\/$/, "")}</a>
           </div>
           <iframe src={item.value} title="Live site preview" loading="lazy" />
+        </div>
+      );
+    if (item.type === "trends")
+      return (
+        <div key={idx} className="cs-trends">
+          {item.items.map((t, i) => <div key={i}>{t}</div>)}
+        </div>
+      );
+    if (item.type === "personas")
+      return (
+        <div key={idx}>
+          <div className="cs-personas">
+            {item.items.map((p, i) => <PersonaCard key={i} p={p} />)}
+          </div>
+          <div className="cs-hint">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 11V5a2 2 0 0 1 4 0v5" /><path d="M13 10a2 2 0 0 1 4 0v1" /><path d="M17 11a2 2 0 0 1 4 0v4a7 7 0 0 1-7 7h-1a7 7 0 0 1-6-3.5L4 15a2 2 0 0 1 3.4-2L9 15" /></svg>
+            Tap Pain points or Scenario on each profile to explore
+          </div>
         </div>
       );
     return null;
