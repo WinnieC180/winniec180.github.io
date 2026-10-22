@@ -720,7 +720,7 @@ export const ProjectData = [
       },
       {
         id: "context",
-        label: "Context",
+        label: "Overview",
         heading: "Who is DARN?",
         content: [
           {
@@ -732,6 +732,16 @@ export const ProjectData = [
             value: "Through Develop for Good, our team of designers and engineers worked with DARN for 16 weeks to redesign their public website and build a secure Counselor Portal where school counselors submit and track support requests.",
           },
         ],
+        showcase: {
+          mockup: "./photos/darn-mockup.png",
+          frame: "./photos/macbook-frame.png",
+          flyScreen: "./photos/darn-housing.png",
+          flows: [
+            { label: "Public Website", video: "./videos/DARN_Public_Website.mp4" },
+            { label: "Counselor Login", video: "./videos/DARN_Counselor_Login.mp4" },
+            { label: "Admin Login", video: "./videos/DARN_Admin_Login.mp4" },
+          ],
+        },
       },
       {
         id: "problem",

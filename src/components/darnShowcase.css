@@ -1,0 +1,122 @@
+/* Thinner "Bexley DARN" on the DARN page only */
+.cs-page[data-project="darn"] .cs-hero-word { font-weight: 400; }
+
+/* Break out of the 880px column */
+.ds-overview,
+.ds-demo {
+  width: min(1240px, calc(100vw - 40px));
+  margin-inline: calc(50% - min(620px, 50vw - 20px));
+}
+
+.ds-overview {
+  padding: 96px 0 15vh;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(24px, 3vw, 40px);
+  align-items: center;
+}
+.ds-text { display: flex; flex-direction: column; gap: 20px; }
+.ds-mock { width: 125%; margin: -10% -14% -10% -6%; aspect-ratio: 2560 / 2040; }
+.ds-mock img { width: 100%; display: block; }
+
+.ds-fly {
+  position: fixed;
+  z-index: 40;
+  pointer-events: none;
+  aspect-ratio: 1046 / 840;
+  perspective: 1400px;
+}
+.ds-fly-mock { position: absolute; inset: 0; width: 100%; display: block; }
+.ds-fly-frame { position: absolute; inset: 0; overflow: hidden; }
+
+/* Demo stays pinned for an extra ~80vh of scroll after the laptop lands.
+   Make 180vh bigger to hold it longer. */
+.ds-demo-track { position: relative; height: 180vh; }
+.ds-demo {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding-top: 10px; /* room for the navbar */
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+}
+.ds-demo-left { min-width: 0; display: flex; flex-direction: column; align-items: center; }
+.ds-demo-word {
+  position: relative;
+  z-index: 0;
+  margin-bottom: -0.28em;
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+  font-size: clamp(70px, min(10vw, 16vh), 170px);
+  line-height: 0.8;
+  letter-spacing: -0.01em;
+  color: #003399;
+}
+/* Laptop never taller than the screen leaves room for */
+.ds-laptop {
+  position: relative;
+  z-index: 1;
+  width: min(100%, calc((100vh - 90px - 16vh) * 1046 / 840));
+  aspect-ratio: 1046 / 840;
+  overflow: hidden;
+}
+.ds-frame-img { position: absolute; left: 0; top: -16.2%; width: 100%; display: block; pointer-events: none; z-index: 1; }
+.ds-screen {
+  position: absolute;
+  left: 13.9%; top: 8.9%; width: 72.5%; height: 58.5%;
+  background: #fff;
+  overflow-y: auto;
+  scrollbar-width: none;
+  z-index: 2;
+}
+.ds-screen::-webkit-scrollbar { display: none; }
+.ds-screen-img { object-fit: cover; object-position: top; }
+.ds-screen-full { width: 100%; display: block; }
+.ds-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain; object-position: center top;
+  background: #fff;
+  transition: opacity 0.4s ease;
+}
+
+.ds-tabs { display: flex; flex-direction: column; gap: 12px; max-width: 360px; }
+.ds-tabs-label {
+  margin-bottom: 4px;
+  font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgb(53, 139, 201);
+  transition: opacity 0.5s ease;
+}
+.ds-tab {
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px 18px;
+  border: 0; border-radius: 14px;
+  box-shadow: inset 0 0 0 1px rgb(197, 216, 230);
+  background: #fff; color: #1F2B4A;
+  font-family: "Nunito", sans-serif; text-align: left; cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease,
+              opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.ds-tab:hover { background: rgb(236, 245, 252); }
+.ds-tab.active { background: #003399; color: #fff; box-shadow: 0 14px 30px rgba(0, 51, 153, 0.28); }
+.ds-tab-num {
+  flex-shrink: 0;
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 800;
+  background: rgb(236, 245, 252); color: #003399;
+}
+.ds-tab.active .ds-tab-num { background: #fff; }
+.ds-tab-label { flex: 1; font-size: 19px; font-weight: 700; }
+.ds-tab-arrow { opacity: 0; transform: translateX(-8px); transition: opacity 0.3s ease, transform 0.3s ease; }
+.ds-tab.active .ds-tab-arrow { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+  .ds-overview { grid-template-columns: 1fr; }
+  .ds-mock { width: 100%; margin: 0; }
+  .ds-demo-track { height: auto; }
+  .ds-demo { position: static; height: auto; grid-template-columns: 1fr; padding: 64px 0 40px; }
+  .ds-laptop { width: 100%; }
+}

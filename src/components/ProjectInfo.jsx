@@ -20,10 +20,11 @@ import CornellGONight from "../imgProjects/CornellGO.svg";
 import CreatorCutsNight from "../imgProjects/CreatorsCuts.svg";
 import FamJamNight from "../imgProjects/FamJam.svg";
 import DarnNight from "../imgProjects/Darn.svg";
+import { DarnShowcase } from "./DarnShowcase.jsx";
 
 // Hero band color for each project, keyed by project id. Change these hex codes anytime.
 const HERO_COLORS = {
-  darn: "#195cae",
+  darn: "#003297",
   FamJam: "#ff8c49",
   Loop: "#2F5DA8",
   CornellGO: "#df5049",
@@ -173,7 +174,7 @@ function ProjectInfo() {
   };
 
   return (
-    <div className="cs-page" style={themeVars}>
+    <div className="cs-page" data-project={project.id} style={themeVars}>
       <NavBar />
 
       {/* Reading progress bar, in the project's color */}
@@ -238,7 +239,16 @@ function ProjectInfo() {
       {/* Content */}
       <main ref={mainRef} className="cs-main">
         {sections.map((section) =>
-          section.problemSteps ? (
+          section.showcase ? (
+            <section key={section.id} id={section.id}>
+              <DarnShowcase
+                eyebrow={section.label}
+                heading={section.heading}
+                content={section.content}
+                showcase={section.showcase}
+              />
+            </section>
+          ) : section.problemSteps ? (
             <section key={section.id} id={section.id}>
               <ProblemSteps eyebrow={section.label} steps={section.problemSteps} />
             </section>
