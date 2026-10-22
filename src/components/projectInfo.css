@@ -525,7 +525,7 @@ html {
 
 /* Persona cards */
 .cs-personas { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin: 8px 0 20px; }
-.pc-card { width: 340px; max-width: 100%; background: #0f0f0f; color: #f1f1f1; font-family: "Roboto", sans-serif; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 24px 60px rgba(18, 21, 36, 0.22); }
+.pc-card { width: 340px; max-width: 100%; zoom: 0.9; background: #0f0f0f; color: #f1f1f1; font-family: "Roboto", sans-serif; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 24px 60px rgba(18, 21, 36, 0.22); }
 .pc-top { display: flex; align-items: center; justify-content: space-between; padding: 16px 16px 10px; }
 .pc-top-right { display: flex; align-items: center; gap: 20px; }
 .pc-banner { margin: 0 16px; height: 84px; border-radius: 12px; background: #000; display: flex; align-items: flex-end; justify-content: flex-end; padding: 12px 16px; font-size: 16px; letter-spacing: 0.03em; }

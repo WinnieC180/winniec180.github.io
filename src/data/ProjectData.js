@@ -574,7 +574,7 @@ export const ProjectData = [
                 banner: "USER PERSONA 1",
                 name: "Felix",
                 handle: "@User_persona_1",
-                avatar: "",
+                avatar: "./photos/Felix.svg",
                 bio: "Felix is a 19 year old college student that's very organized and easily distracted and uses YouTube a lot to look for entertaining shows during their down time",
                 pains: [
                   { t: "Finds FYP page too messy and easily distractable", d: "His For You page mixes every kind of video together, so he gets pulled into things he didn't open the app for." },
@@ -591,7 +591,7 @@ export const ProjectData = [
                 banner: "USER PERSONA 2",
                 name: "Amaya",
                 handle: "@User_persona_2",
-                avatar: "",
+                avatar: "./photos/Amaya.svg",
                 bio: "Amaya is a 24 year old junior designer who shares a YouTube account with her roommates and uses it to learn new skills after work and unwind on weekends",
                 pains: [
                   { t: "Shared account, mixed feed", d: "Her roommates watch on the living room TV, so their videos shape what she gets recommended." },

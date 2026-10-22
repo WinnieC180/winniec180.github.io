@@ -76,10 +76,10 @@ export function PersonaCard({ p }) {
       </div>
 
       <nav className="pc-nav">
-        <div><img src="./photos/icon-home.png" alt="" />Home</div>
-        <div><img src="./photos/icon-shorts.png" alt="" />Shorts</div>
+        <div><img src="./photos/icon-home.svg" alt="" />Home</div>
+        <div><img src="./photos/icon-shorts.svg" alt="" />Shorts</div>
         <div className="pc-plus"><svg width="22" height="22" viewBox="0 0 24 24" stroke="#fff" strokeWidth="2.2" strokeLinecap="round"><path d="M12 4v16M4 12h16" /></svg></div>
-        <div><img src="./photos/icon-subs.png" alt="" />Subscriptions</div>
+        <div><img src="./photos/icon-subs.svg" alt="" />Subscriptions</div>
         <div><Avatar src={p.avatar} size={26} />You</div>
       </nav>
     </div>
