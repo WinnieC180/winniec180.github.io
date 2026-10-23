@@ -663,32 +663,69 @@ html {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(8px, 1.5vw, 20px);
 }
+
 .cs-compare-card {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6%;
-  border-radius: 20px;
+  padding: 18% 6% 14%;   /* was: 12% 6% */  border-radius: 20px;
   cursor: pointer;
 }
-
-
 .cs-compare-glow {
   position: absolute;
   inset: 0;
   border-radius: 20px;
-  background: linear-gradient(155deg, rgb(232, 244, 253) 0%, rgb(195, 227, 250) 50%, rgb(140, 192, 234) 100%);
+  overflow: hidden;
+  background: linear-gradient(180deg, rgb(42, 77, 135) 0%, rgb(83, 130, 190) 50%, rgb(170, 205, 236) 100%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.35s ease;
 }
 .cs-compare-img {
   position: relative;
-  width: 92%;
+  width: 78%;
   height: auto;
   display: block;
   transform-origin: center;
   transition: filter 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Big outlined text */
+.cs-compare-outline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: clamp(36px, 6vw, 88px);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 2px #fff;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.cs-compare-outline-top {
+  top: 3%;
+  transform: translateY(16px);
+}
+.cs-compare-outline-bottom {
+  bottom: 3%;
+  opacity: 0;
+  transform: translateY(-16px);
+}
+
+/* Hovered card: gradient, text slides in, screens pop */
+.cs-compare-card.is-active { z-index: 2; }
+.cs-compare-card.is-active .cs-compare-glow { opacity: 1; }
+.cs-compare-card.is-active .cs-compare-outline-top { transform: translateY(0); }
+.cs-compare-card.is-active .cs-compare-outline-bottom { opacity: 1; transform: translateY(0); }
+.cs-compare-card.is-active .cs-compare-img {
+  transform: translateY(-8px) scale(1.05);
+  filter: drop-shadow(0 16px 24px rgba(42, 77, 135, 0.35));
 }
 
 .cs-compare-info {
@@ -729,12 +766,7 @@ html {
   color: #fff;
   text-wrap: pretty;
 }
-/* Hovered card: gradient + pop */
-.cs-compare-card.is-active .cs-compare-glow { opacity: 1; }
-.cs-compare-card.is-active .cs-compare-img {
-  transform: translateY(-6px) scale(1.03);
-  filter: drop-shadow(0 16px 24px rgba(42, 77, 135, 0.35));
-}
+
 /* Other card: blurred, with the hovered card's pros/cons */
 .cs-compare-card.is-info .cs-compare-img { filter: blur(10px); transform: scale(1.04); }
 .cs-compare-card.is-info .cs-compare-info { opacity: 1; transform: translateX(0); }

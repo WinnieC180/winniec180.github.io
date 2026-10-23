@@ -124,8 +124,11 @@ function Compare({ kicker, question, sides }) {
               onMouseLeave={() => setHov(null)}
               onClick={() => setHov(k)}
             >
-              <div className="cs-compare-glow" />
+              <div className="cs-compare-glow">
+                <span className="cs-compare-outline cs-compare-outline-top">{s.name}</span>
+              </div>
               <img className="cs-compare-img" src={s.img} alt={s.name} />
+              {kicker && <span className="cs-compare-outline cs-compare-outline-bottom">{kicker}</span>}
               <div className="cs-compare-info">
                 <span className="cs-compare-name">{other.name}</span>
                 <ul>
