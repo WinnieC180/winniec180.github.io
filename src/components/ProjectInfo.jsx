@@ -25,7 +25,7 @@ import { DarnShowcase } from "./DarnShowcase.jsx";
 // Hero band color for each project, keyed by project id. Change these hex codes anytime.
 const HERO_COLORS = {
   darn: "#003297",
-  FamJam: "#ff8c49",
+  FamJam: "#eb6b21",
   Loop: "#2F5DA8",
   CornellGO: "#df5049",
   "creator-cuts": "#dd4c47",
@@ -103,6 +103,58 @@ function Slideshow({ items }) {
   );
 }
 
+function Compare({ kicker, question, sides }) {
+  const [hov, setHov] = useState(null);
+  return (
+    <div className="cs-compare">
+      <div className="cs-compare-head">
+        {kicker && <span className="cs-compare-kicker">{kicker}</span>}
+        {question && <h3 className="cs-compare-q">{question}</h3>}
+      </div>
+      <div className="cs-compare-grid">
+        {sides.map((s, k) => {
+          const other = sides[1 - k];
+          const active = hov === k;
+          const showInfo = hov !== null && hov !== k;
+          return (
+            <div
+              key={k}
+              className={`cs-compare-card${active ? " is-active" : ""}${showInfo ? " is-info" : ""}${k === 0 ? " is-left" : " is-right"}`}
+              onMouseEnter={() => setHov(k)}
+              onMouseLeave={() => setHov(null)}
+              onClick={() => setHov(k)}
+            >
+              <div className="cs-compare-glow" />
+              <img className="cs-compare-img" src={s.img} alt={s.name} />
+              <div className="cs-compare-info">
+                <span className="cs-compare-name">{other.name}</span>
+                <ul>
+                  {other.pros.map((t, i) => (
+                    <li key={"p" + i}>
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgb(134,214,141)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M7.5 12.5l3 3 6-6.5" /></svg>
+                      <span>{t}</span>
+                    </li>
+                  ))}
+                  {other.cons.map((t, i) => (
+                    <li key={"c" + i}>
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgb(255,138,128)" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="10" /><path d="M8.5 8.5l7 7M15.5 8.5l-7 7" /></svg>
+                      <span>{t}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <p className="cs-compare-hint">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4l7 17 2.5-7.5L21 11z" /></svg>
+        Hover to see the pros and cons to each iteration
+      </p>
+    </div>
+  );
+}
+
 function ProjectInfo() {
   const { projectId } = useParams();
   const project = ProjectData.find((p) => p.id === projectId);
@@ -175,6 +227,7 @@ function ProjectInfo() {
     if (item.type === "text") return <p key={idx} className="cs-body">{item.value}</p>;
     if (item.type === "highlight") return <Callout key={idx} label={item.label} text={item.value} />;
     if (item.type === "slideshow") return <Slideshow key={idx} items={item.items} />;
+    if (item.type === "compare") return <Compare key={idx} {...item} />;
     if (item.type === "list")
       return (
         <ol key={idx} className="cs-list">

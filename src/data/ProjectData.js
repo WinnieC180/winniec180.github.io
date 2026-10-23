@@ -59,6 +59,7 @@ export const ProjectData = [
     title: "FamJam: Closing the gap between generations through play",
     image: FamJamBanner,
     banner: FamJamBanner,
+    heroWord: "FamJam",
     link: "https://devpost.com/software/team-tennn",
     linkLabel: "View on Devpost",
     sections: [
@@ -262,6 +263,7 @@ export const ProjectData = [
     title: "CornellGO: Designing a coupons system that rewards students for exploring campus",
     image: CornellGoBanner,
     banner: CornellGoBanner,
+    heroWord: "CornellGO",
     link: "https://new.cornelldti.org/products#cornellgo",
     linkLabel: "View on Cornell DTI",
     sections: [
@@ -665,6 +667,11 @@ export const ProjectData = [
             type: "text",
             value: "After gathering feedback, I moved forward with Custom Category Tags, which later became Creator's Cuts.",
           },
+          {
+            type: "highlight",
+            label: "My hypothesis was...",
+            value: "If I created categories where related topics are grouped together, users would less likely get distracted from stuff off topic.",
+          },
           { type: "image", value: "./photos/YouTubeLow1.png" },
           { type: "image", value: "./photos/YouTubeLow2.png" },
         ],
@@ -674,10 +681,53 @@ export const ProjectData = [
         label: "Design decisions",
         heading: "What did I change, and what did I keep?",
         content: [
-          { type: "text", value: "Entry point: how do users view their cuts?" },
-          { type: "image", value: "./photos/DesignChoices1YT.png" },
-          { type: "text", value: "How do users edit and delete a cut?" },
-          { type: "image", value: "./photos/DesignChoices2YT.png" },
+          {
+            type: "compare",
+            kicker: "ENTRY POINT",
+            question: "How do users view their cuts?",
+            sides: [
+              {
+                name: "ITERATION 1",
+                img: "./photos/yt-entry-v1.png",
+                pros: ["The entry point in the account"],
+                cons: [
+                  "Vertical folders don’t match with the rest of YouTube",
+                  "Having a summary on the side is cluttered, small, and confusing",
+                ],
+              },
+              {
+                name: "ITERATION 2",
+                img: "./photos/yt-entry-v2.png",
+                pros: [
+                  "Consistent with the rest of YouTube, is familiar for users",
+                  "Having cuts in the home page makes it accessible immediately",
+                ],
+                cons: ["Overwhelming colors"],
+              },
+            ],
+          },
+          {
+            type: "compare",
+            kicker: "EDITING",
+            question: "How do users edit and delete a cut?",
+            sides: [
+              {
+                name: "ITERATION 1",
+                img: "./photos/yt-edit-v1.png",
+                pros: ["Easy to create a new cut"],
+                cons: [
+                  "The colors doesn’t match with the rest of the UI",
+                  "Colors are hard to make apart",
+                ],
+              },
+              {
+                name: "ITERATION 2",
+                img: "./photos/yt-edit-v2.png",
+                pros: ["Reuses elements that are already in YouTube", "No unnecessary image"],
+                cons: ["Not user friendly when creating your own colors"],
+              },
+            ],
+          },
         ],
       },
       {

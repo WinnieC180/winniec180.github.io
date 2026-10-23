@@ -633,6 +633,124 @@ html {
 }
 .cs-slide-dots button.active { background: #fff; }
 
+/* ---------- Compare (design decisions) ---------- */
+.cs-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 24px 0 56px;
+  width: min(1320px, calc(100vw - 48px));
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.cs-compare-head { display: flex; flex-direction: column; gap: 8px; }
+.cs-compare-kicker {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgb(53, 139, 201);
+}
+.cs-compare-q {
+  margin: 0;
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.2;
+  font-weight: 600;
+  text-wrap: pretty;
+}
+.cs-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(8px, 1.5vw, 20px);
+}
+.cs-compare-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6%;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+
+.cs-compare-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: linear-gradient(155deg, rgb(232, 244, 253) 0%, rgb(195, 227, 250) 50%, rgb(140, 192, 234) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.cs-compare-img {
+  position: relative;
+  width: 92%;
+  height: auto;
+  display: block;
+  transform-origin: center;
+  transition: filter 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cs-compare-info {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: clamp(20px, 3vw, 44px);
+  background: rgba(31, 43, 74, 0.78);
+  border-radius: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.cs-compare-card.is-left .cs-compare-info { transform: translateX(12%); }
+.cs-compare-card.is-right .cs-compare-info { transform: translateX(-12%); }
+.cs-compare-name {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgb(195, 227, 250);
+}
+.cs-compare-info ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.cs-compare-info li { display: flex; gap: 12px; align-items: flex-start; }
+.cs-compare-info li svg { flex-shrink: 0; }
+.cs-compare-info li span {
+  font-size: clamp(16px, 1.5vw, 21px);
+  line-height: 1.4;
+  color: #fff;
+  text-wrap: pretty;
+}
+/* Hovered card: gradient + pop */
+.cs-compare-card.is-active .cs-compare-glow { opacity: 1; }
+.cs-compare-card.is-active .cs-compare-img {
+  transform: translateY(-6px) scale(1.03);
+  filter: drop-shadow(0 16px 24px rgba(42, 77, 135, 0.35));
+}
+/* Other card: blurred, with the hovered card's pros/cons */
+.cs-compare-card.is-info .cs-compare-img { filter: blur(10px); transform: scale(1.04); }
+.cs-compare-card.is-info .cs-compare-info { opacity: 1; transform: translateX(0); }
+.cs-compare-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgb(53, 139, 201);
+}
+
+.cs-compare-card.is-info { overflow: hidden; }
+.cs-compare-card.is-active { z-index: 2; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1180px) {
   .cs-toc {
