@@ -498,17 +498,17 @@ export const ProjectData = [
           {
             title: "Entry points",
             video: "./videos/entry-point.mp4",
-            body: "Cuts appear as color-coded chips at the top of the Home feed, next to All. Viewers can also open them from the Creator's cuts playlist in the You tab, or add the video they're watching to a cut from its menu.",
+            body: "Creator's Cuts appear as color-coded tabs at the top of the Home feed, next to All. Viewers can also open them from the Creator's cuts playlist in the You tab, or add the video they're watching to a cut from its menu.",
           },
           {
             title: "Creating a new cut",
             video: "./videos/creating-cut.mp4",
-            body: "Tapping + opens a short form: name the cut, set its visibility, and pick a color so it's easy to spot in the feed as a border around the video or shorts.",
+            body: "Tapping the vertical ellipsis opens a short form: name the cut, set its visibility, and pick a color so it's easy to spot in the feed as a border around the video or shorts.",
           },
           {
             title: "Editing and deleting cuts",
             video: "./videos/edit-delete-cut.mp4",
-            body: "From All creator's cuts, each cut's menu lets viewers rename it, change its color, or delete it, so their categories can change as their interests do.",
+            body: "From All creator's cuts (located in the Accounts tab in YouTube), each cut's menu lets viewers rename it, change its color, or delete it, so their categories can change as their interests do.",
           },
         ],
       },
@@ -637,12 +637,18 @@ export const ProjectData = [
         heading: "From insights to ideas",
         content: [
           {
+            type: "highlight",
+            label: "The goal was to...",
+            value: "Help viewers quickly find the specific content they came for during a break, without getting pulled away by eye-catching but unrelated videos.",
+          },
+          {
             type: "text",
             value: "Using the patterns from my interviews, I wrote How Might We statements, sketched possible solutions, and voted on which ideas were worth pursuing.",
           },
-          { type: "image", value: "./photos/HMW.png" },
-          { type: "image", value: "./photos/Solutions.png" },
-          { type: "image", value: "./photos/vote.png" },
+          {
+            type: "slideshow",
+            items: ["./photos/HMW.png", "./photos/Solutions.png", "./photos/vote.png"],
+          },
           {
             type: "text",
             value: "I then sketched low-fidelity wireframes for the three most-voted and most feasible ideas:",
@@ -737,7 +743,7 @@ export const ProjectData = [
           frame: "./photos/macbook-frame.png",
           flyScreen: "./photos/darn-housing.png",
           flows: [
-            { label: "Public Website", video: "./videos/DARN_Public_Website.mp4", cropTop: 4.5 },
+            { label: "Public Website", video: "./videos/DARN_Public_Website.mp4", cropTop: 3.8 },
             { label: "Counselor Login", video: "./videos/DARN_Counselor_Login.mp4" },
             { label: "Admin Login", video: "./videos/DARN_Admin_Login.mp4" },
           ],

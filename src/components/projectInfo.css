@@ -313,22 +313,23 @@ html {
 .cs-callout {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 24px 28px;
-  border-radius: 12px;
-  background: hsl(from var(--clr-secondary-300) h s l / 0.12);
+  gap: 16px;
+  padding: 32px 0 32px 32px;
+  border-left: 8px solid var(--clr-secondary-300);
+  background: none;
 }
 
 .cs-callout p {
   margin: 0;
-  font-size: 19px;
-  line-height: 1.5;
-  font-weight: 700;
-  color: var(--clr-secondary-300);
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--clr-page-text);
+  text-wrap: pretty;
 }
 
 .cs-callout-label {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -337,6 +338,9 @@ html {
 
 .cs-callout.dark {
   background: rgb(42, 77, 135);
+  border-left: none;
+  padding: 24px 28px;
+  border-radius: 12px;
 }
 
 .cs-callout.dark p {
@@ -551,6 +555,83 @@ html {
 .pc-nav > div { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .pc-nav img:not(.pc-avatar) { height: 24px; display: block; }
 .pc-plus { width: 42px; height: 42px; border-radius: 50%; background: #272727; justify-content: center; }
+
+/* ---------- Slideshow ---------- */
+.cs-slideshow {
+  position: relative;
+}
+.cs-slide-nav {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  gap: 8px;
+}
+.cs-slide-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: rgb(42, 77, 135);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s ease;
+}
+.cs-slide-btn:hover { background: rgb(29, 44, 73); }
+
+.cs-slides-wrap {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.cs-slides {
+  display: flex;
+  aspect-ratio: 4 / 3;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.cs-slides::-webkit-scrollbar { display: none; }
+.cs-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cs-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.cs-slide-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.35);
+}
+.cs-slide-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+.cs-slide-dots button.active { background: #fff; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1180px) {

@@ -63,6 +63,46 @@ function Callout({ label, text, dark }) {
   );
 }
 
+function Slideshow({ items }) {
+  const trackRef = useRef(null);
+  const [i, setI] = useState(0);
+  const go = (n) => {
+    const t = trackRef.current;
+    const next = (n + items.length) % items.length;
+    t.scrollTo({ left: next * t.clientWidth, behavior: "smooth" });
+  };
+  const onScroll = () => {
+    const t = trackRef.current;
+    setI(Math.round(t.scrollLeft / t.clientWidth));
+  };
+  return (
+    <div className="cs-slideshow">
+      <div className="cs-slides-wrap">
+        <div ref={trackRef} className="cs-slides" onScroll={onScroll}>
+          {items.map((src, k) => (
+            <div key={k} className="cs-slide">
+              <img src={src} alt="" />
+            </div>
+          ))}
+        </div>
+        <div className="cs-slide-dots">
+          {items.map((_, k) => (
+            <button key={k} className={k === i ? "active" : ""} onClick={() => go(k)} aria-label={`Slide ${k + 1}`} />
+          ))}
+        </div>
+        <div className="cs-slide-nav">
+          <button className="cs-slide-btn" onClick={() => go(i - 1)} aria-label="Previous">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 5l-7 7 7 7" /></svg>
+          </button>
+          <button className="cs-slide-btn" onClick={() => go(i + 1)} aria-label="Next">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ProjectInfo() {
   const { projectId } = useParams();
   const project = ProjectData.find((p) => p.id === projectId);
@@ -134,6 +174,7 @@ function ProjectInfo() {
   const renderItem = (item, idx) => {
     if (item.type === "text") return <p key={idx} className="cs-body">{item.value}</p>;
     if (item.type === "highlight") return <Callout key={idx} label={item.label} text={item.value} />;
+    if (item.type === "slideshow") return <Slideshow key={idx} items={item.items} />;
     if (item.type === "list")
       return (
         <ol key={idx} className="cs-list">
