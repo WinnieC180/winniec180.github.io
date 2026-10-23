@@ -691,7 +691,7 @@ export const ProjectData = [
                 img: "./photos/yt-entry-v1.png",
                 pros: ["The entry point in the account"],
                 cons: [
-                  "Vertical folders don’t match with the rest of YouTube",
+                  "Vertical folders don't match with the rest of YouTube's Design System, making it look inconsistent",
                   "Having a summary on the side is cluttered, small, and confusing",
                 ],
               },
@@ -699,7 +699,7 @@ export const ProjectData = [
                 name: "ITERATION 2",
                 img: "./photos/yt-entry-v2.png",
                 pros: [
-                  "Consistent with the rest of YouTube, is familiar for users",
+                  "Consistent with the rest of YouTube's Design System, is familiar for users",
                   "Having cuts in the home page makes it accessible immediately",
                 ],
                 cons: ["Overwhelming colors"],
@@ -716,15 +716,16 @@ export const ProjectData = [
                 img: "./photos/yt-edit-v1.png",
                 pros: ["Easy to create a new cut"],
                 cons: [
-                  "The colors doesn’t match with the rest of the UI",
-                  "Colors are hard to make apart",
+                  "The colors doesn't match with the rest of the UI",
+                  "Colors are hard to make apart and is unfamiliar with the rest of the app",
+                  "Unecessary need of uploading an image",
                 ],
               },
               {
                 name: "ITERATION 2",
                 img: "./photos/yt-edit-v2.png",
-                pros: ["Reuses elements that are already in YouTube", "No unnecessary image"],
-                cons: ["Not user friendly when creating your own colors"],
+                pros: ["Reuses elements that are already in YouTube", "No unnecessary image comapred to the first iteration"],
+                cons: ["No way to keep track of what colors are already used"],
               },
             ],
           },
@@ -735,6 +736,11 @@ export const ProjectData = [
         label: "Reflections",
         heading: "What did I learn from my first case study?",
         content: [
+          {
+            type: "highlight",
+            label: "How would I know my feature will work?",
+            value: "In order to test if my feature would work, I would run usability tests with people who watch YouTube on their breaks and measure how long it takes them to find the video they came for, with and without Creator's Cuts. Once launched, I would track how many users create and return to their cuts, and whether they click on fewer unrelated videos during a session.",
+          },
           {
             type: "text",
             value: "Creator's Cuts was my first full case study, and the biggest lesson came before I designed a single screen: my starting problem was my own. I assumed other viewers wanted what I wanted, short clips from long streams. Interviewing frequent and occasional YouTube users showed me the shared problem was different. People wanted to find something specific during a break without getting pulled away by eye-catching, unrelated videos.",
