@@ -11,6 +11,7 @@ import eel from "../assets/sea/eel.png";
 import puffer from "../assets/sea/puffer.png";
 import reef from "../assets/sea/reef.png";
 import roundfish from "../assets/sea/roundfish-gold.png";
+import ScrollHook from "../components/ScrollHook";
 
 const BUBBLES = [[8, 10, 7, 0], [22, 6, 9, 2.5], [40, 12, 8, 5], [63, 7, 10, 1.2], [78, 14, 9, 3.6], [90, 8, 7, 6]];
 const TAPES = ["tapeStripe", "tapeDots", "tapeBands", "tapePlain"];
@@ -207,6 +208,7 @@ function About() {
         <DailyLife />
       </main>
       <footer><Footer /></footer>
+      <ScrollHook startAfter=".aboutIntro" ripple={false} />
     </div>
   );
 }

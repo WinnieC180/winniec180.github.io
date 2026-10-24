@@ -19,7 +19,7 @@ function HookShape() {
   );
 }
 
-function ScrollHook() {
+function ScrollHook({ startAfter = "header.hero", ripple = true }) {
   const night = useTheme() === "dark";
   const nightRef = useRef(night);
   useEffect(() => { nightRef.current = night; }, [night]);
@@ -31,7 +31,7 @@ function ScrollHook() {
 
   useEffect(() => {
     const s = { hy: null, vy: 0, atBottom: undefined, fish: null, busy: false, waitTop: 0, wasHidden: undefined };
-    const hero = () => document.querySelector("header.hero");
+    const hero = () => document.querySelector(startAfter);
     const footer = () => document.querySelector(".footReveal");
     const fishLayer = () => document.querySelector(".heroLayer--fish");
     const splashLayer = () => document.querySelector(".heroLayer--splash");
@@ -53,7 +53,7 @@ function ScrollHook() {
       const k = Math.min(1.4, size / 70);
       for (let i = 0; i < count; i++) {
         const d = document.createElement("div"), rr = (2.4 + Math.random() * 2.4) * k;
-        d.className = "heroDrop";
+        d.className = "scrollHookDrop";
         d.style.width = rr * 1.6 + "px"; d.style.height = rr * 2 + "px";
         layer.appendChild(d);
         const vx = (i - (count - 1) / 2) * (9 + Math.random() * 6) * k, up = (40 + Math.random() * 50) * k, fr = [];
@@ -64,20 +64,40 @@ function ScrollHook() {
 
     const hookSplash = (x, sy) => {
       const L = r.drops.current; if (!L) return;
-      const ring = document.createElement("div");
-      ring.className = "scrollHookRing";
-      ring.style.left = x + "px"; ring.style.top = sy + "px";
-      L.appendChild(ring);
-      ring.animate([{ transform: "scale(1)", opacity: 1 }, { transform: "scale(8,3.5)", opacity: 0 }], { duration: 700, easing: "cubic-bezier(.2,.7,.4,1)" }).onfinish = () => ring.remove();
+      if (ripple) {
+        const ring = document.createElement("div");
+        ring.className = "scrollHookRing";
+        ring.style.left = x + "px"; ring.style.top = sy + "px";
+        L.appendChild(ring);
+        ring.animate([{ transform: "scale(1)", opacity: 1 }, { transform: "scale(8,3.5)", opacity: 0 }], { duration: 700, easing: "cubic-bezier(.2,.7,.4,1)" }).onfinish = () => ring.remove();
+      }
       drops(L, x, sy, 60, 9);
     };
 
     const dropFish = () => {
       const fish = s.fish, fl = fishLayer();
-      if (!fish || !fl) { s.fish = null; s.busy = false; return; }
+      if (!fish) { s.busy = false; return; }
+      if (!fl) {
+        // no hero water on this page: the fish flips off and falls out of view
+        const fr = fish.getBoundingClientRect(), L = r.drops.current;
+        fish.getAnimations().forEach((a) => a.cancel());
+        fish.remove();
+        s.fish = null;
+        fish.className = "scrollHookFallen";
+        L.appendChild(fish);
+        const dx = -60, end = window.innerHeight + 160, frames = [];
+        for (let j = 0; j <= 18; j++) {
+          const t = j / 18, hop = -45 * Math.sin(Math.min(1, t * 2.4) * Math.PI);
+          frames.push({ transform: `translate(${fr.left + dx * t}px,${fr.top + hop + (end - fr.top) * t * t}px) rotate(${-180 * Math.min(1, t * 1.25)}deg)` });
+        }
+        fish.animate(frames, { duration: 1000, easing: "linear", fill: "forwards" }).onfinish = () => fish.remove();
+        later(() => { s.busy = false; s.fish = null; }, 1100);
+        return;
+      }
       const fr = fish.getBoundingClientRect(), flr = fl.getBoundingClientRect(), x = fr.left - flr.left, y = fr.top - flr.top;
       fish.getAnimations().forEach((a) => a.cancel());
       fish.remove();
+      s.fish = null;
       fish.className = "scrollHookFallen";
       fl.appendChild(fish);
       const surf = fl.clientHeight - 100, dx = -40 - Math.random() * 40, end = Math.max(y + 80, surf + 50), frames = [];
