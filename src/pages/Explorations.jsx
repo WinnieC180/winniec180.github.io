@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from "react";
-import { motion as Motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import NavBar from "../components/Navbar";
+import { useTheme } from "../theme";
+import Pond from "./pondEngine";
 import "./Explorations.css";
 import { Move } from "lucide-react";
 
@@ -48,58 +49,43 @@ const galleryItems = [
   { id: 20, src: gal20, x: -1150, y: 150, title: "Pandaa" },
 ];
 
-// Remembered for the session, so the pop-out only plays on the first visit
-let hasAnimated = false;
-
 function Explorations() {
-  const [resetKey, setResetKey] = useState(0);
-  const constraintsRef = useRef(null);
-  const [animateIn] = useState(() => !hasAnimated);
+  const night = useTheme() === "dark";
+  const nightRef = useRef(night);
+  useEffect(() => { nightRef.current = night; }, [night]);
+  const wrap = useRef(null), canvas = useRef(null), glCanvas = useRef(null), layer = useRef(null), pond = useRef(null);
 
   useEffect(() => {
     document.title = "Winnie's Explorations";
-    hasAnimated = true;
+    pond.current = new Pond({
+      wrap: wrap.current, canvas: canvas.current, glCanvas: glCanvas.current, layer: layer.current,
+      items: galleryItems, getNight: () => nightRef.current,
+    });
+    return () => pond.current && pond.current.destroy();
   }, []);
 
   return (
-    <div className="explorations-page centerFlex">
+    <div className="explorations-page">
       <NavBar />
-
-      <div className="viewport" ref={constraintsRef}>
-        <Motion.div
-          key={resetKey}
-          className="canvas"
-          drag
-          dragConstraints={constraintsRef}
-          transition={{ type: "spring", damping: 100, stiffness: 400 }}
-        >
-          {galleryItems.map((item) => (
-            <Motion.div
-              key={item.id}
-              className="scatter-card centerFlex"
-              style={{ flexDirection: "column" }}
-              drag
-              dragMomentum={false}
-              dragPropagation={false}
-              initial={animateIn && resetKey === 0 ? { scale: 0, opacity: 0 } : false}
-              animate={{ x: item.x, y: item.y, scale: 1, opacity: 1 }}
-            >
-              <img src={item.src} alt={item.alt ?? item.title} draggable="false" />
-              <span>{item.title}</span>
-            </Motion.div>
-          ))}
-          <div className="centerFlex" style={{ gap: "20px", flexDirection: "column" }}>
-            <h2 style={{ width: "300px", textAlign: "center", fontSize: "1.6rem" }}>
-              <em>Letting my creativity flow freely across the surface</em>
-            </h2>
-            <p className="centerFlex" style={{ gap: "10px", color: "var(--clr-page-span)" }}>
-              <Move height={"20px"} /> Drag to move
-            </p>
+      <div className="pond" ref={wrap}>
+        <canvas className="pond-canvas" ref={canvas} />
+        <canvas className="pond-canvas pond-gl" ref={glCanvas} />
+        <div className="pond-layer" ref={layer}>
+          <div className="pond-intro">
+            <h2><em>Letting my creativity flow freely across the surface</em></h2>
+            <p><Move height={"20px"} /> Drag to move</p>
           </div>
-        </Motion.div>
+          {galleryItems.map((item, i) => (
+            <div key={item.id} className="pond-card" data-card={i}>
+              <div className="pond-card-inner">
+                <img src={item.src} alt={item.alt ?? item.title} draggable="false" />
+                <span>{item.title}</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-
-      <button className="reset-btn" onClick={() => setResetKey((k) => k + 1)}>
+      <button className="reset-btn" onClick={() => pond.current && pond.current.reset()}>
         Reset View
       </button>
     </div>
