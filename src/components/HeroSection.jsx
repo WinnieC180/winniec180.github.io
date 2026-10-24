@@ -208,6 +208,57 @@ function Wave({ kind }) {
   );
 }
 
+// Orb path: gentle rise to a peak near top-center, then a steep quarter-ellipse drop into the sea.
+function orbGeo(el) {
+  const p = el.offsetParent; if (!p) return null;
+  const W = p.clientWidth, H = p.clientHeight, x0 = el.offsetLeft, y0 = el.offsetTop, sz = el.offsetWidth;
+  const ex = Math.max(160, W * 0.79 - sz / 2 - x0), ey = H - 100 - y0 + sz * 0.6;
+  const px = Math.min(ex - 80, Math.max(40, W * 0.47 - sz / 2 - x0)), py = 4 - y0;
+  const rx = ex - px, ry = ey - py;
+  const a0 = Math.asin(Math.max(-1, Math.min(0, -px / rx)));
+  const dx = -(px + rx * Math.sin(a0)), dy = -(ey - ry * Math.cos(a0));
+  return { ex, ey, px, rx, ry, a0, dx, dy };
+}
+// t: 0 = at home, 1 = set below the right horizon
+function setPos(g, t) {
+  const a = g.a0 + (Math.PI / 2 - g.a0) * t;
+  const w = a < 0 && g.a0 < 0 ? Math.pow(a / g.a0, 2) : 0;
+  return `translate(${g.px + g.rx * Math.sin(a) + g.dx * w}px, ${g.ey - g.ry * Math.cos(a) + g.dy * w}px)`;
+}
+// t: 0 = below the left horizon, 1 = at home
+function risePos(g, t) {
+  const u = 1 - t;
+  return `translate(${-40 * u}px, ${(g.ey + 30) * u * u * (3 - 2 * u)}px)`;
+}
+function useOrbArc(night, sunRef, moonRef) {
+  const first = useRef(true);
+  useEffect(() => {
+    const s = sunRef.current, m = moonRef.current; if (!s || !m) return;
+    const ease = (t) => (t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+    const out = (t) => 1 - Math.pow(1 - t, 3);
+    let animate = !first.current, raf = 0;
+    const t0 = performance.now();
+    first.current = false;
+    const place = (now) => {
+      const gs = orbGeo(s), gm = orbGeo(m); if (!gs || !gm) return false;
+      let setT = 1, riseT = 1;
+      if (animate) {
+        setT = Math.min(1, (now - t0) / 1700);
+        riseT = Math.max(0, Math.min(1, (now - t0 - 900) / 1200));
+      }
+      const [setter, setG, riser, riseG] = night ? [s, gs, m, gm] : [m, gm, s, gs];
+      setter.style.transform = setPos(setG, ease(setT));
+      riser.style.transform = risePos(riseG, out(riseT));
+      return animate && (setT < 1 || riseT < 1);
+    };
+    const loop = (now) => { if (place(now)) raf = requestAnimationFrame(loop); else animate = false; };
+    raf = requestAnimationFrame(loop);
+    const onResize = () => { if (!animate) place(performance.now()); };
+    window.addEventListener("resize", onResize);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", onResize); };
+  }, [night]); // eslint-disable-line react-hooks/exhaustive-deps
+}
+
 function HeroSection() {
   const night = useTheme() === "dark";
   const [active, setActive] = useState(null);
@@ -221,6 +272,9 @@ function HeroSection() {
     hoverImg: useRef(null),
   };
   const ocean = useRef(null);
+  const sunRef = useRef(null);
+  const moonRef = useRef(null);
+  useOrbArc(night, sunRef, moonRef);
 
   useEffect(() => {
     const o = new Ocean(refs);
@@ -270,8 +324,8 @@ function HeroSection() {
         </div>
       ))}
 
-      <div className="heroOrbTrack heroOrbTrack--sun"><div className="heroSun" /></div>
-      <div className="heroOrbTrack heroOrbTrack--moon"><div className="heroMoon" /></div>
+      <div className="heroOrbTrack heroOrbTrack--sun"><div className="heroSun" ref={sunRef} /></div>
+      <div className="heroOrbTrack heroOrbTrack--moon"><div className="heroMoon" ref={moonRef} /></div>
       <button
         type="button"
         className="heroSunCloud"
