@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import fishLogo from "../assets/sea/roundfish-gold.png";
-import hookFish from "../assets/sea/hookfish.png";
 import "./style.css"; // global site styles (centerFlex etc.) — keep this
 import "./footer.css";
 
@@ -64,7 +63,6 @@ function Footer() {
 
   const r = {
     ripple: useRef(), ripple2: useRef(), rays: useRef(), bubbles: useRef(),
-    hookLayer: useRef(), hook: useRef(), hookBob: useRef(),
     bottleFly: useRef(), bottleBob: useRef(), cork: useRef(), paper: useRef(),
     overlay: useRef(), card: useRef(),
   };
@@ -93,9 +91,6 @@ function Footer() {
           { duration: dur * 1000, iterations: Infinity, easing: "ease-in-out", delay: -((i * 2.7) % dur) * 1000 }));
       });
 
-    if (r.hookBob.current) s.hookBobA = r.hookBob.current.animate(
-      [{ transform: "translateY(0) rotate(-2deg)" }, { transform: "translateY(12px) rotate(2deg)" }, { transform: "translateY(0) rotate(-2deg)" }],
-      { duration: 6000, iterations: Infinity, easing: "ease-in-out" });
     if (r.bottleFly.current) s.bottleBobA = r.bottleFly.current.animate(
       [{ transform: "translateY(0) rotate(-3deg)" }, { transform: "translateY(-10px) rotate(4deg)" }, { transform: "translateY(0) rotate(-3deg)" }],
       { duration: 4200, iterations: Infinity, easing: "ease-in-out", composite: "add" });
@@ -153,48 +148,6 @@ function Footer() {
       { duration: 420, easing: "cubic-bezier(.2,.9,.3,1.2)" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
-
-  /* ---------- hook: catch a fish, then back to top ---------- */
-  const catchFish = () => {
-    const s = st.current;
-    if (s.busy) return;
-    const L = r.hookLayer.current, hk = r.hook.current, bob = r.hookBob.current; if (!L || !hk) return;
-    s.busy = true;
-    const Lr = L.getBoundingClientRect(), br = bob.getBoundingClientRect();
-    const bx = br.left - Lr.left + 20, by = br.top - Lr.top + 179;
-    const w = 76, fh = w * 0.6;
-    const fish = document.createElement("div");
-    fish.className = "footCaught";
-    fish.style.width = w + "px";
-    fish.innerHTML = `<img src="${hookFish}" alt="" />`;
-    L.appendChild(fish);
-    const ex = bx - w, ey = by - fh / 2, sx = -w - 20, sy = Math.min(L.clientHeight - fh - 40, by + 180);
-    const frames = [];
-    for (let j = 0; j <= 16; j++) {
-      const t = j / 16, e = 1 - Math.pow(1 - t, 2);
-      const x = sx + (ex - sx) * e, y = sy + (ey - sy) * (t * t * (3 - 2 * t)) + Math.sin(t * Math.PI * 3) * 10 * (1 - t);
-      frames.push({ transform: `translate(${x}px,${y}px) rotate(${-12 * (1 - t) + Math.sin(t * 20) * 4}deg)` });
-    }
-    fish.animate(frames, { duration: 800, easing: "linear", fill: "forwards" }).onfinish = () => {
-      s.hookBobA?.pause();
-      const lift = by + 160;
-      hk.animate([{ transform: "translateY(0)" }, { transform: "translateY(10px)", offset: 0.12 }, { transform: `translateY(${-lift}px)` }],
-        { duration: 1100, easing: "cubic-bezier(.5,0,.6,1)", fill: "forwards" });
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 450);
-      
-      fish.animate([0, 0.12, 0.3, 0.5, 0.7, 1].map((o, i) => ({
-        offset: o,
-        transform: `translate(${ex}px,${ey + (o === 0 ? 0 : o === 0.12 ? 10 : -lift * ((o - 0.12) / 0.88) ** 1.6)}px) rotate(${o === 0 ? 0 : (i % 2 ? -1 : 1) * 14 - 50}deg)`,
-      })), { duration: 1100, easing: "linear", fill: "forwards" });
-      s.hk = setTimeout(() => {
-        fish.remove();
-        hk.animate([{ transform: `translateY(${-lift}px)` }, { transform: "translateY(0)" }],
-          { duration: 1400, easing: "cubic-bezier(.3,.7,.4,1)", fill: "forwards" }).onfinish = () => { s.hookBobA?.play(); s.busy = false; };
-      }, 1150);
-    };
-  };
 
   /* ---------- bottle ---------- */
   const uncork = () => {
@@ -341,27 +294,6 @@ function Footer() {
           <canvas ref={r.ripple2} width="200" height="100" className="footRipple footRippleLeft" style={{ WebkitMaskImage: RIPPLE_MASK, maskImage: RIPPLE_MASK }} />
           <canvas ref={r.ripple} width="200" height="100" className="footRipple footRippleRight" style={{ WebkitMaskImage: RIPPLE_MASK, maskImage: RIPPLE_MASK }} />
           <div ref={r.rays} className="footLayer" />
-
-          <div ref={r.hookLayer} className="footLayer footHookLayer">
-            <div ref={r.hook} className="footHook">
-              <div ref={r.hookBob} className="footHookBob" onClick={catchFish} title="Cast the line">
-                <div className="footHookLine" />
-                <svg width="84" height="210" viewBox="0 0 60 150">
-                  <path d="M30 0 V44" stroke="rgba(255,255,255,.85)" strokeWidth="1.5" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-                  <path d="M25.5 18.8 L34.5 21.2" stroke="rgba(255,255,255,.85)" strokeWidth="2.6" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-                  <path d="M25.5 22.8 L34.5 25.2" stroke="rgba(255,255,255,.85)" strokeWidth="2.6" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-                  <path d="M25.5 26.8 L34.5 29.2" stroke="rgba(255,255,255,.85)" strokeWidth="2.6" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-                  <path d="M25.5 30.8 L34.5 33.2" stroke="rgba(255,255,255,.85)" strokeWidth="2.6" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-                  <ellipse cx="30" cy="44.2" rx="1.3" ry="1.9" fill="rgba(255,255,255,.85)" />
-                  <circle cx="30" cy="43" r="5" fill="none" stroke="rgb(214,226,240)" strokeWidth="3" vectorEffect="non-scaling-stroke" />
-                  <path d="M30 48 V114 C30 138 4 138 4 116 V108" fill="none" stroke="rgb(214,226,240)" strokeWidth="3" strokeLinecap="butt" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
-                  <path d="M2.9 108.5 L4 99.5 L5.1 108.5 Z" fill="rgb(214,226,240)" />
-                  <path d="M4.8 117 Q8 113.2 12.5 112.6 Q8.6 115.6 5.6 120 Z" fill="rgb(214,226,240)" />
-                </svg>
-                <div className="footHookLabel">back to top</div>
-              </div>
-            </div>
-          </div>
 
           <div ref={r.bubbles} className="footLayer footBubbles" />
 

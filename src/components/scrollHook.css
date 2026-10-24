@@ -1,0 +1,24 @@
+.scrollHookDrops { position: fixed; inset: 0; z-index: 44; pointer-events: none; overflow: hidden; }
+.scrollHook { position: fixed; z-index: 45; top: 0; right: -18px; width: 84px; height: 210px; pointer-events: none; will-change: transform; }
+.scrollHookLine { position: absolute; left: 41.25px; top: 0; width: 1.5px; height: 0; }
+.scrollHookBob { position: absolute; inset: 0; transform-origin: 42px 0; transform: scale(.82); pointer-events: none; }
+.scrollHookBob svg { position: absolute; left: 0; top: 0; overflow: visible; }
+.scrollHookLight { color: rgb(214, 226, 240); }
+.scrollHookShrimp {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  transform: scale(.3);
+  transition: opacity .25s ease, transform .4s cubic-bezier(.3, 1.6, .5, 1);
+}
+.scrollHookLabel {
+  position: absolute; left: 50%; top: 204px; transform: translateX(-72%);
+  white-space: nowrap; font-size: 14px; font-weight: 500; color: #fff;
+  opacity: 0; transition: opacity .3s ease;
+}
+.scrollHookCaught { position: absolute; left: 23.8px; top: 184px; width: 0; height: 0; pointer-events: none; }
+.scrollHookFallen { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; }
+.scrollHookRing {
+  position: absolute; width: 12px; height: 4px; margin: -2px 0 0 -6px;
+  border-radius: 50%; border: 2px solid rgba(195, 227, 250, .85);
+}

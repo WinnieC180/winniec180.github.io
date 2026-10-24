@@ -61,9 +61,20 @@ class Ocean {
       this.raf = requestAnimationFrame(this.tick);
     };
     this.raf = requestAnimationFrame(this.tick);
+    this.onGD = (e) => this.grabStart(e);
+    this.onGM = (e) => this.grabMove(e);
+    this.onGU = () => this.grabEnd();
+    window.addEventListener("pointerdown", this.onGD, true);
+    window.addEventListener("pointermove", this.onGM);
+    window.addEventListener("pointerup", this.onGU);
+    window.addEventListener("pointercancel", this.onGU);
     this.to = setTimeout(() => { this.launch(); this.schedule(); }, 600);
   }
   stop() {
+    window.removeEventListener("pointerdown", this.onGD, true);
+    window.removeEventListener("pointermove", this.onGM);
+    window.removeEventListener("pointerup", this.onGU);
+    window.removeEventListener("pointercancel", this.onGU);
     cancelAnimationFrame(this.raf);
     [this.to, this.ht, this.ct].forEach(clearTimeout);
     this.fish.forEach((f) => f.el.remove());
@@ -100,20 +111,76 @@ class Ocean {
     this.fish.push({ el, x0, D, H, T, n, sx, w, right, t0: performance.now(), out: false, back: false });
     this.step(performance.now());
   }
-  step(now) {
+
+    step(now) {
     this.fish = this.fish.filter((f) => {
+      if (f.caught) {
+        const g = this.grab;
+        f.x = g.px - g.ox; f.y = g.py - g.oy;
+        f.el.style.transform = `translate(${f.x}px,${f.y}px) translate(-50%,-50%) rotate(${f.r}deg) scaleX(${f.sx})`;
+        const im = f.el.firstElementChild;
+        if (im) { im.style.transformOrigin = `${g.lx}px ${g.ly}px`; im.style.transform = `rotate(${(Math.sin(now / 50) * 9).toFixed(2)}deg)`; }
+        return true;
+      }
       const s = (now - f.t0) / f.T;
       if (s >= 1) { f.el.remove(); return false; }
       const x = f.x0 + f.D * s, y = this.Y0 - 4 * f.H * s * (1 - s);
       const th = (Math.atan2(-4 * f.H * (1 - 2 * s), f.D) * 180) / Math.PI;
       let rot = th - f.n;
       rot = ((rot + 540) % 360) - 180;
+      f.x = x; f.y = y; f.r = rot;
       f.el.style.transform = `translate(${x}px,${y}px) translate(-50%,-50%) rotate(${rot}deg) scaleX(${f.sx})`;
       if (!f.out && y < this.SURF) { f.out = true; this.splash(x, f.w); }
       if (f.out && !f.back && s > 0.5 && y > this.SURF) { f.back = true; this.splash(x, f.w * 1.2); }
       return true;
     });
   }
+  fishAt(cx, cy) {
+    const L = this.r.fishLayer.current; if (!L) return null;
+    const b = L.getBoundingClientRect(), px = cx - b.left, py = cy - b.top;
+    for (let i = this.fish.length - 1; i >= 0; i--) {
+      const f = this.fish[i];
+      if (f.y < this.SURF + 30 && Math.hypot(f.x - px, f.y - py) < f.w * 1.1) return { f, px, py };
+    }
+    return null;
+  }
+  grabStart(e) {
+    if (e.button !== 0 || this.grab) return;
+    if (e.target.closest?.("a,button,input,textarea")) return;
+    const hit = this.fishAt(e.clientX, e.clientY); if (!hit) return;
+    e.preventDefault(); e.stopPropagation();
+    const f = hit.f; f.caught = true;
+    const ox = hit.px - f.x, oy = hit.py - f.y, rr = (-(f.r || 0) * Math.PI) / 180;
+    let lx = ox * Math.cos(rr) - oy * Math.sin(rr);
+    const ly = ox * Math.sin(rr) + oy * Math.cos(rr);
+    lx *= f.sx;
+    this.grab = { f, px: hit.px, py: hit.py, ox, oy, lx: f.el.offsetWidth / 2 + lx, ly: f.el.offsetHeight / 2 + ly };
+    const L = this.r.fishLayer.current;
+    L.parentNode.style.cursor = "grabbing";
+    L.style.zIndex = 7;
+  }
+  grabMove(e) {
+    const L = this.r.fishLayer.current; if (!L) return;
+    if (this.grab) { const b = L.getBoundingClientRect(); this.grab.px = e.clientX - b.left; this.grab.py = e.clientY - b.top; return; }
+    const over = !!this.fishAt(e.clientX, e.clientY);
+    if (over !== this.overFish) { this.overFish = over; L.parentNode.style.cursor = over ? "grab" : ""; }
+  }
+  grabEnd() {
+    const g = this.grab; if (!g) return;
+    this.grab = null;
+    const f = g.f, now = performance.now();
+    f.caught = false;
+    const im = f.el.firstElementChild; if (im) im.style.transform = "";
+    f.H = Math.max(24, this.Y0 - f.y);
+    f.T = 2 * Math.sqrt((2 * f.H) / this.G) * 1000;
+    f.D = (f.D > 0 ? 1 : -1) * 30;
+    f.t0 = now - f.T / 2; f.x0 = f.x - f.D / 2;
+    f.out = f.y < this.SURF; f.back = false;
+    const L = this.r.fishLayer.current;
+    L.parentNode.style.cursor = ""; L.style.zIndex = "";
+    this.overFish = false;
+  }
+
   splash(x, size, y = this.SURF, count = 7) {
     const layer = this.r.splashLayer.current;
     if (!layer) return;

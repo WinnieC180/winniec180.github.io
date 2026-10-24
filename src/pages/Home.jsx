@@ -5,6 +5,7 @@ import Works from "../components/Works"
 import Footer from "../components/Footer"
 import IntroAnimation from "../components/IntroAnimation"
 import { hasPlayedIntro, markIntroPlayed } from "../introState"
+import ScrollHook from "../components/ScrollHook"
 
 function Home () {
     const [entered, setEntered] = useState(hasPlayedIntro);
@@ -48,6 +49,7 @@ function Home () {
             <footer>
                 <Footer />
             </footer>
+            <ScrollHook />
         </div>
     )
 }
