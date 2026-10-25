@@ -4,7 +4,9 @@ import ProjectInfo from "./components/ProjectInfo";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Explorations from "./pages/Explorations";
+import { galleryItems } from "./pages/galleryItems";
 import Error from "./pages/Error";
+import { preloadInBackground } from "./pages/pondPreload";
 
 function App() {
   const ScrollToTop = () => {
@@ -17,6 +19,10 @@ function App() {
 
     return null;
   };
+
+  useEffect(() => {
+    preloadInBackground(galleryItems.map((g) => g.src));
+  }, []);
 
   return (
     <>

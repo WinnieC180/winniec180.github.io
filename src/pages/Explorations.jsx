@@ -1,53 +1,19 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import NavBar from "../components/Navbar";
 import { useTheme } from "../theme";
 import Pond from "./pondEngine";
+import PondLoader from "./PondLoader";
+import { preloadImage, isReady } from "./pondPreload";
 import "./Explorations.css";
 import { Move } from "lucide-react";
+import { galleryItems } from "./galleryItems";
 
-import gal1 from "../gallery/gallery_1.png";
-import gal2 from "../gallery/gallery_2.png";
-import gal3 from "../gallery/gallery_3.jpg";
-import gal4 from "../gallery/gallery_4.jpg";
-import gal5 from "../gallery/gallery_5.png";
-import gal6 from "../gallery/gallery_6.jpg";
-import gal7 from "../gallery/gallery_7.jpg";
-import gal8 from "../gallery/gallery_8.jpg";
-import gal9 from "../gallery/gallery_9.jpg";
-import gal10 from "../gallery/gallery_10.jpg";
-import gal11 from "../gallery/gallery_11.jpg";
-import gal12 from "../gallery/gallery_12.jpg";
-import gal13 from "../gallery/gallery_13.jpg";
-import gal14 from "../gallery/gallery_14.jpg";
-import gal15 from "../gallery/gallery_15.jpg";
-import gal16 from "../gallery/gallery_16.jpg";
-import gal17 from "../gallery/gallery_17.jpg";
-import gal18 from "../gallery/gallery_18.jpg";
-import gal19 from "../gallery/gallery_19.jpg";
-import gal20 from "../gallery/gallery_20.jpg";
+const srcs = galleryItems.map((g) => g.src);
+const allReady = () => srcs.every(isReady);
+const MIN_SHOW = 1200; // ms the loader stays up on the first visit
 
-const galleryItems = [
-  { id: 1, src: gal1, x: -300, y: -300, title: "My original characters 🐋" },
-  { id: 2, src: gal2, x: 460, y: -200, title: "The biggest star ✨" },
-  { id: 3, src: gal3, x: -730, y: -180, title: "Halloween 🎃 2025" },
-  { id: 4, src: gal4, x: 820, y: 370, title: "Snorlax crochet | Brother's Bday" },
-  { id: 5, src: gal5, x: -350, y: 100, title: "Spell 🔮| Drawing with markers" },
-  { id: 6, src: gal6, x: 550, y: 750, title: "Blue flowers 🎐🩵 | Crochet" },
-  { id: 7, src: gal7, x: 10, y: 300, title: <><em>Yoshi</em>™ | Original pattern</>, alt: "Yoshi™ | Original pattern" },
-  { id: 8, src: gal8, x: 820, y: -380, title: "Tomato Hero! 🍅" },
-  { id: 9, src: gal9, x: 400, y: 220, title: "Lavendar🪻 | Original pattern" },
-  { id: 10, src: gal10, x: -750, y: 350, title: "Pure vanilla cookie 🍪 | Clay" },
-  { id: 11, src: gal11, x: 100, y: -330, title: "Go Big Red! 🐻" },
-  { id: 12, src: gal12, x: -600, y: -600, title: "The first cake I baked~ 🍰" },
-  { id: 13, src: gal13, x: -350, y: 550, title: "Ice cream 🍦!!!" },
-  { id: 14, src: gal14, x: 1000, y: 0, title: "Winter ❄️ @ Ithaca" },
-  { id: 15, src: gal15, x: 450, y: -650, title: "Walking back from class~" },
-  { id: 16, src: gal16, x: 100, y: 850, title: "High School Grad 🎓" },
-  { id: 17, src: gal17, x: 1000, y: 850, title: "Aatrox | Clay" },
-  { id: 18, src: gal18, x: -770, y: 850, title: "Soft Bunny Ი𐑼| Original pattern" },
-  { id: 19, src: gal19, x: -100, y: -800, title: "Bear or Frog? | Original pattern" },
-  { id: 20, src: gal20, x: -1150, y: 150, title: "Pandaa" },
-];
+// Resets on page refresh / new open; survives navigating between pages.
+let loaderShown = false;
 
 function Explorations() {
   const night = useTheme() === "dark";
@@ -55,22 +21,57 @@ function Explorations() {
   useEffect(() => { nightRef.current = night; }, [night]);
   const wrap = useRef(null), canvas = useRef(null), glCanvas = useRef(null), layer = useRef(null), pond = useRef(null);
 
+  const [firstVisit] = useState(() => !loaderShown);
+  const [done, setDone] = useState(() => !firstVisit && allReady());
+  const [loaded, setLoaded] = useState(0);
+  const [visible, setVisible] = useState(firstVisit);
+
+  useEffect(() => {
+    if (done) return;
+    let live = true;
+    const start = performance.now();
+    const grace = !firstVisit && setTimeout(() => live && setVisible(true), 300);
+    const cap = setTimeout(() => live && setDone(true), 8000);
+
+    let real = 0;
+    const tick = () => {
+      if (!live) return;
+      const timeP = Math.min(1, (performance.now() - start) / MIN_SHOW);
+      const shown = Math.round(Math.min(real, firstVisit ? timeP * srcs.length : real));
+      setLoaded(shown);
+      if (shown >= srcs.length) { setDone(true); return; }
+      requestAnimationFrame(tick);
+    };
+    srcs.forEach((s) => preloadImage(s).then(() => { real++; }));
+    requestAnimationFrame(tick);
+
+    return () => { live = false; clearTimeout(grace); clearTimeout(cap); };
+  }, []);
+
+  useEffect(() => { if (done) loaderShown = true; }, [done]);
+
   useEffect(() => {
     document.title = "Winnie's Explorations";
-    pond.current = new Pond({
-      wrap: wrap.current, canvas: canvas.current, glCanvas: glCanvas.current, layer: layer.current,
-      items: galleryItems, getNight: () => nightRef.current,
+    // wait two frames so the loader paints before the heavy pond setup runs
+    let id = requestAnimationFrame(() => {
+      id = requestAnimationFrame(() => {
+        pond.current = new Pond({
+          wrap: wrap.current, canvas: canvas.current, glCanvas: glCanvas.current, layer: layer.current,
+          items: galleryItems, getNight: () => nightRef.current,
+        });
+      });
     });
-    return () => pond.current && pond.current.destroy();
+    return () => { cancelAnimationFrame(id); pond.current && pond.current.destroy(); };
   }, []);
 
   return (
     <div className="explorations-page">
       <NavBar />
+      {visible && <PondLoader loaded={loaded} total={srcs.length} done={done} />}
       <div className="pond" ref={wrap}>
         <canvas className="pond-canvas" ref={canvas} />
         <canvas className="pond-canvas pond-gl" ref={glCanvas} />
-        <div className="pond-layer" ref={layer}>
+        <div className="pond-layer" ref={layer} style={{ visibility: done ? "visible" : "hidden" }}>
           <div className="pond-intro">
             <h2><em>Letting my creativity flow freely across the surface</em></h2>
             <p><Move height={"20px"} /> Drag to move</p>

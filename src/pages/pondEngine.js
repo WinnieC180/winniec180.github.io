@@ -1,5 +1,7 @@
 // Pond background engine for the Explorations page.
 // Owns the water canvas, WebGL ripples, lily pads, card bobbing and card/background dragging.
+let BG_CACHE = null; // painted once per page load, reused on every visit to Explorations
+
 export default class Pond {
   BX = 1500; BY = 1150; EX = 1100; EY = 720; SC = .4;
   constructor({ wrap, canvas, glCanvas, layer, items, getNight }) {
@@ -48,7 +50,7 @@ export default class Pond {
       const cx = (R() - .5) * 2 * (BX + 300), cy = (R() - .5) * 2 * (BY + 300);
       for (let j = 0; j < 9; j++) this.glints.push({ x: cx + (R() - .5) * 220, y: cy + (R() - .5) * 140, w: 6 + R() * 10, ph: R() * 6.28, sp: 1 + R() * 2 });
     }
-    this.bg = this.paintBg(R);
+    this.bg = BG_CACHE || (BG_CACHE = this.paintBg(R));
 
     const wrap = this.wrap;
     this.toWorld = (e) => { const r = wrap.getBoundingClientRect(); return { x: e.clientX - r.left - r.width / 2 - this.pan.x, y: e.clientY - r.top - r.height / 2 - this.pan.y }; };
@@ -124,7 +126,7 @@ export default class Pond {
   paintBg(R) {
     const SC = this.SC, WW = (this.BX + this.EX) * 2, HH = (this.BY + this.EY) * 2;
     const c = document.createElement('canvas'); c.width = Math.ceil(WW * SC); c.height = Math.ceil(HH * SC);
-    const g = c.getContext('2d'); g.scale(SC, SC); g.translate(WW / 2, HH / 2);
+    let g = c.getContext('2d'); g.scale(SC, SC); g.translate(WW / 2, HH / 2);
     const lg = g.createLinearGradient(-WW / 2, -HH / 2, WW / 2, HH / 2);
     [[0, 'rgb(53,110,175)'], [.14, 'rgb(53,128,194)'], [.28, 'rgb(53,139,201)'], [.42, 'rgb(84,160,214)'], [.54, 'rgb(105,174,222)'], [.66, 'rgb(98,168,218)'], [.8, 'rgb(72,148,206)'], [1, 'rgb(53,126,190)']].forEach(([o, c]) => lg.addColorStop(o, c));
     g.fillStyle = lg; g.fillRect(-WW / 2, -HH / 2, WW, HH);
@@ -138,7 +140,9 @@ export default class Pond {
     rad(0, 0, 700, 'rgba(195,227,250,.3)');
     for (let i = 0; i < 26; i++) rad((R() - .5) * WW, (R() - .5) * HH, 200 + R() * 300, 'rgba(255,255,255,.07)');
     const blocked = (x, y) => Math.abs(x) < 240 && Math.abs(y) < 120;
-    g.filter = 'blur(34px)';
+    // draw stones sharp on a separate layer, then blur that layer once
+    const main = g, lc = document.createElement('canvas'); lc.width = c.width; lc.height = c.height;
+    g = lc.getContext('2d'); g.scale(SC, SC); g.translate(WW / 2, HH / 2);
     const SCOL = ['rgba(42,77,135,.24)', 'rgba(42,77,135,.2)', 'rgba(36,70,128,.2)', 'rgba(56,88,150,.2)', 'rgba(44,90,150,.2)', 'rgba(53,110,175,.2)'];
     const stone = (x, y, r) => { g.fillStyle = SCOL[Math.floor(R() * SCOL.length)]; this.blob(g, x, y, r, R); g.fill(); };
     for (let i = 0; i < 300; i++) stone((R() - .5) * WW, (R() - .5) * HH, 30 + R() * 60);
@@ -153,7 +157,8 @@ export default class Pond {
       const x = (R() - .5) * WW, y = (R() - .5) * HH, n = 6 + Math.floor(R() * 5), L = 30 + R() * 40;
       for (let j = 0; j < n; j++) { const a = j / n * 6.283 + R() * .4; g.beginPath(); g.moveTo(x, y); g.quadraticCurveTo(x + Math.cos(a + .3) * L * .6, y + Math.sin(a + .3) * L * .6, x + Math.cos(a) * L, y + Math.sin(a) * L); g.stroke(); }
     }
-    g.filter = 'none';
+    g = main;
+    g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.filter = 'blur(34px)'; g.drawImage(lc, 0, 0); g.restore();
     for (let i = 0; i < 30; i++) {
       const cx = (R() - .5) * WW, cy = (R() - .5) * HH;
       for (let j = 0; j < 14; j++) { g.fillStyle = `rgba(255,255,255,${.25 + R() * .35})`; g.fillRect(cx + (R() - .5) * 240, cy + (R() - .5) * 150, 5 + R() * 10, 2.5); }

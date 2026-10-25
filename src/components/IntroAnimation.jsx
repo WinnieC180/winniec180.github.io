@@ -57,7 +57,7 @@ function IntroAnimation({ onEnter }) {
 
     // fog bank: rises into view, blocks the view, then trails off in a soft fade
     const fc = N ? "rgb(64,84,126)" : "rgb(246,250,254)", rgb = N ? "64,84,126" : "246,250,254";
-    const EDGE = 0.3 * H, CORE = 2 * H, FADE = 0.8 * H, BANK = EDGE + CORE + FADE;
+    const EDGE = 0.3 * H, CORE = 1 * H, FADE = 0.5 * H, BANK = EDGE + CORE + FADE;
     const fog = el("div", `position:absolute;left:0;top:0;width:100%;height:${BANK}px;`, st);
     el("div", `position:absolute;left:0;top:${EDGE}px;width:100%;height:${CORE}px;background:${fc};`, fog);
     const stops = [1, 0.92, 0.78, 0.6, 0.42, 0.26, 0.14, 0.06, 0.02, 0].map((o, i) => `rgba(${rgb},${o}) ${(i * 100) / 9}%`).join(",");
@@ -67,7 +67,7 @@ function IntroAnimation({ onEnter }) {
       const w = (W / n) * (1.7 + (i % 3) * 0.35), x = (i / n) * W + (i % 2 ? 20 : -20);
       cloud(fog, x, EDGE - (w * 141) / 253 * 0.62 + (i % 2) * 18, w, 1, fc);
     }
-    const v = (5.2 * H) / T, t0 = 0.2 * T, covered = t0 + (H + EDGE + 0.4 * H) / v;
+    const v = (6 * H) / T, t0 = 0.2 * T, covered = t0 + (H + EDGE + 0.4 * H) / v;
     fog.animate([{ transform: `translateY(${H}px)` }, { transform: `translateY(${-BANK}px)` }], { duration: (H + BANK) / v, delay: t0, easing: "linear", fill: "both" });
     sky.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 1, delay: covered, fill: "forwards" });
 
