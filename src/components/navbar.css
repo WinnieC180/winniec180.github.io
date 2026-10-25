@@ -29,7 +29,7 @@
   align-items: center;
   gap: 32px;
   height: 58px;
-  width: 550px;
+  width: 480px;
   max-width: 100%;
   padding: 24px 16px;
   border-radius: 100px;
@@ -39,9 +39,9 @@
 }
 .pillNav.night .pillNavBar,
 .pillNav.night .pillNavMenu { background: rgba(28,40,66,.96); transition: background-color .8s ease .7s; }
-.pillNavLogo { display: flex; margin: 0 16px; }
+.pillNavLogo { display: flex; margin-left: 8px;}
 .pillNavLogo img { width: 50px; display: block; }
-.pillNavLinks { display: flex; align-items: center; gap: 32px; }
+.pillNavLinks { display: flex; flex: 1; justify-content: center; align-items: center; gap: 40px; }
 .pillNav a {
   font-size: 16px;
   font-weight: 500;

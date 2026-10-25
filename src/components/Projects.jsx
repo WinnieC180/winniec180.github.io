@@ -30,7 +30,7 @@ import loaderDay from "../assets/fishStatic.svg";
 import loaderNight from "../assets/fishStaticNight.svg";
 
 // Order of cards when "Featured" is selected
-const FEATURED_ORDER = ["darn", "creator-cuts", "Loop", "BeeWitched", "CornellGO", "FamJam"];
+const FEATURED_ORDER = ["darn", "creator-cuts",  "BeeWitched", "FamJam", "Loop", "CornellGO"];
 const EASE = "cubic-bezier(.2,.7,.3,1)";
 
 // True when the screen is phone-sized

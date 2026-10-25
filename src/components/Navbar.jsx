@@ -5,7 +5,6 @@ import { useTheme, toggleTheme } from "../theme";
 import logo from "../assets/sea/roundfish-gold.png";
 import "./navbar.css";
 
-const RESUME = "https://drive.google.com/file/d/1FsZhuG9mBveiLF2bkk_u5Yclsn_5AVfi/view?usp=sharing";
 const COMPACT_AFTER = 80; // px scrolled before the nav tucks up
 const HIDE_AT = 0.5;      // share of the screen the footer must cover before the nav hides (0–1)
 
@@ -64,7 +63,6 @@ function NavBar() {
       <a href="#work" onClick={goToWork}>Work</a>
       <NavLink to="/about" onClick={() => setOpen(false)}>About</NavLink>
       <NavLink to="/explorations" onClick={() => setOpen(false)}>Explorations</NavLink>
-      <a href={RESUME} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>Resume</a>
     </>
   );
 

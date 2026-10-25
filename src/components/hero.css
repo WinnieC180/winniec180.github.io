@@ -42,6 +42,23 @@
   animation: heroTwinkle 3s ease-in-out infinite;
 }
 
+@keyframes heroComet {
+  0%   { opacity: 0; transform: rotate(28deg) translateX(0) scaleX(.3); }
+  2%   { opacity: 1; transform: rotate(28deg) translateX(9vw) scaleX(1); }
+  9%   { opacity: 0; transform: rotate(28deg) translateX(32vw) scaleX(.6); }
+  100% { opacity: 0; transform: rotate(28deg) translateX(32vw) scaleX(.6); }
+}
+.heroComet {
+  position: absolute;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(235,242,255,0), rgba(235,242,255,.9) 85%, #fff);
+  box-shadow: 0 0 8px rgba(200,220,255,.6);
+  transform-origin: 100% 50%;
+  opacity: 0;
+  animation: heroComet 11s ease-out infinite;
+}
+
 /* ---------- clouds (shape = assets/sea/cloud.svg used as a mask) ---------- */
 .heroCloud {
   display: block;
@@ -343,5 +360,5 @@
 .heroBubble.isOn .heroBubbleText { opacity: 1; transform: translateY(0); transition: opacity .2s ease .8s, transform .2s ease .8s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .heroWave, .heroCloudTrack, .heroStars i, .heroSun::before { animation: none; }
+  .heroWave, .heroCloudTrack, .heroStars i, .heroComet, .heroSun::before { animation: none; }
 }

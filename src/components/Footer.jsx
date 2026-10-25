@@ -6,6 +6,7 @@ import "./style.css"; // global site styles (centerFlex etc.) — keep this
 import "./footer.css";
 
 const MY_EMAIL = "wc679@cornell.edu";
+const RESUME = "https://drive.google.com/file/d/1I51cAFYenW6XwQb7-qc3gDyL0TgjnX7m/view?usp=sharing";
 
 // Opens a Gmail compose window pre-filled with what the visitor typed.
 const gmailUrl = ({ name, email, msg }) => {
@@ -361,6 +362,7 @@ function Footer() {
                   <ul>
                     <li><a href="https://github.com/WinnieC180" target="_blank" rel="noreferrer">GitHub</a></li>
                     <li><a href="https://www.linkedin.com/in/winnie-chan8/" target="_blank" rel="noreferrer">LinkedIn</a></li>
+                    <li><a href={RESUME} target="_blank" rel="noreferrer">Resume</a></li>
                     <li><a href={`mailto:${MY_EMAIL}`} onClick={openNote}>Email</a></li>
                   </ul>
                 </div>

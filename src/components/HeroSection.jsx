@@ -44,6 +44,12 @@ const STARS = (() => {
   }));
 })();
 
+const COMETS = [
+  { left: "12%", top: "8%",  len: 150, dur: "8s",  delay: "-2s"  },
+  { left: "58%", top: "4%",  len: 120, dur: "10s", delay: "-6s"  },
+  { left: "34%", top: "18%", len: 170, dur: "7s",  delay: "-4.5s" },
+];
+
 /* Jumping fish, splashes and the hover fish run outside React state (direct DOM + rAF) so they stay smooth. */
 class Ocean {
   constructor(refs) {
@@ -380,6 +386,9 @@ function HeroSection() {
       <div className="heroSky heroStars">
         {STARS.map((s, i) => (
           <i key={i} style={{ left: s.left, top: s.top, width: s.size, height: s.size, animationDuration: s.dur, animationDelay: s.delay }} />
+        ))}
+        {COMETS.map((c, i) => (
+          <b key={i} className="heroComet" style={{ left: c.left, top: c.top, width: c.len, animationDuration: c.dur, animationDelay: c.delay }} />
         ))}
       </div>
 
