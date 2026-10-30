@@ -71,7 +71,7 @@
 /* Intro */
 .aboutIntro { max-width: 1440px; margin: 0 auto; padding: 100px clamp(20px, 12.4vw, 178px) 0; min-height: 700px; display: flex; flex-wrap: wrap; gap: 32px 36px; align-items: center; justify-content: center; }
 .aboutPortrait { flex: 0 1 335px; position: relative; animation: a-rise .8s cubic-bezier(.2, .8, .2, 1) both; }
-.aboutPortraitImg { width: 100%; aspect-ratio: 335 / 400; object-fit: cover; border-radius: 12px; display: block; }
+.aboutPortraitImg { width: 100%; aspect-ratio: 335 / 400; object-fit: cover; border-radius: 12px; border: 5px solid var(--clr-primary-400); display: block; }
 .aboutCopy { flex: 0 1 600px; position: relative; padding: 16px; max-width: 600px; color: var(--ab-ink); animation: a-rise .8s cubic-bezier(.2, .8, .2, 1) .15s both; }
 .aboutCopy h1 { margin: 0; font-size: clamp(24px, 2.1vw, 30px); font-weight: 500; line-height: 1; }
 .aboutName { font-family: "Freckle Face", cursive; font-weight: 400; font-size: 1.08em; }
@@ -116,8 +116,8 @@
 .invStats { display: flex; flex-direction: column; gap: 22px; }
 .invStat { display: flex; flex-direction: column; gap: 6px; }
 .invStatLabel { display: flex; justify-content: space-between; font-family: "Nunito sans-serif", monospace; font-size: 12px; line-height: 1; color: var(--ab-label); }
-.invBar { height: 25px; border-radius: 8px; background: radial-gradient(closest-side, var(--ab-bar-track-a), var(--ab-bar-track-b)); padding: 2px; overflow: hidden; }
-.invBar > div { height: 21px; border-radius: 6px; box-shadow: inset 0 0 0 2px #fff; background: linear-gradient(90deg, rgb(195, 227, 250), rgb(84, 136, 183)); transition: width .7s cubic-bezier(.34, 1.3, .64, 1); }
+.invBar { height: 30px; border-radius: 8px; background: radial-gradient(closest-side, var(--ab-bar-track-a), var(--ab-bar-track-b)); padding: 2px; overflow: hidden; }
+.invBar > div { height: 26px; border-radius: 6px; box-shadow: inset 0 0 0 1px #fff; background: rgb(195, 227, 250); transition: width .7s cubic-bezier(.34, 1.3, .64, 1); }
 
 /* Daily Life */
 .life { max-width: 1440px; margin: 0 auto; padding: 150px 0 200px; }

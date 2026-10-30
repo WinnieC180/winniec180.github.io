@@ -50,19 +50,6 @@ function Projects({ filter = "All" }) {
   const isMobile = useIsMobile();
   const gridRef = useRef(null);
   const prevIds = useRef(null);
-  const tipRef = useRef(null);
-  const [tip, setTip] = useState({ data: null, show: false });
-
-  // Floating details box follows the cursor, flips near screen edges
-  const moveTip = (e) => {
-    const el = tipRef.current;
-    if (!el) return;
-    const pad = 20, w = el.offsetWidth, h = el.offsetHeight;
-    let x = e.clientX + pad, y = e.clientY + pad;
-    if (x + w > window.innerWidth - 12) x = e.clientX - w - pad;
-    if (y + h > window.innerHeight - 12) y = e.clientY - h - pad;
-    el.style.transform = `translate(${x}px, ${y}px)`;
-  };
 
   const projects = [
     {
@@ -267,9 +254,6 @@ function Projects({ filter = "All" }) {
         {...linkProps}
         className={comingSoon ? "project-card-link disabled" : "project-card-link"}
         style={{ textDecoration: "none", color: "var(--clr-page-text)" }}
-        onMouseEnter={(e) => { if (d && !comingSoon) { setTip({ data: d, show: true }); moveTip(e); } }}
-        onMouseMove={comingSoon ? undefined : moveTip}
-        onMouseLeave={() => setTip((t) => ({ ...t, show: false }))}
       >
         <div className={comingSoon ? "project notDone" : "project"}>
           <div className="image">
@@ -339,17 +323,6 @@ function Projects({ filter = "All" }) {
         </>
       )}
 
-      <div ref={tipRef} className={tip.show ? "projectTip show" : "projectTip"} aria-hidden="true">
-        {tip.data && (
-          <div className="projectTipInner">
-            <dl>
-              {tip.data.role && (<><dt>Role</dt><dd>{tip.data.role}</dd></>)}
-              {tip.data.team && (<><dt>Team</dt><dd>{tip.data.team}</dd></>)}
-              {tip.data.tools && (<><dt>Tools</dt><dd>{tip.data.tools}</dd></>)}
-            </dl>
-          </div>
-        )}
-      </div>
     </div>
   );
 }

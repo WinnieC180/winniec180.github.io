@@ -94,7 +94,7 @@ function Inventory() {
 
   return (
     <section ref={ref} className={`inv${seen ? " isVisible" : ""}`}>
-      <div className="invHeading"><span className="invRule" /><span>INVENTORY LOG</span><span className="invRule" /></div>
+      {/* <div className="invHeading"><span className="invRule" /><span>INVENTORY LOG</span><span className="invRule" /></div> */}
       <div className="invBody">
         <div className="invStage">
           <div className="invBubbles">

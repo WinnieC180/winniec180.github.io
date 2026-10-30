@@ -321,10 +321,10 @@
   z-index: 6;
   right: calc(max(40px, calc(50% - 600px)) + 14px);
   bottom: 144px;
-  width: 400px;
-  height: 120px;
+  width: 540px;
+  height: 144px;
   pointer-events: none;
-  transform: scale(.8);
+  transform: scale(.62);
   transform-origin: 72% 80%;
 }
 .heroBubble svg { position: absolute; left: 0; top: 0; overflow: visible; }
@@ -343,12 +343,12 @@
 .heroBubble.isOn .heroBubbleStroke { stroke-dashoffset: 0; transition: stroke-dashoffset .35s cubic-bezier(.5,0,.3,1) .4s; }
 .heroBubbleText {
   position: relative;
-  width: 400px;
-  height: 72px;
-  padding: 4px 18px;
+  width: 540px;
+  height: 96px;
+  padding: 14px 30px;
   display: flex;
   align-items: center;
-  font-size: 16.5px;
+  font-size: 19.5px;
   font-weight: 700;
   line-height: 1.15;
   color: rgb(53,139,201);
