@@ -626,7 +626,7 @@ export const ProjectData = [
       //   id: "market-research",
       //   label: "Market research",
       //   eyebrow: "Market research",
-      //   heading: "hat's already out thereW?",
+      //   heading: "hat's already out there?",
       //   content: [
       //     {
       //       type: "text",
