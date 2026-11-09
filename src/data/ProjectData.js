@@ -563,7 +563,7 @@ export const ProjectData = [
             value: "There were a couple of things I wanted to consider, and I kicked off my user research interviewing 10 users of the app. It was a great way to see how others that have used the app on varying frequencies use the app and find a pattern I can act on.",
           },
           { type: "text", value: "I grouped what I heard into an affinity map:" },
-                    { type: "image", value: "./photos/FigJamUserResearch.png" },
+          { type: "image", value: "./photos/FigJamUserResearch.png" },
 
           { type: "text", value: "From these groups, I pulled out the trends and what each one told me:" },
           {
@@ -622,47 +622,47 @@ export const ProjectData = [
         ],
       },
 
-            {
-        id: "market-research",
-        label: "Market research",
-        eyebrow: "Market research",
-        heading: "What's already out there?",
-        content: [
-          {
-            type: "text",
-            value: "I looked at how other platforms help people find what to watch or listen to, and where each one falls short.",
-          },
-          {
-            type: "competitors",
-            items: [
-              {
-                name: "TikTok",
-                summary: "Offers fast paced short form content that is highly personalized.",
-                pros: ["Very fast paced, not hard to find content that is entertaining so that\u2019s not as much time."],
-                cons: ["Very easily to lose track of time, needs a lot of attention.", "Emphasis on trends, not depth of content.", "Difficult to find specific videos again."],
-              },
-              {
-                name: "Instagram",
-                summary: "Offers posts to engage with users, and fast paced content, and is very visual.",
-                pros: ["Familiar interface for quick, casual engagement.", "you get to see contents mutuals also enjoyed and interacted with."],
-                cons: ["Very easily to lose track of time, needs a lot of attention.", "Emphasis on trends, not depth of content."],
-              },
-              {
-                name: "Netflix",
-                summary: "Personalized recommendations and category browsing for easier content selection.",
-                pros: ["Categorized browsing supports both quick picks and exploration.", "Uses previews and artwork for easy scanning."],
-                cons: ["Only long form contents, that is very time consuming, and with cliffhangers people gets intrigued to watch more."],
-              },
-              {
-                name: "Spotify",
-                summary: "Curated recommendations for music and podcasts.",
-                pros: ["Low-effort discovery with tailored playlists.", "Strong personalization and focus on mood or genre.", "Simple, minimal interface reduces distraction."],
-                cons: ["Doesn\u2019t offer visual content for when the user wants visuals.", "Not a variety of content offered."],
-              },
-            ],
-          },
-        ],
-      },
+      // {
+      //   id: "market-research",
+      //   label: "Market research",
+      //   eyebrow: "Market research",
+      //   heading: "What's already out there?",
+      //   content: [
+      //     {
+      //       type: "text",
+      //       value: "I looked at how other platforms help people find what to watch or listen to, and where each one falls short.",
+      //     },
+      //     {
+      //       type: "competitors",
+      //       items: [
+      //         {
+      //           name: "TikTok",
+      //           summary: "Offers fast paced short form content that is highly personalized.",
+      //           pros: ["Very fast paced, not hard to find content that is entertaining so that\u2019s not as much time."],
+      //           cons: ["Very easily to lose track of time, needs a lot of attention.", "Emphasis on trends, not depth of content.", "Difficult to find specific videos again."],
+      //         },
+      //         {
+      //           name: "Instagram",
+      //           summary: "Offers posts to engage with users, and fast paced content, and is very visual.",
+      //           pros: ["Familiar interface for quick, casual engagement.", "you get to see contents mutuals also enjoyed and interacted with."],
+      //           cons: ["Very easily to lose track of time, needs a lot of attention.", "Emphasis on trends, not depth of content."],
+      //         },
+      //         {
+      //           name: "Netflix",
+      //           summary: "Personalized recommendations and category browsing for easier content selection.",
+      //           pros: ["Categorized browsing supports both quick picks and exploration.", "Uses previews and artwork for easy scanning."],
+      //           cons: ["Only long form contents, that is very time consuming, and with cliffhangers people gets intrigued to watch more."],
+      //         },
+      //         {
+      //           name: "Spotify",
+      //           summary: "Curated recommendations for music and podcasts.",
+      //           pros: ["Low-effort discovery with tailored playlists.", "Strong personalization and focus on mood or genre.", "Simple, minimal interface reduces distraction."],
+      //           cons: ["Doesn\u2019t offer visual content for when the user wants visuals.", "Not a variety of content offered."],
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // },
 
       {
         id: "problem-space",
