@@ -20,7 +20,8 @@ export function DarnShowcase({ eyebrow, heading, content, showcase }) {
     const prog = (el) => {
       if (!el) return 0;
       const vh = window.innerHeight;
-      return clamp((vh - el.getBoundingClientRect().top) / (vh * 0.75));
+      // 0 until the section's top passes 80% down the screen, 1 by 35%
+      return clamp((vh * 0.8 - el.getBoundingClientRect().top) / (vh * 0.45));
     };
     const onScroll = () => {
       const sy = window.scrollY, vh = window.innerHeight;

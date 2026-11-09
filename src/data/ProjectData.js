@@ -517,9 +517,14 @@ export const ProjectData = [
       {
         id: "context",
         label: "Context",
-        heading: "What is Creator's Cuts?",
-        content:
-          "Creator's Cuts is a YouTube feature concept that lets viewers divide their For You page into custom, color-coded categories they define themselves. By sorting content intentionally, viewers send clearer signals to the recommendation algorithm, so YouTube can surface videos that match their interests and viewing intent while showing fewer irrelevant suggestions.",
+        heading: "Since when did YouTube have Creator's Cuts??",
+        content: [
+          {
+            type: "highlight",
+            value: "It doesn't, Creator's Cuts is a YouTube feature concept I created 0 -> 1 that lets viewers divide their For You page into custom, color-coded categories they define themselves. By sorting content intentionally, viewers send clearer signals to the recommendation algorithm, so YouTube can surface videos that match their interests and viewing intent while showing fewer irrelevant suggestions.",
+
+          },
+        ],
       },
       {
         id: "problem",
@@ -555,17 +560,22 @@ export const ProjectData = [
         content: [
           {
             type: "text",
-            value: "There were a couple of things I wanted to consider, and I kicked off my user research with user interviews. It was a great way to see how others that have used the app on varying frequencies use the app and find a pattern I can act on.",
+            value: "There were a couple of things I wanted to consider, and I kicked off my user research interviewing 10 users of the app. It was a great way to see how others that have used the app on varying frequencies use the app and find a pattern I can act on.",
           },
-          { type: "text", value: "I noticed a trend:" },
+          { type: "text", value: "I grouped what I heard into an affinity map:" },
+                    { type: "image", value: "./photos/FigJamUserResearch.png" },
+
+          { type: "text", value: "From these groups, I pulled out the trends and what each one told me:" },
           {
-            type: "trends",
-            items: [
-              "Go for long form content.",
-              "Gets easily distracted or bored.",
-              "Stick to the same content.",
-              "Has a specific goal.",
-              "Rely on thumbnails to find content.",
+            type: "insights",
+            rows: [
+              { trend: "Users always stick to what they like", insight: "Users wants to spend less time finding content when they know they will definitely like." },
+              { trend: "Users rely on visuals to find content", insight: "Users like to immediately click on content that is visually interesting." },
+              { trend: "Users often get distracted", insight: "Users go on the app for a specific reason until new content distracts them from their original goal." },
+              { trend: "Users always stick to one specific goal", insight: "Users either tries to use the platform to study or to be entertained by specific genre." },
+              { trend: "Users are aware of their digital habits", insight: "Users knows how much time they are spending on the app, but are unable to control it." },
+              { trend: "Users often exit the app when content they want to watch isn\u2019t found", insight: "Users don\u2019t like to spend a lot of time on the app just scrolling." },
+              { trend: "Users always tends through the comments", insight: "Users want to see what others has to comment about a certain topic in the content." },
             ],
           },
           { type: "text", value: "From this I created two user personas:" },
@@ -606,6 +616,48 @@ export const ProjectData = [
                   "Her Home feed is full of reality TV clips her roommate watched on the TV the night before.",
                   "She searches the tutorial by name, scrolls to find the right part, and writes down where she left off so she doesn't lose it again.",
                 ],
+              },
+            ],
+          },
+        ],
+      },
+
+            {
+        id: "market-research",
+        label: "Market research",
+        eyebrow: "Market research",
+        heading: "What's already out there?",
+        content: [
+          {
+            type: "text",
+            value: "I looked at how other platforms help people find what to watch or listen to, and where each one falls short.",
+          },
+          {
+            type: "competitors",
+            items: [
+              {
+                name: "TikTok",
+                summary: "Offers fast paced short form content that is highly personalized.",
+                pros: ["Very fast paced, not hard to find content that is entertaining so that\u2019s not as much time."],
+                cons: ["Very easily to lose track of time, needs a lot of attention.", "Emphasis on trends, not depth of content.", "Difficult to find specific videos again."],
+              },
+              {
+                name: "Instagram",
+                summary: "Offers posts to engage with users, and fast paced content, and is very visual.",
+                pros: ["Familiar interface for quick, casual engagement.", "you get to see contents mutuals also enjoyed and interacted with."],
+                cons: ["Very easily to lose track of time, needs a lot of attention.", "Emphasis on trends, not depth of content."],
+              },
+              {
+                name: "Netflix",
+                summary: "Personalized recommendations and category browsing for easier content selection.",
+                pros: ["Categorized browsing supports both quick picks and exploration.", "Uses previews and artwork for easy scanning."],
+                cons: ["Only long form contents, that is very time consuming, and with cliffhangers people gets intrigued to watch more."],
+              },
+              {
+                name: "Spotify",
+                summary: "Curated recommendations for music and podcasts.",
+                pros: ["Low-effort discovery with tailored playlists.", "Strong personalization and focus on mood or genre.", "Simple, minimal interface reduces distraction."],
+                cons: ["Doesn\u2019t offer visual content for when the user wants visuals.", "Not a variety of content offered."],
               },
             ],
           },
@@ -787,11 +839,11 @@ export const ProjectData = [
         content: [
           {
             type: "text",
-            value: "DARN (Developmental Assets Resource Network) is a community organization in Bexley, Ohio that uses local resources to meet local needs. Since 2003, it has supported families and youth through summer food programs, bike distributions, and emergency and grocery assistance.",
+            value: "DARN is a Bexley, Ohio nonprofit that has run summer food programs, bike distributions, and emergency grocery help since 2003. Their impact was real, but their website didn't show it.",
           },
           {
             type: "text",
-            value: "Through Develop for Good, our team of designers and engineers worked with DARN for 16 weeks to redesign their public website and build a secure Counselor Portal where school counselors submit and track support requests.",
+            value: "In 16 weeks with Develop for Good, our team redesigned DARN's public site and built a secure portal where school counselors request and track help for families.",
           },
         ],
         showcase: {

@@ -249,6 +249,65 @@ function ProjectInfo() {
           <iframe src={item.value} title="Live site preview" loading="lazy" />
         </div>
       );
+        if (item.type === "affinity")
+      return (
+        <div key={idx} className="cs-affinity">
+          {item.groups.map((g, i) => (
+            <div key={i} className="cs-affinity-col">
+              <h3 className="cs-affinity-title">{g.title}</h3>
+              <div className="cs-affinity-notes">
+                {g.notes.map((n, j) => (
+                  <div key={j} className={`cs-sticky ${g.color}`}>{n}</div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    if (item.type === "insights")
+      return (
+        <div key={idx} className="cs-insights">
+          <div className="cs-insights-head">
+            <span>Trends</span>
+            <span />
+            <span>Insights</span>
+          </div>
+          {item.rows.map((r, i) => (
+            <div key={i} className="cs-insight-row">
+              <p className="cs-insight-trend">{r.trend}</p>
+              <svg className="cs-insight-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              <p className="cs-insight-text">{r.insight}</p>
+            </div>
+          ))}
+        </div>
+      );
+    if (item.type === "competitors")
+      return (
+        <div key={idx} className="cs-competitors">
+          {item.items.map((c, i) => (
+            <div key={i} className="cs-competitor">
+              <div className="cs-competitor-head">
+                <h3>{c.name}</h3>
+                <p>{c.summary}</p>
+              </div>
+              <ul>
+                {c.pros.map((t, j) => (
+                  <li key={"p" + j}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(76,175,96)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M7.5 12.5l3 3 6-6.5" /></svg>
+                    <span>{t}</span>
+                  </li>
+                ))}
+                {c.cons.map((t, j) => (
+                  <li key={"c" + j}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(224,96,86)" strokeWidth="2.2" strokeLinecap="round"><circle cx="12" cy="12" r="10" /><path d="M8.5 8.5l7 7M15.5 8.5l-7 7" /></svg>
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      );
     if (item.type === "trends")
       return (
         <div key={idx} className="cs-trends">
