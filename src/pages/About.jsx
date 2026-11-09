@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import { INVENTORY, PHOTOS } from "../data/aboutData";
 import "../components/aboutPage.css";
 
-import portrait from "../assets/about/portrait.jpg";
+import portrait from "../assets/about/portrait2.jpg";
 import minnow from "../assets/sea/minnow.png";
 import blob from "../assets/sea/blob.png";
 import eel from "../assets/sea/eel.png";
@@ -36,9 +36,9 @@ function Intro() {
       <div className="aboutPortrait">
         <img src={portrait} alt="Winnie Chan" className="aboutPortraitImg" />
         <img src={minnow} alt="" className="bob" style={{ left: -28, top: -7, width: 66, rotate: "-55deg", animationDuration: "4.2s" }} />
-        <img src={blob} alt="" className="bob" style={{ left: -22, top: 357, width: 52, rotate: "12deg", animationDuration: "3.6s", animationDelay: "-2.2s" }} />
-        <img src={eel} alt="" className="bob" style={{ right: -16, top: 360, width: 56, rotate: "172deg", animationDuration: "4.6s", animationDelay: "-.8s" }} />
-        <img src={reef} alt="" className="bob" style={{ left: -67, top: 300, width: 60, height: 57, rotate: "-102deg", scale: "-1.05 1.19", animationDuration: "5s", animationDelay: "-1.4s" }} />
+        <img src={blob} alt="" className="bob" style={{ left: -15, top: 320, width: 52, rotate: "12deg", animationDuration: "3.6s", animationDelay: "-2.2s" }} />
+        <img src={eel} alt="" className="bob" style={{ right: -16, top: 290, width: 56, rotate: "172deg", animationDuration: "4.6s", animationDelay: "-.8s" }} />
+        <img src={reef} alt="" className="bob" style={{ left: -40, top: 250, width: 60, height: 57, rotate: "-102deg", scale: "-1.05 1.19", animationDuration: "5s", animationDelay: "-1.4s" }} />
       </div>
       <div className="aboutCopy">
         <img src={puffer} alt="" className="bob" style={{ right: 10, top: 6, width: 76, scale: "-1 1", animationDuration: "4.5s" }} />
@@ -110,16 +110,6 @@ function Inventory() {
             </div>
             <div className="invShadow" />
           </div>
-          <div className="invDialog">
-            <div className="invDialogBg" />
-            <div className="invTitle">{cur.title}</div>
-            <ul>
-              {typed.map((t, i) => <li key={i}>{t.text}{t.caret && <span className="invCaret">▍</span>}</li>)}
-            </ul>
-            <button type="button" className="invNext" aria-label="Next item" onClick={() => pick((sel + 1) % INVENTORY.length)}>
-              <svg width="16" height="20" viewBox="0 0 16 20"><path d="M2 2 L14 10 L2 18 Z" fill="#fff" stroke="#fff" strokeWidth="2" strokeLinejoin="round" /></svg>
-            </button>
-          </div>
         </div>
 
         <div className="invSide">
@@ -132,13 +122,15 @@ function Inventory() {
             ))}
             <div className="invFrame" style={{ transform: `translate(calc(${sel % 4} * (100% + 16px)), calc(${Math.floor(sel / 4)} * (100% + 16px)))` }} />
           </div>
-          <div className="invStats">
-            {cur.stats.map(([label, v], i) => (
-              <div key={i} className="invStat">
-                <div className="invStatLabel"><span>{label}</span><span>{seen ? v : 0}/100</span></div>
-                <div className="invBar"><div style={{ width: `${seen ? v : 0}%`, transitionDelay: `${i * 0.08}s` }} /></div>
-              </div>
-            ))}
+          <div className="invDialog">
+            <div className="invDialogBg" />
+            <div className="invTitle">{cur.title}</div>
+            <ul>
+              {typed.map((t, i) => <li key={i}>{t.text}{t.caret && <span className="invCaret">▍</span>}</li>)}
+            </ul>
+            <button type="button" className="invNext" aria-label="Next item" onClick={() => pick((sel + 1) % INVENTORY.length)}>
+              <svg width="16" height="20" viewBox="0 0 16 20"><path d="M2 2 L14 10 L2 18 Z" fill="#fff" stroke="#fff" strokeWidth="2" strokeLinejoin="round" /></svg>
+            </button>
           </div>
         </div>
       </div>

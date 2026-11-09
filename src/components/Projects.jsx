@@ -83,7 +83,7 @@ function Projects({ filter = "All" }) {
     {
       id: "creator-cuts",
       title: "YouTube Case Study",
-      subTitle: "Creator’s Cuts",
+      subTitle: "Creator's Cuts",
       description:
         "Conducted user research to design a new feature of YouTube to help users create more personalized recommendations.",
       timeSpent: "3 months",
@@ -92,7 +92,7 @@ function Projects({ filter = "All" }) {
       image: CreatorCuts,
       imageDay: CreatorCutsDay,
       isComplete: true,
-      details: { role: "Designer", team: "Solo", tools: "Figma" },
+      details: { role: "Product Designer & Ux Researcher", team: "Solo", tools: "Figma" },
     },
     {
       id: "BeeWitched",
