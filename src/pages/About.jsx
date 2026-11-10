@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import { INVENTORY, PHOTOS } from "../data/aboutData";
 import "../components/aboutPage.css";
 
-import portrait from "../assets/about/portrait2.jpg";
+import portrait from "../assets/about/portrait.jpg";
 import minnow from "../assets/sea/minnow.png";
 import blob from "../assets/sea/blob.png";
 import eel from "../assets/sea/eel.png";
