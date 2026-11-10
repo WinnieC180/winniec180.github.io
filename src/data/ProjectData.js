@@ -560,7 +560,7 @@ export const ProjectData = [
         content: [
           {
             type: "text",
-            value: "There were a couple of things I wanted to consider, and I kicked off my user research by interviewing 10 users of the app. It was a great way to see how others that have used the app on varying frequencies use the app and find a pattern I can act on.",
+            value: "There were a couple of things I wanted to consider, and I kicked off my user research interviewing 10 users of the app. It was a great way to see how others that have used the app on varying frequencies use the app and find a pattern I can act on.",
           },
           { type: "text", value: "I grouped what I heard into an affinity map:" },
           { type: "image", value: "./photos/FigJamUserResearch.png" },
