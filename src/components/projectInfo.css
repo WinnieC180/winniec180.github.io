@@ -547,7 +547,7 @@ html {
 .pc-content { padding: 14px 16px 18px; min-height: 290px; }
 .pc-stack { display: flex; flex-direction: column; gap: 12px; }
 .pc-pain { display: flex; flex-direction: column; gap: 4px; background: #272727; border-radius: 12px; padding: 12px 14px; }
-.pc-pain-t { font-size: 14px; font-weight: 500; color: #fff; }
+.pc-pain-t { font-size: 20px; font-weight: 500; color: #fff; }
 .pc-pain-d { font-size: 13px; line-height: 1.45; color: #aaa; text-wrap: pretty; }
 .pc-scen-title { font-size: 13px; font-weight: 500; letter-spacing: 0.04em; color: #aaa; }
 .pc-step { display: flex; gap: 12px; font-size: 14px; line-height: 1.5; color: #cfcfcf; text-wrap: pretty; }

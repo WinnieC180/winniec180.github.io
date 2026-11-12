@@ -20,7 +20,6 @@ export function DarnShowcase({ eyebrow, heading, content, showcase }) {
     const prog = (el) => {
       if (!el) return 0;
       const vh = window.innerHeight;
-      // 0 until the section's top passes 80% down the screen, 1 by 35%
       return clamp((vh * 0.8 - el.getBoundingClientRect().top) / (vh * 0.45));
     };
     const onScroll = () => {
@@ -31,9 +30,7 @@ export function DarnShowcase({ eyebrow, heading, content, showcase }) {
         const mr = m.getBoundingClientRect();
         const lr = l.getBoundingClientRect();
         const trTop = tr.getBoundingClientRect().top;
-        // Where the laptop sits once the demo section is pinned
         const finalTop = lr.top - Math.max(trTop, 0);
-        // Start: mockup centered on screen. End: demo section pinned.
         const s0 = mr.top + sy + mr.height / 2 - vh / 2;
         const s1 = trTop + sy;
         t = s1 > s0 ? clamp((sy - s0) / (s1 - s0)) : 1;
@@ -75,7 +72,6 @@ export function DarnShowcase({ eyebrow, heading, content, showcase }) {
 
   return (
     <>
-      {/* Overview: text + angled laptop mockup */}
       <div ref={ovRef} className="ds-overview">
         <div className="ds-text" style={{ opacity: o, transform: `translateY(${(1 - o) * 50}px)` }}>
           <div className="cs-eyebrow">{eyebrow}</div>
@@ -94,7 +90,6 @@ export function DarnShowcase({ eyebrow, heading, content, showcase }) {
         </div>
       </div>
 
-      {/* Morph layer: angled mockup turns into the front-facing MacBook */}
       {flying && (
         <div className="ds-fly" style={{ left: s.fly.left, top: s.fly.top, width: s.fly.width }}>
           <img
@@ -112,11 +107,11 @@ export function DarnShowcase({ eyebrow, heading, content, showcase }) {
           >
             <img src={frame} alt="" className="ds-frame-img" />
             {flyScreen && <img src={flyScreen} alt="" className="ds-screen ds-screen-img" />}
+            <div className="ds-notch" />
           </div>
         </div>
       )}
 
-      {/* Demo: tall track so the section stays pinned after the laptop lands */}
       <div id="demo" ref={trackRef} className="ds-demo-track">
         <div className="ds-demo">
           <div className="ds-demo-left">
@@ -139,12 +134,14 @@ export function DarnShowcase({ eyebrow, heading, content, showcase }) {
                         opacity: i === demo ? 1 : 0,
                         top: f.cropTop ? `-${f.cropTop}%` : 0,
                         height: f.cropTop ? `${100 + f.cropTop}%` : "100%",
-                      }}                    />
+                      }}
+                    />
                   ) : (
                     i === demo && <img key={f.label} src={f.image} alt={f.label} className="ds-screen-full" />
                   )
                 )}
               </div>
+              <div className="ds-notch" />
             </div>
           </div>
 
@@ -163,9 +160,6 @@ export function DarnShowcase({ eyebrow, heading, content, showcase }) {
               >
                 <span className="ds-tab-num">0{i + 1}</span>
                 <span className="ds-tab-label">{f.label}</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="ds-tab-arrow">
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
               </button>
             ))}
           </div>

@@ -589,8 +589,8 @@ export const ProjectData = [
                 avatar: "./photos/Felix.svg",
                 bio: "Felix is a 19 year old college student that's very organized and easily distracted and uses YouTube a lot to look for entertaining shows during their down time",
                 pains: [
-                  { t: "Finds FYP page too messy and easily distractable", d: "His For You page mixes every kind of video together, so he gets pulled into things he didn't open the app for." },
-                  { t: "Time-consuming searching for entertainment", d: "He spends much of his down time scrolling and searching for a show worth watching instead of watching it." },
+                  { t: "Finds FYP page too messy and easily distractable" },
+                  { t: "Time-consuming searching for entertainment" },
                 ],
                 scenarioTitle: "BETWEEN CLASSES",
                 scenario: [
@@ -606,9 +606,9 @@ export const ProjectData = [
                 avatar: "./photos/Amaya.svg",
                 bio: "Amaya is a 24 year old junior designer who shares a YouTube account with her roommates and uses it to learn new skills after work and unwind on weekends",
                 pains: [
-                  { t: "Shared account, mixed feed", d: "Her roommates watch on the living room TV, so their videos shape what she gets recommended." },
-                  { t: "No way to switch modes", d: "The feed leans toward whatever was watched last, so it can't tell when she wants to learn versus relax." },
-                  { t: "Unclear feedback", d: "Tapping \u201cNot interested\u201d doesn't show whether it changed anything, so she stops using it." },
+                  { t: "Shared account, mixed feed" },
+                  { t: "No way to switch modes" },
+                  { t: "Unclear feedback" },
                 ],
                 scenarioTitle: "AFTER WORK",
                 scenario: [
@@ -739,7 +739,7 @@ export const ProjectData = [
             question: "How do users view their cuts?",
             sides: [
               {
-                name: "ITERATION 1",
+                name: "FIRST ITERATION",
                 img: "./photos/yt-entry-v1.png",
                 pros: ["The entry point in the account"],
                 cons: [
@@ -748,7 +748,7 @@ export const ProjectData = [
                 ],
               },
               {
-                name: "ITERATION 2",
+                name: "FINAL ITERATION",
                 img: "./photos/yt-entry-v2.png",
                 pros: [
                   "Consistent with the rest of YouTube's Design System, is familiar for users",
@@ -764,7 +764,7 @@ export const ProjectData = [
             question: "How do users edit and delete a cut?",
             sides: [
               {
-                name: "ITERATION 1",
+                name: "FIRST ITERATION",
                 img: "./photos/yt-edit-v1.png",
                 pros: ["Easy to create a new cut"],
                 cons: [
@@ -774,7 +774,7 @@ export const ProjectData = [
                 ],
               },
               {
-                name: "ITERATION 2",
+                name: "FINAL ITERATION",
                 img: "./photos/yt-edit-v2.png",
                 pros: ["Reuses elements that are already in YouTube", "No unnecessary image comapred to the first iteration"],
                 cons: ["No way to keep track of what colors are already used"],
@@ -863,16 +863,6 @@ export const ProjectData = [
         heading: "What wasn't working?",
         content: [
           {
-            type: "text",
-            value: "DARN already had real impact: 49+ families supported with summer food assistance, 70+ bikes given to youth, and 40+ families helped with emergency and grocery assistance each year. Very little of that showed up online.",
-          },
-          { type: "image", value: "./photos/darn-old-site.png" },
-          {
-            type: "text",
-            value: "The website received around 20 visitors a month and said little about DARN's programs. Behind the scenes, counselors requested help for families through a Google Form, and DARN managed those requests in spreadsheets and email.",
-          },
-          { type: "image", value: "./photos/darn-old-form.png" },
-          {
             type: "list",
             items: [
               "Limited online presence: the site did not explain DARN's programs, resources, or impact.",
@@ -880,6 +870,9 @@ export const ProjectData = [
               "No visibility for counselors: after submitting a request, counselors had no way to see what happened to it.",
             ],
           },
+          { type: "image", value: "./photos/darn-old-site.png" }, 
+          { type: "image", value: "./photos/darn-old-form.png" },
+          
         ],
       },
       {

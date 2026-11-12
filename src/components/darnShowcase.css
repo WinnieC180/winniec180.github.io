@@ -12,7 +12,7 @@
 }
 
 .ds-overview {
-  padding: 80px 0 15vh;
+  padding: 25vh 0 15vh;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(24px, 4vw, 56px);
@@ -30,7 +30,8 @@
   perspective: 1400px;
 }
 .ds-fly-mock { position: absolute; inset: 0; width: 100%; display: block; }
-.ds-fly-frame { position: absolute; inset: 0; overflow: hidden; }
+/* Frame layer uses the new MacBook's proportions */
+.ds-fly-frame { position: absolute; left: 0; top: 0; width: 100%; aspect-ratio: 1920 / 1080; }
 
 /* Demo stays pinned for an extra ~80vh of scroll after the laptop lands.
    Make 180vh bigger to hold it longer. */
@@ -49,7 +50,7 @@
 .ds-demo-word {
   position: relative;
   z-index: 0;
-  margin-bottom: -0.28em;
+  margin-bottom: 0.03em;
   font-family: "Oswald", sans-serif;
   font-weight: 400;
   font-size: clamp(70px, min(10vw, 16vh), 170px);
@@ -62,17 +63,18 @@
   position: relative;
   z-index: 1;
   margin-top: -0.6em;
-  width: min(100%, calc((100vh - 90px - 16vh) * 1046 / 840));
-  aspect-ratio: 1046 / 840;
-  overflow: hidden;
+  width: min(100%, calc((100vh - 90px - 16vh) * 1911 / 1012));
+  aspect-ratio: 1911 / 1012;
 }
-.ds-frame-img { position: absolute; left: 0; top: -16.2%; width: 100%; display: block; pointer-events: none; z-index: 1; }
+.ds-frame-img { position: absolute; inset: 0; width: 100%; height: 99%; display: block; pointer-events: none; z-index: 50; }
+/* Matches the white display area of macbook-frame.png */
 .ds-screen {
   position: absolute;
-  left: 13.9%; top: 8.9%; width: 72.5%; height: 58.5%;
+  left: 10.26%; top: 2.46%; width: 79.49%; height: 84.66%;
   background: #fff;
   overflow-y: auto;
   scrollbar-width: none;
+  border-radius: 6px 6px 0 0;
   z-index: 2;
 }
 .ds-screen::-webkit-scrollbar { display: none; }
@@ -81,10 +83,19 @@
 .ds-video {
   position: absolute; left: 0;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center top;
   background: #fff;
   transition: opacity 0.4s ease;
+}
+/* Camera notch drawn over the screen content */
+.ds-notch {
+  position: absolute;
+  left: 45.11%; top: 2.46%; width: 9.68%; height: 2.7%;
+  background: #000;
+  border-radius: 0 0 6px 6px;
+  pointer-events: none;
+  z-index: 3;
 }
 
 .ds-tabs { display: flex; flex-direction: column; gap: 12px; max-width: 360px; }
@@ -115,8 +126,6 @@
 }
 .ds-tab.active .ds-tab-num { background: #fff; }
 .ds-tab-label { flex: 1; font-size: 19px; font-weight: 700; }
-.ds-tab-arrow { opacity: 0; transform: translateX(-8px); transition: opacity 0.3s ease, transform 0.3s ease; }
-.ds-tab.active .ds-tab-arrow { opacity: 1; transform: none; }
 
 @media (max-width: 900px) {
   .ds-overview { grid-template-columns: 1fr; }
