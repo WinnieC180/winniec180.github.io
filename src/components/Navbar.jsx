@@ -7,6 +7,7 @@ import "./navbar.css";
 
 const COMPACT_AFTER = 80; // px scrolled before the nav tucks up
 const HIDE_AT = 0.5;      // share of the screen the footer must cover before the nav hides (0–1)
+const RESUME = "https://drive.google.com/file/d/1I51cAFYenW6XwQb7-qc3gDyL0TgjnX7m/view?usp=sharing";
 
 function NavBar() {
   const night = useTheme() === "dark";
@@ -63,6 +64,7 @@ function NavBar() {
       <a href="#work" onClick={goToWork}>Work</a>
       <NavLink to="/about" onClick={() => setOpen(false)}>About</NavLink>
       <NavLink to="/explorations" onClick={() => setOpen(false)}>Explorations</NavLink>
+      <a href={RESUME} target="_blank" rel="noreferrer" className="resumeNav">Resume</a>
     </>
   );
 

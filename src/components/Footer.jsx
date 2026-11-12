@@ -24,7 +24,7 @@ const NAV = [
 ];
 const PROJECTS = [
   { label: "BeeWitched", to: "https://store.steampowered.com/app/4811560/BeeWitched/" },
-  { label: "YouTube Creator’s Cuts", to: "/creator-cuts" },
+  { label: "YouTube Creator's Cuts", to: "/creator-cuts" },
   { label: "Oh-My-Camel", to: "/oh-my-camel" },
   { label: "Cornell GO", to: "/CornellGO" },
   { label: "Qu-wack a Mole", to: "/quack-a-goose" },
