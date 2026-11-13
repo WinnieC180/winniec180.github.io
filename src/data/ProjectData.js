@@ -821,6 +821,8 @@ export const ProjectData = [
     image: Darn,
     banner: DarnBanner,
     heroWord: "Bexley DARN",
+    link: "https://bexleydarn.org/",
+    linkLabel: "View Shipped Product",
     sections: [
       {
         id: "overview",
