@@ -54,6 +54,87 @@ function isLight(hex) {
   return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255 > 0.6;
 }
 
+// True once the element has scrolled into view (stays true after that)
+function useInView(threshold = 0.15) {
+  const ref = useRef(null);
+  // Browsers without IntersectionObserver just show everything right away
+  const [inView, setInView] = useState(() => !("IntersectionObserver" in window));
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || inView) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setInView(true);
+          io.disconnect();
+        }
+      },
+      { threshold }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [inView, threshold]);
+  return [ref, inView];
+}
+
+// Fades and slides its content in when scrolled into view
+function Reveal({ children }) {
+  const [ref, inView] = useInView();
+  return (
+    <div ref={ref} className={inView ? "cs-reveal in" : "cs-reveal"}>
+      {children}
+    </div>
+  );
+}
+
+// Counts from 0 up to `to` once `start` is true
+function CountUp({ to, start }) {
+  const [n, setN] = useState(0);
+  const [reduced] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  useEffect(() => {
+    if (!start || reduced) return;
+    let raf;
+    const t0 = performance.now();
+    const step = (t) => {
+      const p = Math.min(1, (t - t0) / 1400);
+      setN(Math.round(to * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [start, to, reduced]);
+  // With reduced motion, skip the animation and show the final number
+  if (reduced) return start ? to : 0;
+  return n;
+}
+
+// Row of impact photos with captions; the number in each caption counts up
+function Impact({ items }) {
+  const [ref, inView] = useInView(0.3);
+  return (
+    <div ref={ref} className="cs-impact">
+      {items.map((it, i) => (
+        <figure
+          key={i}
+          className={inView ? "cs-impact-card in" : "cs-impact-card"}
+          style={{ transitionDelay: `${i * 0.12}s` }}
+        >
+          <div className="cs-impact-img">
+            <img src={it.image} alt={it.alt || ""} />
+          </div>
+          <figcaption>
+            {it.before}
+            <strong>
+              <CountUp to={it.number} start={inView} />
+            </strong>
+            {it.after}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+}
+
 function Callout({ label, text, dark }) {
   return (
     <div className={dark ? "cs-callout dark" : "cs-callout"}>
@@ -172,7 +253,7 @@ function ProjectInfo() {
   const heroRef = useRef(null);
   const mainRef = useRef(null);
 
-    useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0);
     const ids = (ProjectData.find((p) => p.id === projectId)?.sections ?? [])
       .filter((s) => s.id !== "overview")
@@ -228,9 +309,11 @@ function ProjectInfo() {
 
   const renderItem = (item, idx) => {
     if (item.type === "text") return <p key={idx} className="cs-body">{item.value}</p>;
+    if (item.type === "subheading") return <h3 key={idx} className="cs-subheading">{item.value}</h3>;
     if (item.type === "highlight") return <Callout key={idx} label={item.label} text={item.value} />;
     if (item.type === "slideshow") return <Slideshow key={idx} items={item.items} />;
     if (item.type === "compare") return <Compare key={idx} {...item} />;
+    if (item.type === "impact") return <Impact key={idx} items={item.items} />;
     if (item.type === "list")
       return (
         <ol key={idx} className="cs-list">
@@ -238,7 +321,7 @@ function ProjectInfo() {
         </ol>
       );
     if (item.type === "image")
-      return <img key={idx} src={item.value} alt="" className={item.size === "mobile" ? "cs-image mobile" : "cs-image"} />;
+      return <img key={idx} src={item.value} alt={item.alt || ""} className={item.size === "mobile" ? "cs-image mobile" : "cs-image"} />;
     if (item.type === "preview")
       return (
         <div key={idx} className="cs-preview">
@@ -249,7 +332,7 @@ function ProjectInfo() {
           <iframe src={item.value} title="Live site preview" loading="lazy" />
         </div>
       );
-        if (item.type === "affinity")
+    if (item.type === "affinity")
       return (
         <div key={idx} className="cs-affinity">
           {item.groups.map((g, i) => (
@@ -388,7 +471,6 @@ function ProjectInfo() {
               </div>
             )}
           </div>
-          
         </div>
       </header>
 
@@ -425,7 +507,15 @@ function ProjectInfo() {
                   ))}
                 </div>
               ) : Array.isArray(section.content) ? (
-                section.content.map(renderItem)
+                // Sections with `reveal: true` fade each piece in as you scroll
+                // (impact rows animate on their own, so they aren't wrapped)
+                section.content.map((item, idx) =>
+                  section.reveal && item.type !== "impact" ? (
+                    <Reveal key={idx}>{renderItem(item, idx)}</Reveal>
+                  ) : (
+                    renderItem(item, idx)
+                  )
+                )
               ) : (
                 section.content && <p className="cs-body">{section.content}</p>
               )}

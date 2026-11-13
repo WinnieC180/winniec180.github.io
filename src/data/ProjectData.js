@@ -836,12 +836,12 @@ export const ProjectData = [
       },
       {
         id: "context",
-        label: "Overview",
+        label: "context",
         heading: "Who is DARN?",
         content: [
           {
             type: "text",
-            value: "DARN is a Bexley, Ohio nonprofit that has run summer food programs, bike distributions, and emergency grocery help since 2003. Their impact was real, but their website didn't show it.",
+            value: "DARN is a Bexley, Ohio nonprofit that has run summer food programs, bike distributions, and emergency grocery help since 2003. ",
           },
           {
             type: "text",
@@ -860,21 +860,30 @@ export const ProjectData = [
         },
       },
       {
-        id: "problem",
-        label: "Problem",
-        heading: "What wasn't working?",
+        id: "context2",
+        label: "overview",
+        heading: "DARN was making actual impact...",
+        reveal: true,
         content: [
           {
-            type: "list",
+            type: "text",
+            value: "Developmental Assets Resource Network (DARN) has provided much support and gained a lot of support from their local community, and hosted many donation events to give back to them.",
+          },
+          {
+            type: "impact",
             items: [
-              "Limited online presence: the site did not explain DARN's programs, resources, or impact.",
-              "Manual request management: requests moved between Google Forms, a coded spreadsheet, and email threads.",
-              "No visibility for counselors: after submitting a request, counselors had no way to see what happened to it.",
+              { image: "./photos/darn-impact-bikes.png", alt: "Bicycle Donation Day flyer from DARN and Re:Cycle Bikes", before: "Donating over ", number: 70, after: " recycled bicycles to youth in need." },
+              { image: "./photos/darn-impact-food.png", alt: "Donated socks, gloves, hats and gift cards", before: "Supported over ", number: 49, after: " families with food and necessities assistance." },
+              { image: "./photos/darn-impact-holiday.png", alt: "Holiday Help Needed flyer", before: "Over ", number: 40, after: " families helped with emergency & grocery assistance." },
             ],
           },
-          { type: "image", value: "./photos/darn-old-site.png" }, 
-          { type: "image", value: "./photos/darn-old-form.png" },
-          
+          { type: "subheading", value: "...but their website doesn't show their impact" },
+          { type: "text", value: "The community looking to help or find help would search up what DARN is as a potential resource and they will see the following:" },
+          { type: "image", value: "./photos/darn-old-site-annotated.png", alt: "DARN's old homepage with annotations" },
+          { type: "text", value: "In order for people to become counselors to support DARN's cause in donating resources they have to navigate their website to find an email, ask questions, and wait to receive the google form." },
+          { type: "image", value: "./photos/darn-become-counselor.png", alt: "Steps to become a counselor: DARN website, email, wait, Google Form, wait" },
+          { type: "text", value: "For admins they would have to monitor their email, provide instructions, update spreadsheet with new counselors, and update the counselors of their application through email." },
+          { type: "image", value: "./photos/darn-approve-counselor.png", alt: "Approving a counselor: reply with instructions, Google Sheets, email" },
         ],
       },
       {

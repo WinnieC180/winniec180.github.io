@@ -255,7 +255,7 @@ html {
 
 /* ---------- Content ---------- */
 .cs-main {
-  max-width: 760px;
+  max-width: 830px;
   margin: 0 auto;
   padding: 0 20px 120px;
 }
@@ -303,7 +303,7 @@ html {
 .cs-image {
   width: 100%;
   display: block;
-  border-radius: 12px;
+  /* border-radius: 12px; */
 }
 
 .cs-image.mobile {
@@ -867,6 +867,60 @@ html {
 .cs-competitor li { display: flex; gap: 10px; align-items: flex-start; }
 .cs-competitor li svg { flex-shrink: 0; margin-top: 1px; }
 .cs-competitor li span { font-size: 15px; line-height: 1.45; color: var(--clr-page-text); text-wrap: pretty; }
+
+/* ---------- DARN impact + reveal ---------- */
+.cs-reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s ease, transform 0.9s cubic-bezier(.2, .7, .3, 1); }
+.cs-reveal.in { opacity: 1; transform: none; }
+
+.cs-subheading {
+  margin: 48px 0 0;
+  font-size: clamp(22px, 2.6vw, 28px);
+  line-height: 1.25;
+  font-weight: 600;
+  color: var(--clr-page-text);
+  text-wrap: pretty;
+}
+
+.cs-impact {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: 20px;
+  margin: 8px 0;
+}
+.cs-impact-card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s ease, transform 0.9s cubic-bezier(.2, .7, .3, 1);
+}
+.cs-impact-card.in { opacity: 1; transform: none; }
+.cs-impact-img {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(18, 33, 70, 0.12);
+}
+.cs-impact-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(.2, .7, .3, 1);
+}
+.cs-impact-card:hover .cs-impact-img img { transform: scale(1.06); }
+.cs-impact-card figcaption {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--clr-secondary-500);
+  text-wrap: pretty;
+}
+.cs-impact-card strong { color: var(--clr-page-text); font-variant-numeric: tabular-nums; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-reveal, .cs-impact-card { opacity: 1; transform: none; transition: none; }
+}
 
 @media (max-width: 760px) {
   .cs-affinity { grid-template-columns: repeat(2, minmax(0, 1fr)); }
