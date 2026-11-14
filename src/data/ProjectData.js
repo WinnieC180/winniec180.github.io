@@ -492,10 +492,10 @@ export const ProjectData = [
         label: "Overview",
         steps: [
           {
-            title: "Creator's Cuts",
+            title: "YouTube has something called Creator Cuts?",
             video: "./videos/YouTube-loading.mp4",
             crop: true,
-            body: "Creator's Cuts was my first case study. Through it, I learned the process of designing a new feature, learned Figma, and discovered my interest in digital product design.\n\nComing from a technical computer science background, it made me realize that a product is created to help users, not just to show technical work.",
+            body: "It doesn't, Creator's Cuts is a YouTube feature concept I created 0 -> 1 that lets viewers divide their For You page into custom, color-coded categories they define themselves. Creator's Cuts was my first case study.",
           },
           {
             title: "Entry points",
@@ -511,18 +511,6 @@ export const ProjectData = [
             title: "Editing and deleting cuts",
             video: "./videos/edit-delete-cut.mp4",
             body: "From All creator's cuts (located in the Accounts tab in YouTube), each cut's menu lets viewers rename it, change its color, or delete it, so their categories can change as their interests do.",
-          },
-        ],
-      },
-      {
-        id: "context",
-        label: "Context",
-        heading: "Since when did YouTube have Creator's Cuts??",
-        content: [
-          {
-            type: "highlight",
-            value: "It doesn't, Creator's Cuts is a YouTube feature concept I created 0 -> 1 that lets viewers divide their For You page into custom, color-coded categories they define themselves. By sorting content intentionally, viewers send clearer signals to the recommendation algorithm, so YouTube can surface videos that match their interests and viewing intent while showing fewer irrelevant suggestions.",
-
           },
         ],
       },
@@ -801,14 +789,6 @@ export const ProjectData = [
             type: "highlight",
             label: "Key takeaway",
             value: "Validate the problem before solving it. My own frustration was a starting point, not evidence.",
-          },
-          {
-            type: "text",
-            value: "Working through How Might We statements, solution sketches, and voting taught me to go wide before narrowing down. I wireframed three directions and let feedback decide which one to pursue, rather than committing to my first idea. Keeping Felix in mind made later design decisions, like where cuts live and how they are edited, easier to make and explain.",
-          },
-          {
-            type: "text",
-            value: "Since this was a solo project, I was responsible for every step, from research to final flows. If I continued Creator's Cuts, I would run usability tests on the final designs with the same viewers I interviewed to see whether sorting their feed into cuts actually helps them find what they came for.",
           },
         ],
       },

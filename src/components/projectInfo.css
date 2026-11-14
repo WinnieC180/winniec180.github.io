@@ -163,7 +163,7 @@ html {
 .has-word .cs-hero {
   position: relative;
   z-index: 1;
-  width: min(100%, 960px, 3 * 30vh);
+  width: min(100%, 1200px, 3 * 42vh);
   margin-inline: auto;
 }
 
@@ -255,7 +255,7 @@ html {
 
 /* ---------- Content ---------- */
 .cs-main {
-  max-width: 830px;
+  max-width: 700px;
   margin: 0 auto;
   padding: 0 20px 120px;
 }
@@ -285,7 +285,7 @@ html {
 .cs-body,
 .cs-list {
   margin: 0;
-  font-size: 17px;
+  font-size: 14px;
   line-height: 1.6;
   color: var(--clr-secondary-500);
   white-space: pre-line;
@@ -322,7 +322,7 @@ html {
 
 .cs-callout p {
   margin: 0;
-  font-size: 21px;
+  font-size: 16px;
   line-height: 1.4;
   font-weight: 600;
   color: var(--clr-page-text);
@@ -911,7 +911,7 @@ html {
 }
 .cs-impact-card:hover .cs-impact-img img { transform: scale(1.06); }
 .cs-impact-card figcaption {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--clr-secondary-500);
   text-wrap: pretty;
